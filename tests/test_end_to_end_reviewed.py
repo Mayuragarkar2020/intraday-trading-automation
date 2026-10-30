@@ -23,5 +23,8 @@ def test_candidate_export_cannot_claim_production_approval(tmp_path):
     config=tmp_path/"config.yaml"
     config.write_text("universe:\n  required_history_sessions: 20\n  price_min: 300\n  price_max: 5000\nliquidity:\n  avg_turnover_20d_min_cr: 100\n  median_turnover_20d_min_cr: 50\n  last_turnover_min_cr: 75\n  last_to_avg_ratio_min: 0.75\n  min_turnover_5d_cr: 30\n")
     result=produce(dates[-1],"2026-10-01",str(root),str(config),str(dhan),controls,str(tmp_path/"out"))
+    import json
+    saved=json.loads((tmp_path/"out"/"reviewed_candidates.json").read_text())
+    assert saved["approval_state"]=="REVIEWED_ONLY"
     assert result["approval_state"]=="REVIEWED_ONLY"
     assert result["decisions"][0]["status"]=="REVIEWED_CANDIDATE_NOT_PRODUCTION_APPROVED"
