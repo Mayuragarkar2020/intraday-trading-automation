@@ -49,3 +49,23 @@ def test_reject_corrupted_nse_zip():
 def test_valid_bands_csv_header():
     ok, reason=validate_payload("https://example.org/sec_list_29102026.csv",b"Symbol,Series,Security Name,Band,Remarks\\nABC,EQ,ABC,10,-\\n".replace(b"\\\\n",b"\\n"))
     assert ok and reason=="SCHEMA_VALID"
+
+from src.source_readiness import validate_record_dates
+
+def test_reject_wrong_date_inside_realistic_fo_zip():
+    memory=io.BytesIO()
+    with zipfile.ZipFile(memory,"w") as archive:
+        archive.writestr("FO.csv","TradDt,FinInstrmTp,TckrSymb\\n2026-10-29,STF,ABC\\n".replace("\\n","\n"))
+    ok,reason=validate_record_dates(
+        "https://example.org/BhavCopy_NSE_FO_0_0_0_20261030_F_0000.csv.zip",
+        memory.getvalue(),"2026-10-30")
+    assert not ok and reason=="WRONG_RECORD_DATE"
+
+def test_accept_correct_date_inside_fo_zip():
+    memory=io.BytesIO()
+    with zipfile.ZipFile(memory,"w") as archive:
+        archive.writestr("FO.csv","TradDt,FinInstrmTp,TckrSymb\\n2026-10-30,STF,ABC\\n".replace("\\n","\n"))
+    ok,reason=validate_record_dates(
+        "https://example.org/BhavCopy_NSE_FO_0_0_0_20261030_F_0000.csv.zip",
+        memory.getvalue(),"2026-10-30")
+    assert ok and reason=="DATES_MATCH"
