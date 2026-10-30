@@ -2,7 +2,7 @@
 from __future__ import annotations
 import json
 from collections import defaultdict
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 import yaml
 from src.ingestion import DataQualityError, load_bhavcopy
@@ -24,13 +24,9 @@ def screen_files(paths: list[str], asof: str, config: dict) -> dict:
         raw_date = matches[0]
         try:
             day = (date.fromisoformat(raw_date) if "-" in raw_date
-                   else date.strptime(raw_date, "%Y%m%d")).isoformat()
-        except (ValueError, AttributeError):
-            from datetime import datetime
-            try:
-                day = datetime.strptime(raw_date, "%Y%m%d").date().isoformat()
-            except ValueError as exc:
-                raise DataQualityError(f"Invalid session date: {raw_date}") from exc
+                   else datetime.strptime(raw_date, "%Y%m%d").date()).isoformat()
+        except ValueError as exc:
+            raise DataQualityError(f"Invalid session date: {raw_date}") from exc
         if day in sessions:
             raise DataQualityError(f"Duplicate session: {day}")
         rows, info = load_bhavcopy(path, day)
