@@ -11,11 +11,11 @@ This deployment definition is **opt-in** in `deploy/render-preview.yaml`. The or
 
 ## Not yet implemented / deployment blockers
 - **No DhanHQ subscription or API feed.**
-- **No market-data publisher** to produce the atomic JSON input referenced by `SCAN_DATASET_PATH`. The proposed file path is a placeholder; Render worker local files do not automatically become available from a web service.
+- **No DhanHQ publisher** to populate the new PostgreSQL `candle_batches` inbox. The cloud worker now reads from the database, not a local file.
 - No live scan data, no broker order placement, no production login system.
 - No cloud database or new service has been created.
 - The stack is not ready for one-click Blueprint deployment; the YAML describes the intended components only. Verify current Render plan names, service provisions, network architecture and monthly costs before creation.
 - Market calendar and special sessions must be verified from exchange data; basic weekday/session guards are insufficient for production.
 - Broker account reconciliation, API rate limits, robust exception monitoring, static egress, and security hardening remain open.
 
-The next technical step is a DhanHQ collector that writes complete closed-candle batches to a **shared persistent store**, rather than relying on a local JSON path. Make the scan worker load those batches transactionally. Then test on market hours with live orders still disabled.
+The next step is a DhanHQ publisher of completed, validated five-minute candle batches into the persistent inbox, followed by live-market verification with orders disabled.
