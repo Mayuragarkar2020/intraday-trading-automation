@@ -13,6 +13,7 @@ from src.scan_store import ScanStore
 from src.dhan_history_client import fetch_intraday
 from src.dhan_historical_diagnostics import historical_diagnostics
 from src.dhan_candle_audit import audit_candles
+from src.dhan_raw_timestamps import raw_timestamp_report
 from datetime import datetime
 from zoneinfo import ZoneInfo
 import httpx
@@ -121,6 +122,18 @@ def dhan_candle_audit(request:HistoricalAnalysisRequest):
     except (httpx.HTTPError,OverflowError,TypeError) as exc:
         return {"status":"AUDIT_FAILED","error_type":type(exc).__name__,
                 "reason":"DHAN_FETCH_OR_RESPONSE_ERROR","execution_enabled":False}
+
+@app.post("/api/dhan-raw-timestamps",dependencies=[Depends(require_token)])
+def dhan_raw_timestamps(request:HistoryProbe):
+    token=os.environ.get("DHAN_ACCESS_TOKEN")
+    if not token:return {"status":"DHAN_TOKEN_NOT_CONFIGURED","execution_enabled":False}
+    if request.interval!=5:raise HTTPException(status_code=422,detail="Only 5m supported")
+    try:
+        data=fetch_intraday(token,request.security_id,5,request.from_date,request.to_date)
+        return raw_timestamp_report(data)
+    except (httpx.HTTPError,ValueError,OverflowError,TypeError) as exc:
+        return {"status":"RAW_REPORT_FAILED","error_type":type(exc).__name__,
+                "execution_enabled":False}
 
 @app.get("/api/demo-setups",dependencies=[Depends(require_token)])
 def demo_setups():
