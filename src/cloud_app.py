@@ -1,6 +1,8 @@
 """Cloud MVP skeleton. No order routes, no broker credentials, no real executions."""
 import hmac
 import os
+from pathlib import Path
+from fastapi.responses import FileResponse
 from decimal import Decimal
 from fastapi import Depends, FastAPI, Header, HTTPException
 from pydantic import BaseModel, Field
@@ -21,6 +23,11 @@ class PreviewRequest(BaseModel):
     initial_stop: Decimal = Field(gt=0)
     estimated_round_trip_cost_per_share: Decimal = Field(ge=0)
     completed_trades_today: int = Field(default=0,ge=0)
+
+@app.get("/",include_in_schema=False)
+def cockpit_page():
+    return FileResponse(Path(__file__).parent / "static" / "cockpit.html",
+                        media_type="text/html",headers={"Cache-Control":"no-store"})
 
 @app.get("/health")
 def health():
