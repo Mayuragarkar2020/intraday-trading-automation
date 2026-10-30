@@ -49,3 +49,16 @@ def test_invalid_ohlc_has_distinct_error():
     d["high"][0]=98
     with pytest.raises(ValueError,match="Invalid Dhan candle values"):
         normalize_dhan_intraday(d,as_of=datetime(2026,11,2,10,0,tzinfo=IST),timestamps_are_open=True)
+
+def test_volume_numeric_float_and_string_are_accepted():
+    d=data()
+    d["volume"]=[1200.0,"1500",1700]
+    bars=normalize_dhan_intraday(d,as_of=datetime(2026,11,2,10,0,tzinfo=IST),timestamps_are_open=True)
+    assert [x.volume for x in bars]==[1200,1500,1700]
+
+@pytest.mark.parametrize("invalid",[-1,1.5,float("nan"),"garbage",True])
+def test_invalid_volumes_rejected(invalid):
+    d=data()
+    d["volume"][0]=invalid
+    with pytest.raises(ValueError,match="Invalid Dhan candle values"):
+        normalize_dhan_intraday(d,as_of=datetime(2026,11,2,10,0,tzinfo=IST),timestamps_are_open=True)
