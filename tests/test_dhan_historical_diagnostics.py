@@ -21,7 +21,7 @@ def test_historical_ema_vwap_diagnostics():
                              as_of=datetime(2026,10,30,16,0,tzinfo=IST))
     assert r["status"]=="HISTORICAL_INDICATORS_ONLY"
     assert r["candle_count"]==225
-    assert r["ema10"]=="100" and r["session_vwap"]=="100"
+    assert float(r["ema10"])==100 and float(r["session_vwap"])==100
     assert r["setup_qualified"] is False
     assert r["timestamp_convention_verified"] is False
 
