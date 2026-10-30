@@ -15,6 +15,7 @@ on:
       - scripts/discover_sessions.py
       - scripts/check_source_readiness.py
       - src/source_readiness.py
+      - src/exchange_calendar.py
       - scripts/live_liquidity_report.py
       - src/nse_price_bands.py
       - scripts/price_band_research.py
@@ -37,6 +38,8 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install -r requirements.txt
+      - name: Validate reviewed next NSE session
+        run: python -c 'import os; from src.exchange_calendar import next_regular_session; print("Research target:",next_regular_session(os.environ["RESEARCH_ASOF"]))'
       - name: Require complete current-session NSE sources before research
         run: python -m scripts.check_source_readiness --asof "$RESEARCH_ASOF" --surveillance-date "$SURVEILLANCE_DATE" --attempts 2 --retry-delay 5
       - name: Discover and verify 20 NSE archive sessions
