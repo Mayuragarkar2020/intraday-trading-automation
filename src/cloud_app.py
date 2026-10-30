@@ -11,6 +11,9 @@ from src.candle_pipeline import scan_demo
 from src.candle_input import BatchInput,scan_batch
 from src.scan_store import ScanStore
 from src.dhan_history_client import fetch_intraday
+from src.dhan_historical_diagnostics import historical_diagnostics
+from datetime import datetime
+from zoneinfo import ZoneInfo
 import httpx
 
 app=FastAPI(title="Intraday Trade Cockpit — Preview Only",version="0.1.0",
@@ -73,6 +76,22 @@ def dhan_history_probe(request:HistoryProbe):
             "first_epoch":candles["timestamp"][0] if count else None,
             "last_epoch":candles["timestamp"][-1] if count else None,
             "execution_enabled":False,"timestamp_convention_verified":False}
+
+class HistoricalAnalysisRequest(HistoryProbe):
+    timestamps_are_open: bool
+
+@app.post("/api/dhan-historical-analysis",dependencies=[Depends(require_token)])
+def dhan_historical_analysis(request:HistoricalAnalysisRequest):
+    token=os.environ.get("DHAN_ACCESS_TOKEN")
+    if not token:return {"status":"DHAN_TOKEN_NOT_CONFIGURED","execution_enabled":False}
+    if request.interval!=5:raise HTTPException(status_code=422,detail="Analysis requires 5m candles")
+    try:
+        payload=fetch_intraday(token,request.security_id,5,
+                               request.from_date,request.to_date)
+        return historical_diagnostics(payload,timestamps_are_open=request.timestamps_are_open,
+            as_of=datetime.now(ZoneInfo("Asia/Kolkata")))
+    except (httpx.HTTPError,ValueError,OverflowError,TypeError) as exc:
+        return {"status":"ANALYSIS_FAILED","error_type":type(exc).__name__,"execution_enabled":False}
 
 @app.get("/api/demo-setups",dependencies=[Depends(require_token)])
 def demo_setups():
