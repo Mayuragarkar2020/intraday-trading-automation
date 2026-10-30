@@ -18,8 +18,18 @@ def main():
     report=json.loads(Path(a.report).read_text())
     if report["asof_date"] is None:raise ValueError("Missing asof date")
     names=report_names(report["asof_date"],a.surveillance_date)
-    full=parse_complete(fetch(names["price_band_complete"]))
-    changes=parse_changes(fetch(names["price_band_changes"]))
+    # Require both same-session source files; partial publication is never approval.
+    missing=[]
+    sources={}
+    for key in ("price_band_complete","price_band_changes"):
+        try:
+            sources[key]=fetch(names[key])
+        except RuntimeError as exc:
+            missing.append(str(exc))
+    if missing:
+        raise RuntimeError("NOT_READY: incomplete same-session band sources: "+"; ".join(missing))
+    full=parse_complete(sources["price_band_complete"])
+    changes=parse_changes(sources["price_band_changes"])
     rows=[{"symbol":r["symbol"],"isin":r["isin"],"band_result":classify(r["symbol"],full,changes)} for r in report["decisions"] if r.get("liquidity_pass")]
     result={"approval_state":"RESEARCH_ONLY_NO_TRADING","counts":dict(Counter(x["band_result"] for x in rows)),"rows":rows}
     dest=Path(a.output);dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(json.dumps(result,indent=2))
