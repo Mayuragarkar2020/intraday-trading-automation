@@ -1,0 +1,29 @@
+system:
+  version: '1.0'
+  timezone: Asia/Kolkata
+  exchange: NSE
+  direction: LONG
+  execution_mode: manual
+  max_trades_per_day: 1
+capital:
+  amount_inr: 980000
+  max_risk_inr: 9800
+universe:
+  allowed_series: ['EQ']
+  price_min: 300
+  price_max: 5000
+  required_history_sessions: 20
+liquidity:
+  avg_turnover_20d_min_cr: 100
+  median_turnover_20d_min_cr: 50
+  last_turnover_min_cr: 75
+  last_to_avg_ratio_min: 0.75
+  min_turnover_5d_cr: 30
+restrictions:
+  excluded_fixed_bands_pct: [2, 5]
+  disallowed_surveillance_categories: [ASM, GSM]
+  unknown_restriction: HOLD
+  unmatched_instrument: HOLD
+data_quality:
+  on_missing_required_file: FAIL_RUN
+  on_unknown_schema: FAIL_RUN
