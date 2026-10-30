@@ -5,6 +5,8 @@ on:
     paths:
       - scripts/discover_sessions.py
       - scripts/live_liquidity_report.py
+      - src/nse_price_bands.py
+      - scripts/price_band_research.py
       - .github/workflows/live-research.yml
 jobs:
   research:
