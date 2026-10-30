@@ -26,12 +26,24 @@ def probe(name, url):
             names = [n for n in z.namelist() if n.lower().endswith(".csv")]
             if len(names) != 1:
                 raise ValueError("Unexpected NSE archive layout")
-            first = z.open(names[0]).readline().decode("utf-8-sig").strip()
+            stream = io.TextIOWrapper(z.open(names[0]), encoding="utf-8-sig", newline="")
+            reader = csv.DictReader(stream)
+            sample = next((r for r in reader if r.get("SctySrs", "").strip() == "EQ"), None)
+            if sample is None:
+                raise ValueError("No NSE EQ record found")
+            header = list(reader.fieldnames or [])
     else:
-        first = data.splitlines()[0].decode("utf-8-sig").strip()
-    header = next(csv.reader([first]))
+        stream = io.StringIO(data.decode("utf-8-sig"), newline="")
+        reader = csv.DictReader(stream)
+        sample = next((r for r in reader if r.get("EXCH_ID") == "NSE" and r.get("SEGMENT") == "E" and r.get("SERIES") == "EQ"), None)
+        if sample is None:
+            raise ValueError("No Dhan NSE E EQ record found")
+        header = list(reader.fieldnames or [])
     return {"name": name, "bytes": len(data), "sha256": hashlib.sha256(data).hexdigest(),
-            "column_count": len(header), "columns": header}
+            "column_count": len(header), "columns": header,
+            "sample": ({k: sample.get(k) for k in ("TradDt", "ISIN", "TckrSymb", "SctySrs", "ClsPric", "TtlTradgVol", "TtlTrfVal")}
+                       if name == "nse_bhavcopy" else
+                       {k: sample.get(k) for k in ("EXCH_ID", "SEGMENT", "ISIN", "SERIES", "SECURITY_ID", "ASM_GSM_FLAG", "BUY_SELL_INDICATOR")})}
 
 def main():
     failures = 0
