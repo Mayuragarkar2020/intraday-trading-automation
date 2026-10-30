@@ -18,3 +18,8 @@ def test_disagreeing_change_record_is_held(tmp_path):
     delta=tmp_path/"change.csv"
     delta.write_text("Sr. No,Symbol,Series,Security Name,From,To\n1,ABC,EQ,ABC LTD,20,5\n")
     assert classify("ABC",parse_complete(full),parse_changes(delta))=="HOLD_INCONSISTENT_BAND"
+
+def test_no_band_is_held_for_separate_validation(tmp_path):
+    p=tmp_path/'bands.csv'
+    p.write_text('Symbol,Series,Security Name,Band,Remarks\nABC,EQ,ABC LTD,No Band,-\n')
+    assert classify('ABC',parse_complete(p),{})=='HOLD_UNCLASSIFIED_BAND'
