@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intraday Trading Cockpit — Preview</title>
+<style>
+:root{font-family:system-ui,-apple-system,sans-serif;color:#eaf0fc;background:#0b1220}*{box-sizing:border-box}
+body{margin:0}main{max-width:1050px;margin:auto;padding:18px}header,.flex{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+h1{font-size:1.5rem;margin:0}h2{font-size:1rem;margin:0 0 12px}.muted,small{color:#aab5c7}.panel{background:#152239;border:1px solid #34425b;border-radius:14px;padding:17px;margin:15px 0}
+.pill{color:#ffd98a;background:#59411b;padding:5px 9px;border-radius:99px;font-size:.76rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+label{display:block;font-size:.83rem;color:#bfcee3;margin:8px 0 5px}
+input,select,button{font:inherit;border-radius:8px;padding:10px;width:100%}input,select{color:#fff;background:#0c1629;border:1px solid #596781}
+button{cursor:pointer;background:#2e67d6;border:0;color:white;font-weight:600}button:disabled{cursor:not-allowed;opacity:.5}
+.secondary{background:#263a58}a{color:#91bcff}table{width:100%;border-collapse:collapse;text-align:left}th,td{padding:11px 7px;border-bottom:1px solid #35415a;font-size:.85rem}td:last-child{white-space:nowrap}
+.good{color:#70dbac}.warn{color:#ffd98a}.error{color:#ff9797}.metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.metrics b{display:block;font-size:1.25rem;margin-top:4px}.card{background:#0c1629;border-radius:10px;padding:12px}
+@media(max-width:620px){table{display:block;overflow-x:auto}h1{font-size:1.2rem}}
+</style></head>
+<body><main>
+<header><div><h1>Intraday Trade Cockpit</h1><small>Long-only • 5-minute setup scanner • ₹9,80,000 capital</small></div><span class="pill">PREVIEW ONLY — NO ORDERS</span></header>
+<section class="panel"><div class="flex"><h2>Connection</h2><span id="authStatus" class="warn">Not connected</span></div>
+<label for="token">Cockpit access token (kept in browser memory only)</label>
+<div class="grid"><input id="token" type="password" autocomplete="off" placeholder="Enter access token">
+<button id="connect">Unlock demo dashboard</button></div>
+<small>Demo stocks are fictional and are never live market signals. No credentials are stored or sent to TradingView.</small></section>
+<section class="panel"><h2>Shortlisted setups</h2><div style="overflow-x:auto"><table><thead><tr><th>Symbol</th><th>State</th><th>Breakout</th><th>Initial SL</th><th>TradingView</th><th>Preview</th></tr></thead>
+<tbody id="candidates"><tr><td colspan="6" class="muted">Unlock to view illustrative setups</td></tr></tbody></table></div></section>
+<section class="panel"><h2>Protected trade sizing — indicative only</h2>
+<div class="grid"><div><label for="symbol">NSE symbol</label><input id="symbol" value="RELIANCE" pattern="[A-Z0-9&._-]+"></div>
+<div><label for="entry">Entry trigger ₹</label><input id="entry" type="number" step="0.05" min="0.05" value="1000"></div>
+<div><label for="stop">Stop loss ₹</label><input id="stop" type="number" step="0.05" min="0.05" value="990"></div>
+<div><label for="cost">Estimated total round-trip cost per share ₹</label><input id="cost" type="number" step="0.01" min="0" value="2"></div></div>
+<div class="grid" style="margin-top:12px"><button id="calc" disabled>Calculate position size</button>
+<button class="secondary" disabled title="Order routing intentionally unavailable">Approve trade — unavailable</button></div>
+<p id="message" class="muted" role="status">Position sizing is an estimate; live quote, tax and brokerage validation are pending.</p>
+<div class="metrics"><div class="card"><small>Quantity</small><b id="quantity">—</b></div>
+<div class="card"><small>Planned risk including costs</small><b id="risk">—</b></div>
+<div class="card"><small>Capital deployed</small><b id="exposure">—</b></div>
+<div class="card"><small>1.5R price milestone (before costs)</small><b id="target">—</b></div></div></section>
+<footer><small>No market feed, live orders, protective broker stops or persistent journal are connected in this version.</small></footer>
+</main><script>
+"use strict";
+const $=id=>document.getElementById(id);
+let token="";
+const rows=[
+ {symbol:"RELIANCE",state:"ARMED (DEMO)",entry:1000,stop:990},
+ {symbol:"ICICIBANK",state:"FORMING (DEMO)",entry:1200,stop:1188},
+ {symbol:"INFY",state:"WATCH (DEMO)",entry:1500,stop:1480}
+];
+function esc(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function loadRows(){
+ $("candidates").innerHTML=rows.map((r,i)=>'<tr><td>'+esc(r.symbol)+'</td><td class="warn">'+esc(r.state)+'</td><td>₹'+r.entry+'</td><td>₹'+r.stop+'</td><td><a target="_blank" rel="noopener noreferrer" href="https://in.tradingview.com/chart/?symbol='+encodeURIComponent('NSE:'+r.symbol)+'">Open chart ↗</a></td><td><button class="secondary" data-row="'+i+'">Inspect</button></td></tr>').join("");
+ for(const button of document.querySelectorAll('[data-row]'))button.addEventListener('click',()=>{
+  const r=rows[Number(button.dataset.row)];$("symbol").value=r.symbol;$("entry").value=r.entry;$("stop").value=r.stop;$("message").textContent="Demo candidate loaded. Press Calculate; no order will be placed.";
+ });
+}
+$("connect").addEventListener("click",async()=>{
+ const proposed=$("token").value;
+ try{
+  const res=await fetch("/api/status",{headers:{"X-Access-Token":proposed},cache:"no-store"});
+  if(!res.ok)throw Error("Access denied");
+  const data=await res.json();if(data.execution_enabled!==false)throw Error("Unsafe mode");
+  token=proposed;$("token").value="";$("authStatus").textContent="Preview unlocked";$("authStatus").className="good";
+  $("calc").disabled=false;loadRows();
+ }catch(e){token="";$("authStatus").textContent="Access denied / offline";$("authStatus").className="error";$("calc").disabled=true;}
+});
+$("calc").addEventListener("click",async()=>{
+ const entry=Number($("entry").value),stop=Number($("stop").value),cost=Number($("cost").value);
+ if(!token||!Number.isFinite(entry)||!Number.isFinite(stop)||!Number.isFinite(cost)||stop<=0||entry<=stop||cost<0){$("message").textContent="Check entry, stop and cost inputs.";return;}
+ const body={symbol:$("symbol").value.toUpperCase().trim(),entry:String(entry),initial_stop:String(stop),estimated_round_trip_cost_per_share:String(cost)};
+ try{
+  const res=await fetch("/api/preview",{method:"POST",headers:{"X-Access-Token":token,"Content-Type":"application/json"},body:JSON.stringify(body),cache:"no-store"});
+  if(!res.ok)throw Error("Request rejected ("+res.status+")");
+  const data=await res.json();if(data.execution_enabled!==false)throw Error("Unsafe mode");
+  $("quantity").textContent=Number(data.quantity).toLocaleString("en-IN");
+  $("risk").textContent="₹"+Number(data.estimated_total_risk).toLocaleString("en-IN");
+  $("exposure").textContent="₹"+Number(data.gross_exposure).toLocaleString("en-IN");
+  $("target").textContent="₹"+(entry+1.5*(entry-stop)).toFixed(2);
+  $("message").textContent=data.status+" — this is a cost-estimate preview, not an actionable order.";
+ }catch(e){$("message").textContent=e.message;}
+});
+</script></body></html>
