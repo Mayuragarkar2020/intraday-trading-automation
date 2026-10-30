@@ -15,17 +15,22 @@ def screen_files(paths: list[str], asof: str, config: dict) -> dict:
     sessions = {}
     manifest = []
     for path in paths:
-        # Accept ISO date from exact filename stem suffix e.g. nse_2026-10-30.csv or zip.
+        # NSE official names use YYYYMMDD; locally renamed files may use YYYY-MM-DD.
         name = Path(path).name
         import re
-        matches = re.findall(r"\d{4}-\d{2}-\d{2}", name)
+        matches = re.findall(r"(?<!\\d)(?:\\d{4}-\\d{2}-\\d{2}|\\d{8})(?!\\d)", name)
         if len(matches) != 1:
-            raise DataQualityError(f"File must contain one YYYY-MM-DD session date: {name}")
-        day = matches[0]
+            raise DataQualityError(f"Filename must have exactly one session date: {name}")
+        raw_date = matches[0]
         try:
-            date.fromisoformat(day)
-        except ValueError as exc:
-            raise DataQualityError(f"Invalid session date: {day}") from exc
+            day = (date.fromisoformat(raw_date) if "-" in raw_date
+                   else date.strptime(raw_date, "%Y%m%d")).isoformat()
+        except (ValueError, AttributeError):
+            from datetime import datetime
+            try:
+                day = datetime.strptime(raw_date, "%Y%m%d").date().isoformat()
+            except ValueError as exc:
+                raise DataQualityError(f"Invalid session date: {raw_date}") from exc
         if day in sessions:
             raise DataQualityError(f"Duplicate session: {day}")
         rows, info = load_bhavcopy(path, day)
