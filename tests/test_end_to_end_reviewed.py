@@ -11,8 +11,8 @@ def test_candidate_export_cannot_claim_production_approval(tmp_path):
             w.writerow(["ABC","EQ","INE000A01000",day,"1000","1200000","1200000000"])
     dhan=tmp_path/"dhan.csv"
     with dhan.open("w",newline="") as f:
-        w=csv.writer(f);w.writerow(["EXCH_ID","SEGMENT","ISIN","SERIES","SECURITY_ID"])
-        w.writerow(["NSE","E","INE000A01000","EQ","101"])
+        w=csv.writer(f);w.writerow(["EXCH_ID","SEGMENT","ISIN","SERIES","SECURITY_ID","ASM_GSM_FLAG","BUY_SELL_INDICATOR"])
+        w.writerow(["NSE","E","INE000A01000","EQ","101","N","A"])
     controls=[]
     for i in (1,2):
         path=tmp_path/("control"+str(i)+".csv")
