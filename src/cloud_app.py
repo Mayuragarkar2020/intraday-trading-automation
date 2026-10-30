@@ -10,6 +10,8 @@ from src.risk_engine import size_long
 from src.candle_pipeline import scan_demo
 from src.candle_input import BatchInput,scan_batch
 from src.scan_store import ScanStore
+from src.dhan_history_client import fetch_intraday
+import httpx
 
 app=FastAPI(title="Intraday Trade Cockpit — Preview Only",version="0.1.0",
             docs_url=None,redoc_url=None)
@@ -40,6 +42,37 @@ def health():
 def status():
     return {"mode":"PREVIEW_ONLY","broker_connected":False,
             "execution_enabled":False,"persistent_state_ready":False}
+
+class HistoryProbe(BaseModel):
+    security_id: str = Field(pattern=r"^[0-9]{1,12}$")
+    from_date: str = Field(pattern=r"^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$")
+    to_date: str = Field(pattern=r"^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$")
+    interval: int = Field(default=5)
+
+@app.get("/api/dhan-status",dependencies=[Depends(require_token)])
+def dhan_status():
+    return {"token_configured":bool(os.environ.get("DHAN_ACCESS_TOKEN")),
+            "live_orders_enabled":False,"historical_read_only":True}
+
+@app.post("/api/dhan-history-probe",dependencies=[Depends(require_token)])
+def dhan_history_probe(request:HistoryProbe):
+    token=os.environ.get("DHAN_ACCESS_TOKEN")
+    if not token:
+        return {"status":"DHAN_TOKEN_NOT_CONFIGURED","execution_enabled":False}
+    if request.interval not in (5,15):
+        raise HTTPException(status_code=422,detail="Only 5 and 15-minute intervals allowed")
+    try:
+        candles=fetch_intraday(token,request.security_id,request.interval,
+                               request.from_date,request.to_date)
+    except (httpx.HTTPError,ValueError) as exc:
+        # Never return broker error bodies, tokens, or raw instrument data.
+        return {"status":"FETCH_FAILED","error_type":type(exc).__name__,
+                "execution_enabled":False}
+    count=len(candles["timestamp"])
+    return {"status":"RECEIVED","interval":request.interval,"candle_count":count,
+            "first_epoch":candles["timestamp"][0] if count else None,
+            "last_epoch":candles["timestamp"][-1] if count else None,
+            "execution_enabled":False,"timestamp_convention_verified":False}
 
 @app.get("/api/demo-setups",dependencies=[Depends(require_token)])
 def demo_setups():
