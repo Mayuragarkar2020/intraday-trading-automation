@@ -107,7 +107,7 @@ def check_one(url, opener=None, expected_date=None):
         return {"state":"UNAVAILABLE","error_type":type(exc).__name__}
 
 def evaluate_readiness(asof, surveillance_date, checker=check_one):
-    checks={key:{"url":url,**checker(url)}
+    checks={key:{"url":url,**(checker(url,expected_date=asof) if checker is check_one else checker(url))}
             for key,url in required_sources(asof,surveillance_date).items()}
     ready=all(item["state"]=="AVAILABLE" for item in checks.values())
     return {"asof_date":asof,"surveillance_report_date":surveillance_date,
