@@ -19,6 +19,8 @@ ROOTS={"bhavcopy":"https://nsearchives.nseindia.com/content/cm/",
 def required_sources(asof, surveillance_date):
     date.fromisoformat(asof)
     date.fromisoformat(surveillance_date)
+    if asof != surveillance_date:
+        raise ValueError("Surveillance report date differs from target source session; explicit effective-date review required")
     names=report_names(asof,surveillance_date)
     return {k:ROOTS[k]+v for k,v in names.items()}
 
@@ -103,7 +105,7 @@ def check_one(url, opener=None, expected_date=None):
                     "sha256":hashlib.sha256(raw).hexdigest()}
     except urllib.error.HTTPError as exc:
         return {"state":"UNAVAILABLE","http_status":exc.code}
-    except (OSError,TimeoutError) as exc:
+    except (OSError,TimeoutError,urllib.error.URLError) as exc:
         return {"state":"UNAVAILABLE","error_type":type(exc).__name__}
 
 def evaluate_readiness(asof, surveillance_date, checker=check_one):
