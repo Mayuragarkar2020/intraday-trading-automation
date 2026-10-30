@@ -13,6 +13,8 @@ on:
   push:
     paths:
       - scripts/discover_sessions.py
+      - scripts/check_source_readiness.py
+      - src/source_readiness.py
       - scripts/live_liquidity_report.py
       - src/nse_price_bands.py
       - scripts/price_band_research.py
@@ -35,6 +37,8 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install -r requirements.txt
+      - name: Require complete current-session NSE sources before research
+        run: python -m scripts.check_source_readiness --asof "$RESEARCH_ASOF" --surveillance-date "$SURVEILLANCE_DATE" --attempts 2 --retry-delay 5
       - name: Discover and verify 20 NSE archive sessions
         run: python -m scripts.discover_sessions --asof "$RESEARCH_ASOF"
       - name: Compute real-data provisional liquidity report
@@ -51,6 +55,13 @@ jobs:
         run: python -m scripts.fo_membership_research --asof "$RESEARCH_ASOF"
       - name: Combine historical audit diagnostics
         run: python -m scripts.joint_eligibility_research
+      - name: Preserve readiness diagnostic even when blocked
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: source-readiness-diagnostic
+          path: output/source_readiness.json
+          retention-days: 7
       - uses: actions/upload-artifact@v4
         if: success()
         with:
