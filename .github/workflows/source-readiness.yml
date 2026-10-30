@@ -1,0 +1,33 @@
+name: nse-source-readiness
+on:
+  workflow_dispatch:
+    inputs:
+      asof:
+        required: true
+        default: '2026-10-30'
+      surveillance_date:
+        required: true
+        default: '2026-10-30'
+  push:
+    paths:
+      - src/source_readiness.py
+      - scripts/check_source_readiness.py
+      - tests/test_source_readiness.py
+      - .github/workflows/source-readiness.yml
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check NSE official source completeness
+        run: python -m scripts.check_source_readiness --asof "${{ inputs.asof || '2026-10-30' }}" --surveillance-date "${{ inputs.surveillance_date || '2026-10-30' }}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nse-source-readiness
+          path: output/source_readiness.json
+          retention-days: 7
