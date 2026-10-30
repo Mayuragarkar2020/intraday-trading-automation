@@ -8,6 +8,7 @@ from fastapi import Depends, FastAPI, Header, HTTPException
 from pydantic import BaseModel, Field
 from src.risk_engine import size_long
 from src.candle_pipeline import scan_demo
+from src.candle_input import BatchInput,scan_batch
 
 app=FastAPI(title="Intraday Trade Cockpit — Preview Only",version="0.1.0",
             docs_url=None,redoc_url=None)
@@ -42,6 +43,11 @@ def status():
 @app.get("/api/demo-setups",dependencies=[Depends(require_token)])
 def demo_setups():
     return {"source":"SYNTHETIC_DEMO","live":False,"execution_enabled":False,"setups":scan_demo()}
+
+@app.post("/api/scan-candles",dependencies=[Depends(require_token)])
+def scan_candles(request:BatchInput):
+    return {"source":"USER_SUPPLIED_CANDLES","live":False,
+            "execution_enabled":False,"setups":scan_batch(request)}
 
 @app.post("/api/preview",dependencies=[Depends(require_token)])
 def preview(request:PreviewRequest):
