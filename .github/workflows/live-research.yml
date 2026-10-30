@@ -16,6 +16,8 @@ on:
       - scripts/check_source_readiness.py
       - src/source_readiness.py
       - src/exchange_calendar.py
+      - src/effective_date_policy.py
+      - scripts/build_effective_date_audit.py
       - scripts/live_liquidity_report.py
       - src/nse_price_bands.py
       - scripts/price_band_research.py
@@ -42,6 +44,12 @@ jobs:
         run: python -c 'import os; from src.exchange_calendar import next_regular_session; print("Research target:",next_regular_session(os.environ["RESEARCH_ASOF"]))'
       - name: Require complete current-session NSE sources before research
         run: python -m scripts.check_source_readiness --asof "$RESEARCH_ASOF" --surveillance-date "$SURVEILLANCE_DATE" --attempts 2 --retry-delay 5
+      - name: Build effective-date evidence audit even when sources are incomplete
+        if: always()
+        run: |
+          if [ -f output/source_readiness.json ]; then
+            python -m scripts.build_effective_date_audit
+          fi
       - name: Discover and verify 20 NSE archive sessions
         run: python -m scripts.discover_sessions --asof "$RESEARCH_ASOF"
       - name: Compute real-data provisional liquidity report
@@ -63,7 +71,9 @@ jobs:
         if: always()
         with:
           name: source-readiness-diagnostic
-          path: output/source_readiness.json
+          path: |
+            output/source_readiness.json
+            output/effective_date_audit.json
           retention-days: 7
       - uses: actions/upload-artifact@v4
         if: success()
