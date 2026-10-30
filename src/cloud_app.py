@@ -81,6 +81,7 @@ def dhan_history_probe(request:HistoryProbe):
 
 class HistoricalAnalysisRequest(HistoryProbe):
     timestamps_are_open: bool
+    cas_eligible: bool | None = None
 
 @app.post("/api/dhan-historical-analysis",dependencies=[Depends(require_token)])
 def dhan_historical_analysis(request:HistoricalAnalysisRequest):
@@ -103,6 +104,7 @@ def dhan_candle_audit(request:HistoricalAnalysisRequest):
     try:
         payload=fetch_intraday(token,request.security_id,5,request.from_date,request.to_date)
         return audit_candles(payload,timestamps_are_open=request.timestamps_are_open,
+                             cas_eligible=request.cas_eligible,
                              as_of=datetime.now(ZoneInfo("Asia/Kolkata")))
     except ValueError as exc:
         # Only internal parser messages are surfaced. Broker response bodies remain private.
