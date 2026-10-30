@@ -33,7 +33,7 @@ class Signal:
     initial_stop:Decimal|None=None
 
 def detect_setup(bars,minimum_range_candles=3,buffer=Decimal("0.05"),
-                 min_relative_volume=Decimal("1.2"), max_range_pct=Decimal("0.015")):
+                 min_relative_volume=Decimal("1.2"), max_range_pct=Decimal("0.025")):
     if len(bars)<minimum_range_candles:
         return Signal("WAIT","NEED_COMPLETED_RANGE_CANDLES")
     if minimum_range_candles<3:raise ValueError("Minimum range cannot be below three candles")
