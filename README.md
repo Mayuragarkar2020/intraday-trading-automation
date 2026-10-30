@@ -25,3 +25,7 @@ No credentials or live trading secrets belong in GitHub.
 ## Ingestion milestone (not production-ready)
 
 `src/ingestion.py` parses manually downloaded NSE CM UDiFF CSV or single-CSV ZIP files with strict column and date checks. `src/screening.py` calculates provisional 20-session liquidity metrics. Run `python -m scripts.inspect_nse YYYY-MM-DD path/to/report.csv` to inspect a local file. These are unverified against a live official sample; full target-date screening requires 20 actual NSE exchange sessions, verified security master, effective restrictions, and Dhan mapping. Unit tests have been committed but have not been executed by GitHub CI. The Render entrypoint remains intentionally `NOT_READY`.
+
+## Eligibility integration milestone
+
+`src/eligibility.py` implements a **manual-reviewed transitional** eligibility gate and conservative Dhan ISIN mapping. Actual NSE security/price-band/surveillance reports are **not yet ingested automatically**, and the Dhan master header assumptions require verification on a real downloaded file. Reviewed YES is explicitly `ELIGIBLE_MANUALLY_REVIEWED`, not production-cleared. The Render entrypoint still fails closed and no automatic universe is published.
