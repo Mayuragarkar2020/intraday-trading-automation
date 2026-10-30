@@ -29,8 +29,6 @@ services:
         fromDatabase:
           name: intraday-cockpit-scans
           property: connectionString
-      - key: SCAN_DATASET_PATH
-        value: /var/data/closed_candles.json
 databases:
   - name: intraday-cockpit-scans
     plan: basic-256mb
