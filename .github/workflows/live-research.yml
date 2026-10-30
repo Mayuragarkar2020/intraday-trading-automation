@@ -5,11 +5,11 @@ on:
       asof:
         description: 'Completed NSE research session (YYYY-MM-DD)'
         required: true
-        default: '2026-09-25'
+        default: '2026-10-29'
       surveillance_date:
         description: 'NSE REG_IND report session date'
         required: true
-        default: '2026-09-25'
+        default: '2026-10-29'
   push:
     paths:
       - scripts/discover_sessions.py
@@ -27,8 +27,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      RESEARCH_ASOF: ${{ inputs.asof || '2026-09-25' }}
-      SURVEILLANCE_DATE: ${{ inputs.surveillance_date || '2026-09-25' }}
+      RESEARCH_ASOF: ${{ inputs.asof || '2026-10-29' }}
+      SURVEILLANCE_DATE: ${{ inputs.surveillance_date || '2026-10-29' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -54,7 +54,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: success()
         with:
-          name: research-only-liquidity-2026-09-25
+          name: research-only-liquidity
           path: |
             output/live_liquidity_report.json
             output/liquidity_sensitivity.json
