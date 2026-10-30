@@ -1,8 +1,8 @@
 """NSE archive path convention with explicit report-date policy.
 
-Surveillance published on next calendar day for validated 2026-09-25 sample;
-this convention is NOT assumed valid for all future sessions. Caller must provide
-an explicit surveillance report date until official publication rules validated.
+Surveillance REG_IND250926.csv corresponds to 2026-09-25 session;
+actual publication time and applicability must be independently verified. Caller must provide
+an explicit surveillance report session date until publication rules are validated.
 """
 from datetime import date,datetime
 
