@@ -9,6 +9,7 @@ from pydantic import BaseModel, Field
 from src.risk_engine import size_long
 from src.candle_pipeline import scan_demo
 from src.candle_input import BatchInput,scan_batch
+from src.scan_store import ScanStore
 
 app=FastAPI(title="Intraday Trade Cockpit — Preview Only",version="0.1.0",
             docs_url=None,redoc_url=None)
@@ -48,6 +49,17 @@ def demo_setups():
 def scan_candles(request:BatchInput):
     return {"source":"USER_SUPPLIED_CANDLES","live":False,
             "execution_enabled":False,"setups":scan_batch(request)}
+
+@app.get("/api/latest-scan",dependencies=[Depends(require_token)])
+def latest_scan():
+    url=os.environ.get("SCAN_DATABASE_URL")
+    if not url:
+        return {"status":"STORE_NOT_CONFIGURED","live":False,"execution_enabled":False}
+    store=ScanStore(url)
+    store.initialize()
+    snapshot=store.latest()
+    return {"status":"AVAILABLE" if snapshot else "NO_SCANS","source":"PERSISTED_SNAPSHOT",
+            "live":False,"execution_enabled":False,"snapshot":snapshot}
 
 @app.post("/api/preview",dependencies=[Depends(require_token)])
 def preview(request:PreviewRequest):
