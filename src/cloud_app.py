@@ -110,7 +110,8 @@ def dhan_candle_audit(request:HistoricalAnalysisRequest):
             "Missing Dhan parallel OHLCV arrays",
             "Empty or mismatched OHLCV arrays",
             "Invalid epoch",
-            "Invalid Dhan candle values or session timestamp",
+            "Invalid Dhan candle values",
+            "Invalid Dhan session timestamp",
             "Dhan timestamps duplicate or out of order",
         }
         reason=str(exc)
