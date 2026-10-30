@@ -1,6 +1,15 @@
 name: real-20-session-research
 on:
   workflow_dispatch:
+    inputs:
+      asof:
+        description: 'Completed NSE research session (YYYY-MM-DD)'
+        required: true
+        default: '2026-09-25'
+      surveillance_date:
+        description: 'NSE REG_IND report session date'
+        required: true
+        default: '2026-09-25'
   push:
     paths:
       - scripts/discover_sessions.py
@@ -17,6 +26,9 @@ jobs:
   research:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      RESEARCH_ASOF: ${{ inputs.asof || '2026-09-25' }}
+      SURVEILLANCE_DATE: ${{ inputs.surveillance_date || '2026-09-25' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -24,19 +36,19 @@ jobs:
           python-version: '3.11'
       - run: pip install -r requirements.txt
       - name: Discover and verify 20 NSE archive sessions
-        run: python -m scripts.discover_sessions --asof 2026-09-25
+        run: python -m scripts.discover_sessions --asof "$RESEARCH_ASOF"
       - name: Compute real-data provisional liquidity report
-        run: python -m scripts.live_liquidity_report --dates-file data/sessions.txt --asof 2026-09-25
+        run: python -m scripts.live_liquidity_report --dates-file data/sessions.txt --asof "$RESEARCH_ASOF"
       - name: Compare average turnover thresholds
         run: python -m scripts.analyze_liquidity_sensitivity
       - name: Reconcile live Dhan detailed master (research only)
         run: python -m scripts.reconcile_live_dhan
       - name: Evaluate historical price bands (research only)
-        run: python -m scripts.price_band_research --surveillance-date 2026-09-25
+        run: python -m scripts.price_band_research --surveillance-date "$SURVEILLANCE_DATE"
       - name: Evaluate historical surveillance codes
-        run: python -m scripts.surveillance_research --surveillance-date 2026-09-25
+        run: python -m scripts.surveillance_research --surveillance-date "$SURVEILLANCE_DATE"
       - name: Crosscheck historical F&O membership for No Band equities
-        run: python -m scripts.fo_membership_research --asof 2026-09-25
+        run: python -m scripts.fo_membership_research --asof "$RESEARCH_ASOF"
       - name: Combine historical audit diagnostics
         run: python -m scripts.joint_eligibility_research
       - uses: actions/upload-artifact@v4
