@@ -1,0 +1,36 @@
+# Separate, opt-in read-only Render stack.
+# Do NOT auto-deploy. This file is deliberately not the root render.yaml.
+# A publisher for SCAN_DATASET_PATH is not implemented yet.
+services:
+  - type: web
+    name: intraday-cockpit-preview
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn src.cloud_app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    autoDeployTrigger: "off"
+    envVars:
+      - key: COCKPIT_ACCESS_TOKEN
+        sync: false
+      - key: SCAN_DATABASE_URL
+        fromDatabase:
+          name: intraday-cockpit-scans
+          property: connectionString
+  - type: worker
+    name: intraday-scanner-preview
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m src.run_cloud_worker
+    autoDeployTrigger: "off"
+    envVars:
+      - key: SCAN_DATABASE_URL
+        fromDatabase:
+          name: intraday-cockpit-scans
+          property: connectionString
+      - key: SCAN_DATASET_PATH
+        value: /var/data/closed_candles.json
+databases:
+  - name: intraday-cockpit-scans
+    plan: basic-256mb
