@@ -15,11 +15,12 @@ def fetch_dhan_master(destination: str, *, timeout: int = 30) -> dict:
     with urllib.request.urlopen(request, timeout=timeout) as response:
         if response.status != 200:
             raise ValueError(f"Dhan HTTP status: {response.status}")
-        data = response.read(50_000_001)
-    if len(data) > 50_000_000 or len(data) < 100:
+        data = response.read(200_000_001)
+    if len(data) > 200_000_000 or len(data) < 100:
         raise ValueError("Dhan master unexpectedly small or large")
     try:
-        header = next(csv.reader(io.StringIO(data.decode("utf-8-sig"))))
+        first_line = data.splitlines()[0].decode("utf-8-sig")
+        header = next(csv.reader([first_line]))
     except (UnicodeError, StopIteration) as exc:
         raise ValueError("Dhan master is not readable CSV") from exc
     missing = REQUIRED_DHAN - set(header)
