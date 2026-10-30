@@ -10,6 +10,7 @@ on:
       - scripts/surveillance_research.py
       - scripts/joint_eligibility_research.py
       - scripts/fo_membership_research.py
+      - src/source_dates.py
       - src/nse_surveillance.py
       - .github/workflows/live-research.yml
 jobs:
@@ -31,11 +32,11 @@ jobs:
       - name: Reconcile live Dhan detailed master (research only)
         run: python -m scripts.reconcile_live_dhan
       - name: Evaluate historical price bands (research only)
-        run: python -m scripts.price_band_research
+        run: python -m scripts.price_band_research --surveillance-date 2026-09-26
       - name: Evaluate historical surveillance codes
-        run: python -m scripts.surveillance_research
+        run: python -m scripts.surveillance_research --surveillance-date 2026-09-26
       - name: Crosscheck historical F&O membership for No Band equities
-        run: python -m scripts.fo_membership_research
+        run: python -m scripts.fo_membership_research --asof 2026-09-25
       - name: Combine historical audit diagnostics
         run: python -m scripts.joint_eligibility_research
       - uses: actions/upload-artifact@v4
