@@ -21,7 +21,7 @@ def analyze(report):
                 and Decimal(m["close"]) >= 300
                 and Decimal(m["close"]) <= 5000):
                 # Original screening also requires all sessions with positive volume.
-                if Decimal(m["avg_volume_20d"]) > 0:
+                if "L06_VOLUME" not in r.get("failed_rules", []):
                     selected.append(r)
         results.append({"minimum_average_turnover_cr":threshold,
                         "candidate_count":len(selected),
