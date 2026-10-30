@@ -34,10 +34,10 @@ jobs:
         run: python -m scripts.price_band_research
       - name: Evaluate historical surveillance codes
         run: python -m scripts.surveillance_research
-      - name: Combine historical audit diagnostics
-        run: python -m scripts.joint_eligibility_research
       - name: Crosscheck historical F&O membership for No Band equities
         run: python -m scripts.fo_membership_research
+      - name: Combine historical audit diagnostics
+        run: python -m scripts.joint_eligibility_research
       - uses: actions/upload-artifact@v4
         if: success()
         with:
