@@ -37,3 +37,15 @@ def test_invalid_epoch_units_rejected():
     d["timestamp"][0]*=1000
     with pytest.raises(ValueError,match="Invalid epoch"):
         normalize_dhan_intraday(d,as_of=datetime(2026,11,2,10,0,tzinfo=IST),timestamps_are_open=True)
+
+def test_invalid_session_timestamp_has_distinct_error():
+    d=data()
+    d["timestamp"][0]+=60
+    with pytest.raises(ValueError,match="Invalid Dhan session timestamp"):
+        normalize_dhan_intraday(d,as_of=datetime(2026,11,2,10,0,tzinfo=IST),timestamps_are_open=True)
+
+def test_invalid_ohlc_has_distinct_error():
+    d=data()
+    d["high"][0]=98
+    with pytest.raises(ValueError,match="Invalid Dhan candle values"):
+        normalize_dhan_intraday(d,as_of=datetime(2026,11,2,10,0,tzinfo=IST),timestamps_are_open=True)
