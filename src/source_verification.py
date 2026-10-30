@@ -7,7 +7,7 @@ import urllib.request
 from pathlib import Path
 
 DHAN_DETAILED_URL = "https://images.dhan.co/api-data/api-scrip-master-detailed.csv"
-REQUIRED_DHAN = {"EXCH_ID", "SEGMENT", "ISIN", "SERIES", "SECURITY_ID"}
+REQUIRED_DHAN = {"EXCH_ID", "SEGMENT", "ISIN", "SERIES", "SECURITY_ID", "ASM_GSM_FLAG", "BUY_SELL_INDICATOR"}
 
 def fetch_dhan_master(destination: str, *, timeout: int = 30) -> dict:
     """Download with source hash; reject HTML/error content and schema surprises."""
