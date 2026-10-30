@@ -1,0 +1,42 @@
+name: second-date-historical-replay
+on:
+  push:
+    paths:
+      - .github/workflows/second-date-replay.yml
+  workflow_dispatch:
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - name: Discover 20 actual market sessions through 24 September 2026
+        run: python -m scripts.discover_sessions --asof 2026-09-24
+      - name: Research liquidity without approvals
+        run: python -m scripts.live_liquidity_report --dates-file data/sessions.txt --asof 2026-09-24
+      - name: Price bands on matching report date
+        run: python -m scripts.price_band_research --surveillance-date 2026-09-24
+      - name: Historical NSE surveillance
+        run: python -m scripts.surveillance_research --surveillance-date 2026-09-24
+      - name: F&O membership as of historical session
+        run: python -m scripts.fo_membership_research --asof 2026-09-24
+      - name: Dhan mapping (current master, not historical)
+        run: python -m scripts.reconcile_live_dhan
+      - name: Combine research evidence
+        run: python -m scripts.joint_eligibility_research
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: second-date-research-2026-09-24
+          path: |
+            output/live_liquidity_report.json
+            output/band_research.json
+            output/surveillance_research.json
+            output/fo_membership_research.json
+            output/dhan_reconciliation.json
+            output/joint_eligibility_research.json
+          retention-days: 7
