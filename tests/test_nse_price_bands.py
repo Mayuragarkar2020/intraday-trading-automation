@@ -23,3 +23,10 @@ def test_no_band_is_held_for_separate_validation(tmp_path):
     p=tmp_path/'bands.csv'
     p.write_text('Symbol,Series,Security Name,Band,Remarks\nABC,EQ,ABC LTD,No Band,-\n')
     assert classify('ABC',parse_complete(p),{})=='HOLD_UNCLASSIFIED_BAND'
+
+def test_no_band_requires_date_consistent_fo_membership(tmp_path):
+    p=tmp_path/"bands.csv"
+    p.write_text("Symbol,Series,Security Name,Band,Remarks\nABC,EQ,ABC LTD,No Band,-\n")
+    bands=parse_complete(p)
+    assert classify("ABC",bands,{"ABC":(None,None)},{"ABC"})=="DYNAMIC_BAND_FO_RESEARCH_ONLY"
+    assert classify("ABC",bands,{},set())=="HOLD_FO_MEMBERSHIP_UNVERIFIED"
