@@ -1,0 +1,17 @@
+name: adjacent-nse-report-probe
+on:
+  push:
+    paths:
+      - scripts/probe_adjacent_reports.py
+      - .github/workflows/adjacent-nse-report-probe.yml
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m scripts.probe_adjacent_reports
