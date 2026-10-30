@@ -45,8 +45,8 @@ def status():
 
 class HistoryProbe(BaseModel):
     security_id: str = Field(pattern=r"^[0-9]{1,12}$")
-    from_date: str = Field(pattern=r"^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$")
-    to_date: str = Field(pattern=r"^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}$")
+    from_date: str = Field(pattern=r"^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$")
+    to_date: str = Field(pattern=r"^[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2}$")
     interval: int = Field(default=5)
 
 @app.get("/api/dhan-status",dependencies=[Depends(require_token)])
