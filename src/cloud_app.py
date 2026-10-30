@@ -103,8 +103,23 @@ def dhan_candle_audit(request:HistoricalAnalysisRequest):
         payload=fetch_intraday(token,request.security_id,5,request.from_date,request.to_date)
         return audit_candles(payload,timestamps_are_open=request.timestamps_are_open,
                              as_of=datetime.now(ZoneInfo("Asia/Kolkata")))
-    except (httpx.HTTPError,ValueError,OverflowError,TypeError) as exc:
-        return {"status":"AUDIT_FAILED","error_type":type(exc).__name__,"execution_enabled":False}
+    except ValueError as exc:
+        # Only internal parser messages are surfaced. Broker response bodies remain private.
+        safe_reasons={
+            "Dhan candle timestamp convention unverified",
+            "Missing Dhan parallel OHLCV arrays",
+            "Empty or mismatched OHLCV arrays",
+            "Invalid epoch",
+            "Invalid Dhan candle values or session timestamp",
+            "Dhan timestamps duplicate or out of order",
+        }
+        reason=str(exc)
+        return {"status":"AUDIT_FAILED","error_type":"ValueError",
+                "reason":reason if reason in safe_reasons else "HISTORICAL_DATA_VALIDATION_ERROR",
+                "execution_enabled":False}
+    except (httpx.HTTPError,OverflowError,TypeError) as exc:
+        return {"status":"AUDIT_FAILED","error_type":type(exc).__name__,
+                "reason":"DHAN_FETCH_OR_RESPONSE_ERROR","execution_enabled":False}
 
 @app.get("/api/demo-setups",dependencies=[Depends(require_token)])
 def demo_setups():
