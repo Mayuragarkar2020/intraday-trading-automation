@@ -29,7 +29,7 @@ button{cursor:pointer;background:#2e67d6;border:0;color:white;font-weight:600}bu
 <div><label for="dhanTo">To (IST)</label><input id="dhanTo" value="2026-10-30 15:30:00"></div>
 <div><label for="dhanInterval">Interval</label><select id="dhanInterval"><option value="5">5 minutes</option><option value="15">15 minutes</option></select></div></div>
 <div class="grid" style="margin-top:12px"><button id="dhanStatus" class="secondary" disabled>Check Dhan token configuration</button><button id="dhanProbe" disabled>Fetch historical candle count</button></div>
-<div class="grid"><button id="dhanAnalyze" class="secondary" disabled>Calculate historical EMA / VWAP</button><div><label for="timestampConvention">Research timestamp assumption (verify against Dhan chart)</label><select id="timestampConvention"><option value="open">Dhan timestamps = candle opening</option><option value="close">Dhan timestamps = candle closing</option></select></div></div><p id="dhanAnalysisResult" class="muted" role="status">Historical analysis only; no trade setup qualification.</p><p id="dhanMessage" class="muted" role="status">Unlock cockpit first; no token values will be displayed.</p></section>
+<div class="grid"><button id="dhanAnalyze" class="secondary" disabled>Calculate historical EMA / VWAP</button><div><label for="timestampConvention">Research timestamp assumption (verify against Dhan chart)</label><select id="timestampConvention"><option value="open">Dhan timestamps = candle opening</option><option value="close">Dhan timestamps = candle closing</option></select></div></div><button id="dhanAudit" class="secondary" disabled>Audit missing 5m candles</button><p id="dhanAuditResult" class="muted" role="status">Checks 75 expected candles per standard NSE session.</p><p id="dhanAnalysisResult" class="muted" role="status">Historical analysis only; no trade setup qualification.</p><p id="dhanMessage" class="muted" role="status">Unlock cockpit first; no token values will be displayed.</p></section>
 <section class="panel"><h2>Stored scan snapshot</h2><button id="refresh" class="secondary" disabled>Refresh latest cloud scan</button><p id="refreshStatus" class="muted" role="status">Requires persistent scan storage; no live feed is connected.</p></section>
 <section class="panel"><h2>Offline candle dataset</h2><label for="dataset">Upload a JSON dataset matching the scanner input schema (up to 120 symbols). Files are processed in this preview session only.</label><input id="dataset" type="file" accept=".json,application/json" disabled><button id="scan" class="secondary" disabled style="margin-top:8px">Qualify uploaded candles</button><p id="datasetStatus" class="muted" role="status">Unlock preview before selecting data. No live Dhan feed.</p></section>
 <section class="panel"><h2>Shortlisted setups</h2><div style="overflow-x:auto"><table><thead><tr><th>Symbol</th><th>State</th><th>Breakout</th><th>Initial SL</th><th>Dhan chart</th><th>Preview</th></tr></thead>
@@ -72,7 +72,7 @@ $("connect").addEventListener("click",async()=>{
   if(!setups.ok)throw Error("Demo feed unavailable");
   const payload=await setups.json();if(payload.live!==false||payload.execution_enabled!==false)throw Error("Unexpected data mode");
   rows=payload.setups.map(s=>({symbol:s.symbol,state:s.status+" (SYNTHETIC)",entry:s.entry,stop:s.stop}));
-  $("calc").disabled=false;$("dataset").disabled=false;$("scan").disabled=false;$("refresh").disabled=false;$("dhanStatus").disabled=false;$("dhanProbe").disabled=false;$("dhanAnalyze").disabled=false;loadRows();
+  $("calc").disabled=false;$("dataset").disabled=false;$("scan").disabled=false;$("refresh").disabled=false;$("dhanStatus").disabled=false;$("dhanProbe").disabled=false;$("dhanAnalyze").disabled=false;$("dhanAudit").disabled=false;loadRows();
  }catch(e){token="";$("authStatus").textContent="Access denied / offline";$("authStatus").className="error";$("calc").disabled=true;}
 });
 $("dhanStatus").addEventListener("click",async()=>{
@@ -80,6 +80,18 @@ $("dhanStatus").addEventListener("click",async()=>{
  if(!r.ok)throw Error("Status request denied");
  const x=await r.json();$("dhanMessage").textContent=x.token_configured?"Dhan token configured in Render (validity not yet verified).":"Dhan token not configured.";
  }catch(e){$("dhanMessage").textContent=e.message;}
+});
+$("dhanAudit").addEventListener("click",async()=>{
+ const id=$("dhanId").value.trim();if(!/^[0-9]{1,12}$/.test(id)){$("dhanAuditResult").textContent="Enter a numeric Dhan security ID.";return;}
+ $("dhanAuditResult").textContent="Auditing historical candle coverage...";
+ try{const r=await fetch("/api/dhan-candle-audit",{method:"POST",
+ headers:{"X-Access-Token":token,"Content-Type":"application/json"},cache:"no-store",
+ body:JSON.stringify({security_id:id,from_date:$("dhanFrom").value,to_date:$("dhanTo").value,interval:5,timestamps_are_open:$("timestampConvention").value==="open"})});
+ if(!r.ok)throw Error("Audit rejected ("+r.status+")");
+ const x=await r.json();
+ $("dhanAuditResult").textContent=x.status!=="AUDITED"?x.status:
+ x.sessions.map(s=>s.date+": "+s.received+"/75; missing "+s.missing_count+(s.first_missing.length?" ("+s.first_missing.join(", ")+")":"")).join(" | ")+" — timestamp convention NOT verified.";
+ }catch(e){$("dhanAuditResult").textContent=e.message;}
 });
 $("dhanAnalyze").addEventListener("click",async()=>{
  const id=$("dhanId").value.trim();
