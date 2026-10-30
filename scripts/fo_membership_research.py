@@ -3,7 +3,7 @@
 Historical membership from stock futures/options records in same-date F&O UDiFF.
 Does not certify price-band eligibility or dynamic-limit execution.
 """
-import csv,io,json,urllib.request,zipfile,hashlib
+import argparse,csv,io,json,urllib.request,zipfile,hashlib
 from collections import Counter
 from pathlib import Path
 
@@ -45,8 +45,11 @@ def assess(report, membership):
             "counts":dict(Counter(r["status"] for r in rows)),"rows":rows}
 
 def main():
+    parser=argparse.ArgumentParser()
+    parser.add_argument("--asof",required=True)
+    args=parser.parse_args()
     bands=json.loads(Path("output/band_research.json").read_text())
-    members,manifest=get_membership("2026-09-25")
+    members,manifest=get_membership(args.asof)
     result=assess(bands,members);result["manifest"]=manifest
     dest=Path("output/fo_membership_research.json")
     dest.write_text(json.dumps(result,indent=2))
