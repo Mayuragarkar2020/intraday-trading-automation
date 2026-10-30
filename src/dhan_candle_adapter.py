@@ -25,8 +25,19 @@ def normalize_dhan_intraday(payload,*,as_of,interval=5,timestamps_are_open=None)
     out=[]
     for i in range(n):
         ts=payload["timestamp"][i]
-        if isinstance(ts,bool) or not isinstance(ts,int):raise ValueError("Invalid epoch")
-        dt=datetime.fromtimestamp(ts,IST)
+        if isinstance(ts,bool) or not isinstance(ts,(int,float,str,Decimal)):
+            raise ValueError("Invalid epoch")
+        try:
+            numeric=Decimal(str(ts))
+            if not numeric.is_finite() or numeric!=numeric.to_integral_value():
+                raise ValueError("Invalid epoch")
+            # Dhan returns Unix seconds; do not silently interpret milliseconds.
+            seconds=int(numeric)
+            if not 946684800<=seconds<=4102444800:
+                raise ValueError("Invalid epoch")
+            dt=datetime.fromtimestamp(seconds,IST)
+        except (InvalidOperation,OverflowError,OSError,TypeError) as exc:
+            raise ValueError("Invalid epoch") from exc
         if timestamps_are_open:dt+=timedelta(minutes=5)
         # Do not accept a candle that is not demonstrably complete.
         if dt>as_of.astimezone(IST):continue
