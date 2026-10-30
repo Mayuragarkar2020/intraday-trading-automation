@@ -23,3 +23,17 @@ def test_dhan_fails_on_misaligned_arrays_and_duplicate_times():
 def test_invalid_prices_are_blocked():
     d=data();d["low"][0]=105
     with pytest.raises(ValueError):normalize_dhan_intraday(d,as_of=datetime(2026,11,2,10,0,tzinfo=IST),timestamps_are_open=True)
+
+def test_numeric_epoch_float_and_numeric_string():
+    d=data()
+    d["timestamp"]=[float(x) for x in d["timestamp"]]
+    bars=normalize_dhan_intraday(d,as_of=datetime(2026,11,2,10,0,tzinfo=IST),timestamps_are_open=True)
+    assert len(bars)==3
+    d["timestamp"]=[str(int(x)) for x in d["timestamp"]]
+    assert len(normalize_dhan_intraday(d,as_of=datetime(2026,11,2,10,0,tzinfo=IST),timestamps_are_open=True))==3
+
+def test_invalid_epoch_units_rejected():
+    d=data()
+    d["timestamp"][0]*=1000
+    with pytest.raises(ValueError,match="Invalid epoch"):
+        normalize_dhan_intraday(d,as_of=datetime(2026,11,2,10,0,tzinfo=IST),timestamps_are_open=True)
