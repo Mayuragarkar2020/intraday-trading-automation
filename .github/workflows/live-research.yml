@@ -24,6 +24,8 @@ jobs:
         run: python -m scripts.analyze_liquidity_sensitivity
       - name: Reconcile live Dhan detailed master (research only)
         run: python -m scripts.reconcile_live_dhan
+      - name: Evaluate historical price bands (research only)
+        run: python -m scripts.price_band_research
       - uses: actions/upload-artifact@v4
         if: success()
         with:
@@ -32,4 +34,5 @@ jobs:
             output/live_liquidity_report.json
             output/liquidity_sensitivity.json
             output/dhan_reconciliation.json
+            output/band_research.json
           retention-days: 7
