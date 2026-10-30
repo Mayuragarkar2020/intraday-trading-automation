@@ -49,7 +49,7 @@ def produce(asof, target, input_dir, config_path, dhan_path, controls, output_di
     path=Path(output_dir)
     path.mkdir(parents=True,exist_ok=True)
     target_file=path/"reviewed_candidates.json"
-    target_file.write_text(json.dumps(package,indent=2),encoding="utf-8")
+    target_file.write_text(json.dumps(package,indent=2,default=str),encoding="utf-8")
     return package
 
 def main():
