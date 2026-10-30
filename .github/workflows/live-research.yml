@@ -8,6 +8,7 @@ on:
       - src/nse_price_bands.py
       - scripts/price_band_research.py
       - scripts/surveillance_research.py
+      - scripts/joint_eligibility_research.py
       - src/nse_surveillance.py
       - .github/workflows/live-research.yml
 jobs:
@@ -32,6 +33,8 @@ jobs:
         run: python -m scripts.price_band_research
       - name: Evaluate historical surveillance codes
         run: python -m scripts.surveillance_research
+      - name: Combine historical audit diagnostics
+        run: python -m scripts.joint_eligibility_research
       - uses: actions/upload-artifact@v4
         if: success()
         with:
@@ -42,4 +45,5 @@ jobs:
             output/dhan_reconciliation.json
             output/band_research.json
             output/surveillance_research.json
+            output/joint_eligibility_research.json
           retention-days: 7
