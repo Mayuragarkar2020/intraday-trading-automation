@@ -1,0 +1,17 @@
+name: nse-band-freshness-diagnostic
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - scripts/probe_band_freshness.py
+      - .github/workflows/band-freshness.yml
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m scripts.probe_band_freshness
