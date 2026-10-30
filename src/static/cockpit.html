@@ -21,7 +21,7 @@ button{cursor:pointer;background:#2e67d6;border:0;color:white;font-weight:600}bu
 <label for="token">Cockpit access token (kept in browser memory only)</label>
 <div class="grid"><input id="token" type="password" autocomplete="off" placeholder="Enter access token">
 <button id="connect">Unlock demo dashboard</button></div>
-<small>Demo stocks are fictional and are never live market signals. No credentials are stored or sent to Dhan charts.</small></section>
+<small>Stocks shown use synthetic candle data and are never live market signals. No credentials are stored or sent to Dhan charts.</small></section>
 <section class="panel"><h2>Shortlisted setups</h2><div style="overflow-x:auto"><table><thead><tr><th>Symbol</th><th>State</th><th>Breakout</th><th>Initial SL</th><th>Dhan chart</th><th>Preview</th></tr></thead>
 <tbody id="candidates"><tr><td colspan="6" class="muted">Unlock to view illustrative setups</td></tr></tbody></table></div></section>
 <section class="panel"><h2>Protected trade sizing — indicative only</h2>
@@ -41,14 +41,11 @@ button{cursor:pointer;background:#2e67d6;border:0;color:white;font-weight:600}bu
 "use strict";
 const $=id=>document.getElementById(id);
 let token="";
-const rows=[
- {symbol:"RELIANCE",state:"ARMED (DEMO)",entry:1000,stop:990},
- {symbol:"ICICIBANK",state:"FORMING (DEMO)",entry:1200,stop:1188},
- {symbol:"INFY",state:"WATCH (DEMO)",entry:1500,stop:1480}
-];
+let rows=[];
 function esc(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function loadRows(){
- $("candidates").innerHTML=rows.map((r,i)=>'<tr><td>'+esc(r.symbol)+'</td><td class="warn">'+esc(r.state)+'</td><td>₹'+r.entry+'</td><td>₹'+r.stop+'</td><td><a target="_blank" rel="noopener noreferrer" href="https://tv.dhan.co/">Open Dhan ↗</a></td><td><button class="secondary" data-row="'+i+'">Inspect</button><button class="secondary" data-copy="'+i+'">Copy symbol</button></td></tr>').join("");
+ if(!rows.length){$("candidates").innerHTML='<tr><td colspan="6">No synthetic candidates returned</td></tr>';return;}
+ $("candidates").innerHTML=rows.map((r,i)=>'<tr><td>'+esc(r.symbol)+'</td><td class="warn">'+esc(r.state)+'</td><td>₹'+(r.entry??"—")+'</td><td>₹'+(r.stop??"—")+'</td><td><a target="_blank" rel="noopener noreferrer" href="https://tv.dhan.co/">Open Dhan ↗</a></td><td><button class="secondary" data-row="'+i+'" '+(r.entry===null||r.stop===null?"disabled":"")+'>Inspect</button><button class="secondary" data-copy="'+i+'">Copy symbol</button></td></tr>').join("");
  for(const button of document.querySelectorAll('[data-copy]'))button.addEventListener('click',async()=>{const r=rows[Number(button.dataset.copy)];try{await navigator.clipboard.writeText(r.symbol);$("message").textContent=r.symbol+" copied. Open Dhan and paste into symbol search.";}catch(e){$("symbol").value=r.symbol;$("message").textContent="Selected "+r.symbol+". Copy it from the NSE symbol box to search in Dhan.";}});
  for(const button of document.querySelectorAll('[data-row]'))button.addEventListener('click',()=>{
   const r=rows[Number(button.dataset.row)];$("symbol").value=r.symbol;$("entry").value=r.entry;$("stop").value=r.stop;$("message").textContent="Demo candidate loaded. Press Calculate; no order will be placed.";
@@ -61,6 +58,10 @@ $("connect").addEventListener("click",async()=>{
   if(!res.ok)throw Error("Access denied");
   const data=await res.json();if(data.execution_enabled!==false)throw Error("Unsafe mode");
   token=proposed;$("token").value="";$("authStatus").textContent="Preview unlocked";$("authStatus").className="good";
+  const setups=await fetch("/api/demo-setups",{headers:{"X-Access-Token":token},cache:"no-store"});
+  if(!setups.ok)throw Error("Demo feed unavailable");
+  const payload=await setups.json();if(payload.live!==false||payload.execution_enabled!==false)throw Error("Unexpected data mode");
+  rows=payload.setups.map(s=>({symbol:s.symbol,state:s.status+" (SYNTHETIC)",entry:s.entry,stop:s.stop}));
   $("calc").disabled=false;loadRows();
  }catch(e){token="";$("authStatus").textContent="Access denied / offline";$("authStatus").className="error";$("calc").disabled=true;}
 });
