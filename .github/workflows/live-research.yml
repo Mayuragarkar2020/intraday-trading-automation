@@ -32,9 +32,9 @@ jobs:
       - name: Reconcile live Dhan detailed master (research only)
         run: python -m scripts.reconcile_live_dhan
       - name: Evaluate historical price bands (research only)
-        run: python -m scripts.price_band_research --surveillance-date 2026-09-26
+        run: python -m scripts.price_band_research --surveillance-date 2026-09-25
       - name: Evaluate historical surveillance codes
-        run: python -m scripts.surveillance_research --surveillance-date 2026-09-26
+        run: python -m scripts.surveillance_research --surveillance-date 2026-09-25
       - name: Crosscheck historical F&O membership for No Band equities
         run: python -m scripts.fo_membership_research --asof 2026-09-25
       - name: Combine historical audit diagnostics
