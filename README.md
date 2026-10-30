@@ -29,3 +29,7 @@ No credentials or live trading secrets belong in GitHub.
 ## Eligibility integration milestone
 
 `src/eligibility.py` implements a **manual-reviewed transitional** eligibility gate and conservative Dhan ISIN mapping. Actual NSE security/price-band/surveillance reports are **not yet ingested automatically**, and the Dhan master header assumptions require verification on a real downloaded file. Reviewed YES is explicitly `ELIGIBLE_MANUALLY_REVIEWED`, not production-cleared. The Render entrypoint still fails closed and no automatic universe is published.
+
+## Historical NSE downloader (implemented, CI validated with fixtures)
+
+Run `python -m scripts.download_20_sessions --dates-file session_dates.txt --output-dir data/raw/nse` with exactly 20 verified NSE trading session dates, ascending. Archives are checked using the NSE UDiFF parser and source hashes are saved. A complete live 20-session download and independent NSE trading-calendar validation have not yet been performed. Synthetic CI tests are not evidence of successful live historical screening. Production Render remains inactive.
