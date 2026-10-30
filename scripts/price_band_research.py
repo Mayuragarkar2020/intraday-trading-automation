@@ -1,4 +1,4 @@
-import argparse,json,urllib.request
+import argparse,json,urllib.request,urllib.error
 from pathlib import Path
 from collections import Counter
 from src.nse_price_bands import parse_complete,parse_changes,classify
@@ -6,7 +6,10 @@ from src.source_dates import report_names
 BASE="https://nsearchives.nseindia.com/content/equities/"
 def fetch(filename):
     req=urllib.request.Request(BASE+filename,headers={"User-Agent":"Mozilla/5.0"})
-    with urllib.request.urlopen(req,timeout=30) as r:data=r.read(3000001)
+    try:
+        with urllib.request.urlopen(req,timeout=30) as r:data=r.read(3000001)
+    except urllib.error.HTTPError as exc:
+        raise RuntimeError(f"NOT_READY: required NSE price-band source {filename} returned HTTP {exc.code}; no prior-day fallback permitted") from exc
     if not data or len(data)>3000000:raise ValueError("Invalid NSE report")
     p=Path("data/raw/bands")/filename;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data)
     return p
