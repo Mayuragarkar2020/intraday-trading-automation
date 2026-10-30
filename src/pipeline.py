@@ -18,7 +18,7 @@ def screen_files(paths: list[str], asof: str, config: dict) -> dict:
         # NSE official names use YYYYMMDD; locally renamed files may use YYYY-MM-DD.
         name = Path(path).name
         import re
-        matches = re.findall(r"(?<!\\d)(?:\\d{4}-\\d{2}-\\d{2}|\\d{8})(?!\\d)", name)
+        matches = re.findall(r"(?<!\d)(?:\d{4}-\d{2}-\d{2}|\d{8})(?!\d)", name)
         if len(matches) != 1:
             raise DataQualityError(f"Filename must have exactly one session date: {name}")
         raw_date = matches[0]
