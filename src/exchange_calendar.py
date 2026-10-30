@@ -15,7 +15,9 @@ def regular_session(day):
     if day.year!=2026:raise ValueError("No reviewed NSE capital market calendar for this year")
     return day.weekday()<5 and day not in HOLIDAYS_2026
 def next_regular_session(asof):
-    d=date.fromisoformat(asof)+timedelta(days=1)
+    source=date.fromisoformat(asof)
+    if not regular_session(source):raise ValueError("As-of date is not a reviewed regular NSE session")
+    d=source+timedelta(days=1)
     for _ in range(10):
         if regular_session(d):return d.isoformat()
         d+=timedelta(days=1)
