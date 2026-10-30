@@ -4,8 +4,7 @@ Uses historical closes for EMA warm-up, current-session OHLCV for VWAP,
 20 matching historical time slots for relative volume, and *completed*
 15-minute candles for higher-timeframe trend.
 """
-from collections import defaultdict
-from dataclasses import replace
+from datetime import timedelta
 from decimal import Decimal
 from src.candle_pipeline import ema
 from src.candle_session import ensure_ordered_session,parse_close
@@ -44,7 +43,16 @@ def higher_tf_confirmed(candles_15m):
 def qualify(completed_5m,previous_sessions,completed_15m,ema_warmup_closes):
     """Never returns ARMED when required source history is unavailable."""
     try:
-        ensure_ordered_session([c.time for c in completed_5m])
+        current_day=ensure_ordered_session([c.time for c in completed_5m])
+        if parse_close(completed_5m[0].time).strftime("%H:%M")!="09:20":
+            raise ValueError("VWAP needs complete candles from session open")
+        latest_5m=parse_close(completed_5m[-1].time)
+        if not completed_15m:raise ValueError("Missing higher timeframe")
+        latest_15m=parse_close(completed_15m[-1].time)
+        if latest_15m>latest_5m or latest_5m-latest_15m>timedelta(minutes=15):
+            raise ValueError("Stale or future higher timeframe confirmation")
+        if any(ensure_ordered_session([c.time for c in session])>=current_day for session in previous_sessions):
+            raise ValueError("Prior session history must precede current session")
         if len(completed_5m)<3 or len(ema_warmup_closes)<20:
             raise ValueError("Insufficient candles")
         higher=higher_tf_confirmed(completed_15m)
