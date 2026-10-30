@@ -1,0 +1,11 @@
+services:
+  - type: cron
+    name: intraday-t1-universe
+    runtime: python
+    plan: starter
+    schedule: "0 13 * * 1-5"
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m src.run_daily
+    envVars:
+      - key: TZ
+        value: Asia/Kolkata
