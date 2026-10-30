@@ -11,7 +11,7 @@ class PriceBandError(ValueError):
 
 def _band(value):
     val=value.strip().upper().replace("%","")
-    if val in {"", "-", "NA", "N/A"}:
+    if val in {"", "-", "NA", "N/A", "NO BAND"}:
         return None
     try:
         n=Decimal(val)
