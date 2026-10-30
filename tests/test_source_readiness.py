@@ -33,3 +33,19 @@ def test_exhausted_retries_do_not_approve():
     assert r["status"]=="NOT_READY"
     assert r["attempts_used"]==2
     assert r["attempt_history"][-1]["http_codes"]
+
+from src.source_readiness import validate_payload
+import io
+import zipfile
+
+def test_reject_html_disguised_as_nse_csv():
+    ok, reason=validate_payload("https://example.org/content/equities/sec_list_30102026.csv",b"<html>Service unavailable</html>")
+    assert not ok and reason=="SCHEMA_MISMATCH"
+
+def test_reject_corrupted_nse_zip():
+    ok, reason=validate_payload("https://example.org/content/fo/BhavCopy_NSE_FO_0_0_0_20261030_F_0000.csv.zip",b"not a valid archive")
+    assert not ok and reason=="INVALID_ZIP"
+
+def test_valid_bands_csv_header():
+    ok, reason=validate_payload("https://example.org/sec_list_29102026.csv",b"Symbol,Series,Security Name,Band,Remarks\\nABC,EQ,ABC,10,-\\n".replace(b"\\\\n",b"\\n"))
+    assert ok and reason=="SCHEMA_VALID"
