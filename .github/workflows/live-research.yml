@@ -20,9 +20,13 @@ jobs:
         run: python -m scripts.discover_sessions --asof 2026-09-25
       - name: Compute real-data provisional liquidity report
         run: python -m scripts.live_liquidity_report --dates-file data/sessions.txt --asof 2026-09-25
+      - name: Compare average turnover thresholds
+        run: python -m scripts.analyze_liquidity_sensitivity
       - uses: actions/upload-artifact@v4
         if: success()
         with:
           name: research-only-liquidity-2026-09-25
-          path: output/live_liquidity_report.json
+          path: |
+            output/live_liquidity_report.json
+            output/liquidity_sensitivity.json
           retention-days: 7
