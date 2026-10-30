@@ -7,6 +7,8 @@ on:
       - scripts/live_liquidity_report.py
       - src/nse_price_bands.py
       - scripts/price_band_research.py
+      - scripts/surveillance_research.py
+      - src/nse_surveillance.py
       - .github/workflows/live-research.yml
 jobs:
   research:
@@ -28,6 +30,8 @@ jobs:
         run: python -m scripts.reconcile_live_dhan
       - name: Evaluate historical price bands (research only)
         run: python -m scripts.price_band_research
+      - name: Evaluate historical surveillance codes
+        run: python -m scripts.surveillance_research
       - uses: actions/upload-artifact@v4
         if: success()
         with:
@@ -37,4 +41,5 @@ jobs:
             output/liquidity_sensitivity.json
             output/dhan_reconciliation.json
             output/band_research.json
+            output/surveillance_research.json
           retention-days: 7
