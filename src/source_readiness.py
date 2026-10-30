@@ -1,6 +1,9 @@
 """Bounded NSE source readiness checks: no stale fallback and no order placement."""
 from __future__ import annotations
 import hashlib
+import csv
+import io
+import zipfile
 import time
 import urllib.error
 import urllib.request
@@ -19,6 +22,39 @@ def required_sources(asof, surveillance_date):
     names=report_names(asof,surveillance_date)
     return {k:ROOTS[k]+v for k,v in names.items()}
 
+def validate_payload(url, raw):
+    """Reject HTML error pages, corrupt archives and incompatible CSV schemas."""
+    filename=url.rsplit("/",1)[-1]
+    if filename.endswith(".zip"):
+        try:
+            with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+                files=[n for n in archive.namelist() if n.lower().endswith(".csv")]
+                if len(files)!=1 or archive.testzip() is not None:
+                    return False, "INVALID_ZIP_CONTENTS"
+                with archive.open(files[0]) as stream:
+                    header=stream.readline().decode("utf-8-sig").strip()
+        except (zipfile.BadZipFile,UnicodeError,ValueError,RuntimeError):
+            return False, "INVALID_ZIP"
+    else:
+        try:
+            header=raw.splitlines()[0].decode("utf-8-sig")
+        except (IndexError,UnicodeError):
+            return False, "INVALID_CSV"
+    fields=set(next(csv.reader([header])))
+    if filename.startswith("BhavCopy_NSE_CM_"):
+        mandatory={"TradDt","TckrSymb","SctySrs","ISIN","ClsPric","TtlTradgVol","TtlTrfVal"}
+    elif filename.startswith("BhavCopy_NSE_FO_"):
+        mandatory={"TradDt","FinInstrmTp","TckrSymb"}
+    elif filename.startswith("sec_list_"):
+        mandatory={"Symbol","Series","Band"}
+    elif filename.startswith("eq_band_changes_"):
+        mandatory={"Symbol","Series","From","To"}
+    elif filename.startswith("REG_IND"):
+        mandatory={"Symbol","Series","Status","GSM"}
+    else:
+        return False, "UNKNOWN_SOURCE_KIND"
+    return (True,"SCHEMA_VALID") if mandatory.issubset(fields) else (False,"SCHEMA_MISMATCH")
+
 def check_one(url, opener=None):
     opener=opener or urllib.request.urlopen
     req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0","Accept":"*/*"})
@@ -27,7 +63,10 @@ def check_one(url, opener=None):
             raw=res.read(15_000_001)
             if not raw or len(raw)>15_000_000:
                 return {"state":"INVALID_SIZE"}
-            return {"state":"AVAILABLE","size_bytes":len(raw),
+            valid,integrity=validate_payload(url,raw)
+            if not valid:
+                return {"state":"INVALID_CONTENT","reason":integrity,"size_bytes":len(raw)}
+            return {"state":"AVAILABLE","integrity":integrity,"size_bytes":len(raw),
                     "sha256":hashlib.sha256(raw).hexdigest()}
     except urllib.error.HTTPError as exc:
         return {"state":"UNAVAILABLE","http_status":exc.code}
