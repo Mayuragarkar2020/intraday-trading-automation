@@ -22,7 +22,7 @@ def test_disagreeing_change_record_is_held(tmp_path):
 def test_no_band_is_held_for_separate_validation(tmp_path):
     p=tmp_path/'bands.csv'
     p.write_text('Symbol,Series,Security Name,Band,Remarks\nABC,EQ,ABC LTD,No Band,-\n')
-    assert classify('ABC',parse_complete(p),{})=='HOLD_UNCLASSIFIED_BAND'
+    assert classify('ABC',parse_complete(p),{})=='HOLD_FO_MEMBERSHIP_UNVERIFIED'
 
 def test_no_band_requires_date_consistent_fo_membership(tmp_path):
     p=tmp_path/"bands.csv"
