@@ -43,10 +43,15 @@ def normalize_dhan_intraday(payload,*,as_of,interval=5,timestamps_are_open=None)
         if dt>as_of.astimezone(IST):continue
         try:
             o,h,l,c=[Decimal(str(payload[k][i])) for k in ("open","high","low","close")]
-            v=payload["volume"][i]
+            raw_volume=payload["volume"][i]
+            if isinstance(raw_volume,bool):raise ValueError("Invalid volume")
+            volume_decimal=Decimal(str(raw_volume))
+            if not volume_decimal.is_finite() or volume_decimal<0 or volume_decimal!=volume_decimal.to_integral_value():
+                raise ValueError("Invalid volume")
+            v=int(volume_decimal)
             if any(not x.is_finite() for x in (o,h,l,c)) or not (l<=o<=h and l<=c<=h and l>0):
                 raise ValueError("Invalid OHLC")
-            if isinstance(v,bool) or not isinstance(v,int) or v<0:raise ValueError("Invalid volume")
+
             out.append(CandleInput(time=dt.isoformat(),open=o,high=h,low=l,close=c,volume=v))
         except (InvalidOperation,ValueError,TypeError) as exc:
             raise ValueError("Invalid Dhan candle values") from exc
