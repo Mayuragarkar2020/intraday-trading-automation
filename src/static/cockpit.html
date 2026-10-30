@@ -89,7 +89,7 @@ $("dhanAudit").addEventListener("click",async()=>{
  body:JSON.stringify({security_id:id,from_date:$("dhanFrom").value,to_date:$("dhanTo").value,interval:5,timestamps_are_open:$("timestampConvention").value==="open"})});
  if(!r.ok)throw Error("Audit rejected ("+r.status+")");
  const x=await r.json();
- $("dhanAuditResult").textContent=x.status!=="AUDITED"?x.status:
+ $("dhanAuditResult").textContent=x.status!=="AUDITED"?x.status+" — "+(x.reason||x.error_type||"UNKNOWN"):
  x.sessions.map(s=>s.date+": "+s.received+"/75; missing "+s.missing_count+(s.first_missing.length?" ("+s.first_missing.join(", ")+")":"")).join(" | ")+" — timestamp convention NOT verified.";
  }catch(e){$("dhanAuditResult").textContent=e.message;}
 });
