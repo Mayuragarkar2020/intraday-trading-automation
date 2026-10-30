@@ -55,7 +55,34 @@ def validate_payload(url, raw):
         return False, "UNKNOWN_SOURCE_KIND"
     return (True,"SCHEMA_VALID") if mandatory.issubset(fields) else (False,"SCHEMA_MISMATCH")
 
-def check_one(url, opener=None):
+def validate_record_dates(url, raw, expected_date):
+    """Verify every dated archive record matches the requested trading session."""
+    filename=url.rsplit("/",1)[-1]
+    if not filename.startswith(("BhavCopy_NSE_CM_","BhavCopy_NSE_FO_")):
+        return True, "FILENAME_DATE_ONLY"
+    if not filename.endswith(".zip"):
+        return False, "EXPECTED_ZIP"
+    try:
+        with zipfile.ZipFile(io.BytesIO(raw)) as archive:
+            csvfiles=[name for name in archive.namelist() if name.lower().endswith(".csv")]
+            if len(csvfiles)!=1:
+                return False, "INVALID_ARCHIVE_LAYOUT"
+            with archive.open(csvfiles[0]) as handle:
+                reader=csv.DictReader(io.TextIOWrapper(handle,encoding="utf-8-sig"))
+                if "TradDt" not in (reader.fieldnames or []):
+                    return False, "MISSING_TRADING_DATE"
+                count=0
+                for row in reader:
+                    count+=1
+                    if row["TradDt"].strip()!=expected_date:
+                        return False, "WRONG_RECORD_DATE"
+                if not count:
+                    return False, "EMPTY_ARCHIVE"
+        return True, "DATES_MATCH"
+    except (OSError,UnicodeError,ValueError,zipfile.BadZipFile):
+        return False, "INVALID_DATED_ARCHIVE"
+
+def check_one(url, opener=None, expected_date=None):
     opener=opener or urllib.request.urlopen
     req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0","Accept":"*/*"})
     try:
@@ -66,7 +93,13 @@ def check_one(url, opener=None):
             valid,integrity=validate_payload(url,raw)
             if not valid:
                 return {"state":"INVALID_CONTENT","reason":integrity,"size_bytes":len(raw)}
-            return {"state":"AVAILABLE","integrity":integrity,"size_bytes":len(raw),
+            if expected_date is not None:
+                dates_valid,date_check=validate_record_dates(url,raw,expected_date)
+                if not dates_valid:
+                    return {"state":"INVALID_CONTENT","reason":date_check,"size_bytes":len(raw)}
+            else:
+                date_check="DATE_NOT_CHECKED"
+            return {"state":"AVAILABLE","integrity":integrity,"date_check":date_check,"size_bytes":len(raw),
                     "sha256":hashlib.sha256(raw).hexdigest()}
     except urllib.error.HTTPError as exc:
         return {"state":"UNAVAILABLE","http_status":exc.code}
