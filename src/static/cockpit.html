@@ -22,7 +22,7 @@ button{cursor:pointer;background:#2e67d6;border:0;color:white;font-weight:600}bu
 <div class="grid"><input id="token" type="password" autocomplete="off" placeholder="Enter access token">
 <button id="connect">Unlock demo dashboard</button></div>
 <small>Demo stocks are fictional and are never live market signals. No credentials are stored or sent to Dhan charts.</small></section>
-<section class="panel"><h2>Shortlisted setups</h2><div style="overflow-x:auto"><table><thead><tr><th>Symbol</th><th>State</th><th>Breakout</th><th>Initial SL</th><th>Dhan</th><th>Preview</th></tr></thead>
+<section class="panel"><h2>Shortlisted setups</h2><div style="overflow-x:auto"><table><thead><tr><th>Symbol</th><th>State</th><th>Breakout</th><th>Initial SL</th><th>Dhan chart</th><th>Preview</th></tr></thead>
 <tbody id="candidates"><tr><td colspan="6" class="muted">Unlock to view illustrative setups</td></tr></tbody></table></div></section>
 <section class="panel"><h2>Protected trade sizing — indicative only</h2>
 <div class="grid"><div><label for="symbol">NSE symbol</label><input id="symbol" value="RELIANCE" pattern="[A-Z0-9&._-]+"></div>
@@ -36,7 +36,7 @@ button{cursor:pointer;background:#2e67d6;border:0;color:white;font-weight:600}bu
 <div class="card"><small>Planned risk including costs</small><b id="risk">—</b></div>
 <div class="card"><small>Capital deployed</small><b id="exposure">—</b></div>
 <div class="card"><small>1.5R price milestone (before costs)</small><b id="target">—</b></div></div></section>
-<footer><small>Chart deep links are experimental and may require a Dhan login. Proposed entry and stop levels remain in this cockpit; this app cannot draw overlays on Dhan-hosted charts. No market feed, live orders, protective broker stops or persistent journal are connected in this version.</small></footer>
+<footer><small>Dhan symbol-specific deep links are not verified. Open Dhan's main charting page and search or paste the NSE symbol. Proposed entry and stop levels remain in this cockpit; this app cannot draw overlays on Dhan-hosted charts. No market feed, live orders, protective broker stops or persistent journal are connected in this version.</small></footer>
 </main><script>
 "use strict";
 const $=id=>document.getElementById(id);
@@ -48,7 +48,8 @@ const rows=[
 ];
 function esc(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function loadRows(){
- $("candidates").innerHTML=rows.map((r,i)=>'<tr><td>'+esc(r.symbol)+'</td><td class="warn">'+esc(r.state)+'</td><td>₹'+r.entry+'</td><td>₹'+r.stop+'</td><td><a target="_blank" rel="noopener noreferrer" href="https://tv.dhan.co/chart/?symbol='+encodeURIComponent(r.symbol+'.NS')+'">Open Dhan chart ↗</a></td><td><button class="secondary" data-row="'+i+'">Inspect</button></td></tr>').join("");
+ $("candidates").innerHTML=rows.map((r,i)=>'<tr><td>'+esc(r.symbol)+'</td><td class="warn">'+esc(r.state)+'</td><td>₹'+r.entry+'</td><td>₹'+r.stop+'</td><td><a target="_blank" rel="noopener noreferrer" href="https://tv.dhan.co/">Open Dhan ↗</a></td><td><button class="secondary" data-row="'+i+'">Inspect</button><button class="secondary" data-copy="'+i+'">Copy symbol</button></td></tr>').join("");
+ for(const button of document.querySelectorAll('[data-copy]'))button.addEventListener('click',async()=>{const r=rows[Number(button.dataset.copy)];try{await navigator.clipboard.writeText(r.symbol);$("message").textContent=r.symbol+" copied. Open Dhan and paste into symbol search.";}catch(e){$("symbol").value=r.symbol;$("message").textContent="Selected "+r.symbol+". Copy it from the NSE symbol box to search in Dhan.";}});
  for(const button of document.querySelectorAll('[data-row]'))button.addEventListener('click',()=>{
   const r=rows[Number(button.dataset.row)];$("symbol").value=r.symbol;$("entry").value=r.entry;$("stop").value=r.stop;$("message").textContent="Demo candidate loaded. Press Calculate; no order will be placed.";
  });
