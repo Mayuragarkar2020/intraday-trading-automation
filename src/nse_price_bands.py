@@ -53,7 +53,7 @@ def parse_changes(path):
             result[key]=(_band(r["From"]), _band(r["To"]))
     return result
 
-def classify(symbol, complete, changes):
+def classify(symbol, complete, changes, historical_fo_symbols=None):
     if symbol in changes:
         previous, upcoming=changes[symbol]
         if symbol in complete and complete[symbol]!=previous:
@@ -64,5 +64,9 @@ def classify(symbol, complete, changes):
     else:
         return "HOLD_BAND_NOT_LISTED"
     if band is None:
-        return "HOLD_UNCLASSIFIED_BAND"
+        # NSE No Band may denote F&O underlyings subject to dynamic operating ranges.
+        # A date-consistent F&O constituent source is essential before classifying.
+        if historical_fo_symbols is not None and symbol in historical_fo_symbols:
+            return "DYNAMIC_BAND_FO_RESEARCH_ONLY"
+        return "HOLD_FO_MEMBERSHIP_UNVERIFIED"
     return "EXCLUDED_NARROW_BAND" if band in (2,5) else "BAND_SCREEN_PASSED"
