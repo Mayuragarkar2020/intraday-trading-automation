@@ -1,6 +1,7 @@
 """Bounded NSE source readiness checks: no stale fallback and no order placement."""
 from __future__ import annotations
 import hashlib
+import time
 import urllib.error
 import urllib.request
 from datetime import date
@@ -40,3 +41,27 @@ def evaluate_readiness(asof, surveillance_date, checker=check_one):
     return {"asof_date":asof,"surveillance_report_date":surveillance_date,
             "status":"SOURCES_AVAILABLE_RESEARCH_ONLY" if ready else "NOT_READY",
             "may_publish_trading_universe":False,"checks":checks}
+
+def retry_readiness(asof, surveillance_date, attempts=3, delay_seconds=10, checker=check_one, sleep=time.sleep):
+    """Bounded retries for unavailable reports; no stale-source fallback.
+
+    HTTP 404 can be delayed publication, so subsequent tries are permitted.
+    The final result always includes number of attempts and a trace of states.
+    """
+    if not 1 <= attempts <= 5 or not 0 <= delay_seconds <= 60:
+        raise ValueError("Unbounded or invalid retry policy")
+    history=[]
+    for attempt in range(1, attempts+1):
+        report=evaluate_readiness(asof,surveillance_date,checker=checker)
+        history.append({"attempt":attempt,
+                        "states":{k:v["state"] for k,v in report["checks"].items()},
+                        "http_codes":{k:v.get("http_status") for k,v in report["checks"].items()
+                                      if "http_status" in v}})
+        if report["status"]=="SOURCES_AVAILABLE_RESEARCH_ONLY":
+            break
+        if attempt<attempts:
+            sleep(delay_seconds)
+    report["attempts_used"]=len(history)
+    report["attempt_history"]=history
+    report["may_publish_trading_universe"]=False
+    return report
