@@ -69,3 +69,8 @@ def test_accept_correct_date_inside_fo_zip():
         "https://example.org/BhavCopy_NSE_FO_0_0_0_20261030_F_0000.csv.zip",
         memory.getvalue(),"2026-10-30")
     assert ok and reason=="DATES_MATCH"
+
+import pytest
+def test_reject_unreviewed_cross_date_surveillance():
+    with pytest.raises(ValueError,match="Surveillance report date differs"):
+        required_sources("2026-10-30","2026-10-29")
