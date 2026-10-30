@@ -22,6 +22,7 @@ button{cursor:pointer;background:#2e67d6;border:0;color:white;font-weight:600}bu
 <div class="grid"><input id="token" type="password" autocomplete="off" placeholder="Enter access token">
 <button id="connect">Unlock demo dashboard</button></div>
 <small>Stocks shown use synthetic candle data and are never live market signals. No credentials are stored or sent to Dhan charts.</small></section>
+<section class="panel"><h2>Stored scan snapshot</h2><button id="refresh" class="secondary" disabled>Refresh latest cloud scan</button><p id="refreshStatus" class="muted" role="status">Requires persistent scan storage; no live feed is connected.</p></section>
 <section class="panel"><h2>Offline candle dataset</h2><label for="dataset">Upload a JSON dataset matching the scanner input schema (up to 120 symbols). Files are processed in this preview session only.</label><input id="dataset" type="file" accept=".json,application/json" disabled><button id="scan" class="secondary" disabled style="margin-top:8px">Qualify uploaded candles</button><p id="datasetStatus" class="muted" role="status">Unlock preview before selecting data. No live Dhan feed.</p></section>
 <section class="panel"><h2>Shortlisted setups</h2><div style="overflow-x:auto"><table><thead><tr><th>Symbol</th><th>State</th><th>Breakout</th><th>Initial SL</th><th>Dhan chart</th><th>Preview</th></tr></thead>
 <tbody id="candidates"><tr><td colspan="6" class="muted">Unlock to view illustrative setups</td></tr></tbody></table></div></section>
@@ -63,8 +64,19 @@ $("connect").addEventListener("click",async()=>{
   if(!setups.ok)throw Error("Demo feed unavailable");
   const payload=await setups.json();if(payload.live!==false||payload.execution_enabled!==false)throw Error("Unexpected data mode");
   rows=payload.setups.map(s=>({symbol:s.symbol,state:s.status+" (SYNTHETIC)",entry:s.entry,stop:s.stop}));
-  $("calc").disabled=false;$("dataset").disabled=false;$("scan").disabled=false;loadRows();
+  $("calc").disabled=false;$("dataset").disabled=false;$("scan").disabled=false;$("refresh").disabled=false;loadRows();
  }catch(e){token="";$("authStatus").textContent="Access denied / offline";$("authStatus").className="error";$("calc").disabled=true;}
+});
+$("refresh").addEventListener("click",async()=>{
+ try{
+  const response=await fetch("/api/latest-scan",{headers:{"X-Access-Token":token},cache:"no-store"});
+  if(!response.ok)throw Error("Latest scan request failed");
+  const result=await response.json();
+  if(result.execution_enabled!==false||result.live!==false)throw Error("Unexpected scan mode");
+  if(!result.snapshot){$("refreshStatus").textContent=result.status+" — no stored scan available.";return;}
+  rows=result.snapshot.setups.map(s=>({symbol:s.symbol,state:s.status+" / "+s.reason,entry:s.entry,stop:s.stop}));
+  loadRows();$("refreshStatus").textContent="Snapshot candle close: "+result.snapshot.candle_close+" (offline snapshot, not live)";
+ }catch(e){$("refreshStatus").textContent=e.message;}
 });
 $("scan").addEventListener("click",async()=>{
  const file=$("dataset").files?.[0];if(!file){$("datasetStatus").textContent="Select a JSON file first.";return;}
