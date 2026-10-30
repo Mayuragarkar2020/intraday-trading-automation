@@ -47,10 +47,13 @@ def normalize_dhan_intraday(payload,*,as_of,interval=5,timestamps_are_open=None)
             if any(not x.is_finite() for x in (o,h,l,c)) or not (l<=o<=h and l<=c<=h and l>0):
                 raise ValueError("Invalid OHLC")
             if isinstance(v,bool) or not isinstance(v,int) or v<0:raise ValueError("Invalid volume")
-            parse_close(dt.isoformat())
             out.append(CandleInput(time=dt.isoformat(),open=o,high=h,low=l,close=c,volume=v))
         except (InvalidOperation,ValueError,TypeError) as exc:
-            raise ValueError("Invalid Dhan candle values or session timestamp") from exc
+            raise ValueError("Invalid Dhan candle values") from exc
+        try:
+            parse_close(dt.isoformat())
+        except ValueError as exc:
+            raise ValueError("Invalid Dhan session timestamp") from exc
     times=[x.time for x in out]
     if len(set(times))!=len(times) or times!=sorted(times):
         raise ValueError("Dhan timestamps duplicate or out of order")
