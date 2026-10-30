@@ -38,3 +38,15 @@ def test_wrong_asof_fails_closed(tmp_path):
     paths,dates=write_files(tmp_path)
     with pytest.raises(DataQualityError):
         screen_files(paths,dates[-2],CFG)
+
+def test_official_compact_nse_filename_dates(tmp_path):
+    paths, dates = write_files(tmp_path)
+    renamed = []
+    for path, day in zip(paths, dates):
+        p = __import__("pathlib").Path(path)
+        new = p.with_name(f"BhavCopy_NSE_CM_0_0_0_{day.replace('-', '')}_F_0000.csv")
+        p.rename(new)
+        renamed.append(str(new))
+    result = screen_files(renamed, dates[-1], CFG)
+    assert result["hold_count"] == 1
+    assert result["eligible_count"] == 0
