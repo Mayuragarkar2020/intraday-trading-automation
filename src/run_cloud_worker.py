@@ -12,6 +12,7 @@ from zoneinfo import ZoneInfo
 from src.candle_input import BatchInput
 from src.cloud_collector import PersistentScanCollector,eligible_close
 from src.scan_store import ScanStore
+from src.candle_inbox import CandleInbox
 
 IST=ZoneInfo("Asia/Kolkata")
 
@@ -33,17 +34,25 @@ def cycle(now,dataset_path,collector):
         return {"status":"DATA_UNAVAILABLE","execution_enabled":False}
     return collector.scan(now,batch)
 
+def database_cycle(now,inbox,collector):
+    close=eligible_close(now)
+    if close is None:return {"status":"OUTSIDE_SESSION","execution_enabled":False}
+    batch=inbox.fetch(close.isoformat())
+    if batch is None:return {"status":"WAIT_FOR_COMPLETE_CANDLES","execution_enabled":False}
+    return collector.scan(now,batch)
+
 def main():
     url=os.getenv("SCAN_DATABASE_URL")
-    dataset=os.getenv("SCAN_DATASET_PATH")
-    if not url or not dataset:
-        raise SystemExit("SCAN_DATABASE_URL and SCAN_DATASET_PATH must be configured; no network fetcher is bundled")
+    if not url:
+        raise SystemExit("SCAN_DATABASE_URL required; no market-data connector is bundled")
     if not url.startswith(("postgresql://","postgres://")):
         raise SystemExit("Cloud worker requires persistent Postgres; refuse ephemeral SQLite")
     collector=PersistentScanCollector(ScanStore(url))
+    inbox=CandleInbox(url)
+    inbox.initialize()
     while True:
         try:
-            outcome=cycle(datetime.now(IST),dataset,collector)
+            outcome=database_cycle(datetime.now(IST),inbox,collector)
             print(json.dumps({"status":outcome["status"],"execution_enabled":False}),flush=True)
         except Exception as exc:
             # Do not pretend this cycle succeeded; next loop retries. No trade execution is possible.
