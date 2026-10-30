@@ -39,3 +39,21 @@ class CheckpointCollector:
             db.execute("INSERT INTO scan_checkpoint VALUES (?,?)",(key,len(result)))
             db.execute("COMMIT")
             return {"status":"SCANNED","candle_close":key,"setups":result,"execution_enabled":False}
+
+class PersistentScanCollector:
+    """One atomic scan per candle close, shared across cloud workers via ScanStore."""
+    def __init__(self,store):
+        self.store=store
+        self.store.initialize()
+
+    def scan(self,now:datetime,batch:BatchInput):
+        close=eligible_close(now)
+        if close is None:return {"status":"OUTSIDE_SESSION","execution_enabled":False}
+        key=close.isoformat()
+        if any(parse_close(x.completed_5m[-1].time)!=close for x in batch.candidates):
+            return {"status":"WAIT_FOR_COMPLETE_CANDLES","candle_close":key,"execution_enabled":False}
+        rows=scan_batch(batch)
+        inserted=self.store.commit_scan(key,rows)
+        return {"status":"SCANNED" if inserted else "ALREADY_SCANNED",
+                "candle_close":key,"execution_enabled":False,
+                "setups":rows if inserted else []}
