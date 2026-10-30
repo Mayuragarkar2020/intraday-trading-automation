@@ -7,6 +7,7 @@ from collections import Counter
 from pathlib import Path
 from src.pipeline import run_directory
 from src.eligibility import dhan_mapping
+from src.dhan_controls import load_broker_controls
 from src.restriction_inputs import read_control, combine_controls
 
 def produce(asof, target, input_dir, config_path, dhan_path, controls, output_dir):
@@ -14,6 +15,7 @@ def produce(asof, target, input_dir, config_path, dhan_path, controls, output_di
         raise ValueError("Target date must be later than as-of session")
     result = run_directory(input_dir, asof, config_path)
     mapping = dhan_mapping(dhan_path)
+    broker_flags = load_broker_controls(dhan_path)
     control_maps=[]
     source_manifest=list(result["source_manifest"])
     for p in controls:
@@ -34,6 +36,10 @@ def produce(asof, target, input_dir, config_path, dhan_path, controls, output_di
             row["status"]="EXCLUDED_LIQUIDITY_OR_HISTORY"
         elif len(ids)!=1:
             row["status"]="HOLD_DHAN_MAPPING"
+        elif row["isin"] not in broker_flags or broker_flags[row["isin"]]["status"] == "HOLD_BROKER_FLAGS":
+            row["status"]="HOLD_BROKER_FLAGS"
+        elif broker_flags[row["isin"]]["status"] == "BLOCK_BROKER_SURVEILLANCE":
+            row["status"]="EXCLUDED_BROKER_SURVEILLANCE"
         elif control["action"]=="BLOCK":
             row["status"]="EXCLUDED_RESTRICTION"
         elif control["action"]!="ALLOW":
