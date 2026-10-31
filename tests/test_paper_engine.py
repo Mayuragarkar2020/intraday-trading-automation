@@ -82,6 +82,15 @@ def test_unfilled_exit_keeps_open_position_and_reserved_cash():
     assert not result["summary"]["complete"] and result["open_position"]["remaining"]>0
     assert result["summary"]["closed_trades"]==0 and D(result["summary"]["cash"])<D(980000)
 
+def test_partial_exit_realized_and_remaining_mark_reconcile_to_equity():
+    data=example_request();plan=data["plans"][0]
+    plan["bars"]=plan["bars"][:2]
+    plan["bars"][1].update(low=480,volume=100)
+    result=run(data);summary=result["summary"]
+    assert summary["closed_trades"]==0 and summary["open_positions"]==1
+    assert D(summary["net_realized_pnl"])<0 and D(summary["closed_trade_net_pnl"])==0
+    assert D(summary["ending_equity_estimate"])==D(980000)+D(summary["net_realized_pnl"])+D(summary["unrealized_pnl_estimate"])
+
 def test_force_exit_is_next_open_at_declared_time():
     data=example_request();data["force_exit"]="09:55";data["entry_end"]="09:50"
     result=run(data)

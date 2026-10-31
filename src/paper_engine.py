@@ -189,6 +189,13 @@ def replay(request: ReplayRequest, *, as_of=None):
     if any(r["kind"] in ("EXIT_UNFILLED","STOP_CHANGE_REJECTED") for r in ledger):
         notices.append("Execution or stop-change failures occurred; inspect the event ledger.")
     wins=sum(D(t["net_pnl"])>0 for t in journal)
+    # A partially exited trade has realised P&L even before its journal row closes.
+    partial_realized=D(0)
+    unrealized=D(0)
+    if position:
+        exited=position["quantity"]-position["remaining"]
+        partial_realized=position["exit_value"]-(position["entry"]+cost)*exited
+        unrealized=(position["mark"]-position["entry"]-cost)*position["remaining"]
     return {"run_id":digest,"engine_version":VERSION,"mode":"PAPER_REPLAY_ONLY","execution_enabled":False,
         "live":False,"source":request.source,"label":request.label,"session":next(iter(dates)).isoformat(),
         "input_sha256":hashlib.sha256(canonical.encode()).hexdigest(),
@@ -198,7 +205,8 @@ def replay(request: ReplayRequest, *, as_of=None):
             "participation_pct":text_number(request.participation_pct),"signal_origin":"EXPLICIT_TEST_PLAN_NOT_AUTOMATIC_SCANNER",
             "fill_model":"ADVERSE_SLIPPAGE_TICK_ROUNDING_VOLUME_CAP_STOP_FIRST_IOC_ENTRY",
             "calendar":"NORMAL_2026_SESSIONS_ONLY","eligibility_verified":False},
-        "summary":{"entries":entered,"closed_trades":len(journal),"wins":wins,"net_realized_pnl":text_number(realized),
+        "summary":{"entries":entered,"closed_trades":len(journal),"wins":wins,"net_realized_pnl":text_number(realized+partial_realized),
+            "closed_trade_net_pnl":text_number(realized),"unrealized_pnl_estimate":text_number(unrealized),
             "cash":text_number(cash),"ending_equity_estimate":text_number(last_equity),"max_drawdown_pct_estimate":text_number(max_dd*100),
             "open_positions":int(position is not None),"complete":position is None,
             "risk_breaches":sum(t["risk_budget_breached"] for t in journal)},
