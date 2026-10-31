@@ -18,6 +18,7 @@ Updated: 31 October 2026. Read this before resuming in a new chat.
 - Paper release main commit: 5db368372f66d84fcf45ed55678eafe35c1e07da.
 - Paper release Render deploy: dep-dbis7k8u01pc73dqi910 — live.
 - Last verification: normal cockpit URL returned 200 and contains data-view="paper"; health returned 200, execution_enabled=false, PREVIEW_ONLY. Paper scenarios/runs endpoints and universe CSV returned 401 without token.
+- PR #7 (read-only chart reconciliation) was approved by Mayur, merged and deployed on 31 October. Main release commit: 4504ecfa5325aa1bc85ab2120954d6b05c319b58; Render deploy dep-dbisjhss728c7386v93g is live. Health/HTML returned 200, the new comparison button exists, and unauthenticated comparison POST returns 401. Execution remains disabled.
 - Render auto-deploy is OFF. A documentation commit does not deploy production. Before any future manual trigger, inspect main and ensure it contains only intended approved changes.
 - If menu looks old, Ctrl+Shift+R. Paper lab sits between Universe and Diagnostics.
 - Paper UI and core/API tests passed in CI; authenticated production replay/database publication has not been demonstrated to the agent. User should run the scenario suite and synthetic example from the live UI. Do not claim a saved production run until verified.
@@ -77,9 +78,9 @@ Updated: 31 October 2026. Read this before resuming in a new chat.
 - Local temporary artifacts/tests are reproducible; do not assume their paths/runtime objects survive into a new chat.
 
 ## Current blocker and next work
-Mayur supplied the requested Dhan RELIANCE NSE 5-minute screenshot on 31 October. Selected candle: 30 October 2026 09:15 IST. OHLC: 1170.40 / 1174.60 / 1162.70 / 1164.30. This is chart evidence only; an API match has NOT yet been demonstrated.
+Mayur supplied the requested chart, then ran the authenticated production comparison and pasted its output. RELIANCE 30 October 2026 09:15 IST matched exactly under OPEN: 1170.4 / 1174.6 / 1162.7 / 1164.3. The 09:20 raw candle was 1163.7 / 1166.0 / 1163.1 / 1163.6 and did not match. Evidence is user-reported production output, not an agent-observed API response. Scope remains one historical candle; broader timestamps, daily CAS classification and live-feed health remain unverified.
 
-A proposed read-only `/api/dhan-chart-reconciliation` endpoint compares exact OHLC under both timestamp hypotheses. It remains on the review branch until release approval. Read docs/forward-paper-readiness-2026-10-31.md. Monday 2 November automatic forward paper trading is NOT READY: live signal binding, full-session collection/position management, durable forward ledger and failure tests remain outstanding. The existing cron ends in the morning. No new production changes or revised exit policy have been approved.
+The approved read-only `/api/dhan-chart-reconciliation` endpoint is deployed and available in Diagnostics. Read docs/forward-paper-readiness-2026-10-31.md. Monday 2 November automatic forward paper trading is NOT READY: live signal binding, full-session collection/position management, durable forward ledger and failure tests remain outstanding. The existing cron ends in the morning. PR #7 was approved; later releases and revised exit policy are not approved.
 
 Latest startup audit on deployed instance:
 - FETCHED_AUDITED; orders_enabled=false; timestamp_verified=false.
@@ -94,6 +95,13 @@ Latest startup audit on deployed instance:
 - Important forward-model issue to resolve: 72 bars end at 15:15 close, while a 15:15 next-open flatten request requires a subsequent executable bar. Current replay intentionally leaves that position unresolved. Do not invent an auction fill or silently mark it closed. Choose and review a session-aware flatten policy before forward paper release.
 - After chart check: bind immutable scanner signals and dated reference evidence to verified read-only candles, capture forward sessions, test stale-feed/reconnect/restart/idempotence, compare prices and costs, then assess out-of-sample outcomes. Prepare reviewable code/PRs and ask before deploying further changes.
 - Never enable real-money orders under existing approvals.
+
+## Forward capture review branch
+- Proposed code is on codex/forward-feed-capture. Read docs/forward-feed-capture.md.
+- Adds opt-in full-session RELIANCE research candle observations, first-seen timestamps, immutable source/reference binding, late/backfill markers, restart/idempotence and revision-conflict detection. No simulated orders or fills.
+- Default FORWARD_CAPTURE_ENABLED is absent/disabled. No production settings have been changed for this proposal.
+- Activation requires separate approval to deploy the research cron, enable the flag and extend the schedule into the afternoon. Current production remains morning research plus replay only.
+- The capture cutoff is a conservative 15:15 research boundary, not daily CAS verification or an approved exit rule. Never describe this recorder as automatic forward paper trading.
 
 ## Context Mode and chat continuity
 - User explicitly asked whether Context Mode is reducing token spend.

@@ -10,7 +10,9 @@ from src.universe_store import UniverseStore
 
 def main():
     now = datetime.now(ZoneInfo("Asia/Kolkata"))
-    active, reason = research_window(now, start=time(8,30), end=time(11,40))
+    capture_enabled = os.getenv("FORWARD_CAPTURE_ENABLED") == "true"
+    active, reason = research_window(now, start=time(8,30),
+                                     end=time(15,25) if capture_enabled else time(11,40))
     if not active:
         print(json.dumps({"status": reason, "execution_enabled": False}), flush=True)
         return 0
@@ -21,7 +23,14 @@ def main():
         return 0
     try:
         outcome = run_cycle(now, UniverseStore(url), ScanStore(url), os.getenv("DHAN_ACCESS_TOKEN"))
-        print(json.dumps({"status": outcome["status"],
+        capture_status = None
+        if capture_enabled:
+            from src.run_forward_capture import capture_once
+            from src.forward_capture import ForwardCaptureStore
+            captured = capture_once(now, UniverseStore(url), ForwardCaptureStore(url),
+                                    os.getenv("DHAN_ACCESS_TOKEN"))
+            capture_status = captured.get("report", {}).get("status", captured["status"])
+        print(json.dumps({"status": outcome["status"], "forward_capture": capture_status,
                           "execution_enabled": False}), flush=True)
     except Exception as exc:
         # Do not print connection URLs, API bodies, credentials or exception text.
