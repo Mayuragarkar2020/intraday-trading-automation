@@ -342,8 +342,10 @@ on codex/universe-wide-research for exact activation scope and limits.
 ## Latest inactive-source checkpoint — accepted ranking
 
 PR #9 now includes versioned liquidity ranking and prospective paper-entry
-reservations. Head dbc76c616788b57563e6e877d7f586bd2ff807fc. Local targeted checks:
-78 passed, 3 PostgreSQL-only skipped; exact-head full CI pending at this checkpoint.
+reservations. Head 91bd84736364ea1cc420fd21184b57db2b1033dd. Local targeted checks:
+79 passed, 3 PostgreSQL-only skipped. Exact-head CI run 41222564313 passed
+447 Python/API/PostgreSQL tests and both Chromium suites. Live-source smoke
+was skipped; these checks do not establish actual broker/market coverage.
 Read docs/paper-entry-selection.md on codex/forward-paper-ledger. Ranking evidence
 and the order commit atomically; retries/concurrency preserve one reservation.
 Selection after an interval cannot backdate fills into it. Current research
