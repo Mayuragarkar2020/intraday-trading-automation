@@ -187,7 +187,7 @@ The accounting library persists atomic account projections and immutable
 command/result journals, guards daily filled entries and concurrent/restarted
 workers, and retains partial/unfilled exits. It is not connected to any runtime.
 Signal/source/session verification and automatic execution remain unfinished.
-Local targeted accounting/capture/replay/risk/manager tests: 109 passed,
+Local targeted accounting/capture/replay/risk/manager tests: 110 passed,
 2 PostgreSQL-only checks skipped. Inspect the ledger PR's current CI for
 PostgreSQL and browser coverage before claiming those checks passed.
 No production changes were made. The separately pending PR #8 capture approval

@@ -182,6 +182,14 @@ def test_failed_pure_transition_never_mutates_input():
     assert state == before
 
 
+def test_exact_inclusive_risk_cap_and_separate_no_leverage_gate():
+    transition(initial_state(), entry(quantity=1000, stop="90.21", fee_budget="10"))
+    with pytest.raises(ValueError, match="risk exceeds"):
+        transition(initial_state(), entry(quantity=1000, stop="90.21", fee_budget="10.01"))
+    with pytest.raises(ValueError, match="unlevered cash"):
+        transition(initial_state(), entry(quantity=10000, stop="99.99", fee_budget="10"))
+
+
 def test_database_failure_is_not_success(tmp_path):
     backend = ForwardPaperLedger("sqlite:///"+str(tmp_path/"missing"/"ledger.db"))
     with pytest.raises(Exception):
