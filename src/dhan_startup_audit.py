@@ -12,6 +12,7 @@ from src.dhan_history_client import fetch_intraday
 from src.dhan_candle_audit import audit_candles
 from src.dhan_complete_sessions import fetch_complete_sessions
 from src.dhan_verified_indicators import calculate_session_indicators
+from src.dhan_rvol_research import research_rvol
 
 LOG=logging.getLogger("dhan_validation")
 IST=ZoneInfo("Asia/Kolkata")
@@ -86,6 +87,13 @@ def run_startup_audit():
         except Exception as exc:
             reports["padded_session_validation"]={
                 "status":"REJECTED","error_type":type(exc).__name__}
+        try:
+            reports["rvol_research"]=research_rvol(token,"2885",
+                "2026-09-12 09:15:00","2026-10-31 09:15:00",
+                as_of=datetime.now(IST),expected_bars=72)
+        except Exception as exc:
+            reports["rvol_research"]={"status":"REJECTED","error_type":type(exc).__name__,
+                "trading_approved":False}
         result={"status":"FETCHED_AUDITED","candidate_security_id":"2885",
                 "timestamp_verified":False,"comparison":reports,"orders_enabled":False}
     except Exception as exc:
