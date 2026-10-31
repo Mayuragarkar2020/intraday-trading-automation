@@ -200,3 +200,7 @@ def preview(request:PreviewRequest):
             "estimated_costs":str(result.estimated_costs),
             "gross_exposure":str(result.gross_exposure),
             "risk_budget":"9800","execution_enabled":False}
+
+# Paper simulation has its own authenticated router; no live order integration.
+from src.paper_routes import create_paper_router
+app.include_router(create_paper_router(require_token))
