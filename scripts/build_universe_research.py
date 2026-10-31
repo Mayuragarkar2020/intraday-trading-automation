@@ -7,6 +7,7 @@ from pathlib import Path
 import tempfile
 import yaml
 from src.eligibility import dhan_mapping
+from src.universe_reference import attach_references
 from src.universe_research import build_research, validate_dates
 
 def main():
@@ -16,10 +17,14 @@ def main():
     parser.add_argument("--target-date", required=True)
     parser.add_argument("--config", default="config/universe.yaml")
     parser.add_argument("--dhan-master")
+    parser.add_argument("--equity-master")
+    parser.add_argument("--price-bands")
     parser.add_argument("--output", required=True)
     args = parser.parse_args()
     temporary = None
     try:
+        if bool(args.equity_master) != bool(args.price_bands) or (args.equity_master and not args.dhan_master):
+            raise ValueError("Reference review requires equity master, price bands and Dhan master together")
         config_bytes = Path(args.config).read_bytes()
         cfg = yaml.safe_load(config_bytes)
         days = [line.strip() for line in Path(args.dates_file).read_text().splitlines()
@@ -30,6 +35,8 @@ def main():
                  for day in days]
         mapping = dhan_mapping(args.dhan_master) if args.dhan_master else None
         report = build_research(paths, args.target_date, cfg, mapping)
+        if args.equity_master:
+            report = attach_references(report, args.equity_master, args.price_bands, args.dhan_master)
         report["config_sha256"] = hashlib.sha256(config_bytes).hexdigest()
         if args.dhan_master:
             report["dhan_master"] = {
