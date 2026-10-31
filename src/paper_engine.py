@@ -119,7 +119,7 @@ def replay(request: ReplayRequest, *, as_of=None):
             if reason:
                 # An already pending market exit/flatten uses next open; stops gap down at open.
                 base = bar.open if position["pending_exit"] or reason=="SESSION_FLATTEN" else min(bar.open,position["stop"])
-                position["pending_exit"] = reason if reason!="STOP" else None
+                position["pending_exit"] = reason if position["pending_exit"] or reason=="SESSION_FLATTEN" else None
                 sell(plan,bar,base,reason,capacity)
                 if position:
                     position["pending_exit"] = reason

@@ -72,6 +72,7 @@ def test_exit_partial_fills_reconcile_and_never_exceed_volume_cap():
     result=run(data)
     exits=[e for e in result["events"] if e["kind"]=="EXIT_FILL"]
     assert len(exits)==2 and exits[0]["quantity"]==1
+    assert exits[0]["timing"]=="STOP_WITHIN_BAR" and exits[1]["timing"]=="NEXT_OPEN"
     assert sum(e["quantity"] for e in exits)==result["trades"][0]["quantity"]
     assert result["summary"]["open_positions"]==0
 
