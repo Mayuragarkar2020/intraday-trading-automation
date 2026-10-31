@@ -1,6 +1,18 @@
 # Next work plan — automatic paper trading
 Updated: 31 October 2026. Read PROJECT_HANDOFF.md first.
 
+## Current deployment checkpoint
+
+PR #11 was approved and deployed to existing web + research cron at revision
+5b9693c657f1475c1a1fd4a9c3a6a8749621eece. Both deploys are live; full-universe
+research flag enabled on cron only. Health/auth checks passed. Actual full-pool
+market coverage, warm-up/persistence and a #11 cron invocation remain unobserved.
+Read docs/universe-scanner-activation-2026-10-31.md. No paper or real orders.
+Next strategy input: deterministic choice among simultaneous valid breakouts
+under the one-filled-entry/day rule; highest 20-day average traded value is
+proposed but not yet confirmed. Old pending-approval statements below describe
+source checkpoints before this activation.
+
 ## Current work order after Mayur's simplification
 
 Read docs/AUTOMATION_OBJECTIVES.md. Priorities:

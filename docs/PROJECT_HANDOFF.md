@@ -3,6 +3,24 @@
 Updated: 31 October 2026 (IST). Read this first when resuming.
 Owner: Mayur Agarkar. Private repository: https://github.com/Mayuragarkar2020/intraday-trading-automation
 
+## Current activation — PR #11 live
+
+Mayur approved and PR #11 is merged/deployed to existing web and research cron.
+Exact revision 5b9693c657f1475c1a1fd4a9c3a6a8749621eece. Web deploy
+ dep-dbj1j2c9v7es738sh79g and cron deploy dep-dbj1j37b9u1s73cq1vg0 are LIVE.
+UNIVERSE_SCAN_ENABLED=true is configured on cron only. Auto-deploy remains off,
+with the existing schedule/compute/command retained. No paper/live execution.
+PRs #9/#10 are still excluded/unapproved. Read docs/universe-scanner-activation-2026-10-31.md.
+
+Web health and unauthenticated API protection passed; full-pool market coverage,
+warm-up, persistence and an actual #11 cron invocation remain unobserved. The
+manual browser smoke check could not be safely launched; do not claim it ran.
+Next reviewed market session is 2 November; calendar still ends 6 November.
+
+Next needed strategy input: with one daily filled entry, choose how to allocate
+among simultaneous valid breakouts. Proposed tie-breaker is highest twenty-day
+average traded value. It is a proposal awaiting Mayur's response, not approved.
+
 ## Current priority — simplified automation workflow
 
 Latest direction from Mayur on 31 October: keep engineering focused on the
@@ -12,8 +30,7 @@ required for every stock. Do not expand diagnostics as the default next task.
 
 PR #11 (codex/universe-wide-research) is the next concrete release proposal.
 Head 874680b4860506106add2e965c66917d6d928121 passed 365 Python/API/PostgreSQL
-tests and both Chromium suites in run 41219670517. It is OPEN, UNAPPROVED and
-UNDEPLOYED. Activation requires separate approval for existing web + research
+tests and both Chromium suites in run 41219670517. It was approved and is now merged/deployed; see the activation checkpoint above. Activation requires separate approval for existing web + research
 cron deploys and UNIVERSE_SCAN_ENABLED=true on the cron only. Keep the existing
 schedule/compute plans, auto-deploy off and capture flag true. More full-pool
 requests/runtime; no new service. No paper/live orders or PR #9 source.
@@ -45,12 +62,12 @@ This latest priority supersedes older 'next decision = PR #10' statements below.
 | Area | Verified state |
 |---|---|
 | Cockpit | Live: https://intraday-cockpit-preview.onrender.com/ |
-| Web release | PR #7; commit 4504ecfa5325aa1bc85ab2120954d6b05c319b58 |
-| Render web deploy | dep-dbisjhss728c7386v93g — live |
+| Web release | PR #11; commit 5b9693c657f1475c1a1fd4a9c3a6a8749621eece |
+| Render web deploy | dep-dbj1j2c9v7es738sh79g — live |
 | Safety | /health returned 200, mode PREVIEW_ONLY, execution_enabled=false |
 | Protected comparison | Unauthenticated POST returns 401; new UI button exists |
 | Paper module | Deterministic replay/failure injection; NOT automatic forward paper trading |
-| Scanner coverage | RELIANCE only; NOT the full 103-stock research pool |
+| Scanner coverage | Full-pool research scanner deployed; actual market-session coverage unobserved |
 | Chart check | User-reported exact API/chart OHLC match for one historical RELIANCE candle |
 | Forward recorder | PR #8 approved, merged and deployed on existing cron; actual weekday capture unobserved |
 | Monday 2 November | Research/data-validation target; do not promise automatic paper trades |
