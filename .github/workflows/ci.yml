@@ -31,3 +31,19 @@ jobs:
       - name: Read-only live-source smoke for this review branch
         if: github.event_name == 'pull_request' && github.head_ref == 'research/daily-universe-refresh-20261031'
         run: python -m scripts.smoke_daily_universe --target-date 2026-11-02
+
+  cockpit-browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install playwright==1.56.0
+      - run: python -m playwright install --with-deps chromium
+      - run: python scripts/check_cockpit_browser.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cockpit-ui-review
+          path: ui-review/
