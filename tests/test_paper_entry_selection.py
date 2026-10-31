@@ -1,6 +1,8 @@
 from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
 from decimal import Decimal
+import os
+from uuid import uuid4
 
 import pytest
 
@@ -118,4 +120,30 @@ def test_no_backdated_fill_and_retry_after_fill(ledger):
     value=batch(); value["batch_id"]="another"
     assert reserve_paper_entry(ledger,"test",value)["status"]=="HELD_ACCOUNT_ENTRY_LIMIT"
     assert Decimal(state["cash"])>=0
+
+
+def test_selection_and_reservation_roll_back_together(ledger):
+    ledger.initialize()
+    with ledger.connection() as db:
+        db.execute("""CREATE TRIGGER fail_selection BEFORE INSERT ON forward_paper_accounts
+                      BEGIN SELECT RAISE(ABORT, 'injected failure'); END""")
+    with pytest.raises(Exception,match="injected failure"):
+        reserve_paper_entry(ledger,"test",batch())
+    with ledger.connection() as db:
+        assert db.execute("SELECT COUNT(*) FROM forward_paper_events").fetchone()[0]==0
+        db.execute("DROP TRIGGER fail_selection")
+    assert reserve_paper_entry(ledger,"test",batch())["status"]=="RESERVED"
+
+
+@pytest.mark.skipif(not os.getenv("TEST_UNIVERSE_DATABASE_URL"),reason="PostgreSQL CI only")
+def test_postgres_selection_concurrency_and_restart():
+    backend=ForwardPaperLedger(os.environ["TEST_UNIVERSE_DATABASE_URL"])
+    account="selection_"+uuid4().hex
+    backend.initialize()
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        results=list(pool.map(lambda _:reserve_paper_entry(backend,account,batch()),range(4)))
+    assert sum(r["status"]=="RESERVED" for r in results)==1
+    restarted=ForwardPaperLedger(backend.database_url)
+    assert reserve_paper_entry(restarted,account,batch())["status"]=="ALREADY_RESERVED"
+    assert restarted.audit(account)["event_count"]==1
 
