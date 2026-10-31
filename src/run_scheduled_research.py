@@ -1,12 +1,11 @@
-"""One-shot scheduled research task. Does not persist tokens or place orders.
-
-Fails closed until reviewed Dhan publisher and database wiring are complete.
-"""
+"""Finite scheduled Dhan research; no broker order capabilities."""
 import json
 import os
 from datetime import datetime
 from zoneinfo import ZoneInfo
 from src.market_schedule import research_window
+from src.dhan_scheduled_pipeline import process_once
+from src.scan_store import ScanStore
 
 def main():
     now=datetime.now(ZoneInfo("Asia/Kolkata"))
@@ -14,14 +13,22 @@ def main():
     if not active:
         print(json.dumps({"status":reason,"execution_enabled":False}),flush=True)
         return 0
-    if not os.getenv("SCAN_DATABASE_URL") or not os.getenv("DHAN_ACCESS_TOKEN"):
+    url=os.getenv("SCAN_DATABASE_URL")
+    token=os.getenv("DHAN_ACCESS_TOKEN")
+    if not url or not token or not url.startswith(("postgres://","postgresql://")):
         print(json.dumps({"status":"DATA_PUBLISHER_NOT_CONFIGURED",
                           "execution_enabled":False}),flush=True)
         return 0
-    # A future publisher must be verified and intentionally enabled before any
-    # broker calls. Merely provisioning a cron must never imply trading.
-    print(json.dumps({"status":"PUBLISHER_NOT_APPROVED",
-                      "execution_enabled":False}),flush=True)
+    try:
+        outcome=process_once(token,"2885","RELIANCE",now,ScanStore(url))
+        # No raw prices, credentials or broker response bodies in scheduled logs.
+        print(json.dumps({"status":outcome["status"],
+                          "execution_enabled":False}),flush=True)
+    except Exception as exc:
+        print(json.dumps({"status":"DATA_PIPELINE_FAILED",
+                          "error_type":type(exc).__name__,
+                          "execution_enabled":False}),flush=True)
+        return 1
     return 0
 
 if __name__=="__main__":
