@@ -1,104 +1,180 @@
-# Intraday Trading Automation — project handoff
-Updated: 31 October 2026. Read this before resuming in a new chat.
+# Intraday Trading Automation — authoritative project handoff
 
-## Working agreement
-- Owner: Mayur Agarkar. Repository is the source of truth: https://github.com/Mayuragarkar2020/intraday-trading-automation (private).
-- Continue authorized implementation and testing autonomously. Stop for genuinely missing input or production approval.
-- Mayur explicitly requires approval before production changes. PR #5 and PR #6 were approved, merged and deployed. Those approvals do not authorize real-money trading or later releases.
-- Keep durable project source/evidence in GitHub; do not depend on Mayur's computer. Temporary test copies are disposable.
-- Do not ask for credentials in chat, expose tokens, or read browser memory to extract them. Cockpit authentication token stays in page memory.
-- Do not spawn subagents unless expressly authorized.
-- Older general trading memories differ from this project's implemented policy. Read current repository code and locked project decisions before changing rules; do not silently substitute older Nifty-200/2-trade/0.75%-risk settings.
-- README contains outdated milestone descriptions. Current dated docs, source and deployment evidence take precedence.
+Updated: 31 October 2026 (IST). Read this first when resuming.
+Owner: Mayur Agarkar. Private repository: https://github.com/Mayuragarkar2020/intraday-trading-automation
 
-## Current production state
-- Cockpit: https://intraday-cockpit-preview.onrender.com/
-- PR #5 (UI redesign): https://github.com/Mayuragarkar2020/intraday-trading-automation/pull/5 — merged/deployed.
-- PR #6 (Paper lab): https://github.com/Mayuragarkar2020/intraday-trading-automation/pull/6 — merged/deployed after explicit user approval.
-- Paper release main commit: 5db368372f66d84fcf45ed55678eafe35c1e07da.
-- Paper release Render deploy: dep-dbis7k8u01pc73dqi910 — live.
-- Last verification: normal cockpit URL returned 200 and contains data-view="paper"; health returned 200, execution_enabled=false, PREVIEW_ONLY. Paper scenarios/runs endpoints and universe CSV returned 401 without token.
-- Render auto-deploy is OFF. A documentation commit does not deploy production. Before any future manual trigger, inspect main and ensure it contains only intended approved changes.
-- If menu looks old, Ctrl+Shift+R. Paper lab sits between Universe and Diagnostics.
-- Paper UI and core/API tests passed in CI; authenticated production replay/database publication has not been demonstrated to the agent. User should run the scenario suite and synthetic example from the live UI. Do not claim a saved production run until verified.
+## Resume order and source of truth
+1. Read this file, then docs/NEXT_WORK_PLAN.md.
+2. Inspect current main, PR #8, CI and actual Render deploy/settings. Reconcile changes since this checkpoint before acting.
+3. Use current source and dated evidence over older README text, chat memory or general trading memories.
+4. Read docs/forward-feed-capture.md on branch codex/forward-feed-capture (PR #8); that document is not on main at this checkpoint.
+5. Use Context Mode for bulk code/log processing, indexed retrieval and concise summaries. Never index credentials.
 
-## Render resources (confirmed workspace)
-- Workspace: tea-da6sf5qfngtc73c8jfi0 (My Workspace), explicitly confirmed by user.
-- Web: srv-dbicbu1srm7s73ds0o30, intraday-cockpit-preview, Singapore, main, auto-deploy off.
-- Research cron: crn-dbimqnbbc2fs73ap21vg, Singapore; schedule */5 3-6 * * 1-5 UTC; auto-deploy off.
-- PostgreSQL: dpg-dbicbq8ae00c73bqrp6g-a, Singapore, PostgreSQL 18, 1 GB; external access closed. Existing SCAN_DATABASE_URL is internal and secret.
-- Do not touch older suspended Oregon trading-automation service.
-- Paper module uses existing web service/database; no additional paid service created. Research cron was not redeployed for frontend/paper releases.
+## Working agreement and approval boundary
+- Continue authorized implementation/testing autonomously; stop for genuinely missing input or production approval.
+- Mayur requires approval before production changes. PRs #5, #6 and #7 were approved, merged and deployed.
+- PR #8 is OPEN and UNAPPROVED. Mayur's latest request is to update project context; it is NOT approval to activate PR #8.
+- No existing approval authorizes real-money orders, automatic forward paper execution, revised exit timing or later releases.
+- Keep source, tests, evidence and continuity in GitHub. Temporary local copies are disposable; do not depend on Mayur's computer.
+- No subagents unless expressly authorized. Never expose credentials or ask for tokens in chat.
+- Do not extract cockpit tokens from browser/page memory. User can unlock the UI using the existing token.
+- Render auto-deploy is OFF. Documentation commits do not deploy. Before any manual deployment inspect the exact main commit and confirm only approved changes will ship.
+- Current policy differs from older personal trading memories. Do not substitute NIFTY 200, two trades/day, 0.75% risk or fixed 2R targets.
 
-## Universe and research
-- Dated research evidence: research/2026-10-30/.
-- 20 exact official NSE sessions from 1–30 October; T-1 boundaries and source hashes preserved.
-- 109 liquidity candidates, 103 research-pool candidates, 2 identity holds, 4 exclusions. None is trading-cleared.
-- Holds: TECHM and SHRIRAMFIN (corporate-action/ISIN conflicts).
-- Exclusions: LIQUIDBEES and LALITHAA (low band), ESDS and WELCORP (ASM).
-- Pool status HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE means research only, not approval.
-- Universe CSV export /api/universe-research.csv exports only the 103 research candidates with explicit dates/mode.
-- Daily premarket refresh and immutable PostgreSQL universe snapshots deployed in PR #4.
-- Intended session of static snapshot: 2 November 2026. Reviewed calendar for daily refresh only covers 2–6 November; extend/review before it expires.
-- First scheduled production daily refresh expected 2 November 08:30 IST. Saturday deployment did not demonstrate that publication.
-- Automatic scanner coverage remains RELIANCE only. Do not claim it scans all 103 stocks.
-- Read docs/daily-universe-refresh-2026-10-31.md and relevant source before changing refresh/scheduling.
+## Current state at a glance
+| Area | Verified state |
+|---|---|
+| Cockpit | Live: https://intraday-cockpit-preview.onrender.com/ |
+| Web release | PR #7; commit 4504ecfa5325aa1bc85ab2120954d6b05c319b58 |
+| Render web deploy | dep-dbisjhss728c7386v93g — live |
+| Safety | /health returned 200, mode PREVIEW_ONLY, execution_enabled=false |
+| Protected comparison | Unauthenticated POST returns 401; new UI button exists |
+| Paper module | Deterministic replay/failure injection; NOT automatic forward paper trading |
+| Scanner coverage | RELIANCE only; NOT the full 103-stock research pool |
+| Chart check | User-reported exact API/chart OHLC match for one historical RELIANCE candle |
+| Forward recorder | Implemented/tested in PR #8, not merged/deployed/enabled |
+| Monday 2 November | Research/data-validation target; do not promise automatic paper trades |
 
-## Cockpit and paper module
-- Views: Overview, Scanner, Universe, Paper lab, Diagnostics.
-- Universe tabs separate pool/holds/exclusions; search, sorting, pagination, evidence details and authenticated CSV.
-- No automatic synthetic setup load on login. Synthetic/uploaded diagnostics never populate stored scanner.
-- Lock clears token, private inputs, loaded results and paper history; async response guards reject stale sessions.
-- Paper sources:
-  - src/paper_models.py: bounded/finite validated replay inputs.
-  - src/paper_engine.py: deterministic pure replay, no broker/network.
-  - src/paper_scenarios.py: 14 controlled synthetic checks.
-  - src/paper_store.py: append-only content-addressed paper_replay_runs.
-  - src/paper_routes.py: authenticated /api/paper endpoints.
-  - src/static/cockpit.html: integrated UI.
-  - docs/paper-trading-lab.md: usage, assumptions, limitations.
-- Paper endpoints: GET /api/paper/scenarios, POST /api/paper/replay, GET /api/paper/runs, GET /api/paper/runs/{run_id}, GET /api/paper/runs/{run_id}/trades.csv.
-- Existing risk policy: INR 980,000 capital, 1% planned risk inclusive of estimated costs (INR 9,800), one daily filled entry, long only, no leverage.
-- Existing trade manager: cost-breakeven stop request after 1.5 price R; EMA10 close exit. No fixed 2R take-profit model.
-- Test assumptions default to entry window 09:45–11:30 IST and flatten request 15:15, explicit per-share cost, adverse slippage, tick size and volume participation. They are NOT verified broker fees or an approved live strategy change.
-- Later-bar entry only; stop-first ambiguity; stop changes effective next bar; EMA exit next open. IOC partial entry remainder cancelled; partial/unfilled exits stay pending; gap losses can exceed risk budget.
-- Missing/duplicate/future/out-of-order/cross-session data fails closed. One normal 2026 session per run, max 25 plans/75 bars each, 2 MB body cap.
-- Identical normalized inputs + engine version reuse one immutable run. Costs/cash/partial-exit realised P&L/open-position estimated P&L reconcile.
-- Supplied EMA/reference declarations remain unverified. This is replay/failure injection, NOT live-feed forward paper trading.
-- Paper schema initializes on first persisted replay, not deployment. Stateless mode explicitly disclosed if no DB; DB errors return safe 503 rather than claiming persistence.
+The web deployment was rechecked through Render after PR #7. Later documentation
+commits can make main newer than that live release without changing production.
 
-## Validation evidence
-- Final PR #6 tested head: 669cd47a984033e6a3451e4f36d01a07259a0523.
-- CI: https://github.com/Mayuragarkar2020/intraday-trading-automation/actions/runs/41192714819
-- 281 Python tests passed including PostgreSQL 18 concurrency/idempotence tests.
-- Both Chromium suites passed: existing cockpit and new paper UI, desktop and 360px mobile, downloads/history/locking.
-- 14/14 controlled synthetic scenarios passed. These are software checks, not trading results.
-- Review screenshots: cockpit-ui-review artifact on that CI run.
-- Local temporary artifacts/tests are reproducible; do not assume their paths/runtime objects survive into a new chat.
+## Render resources
+Confirmed workspace: tea-da6sf5qfngtc73c8jfi0 (My Workspace).
+- Web: srv-dbicbu1srm7s73ds0o30, intraday-cockpit-preview, Singapore, branch main, auto-deploy off.
+- Research cron: crn-dbimqnbbc2fs73ap21vg, intraday-session-research, Singapore, auto-deploy off.
+- Current cron schedule rechecked: */5 3-6 * * 1-5 UTC; command python -m src.run_scheduled_research. Current application gate is 08:30–11:40 IST.
+- PostgreSQL: dpg-dbicbq8ae00c73bqrp6g-a, Singapore, PostgreSQL 18, 1 GB. External access closed.
+- SCAN_DATABASE_URL is an internal secret. Dhan/cockpit credentials remain in existing secret mechanisms.
+- No new paid service was created for paper replay or proposed capture.
+- Do not touch the older suspended Oregon trading-automation service.
+- Web-only releases #5–#7 did not redeploy the research cron. Inspect the cron's actual deployed source before any future release; do not assume it equals current web/main.
 
-## Current blocker and next work
-Mayur supplied the requested Dhan RELIANCE NSE 5-minute screenshot on 31 October. Selected candle: 30 October 2026 09:15 IST. OHLC: 1170.40 / 1174.60 / 1162.70 / 1164.30. This is chart evidence only; an API match has NOT yet been demonstrated.
+## Universe and calendar
+- Dated evidence: research/2026-10-30/. Twenty exact official NSE sessions from 1–30 October; T-1 boundaries and source hashes preserved.
+- 109 liquidity candidates: 103 research candidates, 2 identity holds, 4 exclusions. None is trading-cleared.
+- Holds: TECHM, SHRIRAMFIN (corporate-action/ISIN conflicts).
+- Exclusions: LIQUIDBEES, LALITHAA (low band); ESDS, WELCORP (ASM).
+- HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE means research only.
+- Static snapshot intended session: 2 November 2026.
+- Daily premarket refresh and immutable PostgreSQL universe snapshots were deployed in PR #4.
+- First eligible scheduled publication is expected Monday 2 November at 08:30 IST, subject to successful source fetches/job execution. Saturday deployment did not demonstrate it.
+- Reviewed daily-refresh calendar covers target sessions 2–6 November only. Review/extend before expiry; never infer special sessions.
+- From 09:15, missing same-day refresh holds instead of starting a late rebuild. Prior/advance publications do not count as today's publication.
+- Authenticated /api/universe-research.csv exports the 103 research candidates with explicit source/target/mode.
+- Read docs/daily-universe-refresh-2026-10-31.md and source before changing refresh/scheduling.
 
-A proposed read-only `/api/dhan-chart-reconciliation` endpoint compares exact OHLC under both timestamp hypotheses. It remains on the review branch until release approval. Read docs/forward-paper-readiness-2026-10-31.md. Monday 2 November automatic forward paper trading is NOT READY: live signal binding, full-session collection/position management, durable forward ledger and failure tests remain outstanding. The existing cron ends in the morning. No new production changes or revised exit policy have been approved.
+## Locked implemented trading and replay policy
+- Capital INR 980,000; planned risk 1% inclusive of estimated costs, capped at INR 9,800.
+- Long-only; one daily filled entry; no leverage.
+- Trade manager requests cost-breakeven stop after 1.5 price R, then EMA10 close exit. No fixed 2R take profit.
+- Replay assumptions: entry window 09:45–11:30 IST; force-exit request default 15:15; explicit per-share cost, adverse slippage, tick size and volume participation.
+- Costs are declared simulation assumptions, not verified broker charges or live approval.
+- Later-bar entry only; stop-first ambiguity; stop changes next bar; EMA exit next open.
+- IOC partial entry remainder cancelled; exit remainder stays pending. Gap losses may exceed planned risk.
+- A flatten request is not a guaranteed fill. With no later executable bar, position remains unresolved.
 
-Latest startup audit on deployed instance:
-- FETCHED_AUDITED; orders_enabled=false; timestamp_verified=false.
-- Padded historical fetch produced 3 sessions of 72 candles, 28–30 October; opening boundary recovered by a wider request (not synthetic filling).
-- Historical scanner result WAIT; no trade implied.
-- Chart reconciliation and daily CAS eligibility remain unverified.
-- Existing scheduled pipeline assumes timestamps_are_open=True and 72 expected bars for research but labels those assumptions unverified.
-- Saved CAS master observation: research/2026-10-30/cas-master-observation.json. Field ElgbltyClsgAuctnSsn is 1 for RELIANCE; 85 pool names have 1, 18 have 0. File interpretation and historical daily classification not yet verified.
-- Official NSE CAS page: https://www.nseindia.com/static/products-services/closing-auction-session
-- Dhan historical docs: https://dhanhq.co/docs/v2/historical-data/
-- Recheck current authoritative NSE circulars and effective dates before codifying CAS timing; October rule changes/search results may differ from the overview page.
-- Important forward-model issue to resolve: 72 bars end at 15:15 close, while a 15:15 next-open flatten request requires a subsequent executable bar. Current replay intentionally leaves that position unresolved. Do not invent an auction fill or silently mark it closed. Choose and review a session-aware flatten policy before forward paper release.
-- After chart check: bind immutable scanner signals and dated reference evidence to verified read-only candles, capture forward sessions, test stale-feed/reconnect/restart/idempotence, compare prices and costs, then assess out-of-sample outcomes. Prepare reviewable code/PRs and ask before deploying further changes.
-- Never enable real-money orders under existing approvals.
+## Cockpit and paper replay
+Views: Overview, Scanner, Universe, Paper lab, Diagnostics.
+- Universe separates pool/holds/exclusions; includes evidence, search/sort/pagination and authenticated CSV.
+- Synthetic/uploaded diagnostics never populate stored research scanner.
+- Lock clears token, private inputs/results/history; response guards reject stale sessions.
+- Sources: src/paper_models.py, paper_engine.py, paper_scenarios.py, paper_store.py, paper_routes.py; src/static/cockpit.html.
+- Usage and limitations: docs/paper-trading-lab.md.
+- Endpoints: GET /api/paper/scenarios; POST /api/paper/replay; GET /api/paper/runs; GET /api/paper/runs/{run_id}; GET /api/paper/runs/{run_id}/trades.csv.
+- Bounded finite input; one reviewed normal 2026 session; at most 25 plans/75 bars each; 2 MB body cap.
+- Missing/duplicate/future/out-of-order/cross-session replay data fails closed.
+- Supplied EMA/reference declarations remain unverified. This is replay, not live-feed forward trading.
+- Identical normalized inputs plus engine version reuse an immutable content-addressed run.
+- Costs, cash, realised partial-exit P&L and remaining-position estimated P&L reconcile.
+- Paper schema initializes on first persisted replay, not deployment. Stateless mode is disclosed if no DB; DB errors safely return 503.
+- Authenticated production replay persistence has NOT been demonstrated to the agent. Never claim a saved production run without verification.
+- PR #6 CI: 281 Python tests and both Chromium suites passed; 14 controlled scenarios are software checks, not strategy results.
 
-## Context Mode and chat continuity
-- User explicitly asked whether Context Mode is reducing token spend.
-- Honest status at handoff: Context Mode is available but was not effectively used in this build. ctx_stats reported 0 tokens saved; do not claim savings retroactively.
-- Future workflow: use Context Mode for bulk source/log processing and indexed retrieval; return only relevant excerpts/summaries. Filter connector payloads in code before returning them. Batch independent reads. Never index credentials/secrets.
-- Context Mode reduces content entering the LLM context; it does not automatically reduce every model call, guarantee a billing reduction, or prevent a chat limit. Runtime statistics are estimates, not billing records.
-- Keep this GitHub handoff current at milestones. Do not rely exclusively on automatic ChatGPT memory, prior-chat compaction, Context Mode's local index, or ephemeral functions/node/CUA state.
-- New-chat starter: "Continue Intraday Trading Automation. First read docs/PROJECT_HANDOFF.md in Mayuragarkar2020/intraday-trading-automation. Use Context Mode for bulk analysis. Continue until you need my input or approval; do not make unapproved production changes."
+## Chart reconciliation — completed scoped check
+Mayur supplied the Dhan RELIANCE NSE regular 5m chart for 30 October 2026,
+09:15 IST (UTC+5:30), then ran the authenticated production comparison and pasted:
+
+| Hypothesis/raw timestamp IST | Open | High | Low | Close | Result |
+|---|---:|---:|---:|---:|---|
+| OPEN / 2026-10-30 09:15 | 1170.4 | 1174.6 | 1162.7 | 1164.3 | Exact chart match |
+| CLOSE / 2026-10-30 09:20 | 1163.7 | 1166.0 | 1163.1 | 1163.6 | No match |
+
+- Provenance: user-supplied chart and user-pasted output from production UI; not an agent-observed authenticated response or retained raw broker payload.
+- Supports open-labelled timestamps for ONE historical RELIANCE candle. Does not establish all-symbol/all-session conventions, daily CAS classification or live-feed health.
+- PR #7 added authenticated POST /api/dhan-chart-reconciliation and Diagnostics → Reconcile RELIANCE chart → Compare with Dhan historical data.
+- Source: src/dhan_chart_reconciliation.py. Fixed RELIANCE security ID 2885 and padded historical fetch.
+- Report remains ONE_HISTORICAL_CANDLE_ONLY, timestamp_convention_verified=false, cas_eligibility_verified=false, forward_paper_ready=false.
+- PR #7 tested source 0e33358d419d53bdb4e05067588c7be759f4e79b: 303 Python tests plus both Chromium suites passed.
+- CI: https://github.com/Mayuragarkar2020/intraday-trading-automation/actions/runs/41194685872
+
+## Session/CAS issues still unresolved
+- Earlier startup audit FETCHED_AUDITED, orders_enabled=false, timestamp_verified=false.
+- Padded fetch recovered 3 sessions of 72 candles for 28–30 October; recovery came from wider requests, not synthetic fill.
+- Historical scanner WAIT is not a trade.
+- Existing scheduled research assumes open timestamps and 72 bars; broader assumptions stay unverified.
+- Saved research/2026-10-30/cas-master-observation.json: ElgbltyClsgAuctnSsn=1 for RELIANCE; 85 pool names have 1, 18 have 0. Field interpretation/effective daily history still require verification.
+- Official overview: https://www.nseindia.com/static/products-services/closing-auction-session
+- Official archive: https://www.nseindia.com/static/reports/closing-auction-session-historical-data
+- Broker reference: https://dhanhq.co/docs/v2/historical-data/
+- Reconcile applicable NSE circulars, effective dates and per-symbol/day classification before codifying session policy. A Saturday mock-trading circular is not evidence of a normal live session.
+- For a 15:15 continuous-session end, 72 bars end at 15:15 close. A 15:15 next-open flatten cannot assume a subsequent executable bar.
+- Earlier flatten (for example 15:10) is a PROPOSAL only. Keep partial/unfilled exits unresolved; do not manufacture auction fills or silently alter the locked exit policy.
+
+## PR #8 — completed proposal, pending production approval
+URL: https://github.com/Mayuragarkar2020/intraday-trading-automation/pull/8
+Branch: codex/forward-feed-capture
+Tested source head: 81999fd81c7430070301d45dcfcd8f190a9bddac.
+Documentation-only synchronization may advance the branch after this checkpoint;
+recheck current head/CI before any merge.
+
+Implemented:
+- src/forward_capture.py: current-session candle observations, first-seen timestamps, source hashes, missing/stale/late markers, immutable candles and observation transactions.
+- src/run_forward_capture.py: opt-in finite RELIANCE recorder; binds same-day universe revision and exact twenty reviewed reference dates; clocks observation AFTER fetch.
+- src/run_scheduled_research.py: default morning behavior retained; extended capture window only if FORWARD_CAPTURE_ENABLED=true.
+- tests/test_forward_capture.py: duplicate/concurrent writers, restarts, conflicts, rollback, clock/reference gates, stale/gap/reconnect cases, decimal-encoding equivalence and PostgreSQL concurrency.
+- Tables: forward_research_candles and forward_research_observations; created only on actual capture.
+- A revised candle rolls the whole observation back. 100 and 100.0 canonicalize equally.
+- Conservative capture cutoff 15:15 is research scoping, not verified daily CAS classification or an approved flatten rule.
+- NO simulated orders, fills or forward account ledger. Capture does not complete automatic paper trading.
+
+Validation:
+- 327 Python tests passed including PostgreSQL 18 concurrency; both Chromium suites passed.
+- CI: https://github.com/Mayuragarkar2020/intraday-trading-automation/actions/runs/41195680196
+- Local targeted tests: 23 passed; PostgreSQL exercised in CI.
+- Local Windows TestClient hangs at asyncio socketpair under sandbox; use CI evidence for API/browser coverage rather than claiming local success.
+- Local pytest temporary-directory restrictions were avoided with a new workspace basetemp.
+
+Pending approval request (already presented; NOT yet answered):
+Merge/deploy PR #8 to the EXISTING RESEARCH CRON, enable
+FORWARD_CAPTURE_ENABLED=true, and extend schedule from */5 3-6 * * 1-5 to
+*/5 3-10 * * 1-5 UTC. Command unchanged. Additional invocations/runtime cost;
+no additional paid service. Keep auto-deploy off. No web deploy is needed
+for the recorder-only code. No such production changes have been made.
+After approval, read the Render cron/deploy skills, inspect actual settings,
+deploy the intended merged commit and verify the resulting cron build;
+weekday observation/persistence must be checked separately.
+Rollback proposal: disable capture flag and restore previous schedule;
+retain immutable evidence.
+
+## Remaining automatic paper milestone and timing
+Read docs/NEXT_WORK_PLAN.md for the work order and acceptance criteria.
+Remaining: verified feed/session contracts; immutable signal-to-order binding;
+separate persistent paper account/order/fill/position ledger; simulated entries,
+stops, EMA/flatten exits; restart/concurrency recovery; realistic declared
+cost/slippage/partial-fill handling; full-session observability and failure tests;
+approved release and actual market-session validation.
+Prior estimate communicated to Mayur: 2–3 focused working days for implementation,
+then 3–5 live trading sessions for validation. Planning estimate only, not a
+deadline, background-work commitment, or guarantee. Expand if gates uncover issues.
+Monday 2 November is a data-recording/validation target, contingent on approval
+and operational success, not promised automatic paper trading.
+No work continues between chat turns unless an explicit automation/service does it.
+
+## Context Mode and continuity
+- Earlier handoff reported ineffective Context Mode use and zero savings; do not rewrite that historical fact.
+- Context Mode IS now used for bulk source retrieval/indexing, selected excerpts and filtered test output.
+- Runtime statistics estimate avoided context volume, not billing savings or immunity from chat limits.
+- GitHub handoff is durable authority; Context Mode local index, chat history, node/CUA bindings and local test copies are not.
+- Browser verification previously failed: in-app tab creation returned a session mismatch; native Chrome inspection stopped because current URL could not be determined safely. Do not bypass safeguards.
+- User can run authenticated Diagnostics; never recover tokens from browser memory.
+- New-chat starter: "Continue Intraday Trading Automation. Read docs/PROJECT_HANDOFF.md and docs/NEXT_WORK_PLAN.md first. Use Context Mode for bulk analysis. Continue until you need my input or approval; do not make unapproved production changes."

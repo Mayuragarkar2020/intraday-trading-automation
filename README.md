@@ -1,42 +1,44 @@
 # Intraday Trading Automation
 
-## Research progress — 31 October 2026
+Private NSE equity research cockpit and paper-trading development project.
 
-Twenty live official NSE UDiFF archives have now been downloaded and validated for 1–30 October. The dated snapshot has 109 liquidity candidates, reduced to 103 research candidates after current-reference and official NSE surveillance/identity checks. WELCORP is excluded for ASM; TECHM and SHRIRAMFIN are held for corporate-action ISIN conflicts. No security is approved for trading.
+**Resume here:** [Project handoff](docs/PROJECT_HANDOFF.md) and
+[next work plan](docs/NEXT_WORK_PLAN.md). Updated 31 October 2026.
+These documents distinguish approved/deployed behavior from pending proposals.
 
-See [research build and reproduction](docs/universe-research-2026-10-31.md), [official eligibility audit](docs/nse-eligibility-audit-2026-10-31.md), and [candidate CSV](research/2026-10-30/candidates.csv). The cockpit changes on this branch display a dated research snapshot. Automated production universe publication and live orders remain disabled. The implementation notes below describe earlier milestones; the linked dated audit is the current research status.
+## Current status
+- [Cockpit](https://intraday-cockpit-preview.onrender.com/) is live in PREVIEW_ONLY mode; real-money execution is disabled.
+- Daily premarket research-universe refresh is deployed. First eligible Monday publication still needs operational verification.
+- Dated universe: 103 research candidates, 2 identity holds and 4 exclusions; none is trading-cleared.
+- Automatic scanner coverage is RELIANCE only.
+- Paper lab supports deterministic candle replay, execution-failure scenarios and an append-only replay journal. Automatic forward paper trades are **not ready**.
+- PR #7 chart reconciliation is deployed. Mayur reported one exact RELIANCE 30 October 09:15 IST API/chart OHLC match under opening-time labels.
+- [PR #8](https://github.com/Mayuragarkar2020/intraday-trading-automation/pull/8) proposes opt-in full-session research capture. It is tested but not approved, merged or enabled.
+- Render auto-deploy is off. Production changes require Mayur's approval. No approval authorizes real-money orders.
 
+## Implemented account policy
+Capital INR 980,000; maximum planned risk INR 9,800 inclusive of estimated
+costs; long only; one filled entry per trading day; no leverage.
+Trade management requests cost-breakeven after 1.5 price R and an EMA10
+close exit. Replay assumptions are not verified live fees or strategy approval.
 
-Private NSE EQ T-1 liquidity-universe project. **Scaffold only; no live screening or order placement.**
+## Documentation
+- [Paper lab usage and assumptions](docs/paper-trading-lab.md)
+- [Forward-paper readiness checkpoint](docs/forward-paper-readiness-2026-10-31.md)
+- [Daily universe refresh](docs/daily-universe-refresh-2026-10-31.md)
+- [Universe research and reproduction](docs/universe-research-2026-10-31.md)
+- [NSE eligibility audit](docs/nse-eligibility-audit-2026-10-31.md)
+- [Dated candidate CSV](research/2026-10-30/candidates.csv)
 
-## Locked trading constraints
-- Capital: INR 980,000; maximum planned risk INR 9,800 inclusive of estimated trading costs
-- Long-only; at most one trade per trading day; manual execution via DhanHQ
-- All eligible NSE EQ stocks, initially priced INR 300 to 5,000
-- Liquidity thresholds are configurable hypotheses, not validated optimal settings
+The proposed capture document currently lives on PR #8's review branch:
+[forward-feed-capture.md](https://github.com/Mayuragarkar2020/intraday-trading-automation/blob/codex/forward-feed-capture/docs/forward-feed-capture.md).
 
-## Current implementation
-- `config/universe.yaml`: starting screening thresholds and failure policies
-- `src/run_daily.py`: deliberately exits with status 2 / `NOT_READY` until real ingestion, mapping, restrictions and quality checks are implemented
-- `tests/test_fail_closed.py`: safeguards this behavior
-- `render.yaml`: proposed weekday 13:00 UTC (18:30 IST) cron service; do **not deploy as production** until ingestion is working
+## Development and safety
+Install requirements and run Python tests with python -m pytest -q.
+CI also exercises PostgreSQL 18 concurrency and both Chromium browser suites.
+Synthetic fixtures test software; they are not market-performance evidence.
+Older entrypoints such as src/run_daily.py and the root render.yaml describe
+earlier scaffold work; they are not the current deployed cron configuration.
+Use the handoff, current source and actual Render settings before operating.
 
-## Next milestones
-1. Implement official NSE source acquisition, schema and freshness validation, and Dhan instrument reconciliation.
-2. Implement rolling 20-session rupee turnover, volume metrics and effective-dated restrictions.
-3. Backtest and verify T-1 decisions; preserve source hashes and configuration versions.
-4. Add PostgreSQL persistence and only then activate scheduled Render execution.
-
-No credentials or live trading secrets belong in GitHub.
-
-## Ingestion milestone (not production-ready)
-
-`src/ingestion.py` parses manually downloaded NSE CM UDiFF CSV or single-CSV ZIP files with strict column and date checks. `src/screening.py` calculates provisional 20-session liquidity metrics. Run `python -m scripts.inspect_nse YYYY-MM-DD path/to/report.csv` to inspect a local file. These are unverified against a live official sample; full target-date screening requires 20 actual NSE exchange sessions, verified security master, effective restrictions, and Dhan mapping. Unit tests have been committed but have not been executed by GitHub CI. The Render entrypoint remains intentionally `NOT_READY`.
-
-## Eligibility integration milestone
-
-`src/eligibility.py` implements a **manual-reviewed transitional** eligibility gate and conservative Dhan ISIN mapping. Actual NSE security/price-band/surveillance reports are **not yet ingested automatically**, and the Dhan master header assumptions require verification on a real downloaded file. Reviewed YES is explicitly `ELIGIBLE_MANUALLY_REVIEWED`, not production-cleared. The Render entrypoint still fails closed and no automatic universe is published.
-
-## Historical NSE downloader (implemented, CI validated with fixtures)
-
-Run `python -m scripts.download_20_sessions --dates-file session_dates.txt --output-dir data/raw/nse` with exactly 20 verified NSE trading session dates, ascending. Archives are checked using the NSE UDiFF parser and source hashes are saved. A complete live 20-session download and independent NSE trading-calendar validation have not yet been performed. Synthetic CI tests are not evidence of successful live historical screening. Production Render remains inactive.
+No credentials, internal database URLs or live trading secrets belong in GitHub.
