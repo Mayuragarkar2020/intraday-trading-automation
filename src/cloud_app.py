@@ -2,7 +2,7 @@
 import hmac
 import os
 from pathlib import Path
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, Response
 from decimal import Decimal
 from fastapi import Depends, FastAPI, Header, HTTPException
 from pydantic import BaseModel, Field
@@ -11,6 +11,7 @@ from src.candle_pipeline import scan_demo
 from src.candle_input import BatchInput,scan_batch
 from src.scan_store import ScanStore
 from src.research_snapshot import load_research_snapshot
+from src.research_csv import export_research_csv
 from src.dhan_history_client import fetch_intraday
 from src.dhan_historical_diagnostics import historical_diagnostics
 from src.dhan_candle_audit import audit_candles
@@ -63,6 +64,19 @@ def universe_research():
         return load_research_snapshot()
     except (OSError, ValueError, TypeError):
         raise HTTPException(status_code=503, detail="Research snapshot unavailable") from None
+
+
+@app.get("/api/universe-research.csv", dependencies=[Depends(require_token)])
+def universe_research_csv():
+    try:
+        payload=load_research_snapshot()
+        content=export_research_csv(payload)
+        target=payload["snapshot"]["target_date"]
+        return Response(content=content,media_type="text/csv",
+                        headers={"Content-Disposition":f'attachment; filename="research-universe-{target}.csv"',
+                                 "Cache-Control":"no-store"})
+    except (OSError, ValueError, TypeError):
+        raise HTTPException(status_code=503,detail="Research CSV unavailable") from None
 
 class HistoryProbe(BaseModel):
     security_id: str = Field(pattern=r"^[0-9]{1,12}$")
