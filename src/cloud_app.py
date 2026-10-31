@@ -21,6 +21,14 @@ import httpx
 app=FastAPI(title="Intraday Trade Cockpit — Preview Only",version="0.1.0",
             docs_url=None,redoc_url=None)
 
+@app.on_event("startup")
+def read_only_dhan_smoke_check():
+    # Best-effort: logs safe diagnostics; never blocks dashboard startup.
+    from threading import Thread
+    from src.dhan_startup_audit import run_startup_audit
+    Thread(target=run_startup_audit,daemon=True,name="read-only-dhan-audit").start()
+
+
 def require_token(x_access_token: str|None=Header(default=None)):
     expected=os.environ.get("COCKPIT_ACCESS_TOKEN")
     if not expected or not x_access_token or not hmac.compare_digest(x_access_token,expected):
