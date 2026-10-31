@@ -40,8 +40,10 @@ def prepare_capture(payload, now, universe_revision):
     delay = (local - latest).total_seconds() if latest else None
     status = "NO_CURRENT_CANDLES" if not current else "INCOMPLETE_SESSION" if missing else (
         "STALE" if delay > 90 else "FRESH_OBSERVATION")
-    candles = [{"time": b.time, "open": str(b.open), "high": str(b.high),
-                "low": str(b.low), "close": str(b.close), "volume": b.volume}
+    candles = [{"time": b.time, "open": format(b.open.normalize(), "f"),
+                "high": format(b.high.normalize(), "f"),
+                "low": format(b.low.normalize(), "f"),
+                "close": format(b.close.normalize(), "f"), "volume": b.volume}
                for b in current]
     canonical = json.dumps(candles, sort_keys=True, separators=(",", ":"))
     return {"session_date": local.date().isoformat(), "symbol": SYMBOL,

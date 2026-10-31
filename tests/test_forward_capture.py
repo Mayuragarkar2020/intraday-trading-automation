@@ -68,6 +68,18 @@ def test_same_observation_clock_with_different_reference_is_rejected(tmp_path):
         backend.save(prepare_capture(candles(), at(), "changed"))
 
 
+def test_equivalent_decimal_encoding_is_not_a_price_revision(tmp_path):
+    backend = store(tmp_path)
+    first = prepare_capture(candles(), at(), "r")
+    backend.save(first)
+    different_encoding = candles()
+    for field in ("open", "high", "low", "close"):
+        different_encoding[field] = [float(x) for x in different_encoding[field]]
+    second = prepare_capture(different_encoding, at("09:30:20"), "r")
+    assert second["source_sha256"] == first["source_sha256"]
+    assert backend.save(second)["report"]["new_candles"] == 0
+
+
 def test_stale_missing_future_and_reconnect_are_explicit(tmp_path):
     assert prepare_capture(candles((15,20)), at(), "r")["status"] == "INCOMPLETE_SESSION"
     assert prepare_capture(candles((20,25)), at(), "r")["missing_closes"] == [at("09:20:00").isoformat()]
