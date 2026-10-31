@@ -1,5 +1,7 @@
 # NSE universe research — verified download, 31 October 2026
 
+**Latest audit:** [Official NSE eligibility audit](nse-eligibility-audit-2026-10-31.md) reduces the initial 106-name reference pool to **103**: WELCORP is excluded for NSE ASM, while TECHM and SHRIRAMFIN are held for corporate-action ISIN conflicts. The figures below describe the initial liquidity/reference stage.
+
 This branch builds a dated research shortlist and displays it in the cockpit. It does not activate the daily production universe, enlarge the running RELIANCE scanner, alter database settings or enable orders.
 
 ## Live validation result
@@ -61,7 +63,7 @@ Current-reference filtering requires all three reference inputs together. Change
 
 ## Cockpit behavior and approval boundary
 
-GET /api/universe-research requires the existing cockpit token. It reads the committed dated JSON; it does not contact the broker or database, trigger research or submit orders. The table shows as-of/target dates, all 109 candidates and each exclusion/hold. The approved tradable count remains zero.
+GET /api/universe-research requires the existing cockpit token. It reads the committed dated JSON; it does not contact the broker or database, trigger research or submit orders. The table shows as-of/target dates, all 109 candidates and each exclusion/hold. The current snapshot has 103 research candidates after the official NSE audit. The approved tradable count remains zero.
 
 To release: merge the reviewed branch, then manually deploy only intraday-cockpit-preview, whose automatic deploys are disabled. Verify /health, authenticated access, the 109/106 counts and disabled execution after deploy. No new service or database change is needed.
 
