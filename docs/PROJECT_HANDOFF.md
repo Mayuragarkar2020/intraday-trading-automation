@@ -224,3 +224,29 @@ including the environment-update intermediate build and SQL access limitation.
 The web remains at PR #7. PR #9 remains draft/unapproved/undeployed; no forward
 paper executor or broker ordering was activated. Earlier pending statements
 in historical checkpoints describe the earlier time, not current authorization.
+
+## Latest inactive-source checkpoint — receipt-bound signals
+
+PR #9 is now based on main and includes both the accounting ledger and an
+inactive research signal journal. Exact tested head:
+1a529075c68e43bb2e40c207aaadf0b1d5b0805c. Full CI: 390 Python/API/PostgreSQL
+tests plus both Chromium suites passed in run 41213273260. Local targeted
+checks: 127 passed, 3 PostgreSQL-only skipped. Read docs/forward-research-signal.md
+on codex/forward-paper-ledger; no runtime imports either new module.
+
+The new journal reads committed recorder observations and the original universe
+revision, checks hashes, dates, calendar and first-seen timeliness, derives
+scanner inputs and freezes full normalized input/result evidence and post-scan
+known_at. Conflicting recomputation and reconnect/backfill signals hold. It
+always reports forward_paper_ready=false and execution_enabled=false because
+reference-price provenance and session contracts are still unverified.
+No ledger/order adapter, simulator runtime or production integration is added.
+
+Added dated official NSE CAS evidence: RELIANCE appears in the 30 October
+CAS archive. Read docs/session-contract-checkpoint-2026-10-31.md and
+research/2026-10-30/cas-session-observation.json. This narrows that day's CAS
+uncertainty; it does not certify future dates, all reference days, or broker
+candle labels. Originals 73845/74466 remain unread via available PDF retrieval.
+Next user-dependent evidence: independent Dhan regular five-minute closing
+candle view for RELIANCE on 30 October (last and preceding candle, time/OHLC).
+No revised flatten time is approved. Keep open/partial exposure unresolved.

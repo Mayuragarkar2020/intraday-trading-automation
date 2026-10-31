@@ -92,3 +92,10 @@ Current next steps: inspect Monday's same-day universe and first-seen capture
 observations, verify session/timestamp contracts, then bind trustworthy signals
 to the inactive ledger. Do not treat an existing historical research scan as
 an execution-ready forward signal: it lacks persisted receipt/source binding.
+
+PR #9 expanded source checkpoint: 390 full Python/API/PostgreSQL tests and both
+Chromium suites passed at head 1a529075c68e43bb2e40c207aaadf0b1d5b0805c (run
+41213273260). It now computes an immutable receipt-bound research signal from
+committed capture evidence, but supplied reference prices and session contracts
+remain unverified. It cannot create paper orders. All later source remains
+draft/unapproved/undeployed. See the latest handoff and session evidence note.
