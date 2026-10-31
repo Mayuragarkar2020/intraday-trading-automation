@@ -178,3 +178,20 @@ No work continues between chat turns unless an explicit automation/service does 
 - Browser verification previously failed: in-app tab creation returned a session mismatch; native Chrome inspection stopped because current URL could not be determined safely. Do not bypass safeguards.
 - User can run authenticated Diagnostics; never recover tokens from browser memory.
 - New-chat starter: "Continue Intraday Trading Automation. Read docs/PROJECT_HANDOFF.md and docs/NEXT_WORK_PLAN.md first. Use Context Mode for bulk analysis. Continue until you need my input or approval; do not make unapproved production changes."
+
+## Later source checkpoint — inactive ledger foundation
+
+31 October 2026: branch codex/forward-paper-ledger builds on PR #8 without
+activating it. Read docs/forward-paper-ledger.md and src/forward_paper_ledger.py.
+The accounting library persists atomic account projections and immutable
+command/result journals, guards daily filled entries and concurrent/restarted
+workers, and retains partial/unfilled exits. It is not connected to any runtime.
+Signal/source/session verification and automatic execution remain unfinished.
+Local targeted accounting/capture/replay/risk/manager tests: 105 passed,
+2 PostgreSQL-only checks skipped. Inspect the ledger PR's current CI for
+PostgreSQL and browser coverage before claiming those checks passed.
+No production changes were made. The separately pending PR #8 capture approval
+must not include this later ledger source. Recheck current heads/settings.
+Confirmed production on this checkpoint: web 4504ecfa5325aa1bc85ab2120954d6b05c319b58;
+cron 0ce3cdb340d268c397f7adbd905a30a5f4e8edb7, deploy dep-dbiqu8oae00c73ceuksg.
+Both auto-deploy settings off; cron schedule unchanged at */5 3-6 * * 1-5 UTC.
