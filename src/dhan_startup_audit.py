@@ -46,7 +46,9 @@ def run_startup_audit():
             reports["cas_72_reference"]={"missing_slots":[s["first_missing"] for s in cas["sessions"]],
                 "received":[s["received"] for s in cas["sessions"]],
                 "session_complete":[s["session_complete"] for s in cas["sessions"]],
-                "eligibility_verified":False}
+                "eligibility_verified":False,
+                "safe_for_scanning":False,
+                "reason":"CAS_ELIGIBILITY_AND_TIMESTAMP_NOT_VERIFIED"}
         except (ValueError,OverflowError,TypeError) as exc:
             reports["cas_72_reference"]={"status":"INVALID","error_type":type(exc).__name__}
         result={"status":"FETCHED_AUDITED","candidate_security_id":"2885",
