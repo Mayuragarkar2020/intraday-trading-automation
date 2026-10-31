@@ -5,19 +5,26 @@ import hashlib
 from pathlib import Path
 from src.ingestion import DataQualityError
 
-def _rows(path, required):
+def _rows(path, required, row_filter=None):
     path = Path(path)
-    raw = path.read_bytes()
-    lines = raw.decode("utf-8-sig").splitlines()
-    reader = csv.DictReader(lines)
-    headers = [h.strip() for h in (reader.fieldnames or [])]
-    if len(headers) != len(set(headers)) or not required.issubset(headers):
-        raise DataQualityError("Unrecognized reference schema")
-    rows = [{key.strip(): (value or "").strip() for key, value in row.items()
-             if key is not None} for row in reader]
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    rows = []
+    with path.open(newline="", encoding="utf-8-sig") as handle:
+        reader = csv.DictReader(handle)
+        headers = [h.strip() for h in (reader.fieldnames or [])]
+        if len(headers) != len(set(headers)) or not required.issubset(headers):
+            raise DataQualityError("Unrecognized reference schema")
+        for row in reader:
+            normalized = {key.strip(): (value or "").strip() for key, value in row.items()
+                          if key is not None}
+            if row_filter is None or row_filter(normalized):
+                rows.append(normalized)
     if not rows:
         raise DataQualityError("Empty reference")
-    return rows, {"filename": path.name, "sha256": hashlib.sha256(raw).hexdigest(),
+    return rows, {"filename": path.name, "sha256": digest.hexdigest(),
                   "effective_date_verified": False}
 
 def _unique(rows, key):
@@ -34,7 +41,8 @@ def attach_references(report, equity_master, price_bands, dhan_master):
     bands, bands_source = _rows(price_bands, {"Symbol", "Series", "Band"})
     broker, broker_source = _rows(dhan_master, {
         "EXCH_ID", "SEGMENT", "SERIES", "ISIN", "SECURITY_ID",
-        "ASM_GSM_FLAG", "ASM_GSM_CATEGORY", "BUY_SELL_INDICATOR"})
+        "ASM_GSM_FLAG", "ASM_GSM_CATEGORY", "BUY_SELL_INDICATOR"},
+        row_filter=lambda row: (row["EXCH_ID"], row["SEGMENT"], row["SERIES"]) == ("NSE", "E", "EQ"))
     eq_by_isin = _unique([r for r in equities if r["SERIES"] == "EQ"],
                          lambda r: r["ISIN NUMBER"])
     bands_by_symbol = _unique([r for r in bands if r["Series"] == "EQ"],
