@@ -14,7 +14,7 @@ CHART_OHLC = dict(zip(("open", "high", "low", "close"),
 FIELDS = ("timestamp", "open", "high", "low", "close", "volume")
 
 
-def reconcile_reliance_chart(payload):
+def _reconcile_chart(payload, chart_open, chart_ohlc):
     """Require exact prices; compare both start- and end-labelled hypotheses."""
     if not isinstance(payload, dict) or any(not isinstance(payload.get(k), list) for k in FIELDS):
         raise ValueError("Invalid candle arrays")
@@ -45,14 +45,14 @@ def reconcile_reliance_chart(payload):
             if previous is not None and stamp <= previous:
                 raise ValueError("Duplicate or unordered timestamps")
             previous = stamp
-            rows[stamp] = {k: values[k] for k in CHART_OHLC}
+            rows[stamp] = {k: values[k] for k in chart_ohlc}
         except (InvalidOperation, TypeError, OverflowError, OSError) as exc:
             raise ValueError("Invalid candle value") from exc
     candidates = {}
     matches = []
-    for convention, stamp in (("OPEN", CHART_OPEN), ("CLOSE", CHART_OPEN + timedelta(minutes=5))):
+    for convention, stamp in (("OPEN", chart_open), ("CLOSE", chart_open + timedelta(minutes=5))):
         actual = rows.get(stamp)
-        matched = actual == CHART_OHLC
+        matched = actual == chart_ohlc
         if matched:
             matches.append(convention)
         candidates[convention] = {
@@ -64,8 +64,8 @@ def reconcile_reliance_chart(payload):
     return {
         "status": status, "symbol": "RELIANCE", "security_id": "2885",
         "exchange": "NSE_EQ", "interval_minutes": 5,
-        "chart_open_ist": CHART_OPEN.isoformat(),
-        "chart_ohlc": {k: str(v) for k, v in CHART_OHLC.items()},
+        "chart_open_ist": chart_open.isoformat(),
+        "chart_ohlc": {k: str(v) for k, v in chart_ohlc.items()},
         "observation_source": "USER_DHAN_CHART_SCREENSHOT_2026_10_31",
         "matching_convention": matches[0] if len(matches) == 1 else None,
         "candidates": candidates,
@@ -74,3 +74,53 @@ def reconcile_reliance_chart(payload):
         "cas_eligibility_verified": False,
         "forward_paper_ready": False, "execution_enabled": False,
     }
+
+
+def reconcile_reliance_chart(payload):
+    """Preserve the original fixed 09:15 comparison and its response contract."""
+    return _reconcile_chart(payload, CHART_OPEN, CHART_OHLC)
+
+
+CLOSING_CHART_SAMPLES = tuple(
+    (datetime(2026,10,30,15,minute,tzinfo=IST),
+     dict(zip(("open","high","low","close"),map(Decimal,prices))))
+    for minute,prices in (
+        (5,("1161.30","1163.50","1160.50","1163.30")),
+        (10,("1163.30","1163.90","1158.40","1159.00")),
+    )
+)
+
+
+def reconcile_reliance_closing_chart(payload):
+    """Two user screenshots; no assertion that an absent candle proves closure."""
+    import hashlib
+    import json
+    samples = [_reconcile_chart(payload,stamp,prices) for stamp,prices in CLOSING_CHART_SAMPLES]
+    conventions = [s["matching_convention"] for s in samples]
+    matched = [c for c in conventions if c is not None]
+    if any(s["status"] == "AMBIGUOUS" for s in samples):
+        status = "AMBIGUOUS"
+    elif len(matched) == 2:
+        status = "ALL_SAMPLES_MATCHED" if len(set(matched)) == 1 else "INCONSISTENT_CONVENTIONS"
+    else:
+        status = "PARTIAL_MATCH" if matched else "NO_MATCH"
+    # _reconcile_chart validated all arrays, epochs and ordering before this metadata.
+    stamps = [datetime.fromtimestamp(int(Decimal(str(v))),IST) for v in payload["timestamp"]]
+    target = [s for s in stamps if s.date() == CLOSING_CHART_SAMPLES[0][0].date()]
+    boundary = datetime(2026,10,30,15,15,tzinfo=IST)
+    canonical = json.dumps({k:payload[k] for k in FIELDS},sort_keys=True,separators=(",",":"),default=str)
+    return {"status":status, "symbol":"RELIANCE", "security_id":"2885",
+        "exchange":"NSE_EQ", "interval_minutes":5, "samples":samples,
+        "matching_convention":matched[0] if status == "ALL_SAMPLES_MATCHED" else None,
+        "observation_source":"TWO_USER_DHAN_CHART_SCREENSHOTS_2026_10_31",
+        "decoded_payload_sha256":hashlib.sha256(canonical.encode()).hexdigest(),
+        "raw_target_session_count":len(target),
+        "first_raw_timestamp_ist":target[0].isoformat() if target else None,
+        "last_raw_timestamp_ist":target[-1].isoformat() if target else None,
+        "raw_timestamps_at_or_after_15_15":[s.isoformat() for s in target if s >= boundary],
+        "scope":"TWO_HISTORICAL_CLOSING_CANDLES_ONLY",
+        "chart_last_visible_label_ist":CLOSING_CHART_SAMPLES[-1][0].isoformat(),
+        "boundary_interpretation":"UNVERIFIED_NO_AUCTION_FILL_INFERENCE",
+        "timestamp_convention_verified":False, "cas_eligibility_verified":False,
+        "forward_paper_ready":False, "execution_enabled":False}
+

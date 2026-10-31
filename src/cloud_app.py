@@ -20,7 +20,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 import httpx
 
-app=FastAPI(title="Intraday Trade Cockpit — Preview Only",version="0.1.0",
+app=FastAPI(title="Intraday Trade Cockpit - Preview Only",version="0.1.0",
             docs_url=None,redoc_url=None)
 
 @app.on_event("startup")
@@ -127,6 +127,23 @@ def dhan_chart_reconciliation():
                 "execution_enabled": False, "forward_paper_ready": False}
 
 
+@app.post("/api/dhan-closing-chart-reconciliation", dependencies=[Depends(require_token)])
+def dhan_closing_chart_reconciliation():
+    """Fixed two-candle chart comparison. Read-only; no trading-state writes."""
+    from src.dhan_chart_reconciliation import reconcile_reliance_closing_chart
+    token = os.environ.get("DHAN_ACCESS_TOKEN")
+    if not token:
+        return {"status": "DHAN_TOKEN_NOT_CONFIGURED", "execution_enabled": False,
+                "forward_paper_ready": False}
+    try:
+        payload = fetch_intraday(token, "2885", 5,
+                                 "2026-10-29 09:15:00", "2026-10-31 09:15:00")
+        return reconcile_reliance_closing_chart(payload)
+    except (httpx.HTTPError, ValueError, OverflowError, TypeError) as exc:
+        return {"status": "RECONCILIATION_FAILED", "error_type": type(exc).__name__,
+                "execution_enabled": False, "forward_paper_ready": False}
+
+
 class HistoricalAnalysisRequest(HistoryProbe):
     timestamps_are_open: bool
     cas_eligible: bool | None = None
@@ -222,3 +239,4 @@ def preview(request:PreviewRequest):
 # Paper simulation has its own authenticated router; no live order integration.
 from src.paper_routes import create_paper_router
 app.include_router(create_paper_router(require_token))
+
