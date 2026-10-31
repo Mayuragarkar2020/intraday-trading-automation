@@ -72,3 +72,16 @@ tested, approved, deployed, observed and validated at every update.
    If not approved, prepare remaining ledger/execution source independently.
 5. Keep documentation synchronized at milestones and explicitly request the
    next production/policy approval only when the change is concrete and reviewable.
+
+## Source progress after the initial checkpoint
+
+Draft PR #9 (codex/forward-paper-ledger, stacked on #8) adds the inactive
+ledger accounting foundation only. Tested head 03106d39fd82ec00b5372e51323b54fb25d6371e:
+372 Python/API/PostgreSQL tests and both Chromium suites passed in run
+41210571449. Local targeted checks: 110 passed, 2 PostgreSQL-only skipped.
+See PROJECT_HANDOFF.md and docs/forward-paper-ledger.md on the review branch.
+Stages 3–6 remain incomplete: declarations are not verified scanner/feed
+bindings, and no automatic forward executor/runtime has been connected.
+No production change or activation is authorized by this source work.
+PR #8 recorder activation is still the pending production decision; do not
+include the later ledger branch in a recorder-only release.

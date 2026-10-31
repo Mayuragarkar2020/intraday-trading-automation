@@ -178,3 +178,36 @@ No work continues between chat turns unless an explicit automation/service does 
 - Browser verification previously failed: in-app tab creation returned a session mismatch; native Chrome inspection stopped because current URL could not be determined safely. Do not bypass safeguards.
 - User can run authenticated Diagnostics; never recover tokens from browser memory.
 - New-chat starter: "Continue Intraday Trading Automation. Read docs/PROJECT_HANDOFF.md and docs/NEXT_WORK_PLAN.md first. Use Context Mode for bulk analysis. Continue until you need my input or approval; do not make unapproved production changes."
+
+## Later checkpoint — inactive ledger foundation (PR #9)
+
+31 October 2026: draft https://github.com/Mayuragarkar2020/intraday-trading-automation/pull/9
+Branch codex/forward-paper-ledger, stacked on PR #8; tested source head
+03106d39fd82ec00b5372e51323b54fb25d6371e. Neither PR has been approved or merged.
+Read docs/forward-paper-ledger.md on that branch (not present on main).
+
+- Added an inactive accounting library: atomic account projection and immutable
+  command/result journal; idempotent retries, serialized concurrent writers,
+  daily filled-entry guard, partial IOC entry cancellation, persistent partial/
+  rejected exits, restart/audit recovery and exact cash/cost-basis/P&L identity.
+- Orders/fills/position are logical JSON projection records; there are not yet
+  separate relational order/fill tables. Review projection retention/growth
+  before activation. Pin the eventual runtime account ID to prevent resets.
+- Caller-supplied source/signal declarations are NOT verified feed bindings.
+  No runtime imports the ledger; no API, cron, executor, broker-order call or
+  production DB write was added. Session/source gates, breakeven/EMA10 execution
+  and actual-market validation remain outstanding. Automatic paper NOT READY.
+- Local targeted tests: 110 passed, 2 PostgreSQL-only checks skipped.
+- Exact-head CI: 372 Python/API/PostgreSQL tests passed; both Chromium suites
+  passed. https://github.com/Mayuragarkar2020/intraday-trading-automation/actions/runs/41210571449
+- Same-day production recheck: cockpit health 200, PREVIEW_ONLY,
+  execution_enabled=false; web still 4504ecfa5325aa1bc85ab2120954d6b05c319b58.
+  Cron still 0ce3cdb340d268c397f7adbd905a30a5f4e8edb7,
+  deploy dep-dbiqu8oae00c73ceuksg; schedule */5 3-6 * * 1-5 UTC.
+  Both auto-deploy settings off. No production changes were made.
+- PR #8's recorder-only activation request remains pending. Approval of #8
+  must not include #9. If #8 is approved, merge/deploy only recorder source
+  plus documentation; do not deploy the ledger branch. Keep #9 draft until
+  trusted session/signal/executor integration is reviewed and tested.
+- This main-branch documentation checkpoint does not merge either proposal
+  or deploy anything. Before the next release recheck actual main and cron.
