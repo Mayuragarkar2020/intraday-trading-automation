@@ -80,3 +80,11 @@ def test_calendar_horizon_failure_keeps_previous_snapshot(setup):
         run_cycle(clock(8,30,day=9),store,None,None,builder=builder)
     assert store.latest("2026-11-02") is not None
     assert store.latest("2026-11-09") is None
+
+def test_advance_publication_is_not_counted_as_today_refresh(setup):
+    from datetime import timezone
+    report,evidence,store=setup
+    store.initialize()
+    store.publish(report,evidence,now=datetime(2026,10,31,8,tzinfo=timezone.utc))
+    result=run_cycle(clock(9,45),store,None,"token")
+    assert result["status"]=="UNIVERSE_REFRESH_MISSING"
