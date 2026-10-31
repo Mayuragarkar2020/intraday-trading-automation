@@ -91,7 +91,7 @@ $("universeRefresh").addEventListener("click",async()=>{
   $("universeStatus").textContent="As of "+s.asof_date+"; intended session "+s.target_date+". "+
    s.summary.liquidity_candidate_count+" liquidity candidates; "+
    s.summary.reference_research_candidate_count+" after current reference checks. "+
-   "0 approved for trading. All "+s.summary.liquidity_candidate_count+" rows shown below, including exclusions.";
+   "0 approved for trading. All "+s.summary.liquidity_candidate_count+" rows shown below, including exclusions. "+(payload.availability||"");
   $("universeRows").innerHTML=s.candidates.map(r=>"<tr><td>"+esc(r.symbol)+"</td><td>"+
    esc(Number(r.metrics.avg_turnover_20d_cr).toFixed(2))+"</td><td>"+esc(r.reference_price_band??"Unknown")+
    "</td><td class=\"warn\">"+esc(r.reference_review_status)+"</td></tr>").join("");
