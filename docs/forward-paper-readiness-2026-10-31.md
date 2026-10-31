@@ -1,5 +1,10 @@
 # Forward paper readiness — 31 October 2026
 
+> Current status: PR #7 was approved, merged and deployed. Mayur reported an exact
+> OPEN-hypothesis match for the 09:15 candle. PR #8's research recorder is tested
+> but awaits approval; automatic forward paper trading remains NOT READY.
+> See [authoritative handoff](PROJECT_HANDOFF.md) and [next work plan](NEXT_WORK_PLAN.md).
+
 ## Decision for Monday, 2 November
 
 Automatic forward paper trading is **NOT READY**. The deployed Paper lab is a
@@ -23,10 +28,12 @@ UTC+5:30. The crosshair label is Friday 30 October 2026 09:15.
 
 These values are a manual transcription of the supplied screenshot. The image
 itself is not embedded in this repository. They are **not an API observation**.
-The deployed diagnostics report coverage but do not expose the required price
-comparison. No broker/API match has yet been demonstrated to the agent.
+The earlier diagnostics reported coverage only. PR #7 now exposes the scoped
+comparison in Diagnostics. Mayur subsequently ran the protected production check and reported an exact
+OPEN match; the 09:20 raw candle differed. This is user-reported output, not an
+agent-observed authenticated response or retained raw broker payload.
 
-## Proposed read-only reconciliation release
+## Read-only reconciliation release — deployed
 
 POST `/api/dhan-chart-reconciliation` uses existing cockpit authentication and
 the server's existing Dhan token. It fetches a fixed, padded historical window
@@ -45,8 +52,9 @@ or trading readiness. Existing scanner verification flags stay false.
 
 ## Remaining gates before a forward-paper release
 
-1. Run the reconciliation against actual Dhan data and retain the observed result.
-   Confirm further candles/session boundaries; do not substitute test fixtures.
+1. The first scoped reconciliation is complete via user-reported production
+   output. Retain that provenance; confirm additional candles/session boundaries
+   before generalizing it. Do not substitute test fixtures.
 2. Establish dated session classification and CAS eligibility for RELIANCE and
    each intended symbol. The saved security-master field alone is insufficient.
 3. Review a continuous-session exit policy. With a 15:15 continuous-session end,
@@ -81,6 +89,8 @@ membership still require reconciliation before codifying a forward session.
 
 ## Approval boundary
 
-This proposal changes no production state. Approval is required to merge/deploy
-the reconciliation endpoint to the existing web service. That release does not
-authorize real-money trading, forward-paper operation, or a changed exit rule.
+PR #7 was approved and deployed to the existing web service. Its approval does
+not authorize PR #8, real-money trading, forward-paper operation or a changed
+exit rule. PR #8's proposed capture activation and afternoon schedule remain
+unapproved. This document's original remaining-gates list is a planning
+checkpoint; the handoff and next-work plan carry the current detailed status.
