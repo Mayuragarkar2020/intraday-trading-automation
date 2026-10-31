@@ -9,6 +9,9 @@ from src.scan_store import ScanStore
 from src.universe_store import UniverseStore
 
 def main():
+    if os.getenv("UNIVERSE_SCAN_ENABLED") == "true":
+        from src.run_universe_research import main as run_universe_research
+        return run_universe_research()
     now = datetime.now(ZoneInfo("Asia/Kolkata"))
     capture_enabled = os.getenv("FORWARD_CAPTURE_ENABLED") == "true"
     active, reason = research_window(now, start=time(8,30),
@@ -42,3 +45,4 @@ def main():
 
 if __name__ == "__main__":
     raise SystemExit(main())
+

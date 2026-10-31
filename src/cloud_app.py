@@ -199,6 +199,13 @@ def latest_scan():
     url=os.environ.get("SCAN_DATABASE_URL")
     if not url:
         return {"status":"STORE_NOT_CONFIGURED","live":False,"execution_enabled":False}
+    from src.universe_scanner import UniverseScanStore, cockpit_snapshot
+    try:
+        full = UniverseScanStore(url).latest_scan()
+        if full is not None:
+            return cockpit_snapshot(full)
+    except Exception:
+        raise HTTPException(status_code=503,detail="Stored universe scan temporarily unavailable") from None
     store=ScanStore(url)
     store.initialize()
     snapshot=store.latest()
