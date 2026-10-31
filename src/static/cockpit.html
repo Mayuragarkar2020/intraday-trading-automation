@@ -32,7 +32,7 @@ button{cursor:pointer;background:#2e67d6;border:0;color:white;font-weight:600}bu
 <div class="grid"><button id="dhanAnalyze" class="secondary" disabled>Calculate historical EMA / VWAP</button><div><label for="timestampConvention">Research timestamp assumption (verify against Dhan chart)</label><select id="timestampConvention"><option value="open">Dhan timestamps = candle opening</option><option value="close">Dhan timestamps = candle closing</option></select></div></div><label for="casMode">Continuous session expected (research assumption)</label><select id="casMode"><option value="unknown">Unverified — 75-bar reference only</option><option value="cas">CAS-eligible stock — 72 bars</option><option value="ordinary">Non-CAS stock — 75 bars</option></select><button id="dhanAudit" class="secondary" disabled>Audit missing 5m candles</button><button id="dhanRaw" class="secondary" disabled>Inspect raw Dhan timestamps</button><p id="dhanRawResult" class="muted" role="status">Raw timestamps shown without opening/closing interpretation.</p><p id="dhanAuditResult" class="muted" role="status">Checks 75 expected candles per standard NSE session.</p><p id="dhanAnalysisResult" class="muted" role="status">Historical analysis only; no trade setup qualification.</p><p id="dhanMessage" class="muted" role="status">Unlock cockpit first; no token values will be displayed.</p></section>
 <section class="panel"><h2>NSE stock-universe research</h2>
 <p class="muted">Dated liquidity shortlist from official NSE archives. This is a research pool; trading eligibility and live signals remain unverified.</p>
-<button id="universeRefresh" class="secondary" disabled>Load research shortlist</button>
+<div class="grid"><button id="universeRefresh" class="secondary" disabled>Load research shortlist</button><button id="universeCsv" class="secondary" disabled>Download research-pool CSV</button></div>
 <p id="universeStatus" class="muted" role="status">Unlock cockpit to view the dated research snapshot.</p>
 <div style="overflow-x:auto;max-height:420px"><table><thead><tr><th>Symbol</th><th>20-session average ₹ Cr</th><th>Reference band</th><th>Review</th></tr></thead><tbody id="universeRows"></tbody></table></div></section>
 <section class="panel"><h2>Stored scan snapshot</h2><button id="refresh" class="secondary" disabled>Refresh latest cloud scan</button><p id="refreshStatus" class="muted" role="status">Requires persistent scan storage; no live feed is connected.</p></section>
@@ -77,7 +77,7 @@ $("connect").addEventListener("click",async()=>{
   if(!setups.ok)throw Error("Demo feed unavailable");
   const payload=await setups.json();if(payload.live!==false||payload.execution_enabled!==false)throw Error("Unexpected data mode");
   rows=payload.setups.map(s=>({symbol:s.symbol,state:s.status+" (SYNTHETIC)",entry:s.entry,stop:s.stop}));
-  $("universeRefresh").disabled=false;$("calc").disabled=false;$("dataset").disabled=false;$("scan").disabled=false;$("refresh").disabled=false;$("dhanStatus").disabled=false;$("dhanProbe").disabled=false;$("dhanAnalyze").disabled=false;$("dhanAudit").disabled=false;$("dhanRaw").disabled=false;loadRows();
+  $("universeRefresh").disabled=false;$("universeCsv").disabled=false;$("calc").disabled=false;$("dataset").disabled=false;$("scan").disabled=false;$("refresh").disabled=false;$("dhanStatus").disabled=false;$("dhanProbe").disabled=false;$("dhanAnalyze").disabled=false;$("dhanAudit").disabled=false;$("dhanRaw").disabled=false;loadRows();
  }catch(e){token="";$("authStatus").textContent="Access denied / offline";$("authStatus").className="error";$("calc").disabled=true;}
 });
 $("universeRefresh").addEventListener("click",async()=>{
@@ -96,6 +96,19 @@ $("universeRefresh").addEventListener("click",async()=>{
    esc(Number(r.metrics.avg_turnover_20d_cr).toFixed(2))+"</td><td>"+esc(r.reference_price_band??"Unknown")+
    "</td><td class=\"warn\">"+esc(r.reference_review_status)+"</td></tr>").join("");
  }catch(e){$("universeRows").textContent="";$("universeStatus").textContent=e.message;}
+});
+$("universeCsv").addEventListener("click",async()=>{
+ try{
+  const response=await fetch("/api/universe-research.csv",{headers:{"X-Access-Token":token},cache:"no-store"});
+  if(!response.ok)throw Error("Research CSV unavailable ("+response.status+")");
+  const blob=await response.blob();
+  const disposition=response.headers.get("Content-Disposition")||"";
+  const match=/filename="([^"]+)"/.exec(disposition);
+  const url=URL.createObjectURL(blob),link=document.createElement("a");
+  link.href=url;link.download=match?match[1]:"research-universe.csv";
+  document.body.appendChild(link);link.click();link.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),0);
+ }catch(e){$("universeStatus").textContent=e.message;}
 });
 $("dhanStatus").addEventListener("click",async()=>{
  try{const r=await fetch("/api/dhan-status",{headers:{"X-Access-Token":token},cache:"no-store"});
