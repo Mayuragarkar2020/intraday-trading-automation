@@ -1,0 +1,17 @@
+# Separate worker-only Render Blueprint. Existing web and Postgres must not be recreated.
+# Deploy via Render Dashboard only after binding the existing database's
+# internal connection string. This worker cannot place orders.
+services:
+  - type: worker
+    name: intraday-scanner-preview
+    runtime: python
+    plan: starter
+    region: singapore
+    repo: https://github.com/Mayuragarkar2020/intraday-trading-automation
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m src.run_cloud_worker
+    autoDeployTrigger: "off"
+    envVars:
+      - key: SCAN_DATABASE_URL
+        sync: false
