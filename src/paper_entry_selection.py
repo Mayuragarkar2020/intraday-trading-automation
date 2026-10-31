@@ -128,7 +128,7 @@ def reserve_paper_entry(ledger,account_id,batch):
         return previous_result() or held("HELD_ACCOUNT_ENTRY_LIMIT")
     cash=Decimal(state["cash"])
     if cash<=0: return held("HELD_INSUFFICIENT_CASH")
-    if instant(batch.decision_at).time()>time(11,30): return held("HELD_ENTRY_WINDOW_CLOSED")
+    if instant(batch.decision_at).time()>=time(11,30): return held("HELD_ENTRY_WINDOW_CLOSED")
     rejected=[]
     for winner in ranked:
         # Include estimated costs in both planned risk and cash affordability.

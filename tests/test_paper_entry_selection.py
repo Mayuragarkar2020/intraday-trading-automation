@@ -135,6 +135,16 @@ def test_selection_and_reservation_roll_back_together(ledger):
     assert reserve_paper_entry(ledger,"test",batch())["status"]=="RESERVED"
 
 
+def test_final_interval_cannot_reserve_when_no_later_entry_is_possible(ledger):
+    value=batch()
+    value["interval_start"]="2026-11-02T11:25:00+05:30"
+    value["decision_at"]="2026-11-02T11:30:00+05:30"
+    for candidate in value["candidates"]:
+        candidate["breakout_observed_at"]="2026-11-02T11:27:00+05:30"
+    assert reserve_paper_entry(ledger,"test",value)["status"]=="HELD_ENTRY_WINDOW_CLOSED"
+    assert ledger.read("test") is None
+
+
 @pytest.mark.skipif(not os.getenv("TEST_UNIVERSE_DATABASE_URL"),reason="PostgreSQL CI only")
 def test_postgres_selection_concurrency_and_restart():
     backend=ForwardPaperLedger(os.environ["TEST_UNIVERSE_DATABASE_URL"])
