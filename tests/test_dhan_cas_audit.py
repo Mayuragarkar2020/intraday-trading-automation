@@ -23,3 +23,16 @@ def test_genuine_early_gap_remains_flagged():
     r=audit_candles(p,as_of=datetime(2026,10,30,16,tzinfo=IST),timestamps_are_open=True,cas_eligible=True)
     assert r["sessions"][0]["first_missing"]==["09:20"]
     assert r["sessions"][0]["session_complete"] is False
+
+def test_partial_opening_bar_is_never_marked_complete():
+    p=response(72)
+    for key in p:
+        p[key]=p[key][1:]
+    audit=audit_candles(p,as_of=datetime(2026,10,30,16,tzinfo=IST),
+                         timestamps_are_open=True,cas_eligible=True)
+    day=audit["sessions"][0]
+    assert day["received"]==71
+    assert day["missing_count"]==1
+    assert day["first_close"]=="09:25"
+    assert audit["all_sessions_complete"] is False
+    assert audit["execution_enabled"] is False
