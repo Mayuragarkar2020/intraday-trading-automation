@@ -38,6 +38,8 @@ A failed build never publishes a partial new report. Earlier dated reports remai
 
 The authenticated universe endpoint reads the latest shared report. If the table is not yet initialized, empty or unavailable, it displays the committed dated snapshot with an explicit fallback message. The as-of and intended-session dates stay visible. Dashboard reads do not initialize schema or publish reports.
 
+The Download research-pool CSV button exports only the latest pool rows, with as-of/target dates, source, mode and execution-disabled status. The CSV endpoint requires the existing cockpit token and sends no-store caching headers.
+
 All original candidates, including exclusions and holds, remain visible for audit. The research candidate count can change each day. The current static [CSV](../research/2026-10-30/candidates.csv) remains the 30 October research result; this change does not add a replacement list that should be approved manually.
 
 ## Deploy and verification
