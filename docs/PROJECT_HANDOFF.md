@@ -77,9 +77,9 @@ Updated: 31 October 2026. Read this before resuming in a new chat.
 - Local temporary artifacts/tests are reproducible; do not assume their paths/runtime objects survive into a new chat.
 
 ## Current blocker and next work
-Mayur was asked for:
-**A Dhan RELIANCE NSE 5-minute chart screenshot for 30 October 2026, with the 09:15 candle selected and its OHLC values visible (IST).**
-Purpose: independent broker-chart reconciliation of timestamp alignment before binding market data to forward paper trading.
+Mayur supplied the requested Dhan RELIANCE NSE 5-minute screenshot on 31 October. Selected candle: 30 October 2026 09:15 IST. OHLC: 1170.40 / 1174.60 / 1162.70 / 1164.30. This is chart evidence only; an API match has NOT yet been demonstrated.
+
+A proposed read-only `/api/dhan-chart-reconciliation` endpoint compares exact OHLC under both timestamp hypotheses. It remains on the review branch until release approval. Read docs/forward-paper-readiness-2026-10-31.md. Monday 2 November automatic forward paper trading is NOT READY: live signal binding, full-session collection/position management, durable forward ledger and failure tests remain outstanding. The existing cron ends in the morning. No new production changes or revised exit policy have been approved.
 
 Latest startup audit on deployed instance:
 - FETCHED_AUDITED; orders_enabled=false; timestamp_verified=false.
