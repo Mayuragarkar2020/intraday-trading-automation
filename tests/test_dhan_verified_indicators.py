@@ -14,9 +14,9 @@ def session(day,volume=100):
 
 def test_indicators_computed_from_complete_sessions():
     result=calculate_session_indicators([session("2026-10-28")],session("2026-10-29"))
-    assert result["ema10"]=="100"
-    assert result["ema20"]=="100"
-    assert result["session_vwap"]=="100"
+    assert Decimal(result["ema10"])==Decimal("100")
+    assert Decimal(result["ema20"])==Decimal("100")
+    assert Decimal(result["session_vwap"])==Decimal("100")
     assert result["vwap_accounting_verified"] is True
     assert result["qualified_for_trading"] is False
 
