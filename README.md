@@ -1,5 +1,12 @@
 # Intraday Trading Automation
 
+## Research progress — 31 October 2026
+
+Twenty live official NSE UDiFF archives have now been downloaded and validated for 1–30 October. The dated snapshot has 109 liquidity candidates, reduced to 103 research candidates after current-reference and official NSE surveillance/identity checks. WELCORP is excluded for ASM; TECHM and SHRIRAMFIN are held for corporate-action ISIN conflicts. No security is approved for trading.
+
+See [research build and reproduction](docs/universe-research-2026-10-31.md), [official eligibility audit](docs/nse-eligibility-audit-2026-10-31.md), and [candidate CSV](research/2026-10-30/candidates.csv). The cockpit changes on this branch display a dated research snapshot. Automated production universe publication and live orders remain disabled. The implementation notes below describe earlier milestones; the linked dated audit is the current research status.
+
+
 Private NSE EQ T-1 liquidity-universe project. **Scaffold only; no live screening or order placement.**
 
 ## Locked trading constraints
