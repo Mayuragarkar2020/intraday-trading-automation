@@ -32,6 +32,8 @@ def run_startup_audit():
                     "sessions":len(report["sessions"]),
                     "candle_count":report["candle_count"],
                     "missing_counts":[s["missing_count"] for s in report["sessions"]],
+                    "missing_slots":[s["first_missing"] for s in report["sessions"]],
+                    "dates":[s["date"] for s in report["sessions"]],
                     "first_close":[s["first_close"] for s in report["sessions"]],
                     "last_close":[s["last_close"] for s in report["sessions"]],
                 }
