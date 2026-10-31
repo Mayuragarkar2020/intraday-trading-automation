@@ -10,6 +10,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 from src.dhan_history_client import fetch_intraday
 from src.dhan_candle_audit import audit_candles
+from src.dhan_complete_sessions import fetch_complete_sessions
 
 LOG=logging.getLogger("dhan_validation")
 IST=ZoneInfo("Asia/Kolkata")
@@ -70,6 +71,18 @@ def run_startup_audit():
         except Exception as exc:
             reports["boundary_retry"]={"status":"FETCH_OR_PARSE_FAILED",
                 "error_type":type(exc).__name__}
+        try:
+            verified_days=fetch_complete_sessions(token,"2885",
+                ["2026-10-28","2026-10-29","2026-10-30"],expected_bars=72)
+            reports["padded_session_validation"]={
+                "status":"COMPLETE_CANDLES_72_REFERENCE",
+                "session_count":len(verified_days),
+                "counts":[len(day) for day in verified_days],
+                "cas_eligibility_verified":False,
+                "chart_reconciliation_verified":False}
+        except Exception as exc:
+            reports["padded_session_validation"]={
+                "status":"REJECTED","error_type":type(exc).__name__}
         result={"status":"FETCHED_AUDITED","candidate_security_id":"2885",
                 "timestamp_verified":False,"comparison":reports,"orders_enabled":False}
     except Exception as exc:
