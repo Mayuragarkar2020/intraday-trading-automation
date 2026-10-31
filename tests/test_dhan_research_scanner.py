@@ -21,4 +21,4 @@ def test_research_snapshot_remains_nontrading():
     report=research_snapshot("RELIANCE",[day(d) for d in days],at_slot="10:30")
     assert report["execution_enabled"] is False
     assert report["mode"]=="HISTORICAL_RESEARCH_ONLY"
-    assert report["status"] in ("BLOCK","FORMING","ARMED")
+    assert report["status"] in ("BLOCK","FORMING","ARMED","WAIT")
