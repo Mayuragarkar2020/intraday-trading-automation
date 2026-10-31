@@ -57,6 +57,7 @@ with tempfile.TemporaryDirectory() as directory, sync_playwright() as p:
     page.locator("#paperHistoryRows button").click()
     expect(page.locator("#paperStatus")).to_contain_text("Opened saved paper run")
     Path("ui-review").mkdir(exist_ok=True)
+    page.get_by_role("button",name="Paper lab",exact=True).click()
     page.screenshot(path="ui-review/paper-desktop.png",full_page=True)
     page.set_viewport_size({"width":360,"height":800})
     assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
