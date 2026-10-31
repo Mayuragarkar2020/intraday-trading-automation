@@ -26,3 +26,10 @@ additional diagnostics. PR #10 stays unapproved; it is not a prerequisite for
 the universe/scanner research release. No existing approval covers live orders
 or later releases. Source and tests may proceed; production changes require
 Mayur's approval of the concrete release.
+
+Working ranking rule accepted 31 October: when several valid breakouts occur
+in one five-minute interval, prefer highest 20-day average traded value. Keep
+ranking versioned and replaceable as more factors are introduced. Equal values
+use symbol/security ID for deterministic ordering. This is a source-development
+rule, not forward-paper runtime activation. Completed-interval selection must
+never generate a fill earlier than the actual selection decision.

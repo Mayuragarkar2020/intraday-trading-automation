@@ -17,9 +17,10 @@ warm-up, persistence and an actual #11 cron invocation remain unobserved. The
 manual browser smoke check could not be safely launched; do not claim it ran.
 Next reviewed market session is 2 November; calendar still ends 6 November.
 
-Next needed strategy input: with one daily filled entry, choose how to allocate
-among simultaneous valid breakouts. Proposed tie-breaker is highest twenty-day
-average traded value. It is a proposal awaiting Mayur's response, not approved.
+Accepted working ranking rule (31 October): among simultaneous valid breakouts
+in the same five-minute interval, prefer highest twenty-day average traded value.
+Mayur may add ranking factors later; keep policy separate from accounting and
+trade management. This acceptance does not activate forward paper execution.
 
 ## Current priority — simplified automation workflow
 
@@ -337,3 +338,19 @@ the existing cron schedule were rechecked. Local targeted validation: 62 passed,
 2 PostgreSQL-only skipped, 1 API test deselected for known Windows TestClient
 sandbox behaviour; full CI passed above. Read docs/universe-wide-scanner.md
 on codex/universe-wide-research for exact activation scope and limits.
+
+## Latest inactive-source checkpoint — accepted ranking
+
+PR #9 now includes versioned liquidity ranking and prospective paper-entry
+reservations. Head dbc76c616788b57563e6e877d7f586bd2ff807fc. Local targeted checks:
+78 passed, 3 PostgreSQL-only skipped; exact-head full CI pending at this checkpoint.
+Read docs/paper-entry-selection.md on codex/forward-paper-ledger. Ranking evidence
+and the order commit atomically; retries/concurrency preserve one reservation.
+Selection after an interval cannot backdate fills into it. Current research
+sources remain unverified and held. No runtime imports or production changes.
+PR #9 remains draft/unapproved/undeployed; PR #10 remains deferred.
+
+Next strategy input: session-aware end-of-day exit request time. Existing 15:15
+replay default is unchanged; for a 15:15 continuous-session end it may have no
+later executable bar. An earlier request (e.g. 15:10) needs Mayur's agreement;
+partial/unfilled exposure must remain unresolved rather than invented flat.
