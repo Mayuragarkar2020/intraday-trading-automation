@@ -99,3 +99,16 @@ Chromium suites passed at head 1a529075c68e43bb2e40c207aaadf0b1d5b0805c (run
 committed capture evidence, but supplied reference prices and session contracts
 remain unverified. It cannot create paper orders. All later source remains
 draft/unapproved/undeployed. See the latest handoff and session evidence note.
+
+## Closing-chart input received; comparison release pending
+
+Mayur supplied the 30 October RELIANCE 15:05/15:10 chart screenshots. Exact
+observations are retained in research/2026-10-30/reliance-closing-chart-observations.json.
+The screenshot request is fulfilled. No API match is yet observed for these
+closing candles. PR #10 prepares a separate read-only authenticated Diagnostics
+comparison, tested at e89b32bbaf72ab1ab4334caf795b0c84579e2141: 346 full tests and
+both Chromium suites passed in run 41214406739. It is not approved/deployed.
+Next production decision is PR #10 web-only merge/deploy, keeping PR #9 excluded
+and the research cron unchanged. After an approved deploy, inspect the actual
+comparison result before expanding timestamp/session verification or proposing
+an executable exit policy. Earlier flatten times remain unapproved proposals.

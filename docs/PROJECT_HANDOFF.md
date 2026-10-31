@@ -5,7 +5,7 @@ Owner: Mayur Agarkar. Private repository: https://github.com/Mayuragarkar2020/in
 
 ## Resume order and source of truth
 1. Read this file, then docs/NEXT_WORK_PLAN.md.
-2. Inspect current main, PR #8, CI and actual Render deploy/settings. Reconcile changes since this checkpoint before acting.
+2. Inspect current main, open PRs #9 and #10, CI and actual Render deploy/settings. Reconcile changes since this checkpoint before acting.
 3. Use current source and dated evidence over older README text, chat memory or general trading memories.
 4. Read docs/forward-feed-capture.md on branch codex/forward-feed-capture (PR #8); that document is not on main at this checkpoint.
 5. Use Context Mode for bulk code/log processing, indexed retrieval and concise summaries. Never index credentials.
@@ -250,3 +250,30 @@ candle labels. Originals 73845/74466 remain unread via available PDF retrieval.
 Next user-dependent evidence: independent Dhan regular five-minute closing
 candle view for RELIANCE on 30 October (last and preceding candle, time/OHLC).
 No revised flatten time is approved. Keep open/partial exposure unresolved.
+
+## Latest chart input — closing screenshots received
+
+Mayur supplied the requested two Dhan RELIANCE NSE five-minute screenshots
+on 31 October 2026. Visible labels/OHLC on 30 October (IST):
+- 15:05: O 1161.30, H 1163.50, L 1160.50, C 1163.30.
+- 15:10: O 1163.30, H 1163.90, L 1158.40, C 1159.00.
+15:10 appears as the last visible chart candle. No closing-candle API match
+has yet been observed. Raw screenshots are in the chat; exact transcription
+is in research/2026-10-30/reliance-closing-chart-observations.json.
+
+PR #10 (codex/closing-chart-comparison) prepares a separate web-only authenticated
+comparison for these two fixed observations, with a Diagnostics button and
+raw target-day timestamp metadata. It preserves the original 09:15 comparison.
+It does not deploy PR #9, modify the cron, certify session/CAS/forward readiness
+or change exit timing. Inspect current head/CI and obtain separate approval
+before merge/deploy to the existing web service only. User input fulfilled the
+screenshot request; it did not authorize a new production release.
+
+PR #10 exact tested source: e89b32bbaf72ab1ab4334caf795b0c84579e2141.
+CI run 41214406739: 346 Python/API/PostgreSQL tests and both Chromium suites
+passed. Local pure checks: 39 passed, 2 API tests deselected for the known
+Windows TestClient sandbox limitation. The tests use fixtures, not actual
+broker data. PR #10 remains OPEN/UNAPPROVED/UNDEPLOYED. Proposed release scope:
+existing web service only; no cron deployment/config change and no PR #9
+ledger/signal source. After approval and verified deploy, the user can run
+Diagnostics → Compare closing candles with Dhan and retain the actual result.
