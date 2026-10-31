@@ -23,6 +23,7 @@ with sync_playwright() as p:
             route.fulfill(status=401, json={"detail": "Denied"})
             return
         payload = {
+            "/api/dhan-chart-reconciliation": {"status": "SAMPLE_MATCHED", "matching_convention": "OPEN", "candidates": {"OPEN": {"raw_timestamp_ist": "2026-10-30T09:15:00+05:30", "present": True, "ohlc": {"open": "1170.40", "high": "1174.60", "low": "1162.70", "close": "1164.30"}}}, "forward_paper_ready": False, "execution_enabled": False},
             "/api/status": {"mode": "PREVIEW_ONLY", "execution_enabled": False},
             "/api/universe-research": {"snapshot": report, "source": "DATED_NSE_RESEARCH_SNAPSHOT", "live": False, "execution_enabled": False, "target_matches_today": False, "availability": "Design preview · saved dated fixture"},
             "/api/latest-scan": {"snapshot": None, "status": "NO_SCANS", "live": False, "execution_enabled": False},
@@ -38,6 +39,7 @@ with sync_playwright() as p:
     page.route("**/*", serve)
     page.goto("http://cockpit.test/")
     expect(page.locator("#universeCsv")).to_be_disabled()
+    expect(page.locator("#dhanReconcile")).to_be_disabled()
     page.get_by_label("Access token", exact=True).fill("fixture-preview")
     page.get_by_role("button", name="Unlock workspace", exact=True).click()
     expect(page.locator("#statPool")).to_have_text("103")
@@ -70,6 +72,10 @@ with sync_playwright() as p:
     page.locator("#refresh").click()
     expect(page.locator("#refreshStatus")).to_contain_text("No stored scan")
     page.locator('[data-view="diagnostics"]').click()
+    page.locator("#dhanReconcile").click()
+    expect(page.locator("#dhanReconcileResult")).to_contain_text("One candle matched exactly")
+    expect(page.locator("#dhanReconcileResult")).to_contain_text("1170.40")
+    expect(page.locator("#dhanReconcileResult")).to_contain_text("Forward paper trading is not ready")
     page.locator("#loadDemo").evaluate("(el) => el.closest('details').open = true")
     page.locator("#loadDemo").click()
     expect(page.locator("#demoStatus")).to_contain_text("SYNTHETIC EXAMPLE")
@@ -78,6 +84,8 @@ with sync_playwright() as p:
     expect(page.locator("#statPool")).to_have_text("—")
     expect(page.locator("#universeRows")).not_to_contain_text("RELIANCE")
     expect(page.locator("#token")).to_have_value("")
+    expect(page.locator("#dhanReconcile")).to_be_disabled()
+    expect(page.locator("#dhanReconcileResult")).not_to_contain_text("1170.40")
     page.get_by_label("Access token", exact=True).fill("fixture-preview")
     page.get_by_role("button", name="Unlock workspace", exact=True).click()
     page.locator('[data-view="universe"]').click()
@@ -93,6 +101,11 @@ with sync_playwright() as p:
     page.locator('[data-view="universe"]').click()
     assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
     page.screenshot(path="ui-review/universe-mobile.png", full_page=True)
+    page.locator('[data-view="diagnostics"]').click()
+    page.locator("#dhanReconcile").click()
+    expect(page.locator("#dhanReconcileResult")).to_contain_text("One candle matched exactly")
+    assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
+    page.screenshot(path="ui-review/reconciliation-mobile.png", full_page=True)
     assert not errors, errors
     browser.close()
 print("Browser regression checks passed")
