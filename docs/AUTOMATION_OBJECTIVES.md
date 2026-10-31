@@ -16,8 +16,10 @@ Confirmed with Mayur, 31 October 2026. Keep engineering tied to this workflow.
    this current code behaviour when asked. Do not gate EMA exits behind 1.5R.
 5. Test actual entries/exits through the separate paper simulator and durable
    ledger before any real-money activation. Fill assumptions and pending exit
-   exposure must be visible. Session-aware end-of-day exit timing still needs
-   review; do not silently replace the existing 15:15 replay default.
+   exposure must be visible. All positions must be closed by 15:00 IST, as
+   confirmed by Mayur on 31 October. Start exits early enough to meet that
+   deadline; never treat an exit request as a confirmed fill. The existing
+   15:15 replay default remains in code pending implementation/review.
 
 Universe selection does not require daily manual chart checks for every stock.
 Chart diagnostics are bounded integration/exception checks, not daily user work.

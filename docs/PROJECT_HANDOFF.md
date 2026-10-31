@@ -3,6 +3,55 @@
 Updated: 31 October 2026 (IST). Read this first when resuming.
 Owner: Mayur Agarkar. Private repository: https://github.com/Mayuragarkar2020/intraday-trading-automation
 
+## Latest decision and resume checkpoint — 15:00 IST closure
+
+Mayur confirmed on 31 October 2026: **all positions must be closed by 15:00 IST
+(Asia/Kolkata)**. This is a completed-closure deadline, not permission to wait
+until 15:00 to start an exit. It supersedes the former 15:15 strategy default
+and the earlier pending exit-time question. Implement prospective exits early
+enough for the chosen execution model; never backdate a fill or report an
+unfilled/partially filled position as closed. Any failure to flatten by the
+deadline must remain visible as outstanding exposure and a deadline breach.
+Exact execution lead time/retry mechanics remain engineering work, not a newly
+agreed trading rule. Existing replay code still uses its old default until a
+reviewed source change; this documentation update does not change runtime.
+
+Continuity summary:
+- Daily liquid NSE universe; exclude 2%/5% bands, hold unknown band/identity
+  data and preserve surveillance exclusions. No daily manual chart checks.
+- Scan completed 5m bars using the existing EMA10/20, VWAP, relative-volume,
+  15m confirmation and range conditions; entry above range high plus buffer,
+  initial stop below range low minus buffer, later eligible breakout required.
+- INR 980,000 capital, maximum INR 9,800 planned risk inclusive of estimated
+  costs, long only, one filled entry/day and no leverage.
+- Working ranking: highest 20-day average traded value among valid breakouts
+  in the same 5m interval; policy remains replaceable for future ranking factors.
+- EMA10-close exits remain active before 1.5R. At 1.5 price R additionally
+  request cost breakeven. No fixed target. All exposure closed by 15:00 IST.
+- PR #11 is deployed at 5b9693c657f1475c1a1fd4a9c3a6a8749621eece on existing
+  web and research cron. Auto-deploy off; no paper/live execution. Actual
+  full-pool market coverage, warm-up and persistence still require observation.
+- PR #9 remains draft/unapproved/undeployed: inactive ledger, receipt-bound
+  signal journal and ranked prospective reservations. Head
+  91bd84736364ea1cc420fd21184b57db2b1033dd passed 447 Python/API/PostgreSQL
+  tests and both browser suites in run 41222564313. Local: 79 passed,
+  3 PostgreSQL-only skipped. Source holds, immutable retries, concurrency,
+  rollback and no-backdated-fill checks passed; actual broker readiness unproven.
+- PR #10 remains optional/deferred/unapproved; do not make it a prerequisite.
+- Next: implement/test the 15:00 closure rule on the inactive paper branch,
+  connect persistent trade management and trusted full-universe signals,
+  then prepare a concrete release for approval. Verify market data/session
+  contracts and actual operation; current research attestations remain false.
+- Next reviewed session: 2 November 2026; reviewed calendar ends 6 November.
+  Extend reviewed coverage before expiry. Do not promise automatic paper trades.
+- Keep source/tests/context in GitHub, use Context Mode for bulk analysis,
+  keep communication simple, and continue until real input/approval is needed.
+  No production deployment, configuration change or paper/live activation is
+  authorized by this context-recording request. No subagents; no credential exposure.
+
+Older dated checkpoints below retain historical evidence. This latest decision
+supersedes their statements that exit timing or the liquidity ranking awaits input.
+
 ## Current activation — PR #11 live
 
 Mayur approved and PR #11 is merged/deployed to existing web and research cron.
@@ -52,7 +101,7 @@ This latest priority supersedes older 'next decision = PR #10' statements below.
 - Continue authorized implementation/testing autonomously; stop for genuinely missing input or production approval.
 - Mayur requires approval before production changes. PRs #5, #6 and #7 were approved, merged and deployed.
 - Mayur approved PR #8 recorder merge/deploy, capture flag and extended cron schedule on 31 October 2026. It is merged and deployed; see the activation checkpoint below. PR #9 remains unapproved/inactive.
-- No existing approval authorizes real-money orders, automatic forward paper execution, revised exit timing or later releases.
+- No existing approval authorizes real-money orders, automatic forward paper execution or later releases. The 15:00 closure policy is agreed for implementation; deployment still needs separate approval.
 - Keep source, tests, evidence and continuity in GitHub. Temporary local copies are disposable; do not depend on Mayur's computer.
 - No subagents unless expressly authorized. Never expose credentials or ask for tokens in chat.
 - Do not extract cockpit tokens from browser/page memory. User can unlock the UI using the existing token.
@@ -105,7 +154,7 @@ Confirmed workspace: tea-da6sf5qfngtc73c8jfi0 (My Workspace).
 - Capital INR 980,000; planned risk 1% inclusive of estimated costs, capped at INR 9,800.
 - Long-only; one daily filled entry; no leverage.
 - EMA10-close exits apply to completed post-entry candles BEFORE 1.5R too (Mayur explicitly chose to keep current code on 31 October). At 1.5 price R also request cost breakeven. No fixed 2R take profit.
-- Replay assumptions: entry window 09:45–11:30 IST; force-exit request default 15:15; explicit per-share cost, adverse slippage, tick size and volume participation.
+- Entry window 09:45–11:30 IST. Agreed policy: all positions closed by 15:00 IST. Existing replay code still has a 15:15 request default pending implementation; costs/slippage/tick size/volume participation remain explicit assumptions.
 - Costs are declared simulation assumptions, not verified broker charges or live approval.
 - Later-bar entry only; stop-first ambiguity; stop changes next bar; EMA exit next open.
 - IOC partial entry remainder cancelled; exit remainder stays pending. Gap losses may exceed planned risk.
@@ -352,7 +401,6 @@ Selection after an interval cannot backdate fills into it. Current research
 sources remain unverified and held. No runtime imports or production changes.
 PR #9 remains draft/unapproved/undeployed; PR #10 remains deferred.
 
-Next strategy input: session-aware end-of-day exit request time. Existing 15:15
-replay default is unchanged; for a 15:15 continuous-session end it may have no
-later executable bar. An earlier request (e.g. 15:10) needs Mayur's agreement;
-partial/unfilled exposure must remain unresolved rather than invented flat.
+Exit policy resolved: Mayur requires all positions closed by 15:00 IST.
+Implement this on the inactive paper branch with prospective fills and visible
+unresolved exposure on failure; existing code and production remain unchanged.
