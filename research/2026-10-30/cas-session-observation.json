@@ -1,0 +1,24 @@
+{
+  "schema": "NSE_CAS_DATED_OBSERVATION_V1",
+  "observed_on_ist": "2026-10-31",
+  "trade_date": "2026-10-30",
+  "source_url": "https://nsearchives.nseindia.com//web/mediaattachment/2026-10/Closing-Auction-Session-30-Oct-2026_20261030155525.csv",
+  "http_status": 200,
+  "bytes": 29256,
+  "sha256": "91c848fc8b3a065414c80fc0fa25d697eb73806fcf60d7c05ffff5572669ca2d",
+  "data_rows": 218,
+  "symbol": "RELIANCE",
+  "reference_price": "1161.00",
+  "final_price": "1164.90",
+  "final_volume": 1120445,
+  "raw_csv_row": "RELIANCE,\"1,161.00\",\"1,126.20\",\"1,195.80\",\"1,72,150\",\"1,195.80\",\"1,126.20\",\"2,69,190\",\"-\",\"-\",\"3.90\",\"0.34\",\"1,164.90\",\"11,20,445\",\"130.52\",\"-\",\"-\"",
+  "conclusion": "RELIANCE appears in the official CAS trading archive for this date only",
+  "limitations": [
+    "Full original CSV not retained locally; exact source URL and raw-byte hash retained",
+    "Not a forward session eligibility list",
+    "Does not verify broker candle timestamps or permit auction fills",
+    "No assumption about a later date or all twenty reference sessions"
+  ],
+  "execution_enabled": false,
+  "forward_paper_ready": false
+}

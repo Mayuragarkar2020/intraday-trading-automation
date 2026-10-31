@@ -3,9 +3,46 @@
 Updated: 31 October 2026 (IST). Read this first when resuming.
 Owner: Mayur Agarkar. Private repository: https://github.com/Mayuragarkar2020/intraday-trading-automation
 
+## Current activation — PR #11 live
+
+Mayur approved and PR #11 is merged/deployed to existing web and research cron.
+Exact revision 5b9693c657f1475c1a1fd4a9c3a6a8749621eece. Web deploy
+ dep-dbj1j2c9v7es738sh79g and cron deploy dep-dbj1j37b9u1s73cq1vg0 are LIVE.
+UNIVERSE_SCAN_ENABLED=true is configured on cron only. Auto-deploy remains off,
+with the existing schedule/compute/command retained. No paper/live execution.
+PRs #9/#10 are still excluded/unapproved. Read docs/universe-scanner-activation-2026-10-31.md.
+
+Web health and unauthenticated API protection passed; full-pool market coverage,
+warm-up, persistence and an actual #11 cron invocation remain unobserved. The
+manual browser smoke check could not be safely launched; do not claim it ran.
+Next reviewed market session is 2 November; calendar still ends 6 November.
+
+Next needed strategy input: with one daily filled entry, choose how to allocate
+among simultaneous valid breakouts. Proposed tie-breaker is highest twenty-day
+average traded value. It is a proposal awaiting Mayur's response, not approved.
+
+## Current priority — simplified automation workflow
+
+Latest direction from Mayur on 31 October: keep engineering focused on the
+liquid daily universe, full-pool setup scanning and the agreed paper trade
+manager. Read docs/AUTOMATION_OBJECTIVES.md. No daily manual chart checks are
+required for every stock. Do not expand diagnostics as the default next task.
+
+PR #11 (codex/universe-wide-research) is the next concrete release proposal.
+Head 874680b4860506106add2e965c66917d6d928121 passed 365 Python/API/PostgreSQL
+tests and both Chromium suites in run 41219670517. It was approved and is now merged/deployed; see the activation checkpoint above. Activation requires separate approval for existing web + research
+cron deploys and UNIVERSE_SCAN_ENABLED=true on the cron only. Keep the existing
+schedule/compute plans, auto-deploy off and capture flag true. More full-pool
+requests/runtime; no new service. No paper/live orders or PR #9 source.
+
+PR #10 remains optional/unapproved and is not a prerequisite for universe or
+scanner research work. Do not merge/deploy it automatically. PR #9 remains
+inactive paper-ledger/signal development, separate from this scanner release.
+This latest priority supersedes older 'next decision = PR #10' statements below.
+
 ## Resume order and source of truth
-1. Read this file, then docs/NEXT_WORK_PLAN.md.
-2. Inspect current main, PR #8, CI and actual Render deploy/settings. Reconcile changes since this checkpoint before acting.
+1. Read this file, docs/AUTOMATION_OBJECTIVES.md, then docs/NEXT_WORK_PLAN.md.
+2. Inspect current main, open PRs #9, #10 and #11, CI and actual Render deploy/settings. Reconcile changes since this checkpoint before acting.
 3. Use current source and dated evidence over older README text, chat memory or general trading memories.
 4. Read docs/forward-feed-capture.md on branch codex/forward-feed-capture (PR #8); that document is not on main at this checkpoint.
 5. Use Context Mode for bulk code/log processing, indexed retrieval and concise summaries. Never index credentials.
@@ -25,12 +62,12 @@ Owner: Mayur Agarkar. Private repository: https://github.com/Mayuragarkar2020/in
 | Area | Verified state |
 |---|---|
 | Cockpit | Live: https://intraday-cockpit-preview.onrender.com/ |
-| Web release | PR #7; commit 4504ecfa5325aa1bc85ab2120954d6b05c319b58 |
-| Render web deploy | dep-dbisjhss728c7386v93g — live |
+| Web release | PR #11; commit 5b9693c657f1475c1a1fd4a9c3a6a8749621eece |
+| Render web deploy | dep-dbj1j2c9v7es738sh79g — live |
 | Safety | /health returned 200, mode PREVIEW_ONLY, execution_enabled=false |
 | Protected comparison | Unauthenticated POST returns 401; new UI button exists |
 | Paper module | Deterministic replay/failure injection; NOT automatic forward paper trading |
-| Scanner coverage | RELIANCE only; NOT the full 103-stock research pool |
+| Scanner coverage | Full-pool research scanner deployed; actual market-session coverage unobserved |
 | Chart check | User-reported exact API/chart OHLC match for one historical RELIANCE candle |
 | Forward recorder | PR #8 approved, merged and deployed on existing cron; actual weekday capture unobserved |
 | Monday 2 November | Research/data-validation target; do not promise automatic paper trades |
@@ -66,7 +103,7 @@ Confirmed workspace: tea-da6sf5qfngtc73c8jfi0 (My Workspace).
 ## Locked implemented trading and replay policy
 - Capital INR 980,000; planned risk 1% inclusive of estimated costs, capped at INR 9,800.
 - Long-only; one daily filled entry; no leverage.
-- Trade manager requests cost-breakeven stop after 1.5 price R, then EMA10 close exit. No fixed 2R take profit.
+- EMA10-close exits apply to completed post-entry candles BEFORE 1.5R too (Mayur explicitly chose to keep current code on 31 October). At 1.5 price R also request cost breakeven. No fixed 2R take profit.
 - Replay assumptions: entry window 09:45–11:30 IST; force-exit request default 15:15; explicit per-share cost, adverse slippage, tick size and volume participation.
 - Costs are declared simulation assumptions, not verified broker charges or live approval.
 - Later-bar entry only; stop-first ambiguity; stop changes next bar; EMA exit next open.
@@ -224,3 +261,79 @@ including the environment-update intermediate build and SQL access limitation.
 The web remains at PR #7. PR #9 remains draft/unapproved/undeployed; no forward
 paper executor or broker ordering was activated. Earlier pending statements
 in historical checkpoints describe the earlier time, not current authorization.
+
+## Latest inactive-source checkpoint — receipt-bound signals
+
+PR #9 is now based on main and includes both the accounting ledger and an
+inactive research signal journal. Exact tested head:
+1a529075c68e43bb2e40c207aaadf0b1d5b0805c. Full CI: 390 Python/API/PostgreSQL
+tests plus both Chromium suites passed in run 41213273260. Local targeted
+checks: 127 passed, 3 PostgreSQL-only skipped. Read docs/forward-research-signal.md
+on codex/forward-paper-ledger; no runtime imports either new module.
+
+The new journal reads committed recorder observations and the original universe
+revision, checks hashes, dates, calendar and first-seen timeliness, derives
+scanner inputs and freezes full normalized input/result evidence and post-scan
+known_at. Conflicting recomputation and reconnect/backfill signals hold. It
+always reports forward_paper_ready=false and execution_enabled=false because
+reference-price provenance and session contracts are still unverified.
+No ledger/order adapter, simulator runtime or production integration is added.
+
+Added dated official NSE CAS evidence: RELIANCE appears in the 30 October
+CAS archive. Read docs/session-contract-checkpoint-2026-10-31.md and
+research/2026-10-30/cas-session-observation.json. This narrows that day's CAS
+uncertainty; it does not certify future dates, all reference days, or broker
+candle labels. Originals 73845/74466 remain unread via available PDF retrieval.
+Next user-dependent evidence: independent Dhan regular five-minute closing
+candle view for RELIANCE on 30 October (last and preceding candle, time/OHLC).
+No revised flatten time is approved. Keep open/partial exposure unresolved.
+
+## Latest chart input — closing screenshots received
+
+Mayur supplied the requested two Dhan RELIANCE NSE five-minute screenshots
+on 31 October 2026. Visible labels/OHLC on 30 October (IST):
+- 15:05: O 1161.30, H 1163.50, L 1160.50, C 1163.30.
+- 15:10: O 1163.30, H 1163.90, L 1158.40, C 1159.00.
+15:10 appears as the last visible chart candle. No closing-candle API match
+has yet been observed. Raw screenshots are in the chat; exact transcription
+is in research/2026-10-30/reliance-closing-chart-observations.json.
+
+PR #10 (codex/closing-chart-comparison) prepares a separate web-only authenticated
+comparison for these two fixed observations, with a Diagnostics button and
+raw target-day timestamp metadata. It preserves the original 09:15 comparison.
+It does not deploy PR #9, modify the cron, certify session/CAS/forward readiness
+or change exit timing. Inspect current head/CI and obtain separate approval
+before merge/deploy to the existing web service only. User input fulfilled the
+screenshot request; it did not authorize a new production release.
+
+PR #10 exact tested source: e89b32bbaf72ab1ab4334caf795b0c84579e2141.
+CI run 41214406739: 346 Python/API/PostgreSQL tests and both Chromium suites
+passed. Local pure checks: 39 passed, 2 API tests deselected for the known
+Windows TestClient sandbox limitation. The tests use fixtures, not actual
+broker data. PR #10 remains OPEN/UNAPPROVED/UNDEPLOYED. Proposed release scope:
+existing web service only; no cron deployment/config change and no PR #9
+ledger/signal source. After approval and verified deploy, the user can run
+Diagnostics → Compare closing candles with Dhan and retain the actual result.
+
+## Full-universe scanner source checkpoint (PR #11)
+
+The existing saved 109-candidate snapshot selects 103 research candidates,
+two identity holds and four exclusions. The new runner sends each selected
+stock through the existing detector; narrow/unknown bands and existing holds
+cannot become scan successes. Tests use synthetic broker prices, not actual
+103-symbol broker coverage or a throughput demonstration.
+
+Reference history is cached per universe revision/security ID, warmed before
+09:40, then each setup cycle fetches current candles. Complete/incomplete
+coverage is persisted; invalid/stale data and auth/429 failures visibly hold.
+The cockpit latest-scan path reads full-pool cycles when present, preserving
+the existing RELIANCE fallback and excluding warm-up from setup displays.
+No public order endpoint or trade-manager logic is changed. Research timestamp/
+session assumptions and normal 72/75-bar reference shapes do not become
+execution clearance. The reviewed calendar still ends on 6 November.
+
+Production is unchanged by this source work. Both auto-deploy settings and
+the existing cron schedule were rechecked. Local targeted validation: 62 passed,
+2 PostgreSQL-only skipped, 1 API test deselected for known Windows TestClient
+sandbox behaviour; full CI passed above. Read docs/universe-wide-scanner.md
+on codex/universe-wide-research for exact activation scope and limits.

@@ -67,12 +67,21 @@ FIELDS = {
     "EXIT_RESULT": {"order_id", "quantity", "price", "fee"},
 }
 
+ENTRY_CONTEXT = {"symbol", "security_id", "selection"}
+
 
 def transition(previous, command):
     """Pure transition. A failed command cannot mutate the caller's projection."""
     kind = command.get("kind")
-    if kind not in FIELDS or set(command) != FIELDS[kind] | {"kind", "at"}:
+    base = FIELDS.get(kind,set()) | {"kind","at"}
+    if kind not in FIELDS or (set(command) != base and
+            not (kind == "ENTRY_REQUEST" and set(command) == base | ENTRY_CONTEXT)):
         raise ValueError("Unknown command or fields")
+    if kind == "ENTRY_REQUEST" and "selection" in command:
+        if (not re.fullmatch(r"[A-Z0-9&._-]{2,30}",command["symbol"]) or
+                not re.fullmatch(r"[0-9]{1,12}",command["security_id"]) or
+                not isinstance(command["selection"],dict)):
+            raise ValueError("Invalid entry selection context")
     state = copy.deepcopy(previous)
     at = instant(command["at"])
     if state["last_at"] and at < instant(state["last_at"]):
@@ -132,6 +141,8 @@ def transition(previous, command):
             cash -= q * price + fee
             position = {"entry_order_id": order_id, "quantity": q, "entry_price": amount(price),
                         "remaining_entry_fee": amount(fee), "stop": order["stop"]}
+            if "symbol" in order:
+                position.update(symbol=order["symbol"],security_id=order["security_id"])
             state["used_entry_dates"].append(order["session_date"])
             state["fees"] = amount(Decimal(state["fees"]) + fee)
             state["fills"].append({**command, "side": "BUY"})
@@ -197,7 +208,7 @@ class ForwardPaperLedger(ScanStore):
         identifier(account_id)
         identifier(event_id)
         encoded = encode(command)
-        if len(encoded) > 8192:
+        if len(encoded) > (65536 if command.get("kind")=="ENTRY_REQUEST" and "selection" in command else 8192):
             raise ValueError("Command too large")
         self.initialize()
         p = "%s" if self.postgres else "?"
@@ -229,6 +240,14 @@ class ForwardPaperLedger(ScanStore):
             row = db.execute("SELECT payload FROM forward_paper_accounts WHERE account_id="+p,
                              (account_id,)).fetchone()
         return json.loads(row[0]) if row else None
+
+    def event(self,account_id,event_id):
+        identifier(account_id); identifier(event_id)
+        p = "%s" if self.postgres else "?"
+        with self.connection() as db:
+            row = db.execute("SELECT command,result FROM forward_paper_events WHERE account_id="+p+
+                             " AND event_id="+p,(account_id,event_id)).fetchone()
+        return {"command":json.loads(row[0]),"state":json.loads(row[1])} if row else None
 
     def audit(self, account_id):
         """Rebuild from commands and compare every immutable recorded projection."""

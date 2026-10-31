@@ -1,0 +1,38 @@
+{
+  "schema": "USER_CHART_OBSERVATIONS_V1",
+  "symbol": "RELIANCE",
+  "exchange": "NSE",
+  "interval_minutes": 5,
+  "session_date": "2026-10-30",
+  "timezone": "Asia/Kolkata",
+  "provenance": "Two screenshots attached by Mayur in this chat on 31 October 2026; visually transcribed by the agent",
+  "screenshots_stored_in_github": false,
+  "chart_last_visible_label": "2026-10-30T15:10:00+05:30",
+  "observations": [
+    {
+      "chart_label_ist": "2026-10-30T15:05:00+05:30",
+      "open": "1161.30",
+      "high": "1163.50",
+      "low": "1160.50",
+      "close": "1163.30",
+      "screenshot_footer_clock": "2026-10-31T20:45:04+05:30"
+    },
+    {
+      "chart_label_ist": "2026-10-30T15:10:00+05:30",
+      "open": "1163.30",
+      "high": "1163.90",
+      "low": "1158.40",
+      "close": "1159.00",
+      "screenshot_footer_clock": "2026-10-31T20:45:15+05:30"
+    }
+  ],
+  "api_comparison_status": "NOT_YET_PERFORMED",
+  "limitations": [
+    "15:10 is the last visible chart candle, not independent proof that API data ends there",
+    "No assumption about auction candle semantics",
+    "Two closing samples do not establish all-symbol/all-day timestamp conventions",
+    "No revised flatten policy or automatic paper/live execution is authorized"
+  ],
+  "execution_enabled": false,
+  "forward_paper_ready": false
+}
