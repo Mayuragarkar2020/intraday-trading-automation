@@ -14,7 +14,7 @@ def sample(missing=None):
             "low":[99]*n,"close":[100]*n,"volume":[1000]*n}
 
 def test_full_session():
-    r=audit_candles(sample(),as_of=datetime(2026,10,30,16,0,tzinfo=IST),timestamps_are_open=True)
+    r=audit_candles(sample(),as_of=datetime(2026,10,30,16,0,tzinfo=IST),timestamps_are_open=True,cas_eligible=False)
     assert r["all_sessions_complete"] is True
     assert r["sessions"][0]["received"]==75
     assert r["timestamp_convention_verified"] is False
