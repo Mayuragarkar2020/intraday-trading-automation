@@ -1,0 +1,24 @@
+{
+  "source_url": "https://nsearchives.nseindia.com/content/cm/NSE_CM_security_30102026.csv.gz",
+  "sha256": "ee3e9a578fd8ea71aab1af5ba82e7b05490700da1e99974a6a3a5d48f0dbc209",
+  "source_filename_date": "2026-10-30",
+  "retrieved_on": "2026-10-31",
+  "total_rows": 38271,
+  "eq_rows": 4509,
+  "research_candidates": 103,
+  "candidate_cas_flag_values": {
+    "0": 18,
+    "1": 85
+  },
+  "identity_issues": [],
+  "reliance": {
+    "TckrSymb": "RELIANCE",
+    "ISIN": "INE002A01018",
+    "FinInstrmId": "2885",
+    "ElgbltyClsgAuctnSsn": "1",
+    "DelFlg": "N"
+  },
+  "flag_interpretation_verified": false,
+  "historical_daily_classification_verified": false,
+  "trading_approved": false
+}

@@ -6,6 +6,8 @@ from zoneinfo import ZoneInfo
 from src.market_schedule import research_window
 from src.dhan_scheduled_pipeline import process_once
 from src.scan_store import ScanStore
+from src.research_snapshot import load_research_snapshot
+from src.research_input_gate import prepare_research_inputs
 
 def main():
     now=datetime.now(ZoneInfo("Asia/Kolkata"))
@@ -20,7 +22,13 @@ def main():
                           "execution_enabled":False}),flush=True)
         return 0
     try:
-        outcome=process_once(token,"2885","RELIANCE",now,ScanStore(url))
+        snapshot=load_research_snapshot()["snapshot"]
+        inputs=prepare_research_inputs(snapshot,now,"RELIANCE","2885")
+        if inputs["status"]!="RESEARCH_INPUTS_READY":
+            print(json.dumps({"status":inputs["status"],"execution_enabled":False}),flush=True)
+            return 0
+        outcome=process_once(token,"2885","RELIANCE",now,ScanStore(url),
+                             reference_dates=inputs["reference_dates"])
         # No raw prices, credentials or broker response bodies in scheduled logs.
         print(json.dumps({"status":outcome["status"],
                           "execution_enabled":False}),flush=True)
