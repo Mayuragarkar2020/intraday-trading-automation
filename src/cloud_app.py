@@ -109,6 +109,24 @@ def dhan_history_probe(request:HistoryProbe):
             "last_epoch":candles["timestamp"][-1] if count else None,
             "execution_enabled":False,"timestamp_convention_verified":False}
 
+@app.post("/api/dhan-chart-reconciliation", dependencies=[Depends(require_token)])
+def dhan_chart_reconciliation():
+    """Fixed historical check against Mayur's chart; no order or persistence path."""
+    from src.dhan_chart_reconciliation import reconcile_reliance_chart
+    token = os.environ.get("DHAN_ACCESS_TOKEN")
+    if not token:
+        return {"status": "DHAN_TOKEN_NOT_CONFIGURED", "execution_enabled": False,
+                "forward_paper_ready": False}
+    try:
+        # Pad the request to recover Dhan's opening-boundary candle.
+        payload = fetch_intraday(token, "2885", 5,
+                                 "2026-10-29 09:15:00", "2026-10-31 09:15:00")
+        return reconcile_reliance_chart(payload)
+    except (httpx.HTTPError, ValueError, OverflowError, TypeError) as exc:
+        return {"status": "RECONCILIATION_FAILED", "error_type": type(exc).__name__,
+                "execution_enabled": False, "forward_paper_ready": False}
+
+
 class HistoricalAnalysisRequest(HistoryProbe):
     timestamps_are_open: bool
     cas_eligible: bool | None = None
