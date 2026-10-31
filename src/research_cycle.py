@@ -1,5 +1,5 @@
 """One existing cron: pre-market universe refresh, then RELIANCE research."""
-from datetime import time
+from datetime import datetime, time
 from zoneinfo import ZoneInfo
 from src.market_schedule import research_window
 from src.research_input_gate import prepare_research_inputs
@@ -17,6 +17,8 @@ def run_cycle(now, universe_store, scan_store, token, *, builder=build_daily_uni
     target = local.date().isoformat()
     universe_store.initialize()
     current = universe_store.latest(target)
+    if current and datetime.fromisoformat(current["created_at"]).astimezone(IST).date().isoformat() != target:
+        current = None
     refreshed = False
     if current is None:
         if local.time() >= time(9,15):
@@ -24,10 +26,11 @@ def run_cycle(now, universe_store, scan_store, token, *, builder=build_daily_uni
         report, evidence = builder(target)
         if report["target_date"] != target:
             raise ValueError("Refresh target mismatch")
-        universe_store.publish(report, evidence)
+        universe_store.publish(report, evidence, now=now)
         current = universe_store.latest(target)
-        if current is None:
-            raise ValueError("Refresh publication not readable")
+        if (current is None or
+                datetime.fromisoformat(current["created_at"]).astimezone(IST).date().isoformat() != target):
+            raise ValueError("Current-session refresh publication not readable")
         refreshed = True
     active, reason = research_window(now)
     if not active:
