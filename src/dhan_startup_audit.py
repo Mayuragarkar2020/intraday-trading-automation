@@ -51,6 +51,25 @@ def run_startup_audit():
                 "reason":"CAS_ELIGIBILITY_AND_TIMESTAMP_NOT_VERIFIED"}
         except (ValueError,OverflowError,TypeError) as exc:
             reports["cas_72_reference"]={"status":"INVALID","error_type":type(exc).__name__}
+        # An interval starting at the market open may omit its boundary candle.
+        # Re-fetch with the previous trading day in range; compare, never synthesize.
+        try:
+            expanded=fetch_intraday(token,"2885",5,
+                "2026-10-27 09:15:00","2026-10-30 15:30:00")
+            expanded_audit=audit_candles(expanded,as_of=datetime.now(IST),
+                timestamps_are_open=True,cas_eligible=True)
+            day28=next((row for row in expanded_audit["sessions"]
+                        if row["date"]=="2026-10-28"),None)
+            reports["boundary_retry"]={
+                "date":"2026-10-28",
+                "opening_bar_recovered":bool(day28 and day28["first_close"]=="09:20"),
+                "count":day28["received"] if day28 else None,
+                "missing_slots":day28["first_missing"] if day28 else [],
+                "source":"DHAN_REQUERY_NOT_SYNTHETIC",
+                "session_eligibility_verified":False}
+        except Exception as exc:
+            reports["boundary_retry"]={"status":"FETCH_OR_PARSE_FAILED",
+                "error_type":type(exc).__name__}
         result={"status":"FETCHED_AUDITED","candidate_security_id":"2885",
                 "timestamp_verified":False,"comparison":reports,"orders_enabled":False}
     except Exception as exc:
