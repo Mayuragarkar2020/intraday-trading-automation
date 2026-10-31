@@ -1,6 +1,7 @@
 # Forward paper ledger foundation - inactive proposal
 
-31 October 2026. Builds on PR #8 without changing its activation request.
+31 October 2026. PR #8 recorder activation is complete. This later source work
+remains outside that approved deployment.
 
 `src/forward_paper_ledger.py` is a separate accounting state machine and durable
 journal. Nothing imports it from the web app, research cron, feed recorder or
@@ -66,7 +67,7 @@ corruption and decimal fee reconciliation. A PostgreSQL CI test exercises
 concurrent duplicate fills and restart/audit. See the review PR for exact
 tested revision and CI results; local PostgreSQL is not claimed.
 
-PR #8 capture approval remains separate and pending. This ledger branch must
-not be merged or deployed as part of a recorder-only approval. Automatic paper
+PR #8 recorder-only approval did not include this ledger branch. This branch
+must not be merged or deployed without separate approval. Automatic paper
 trading remains NOT READY pending the work in NEXT_WORK_PLAN.md.
 

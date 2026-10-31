@@ -2,8 +2,10 @@
 Updated: 31 October 2026. Read PROJECT_HANDOFF.md first.
 
 ## Immediate checkpoint
-PR #8 is implemented and tested but awaits approval for merge/deploy, enabling
-the capture flag, and extending the existing cron schedule. Updating context
+PR #8 was approved, merged and deployed on 31 October 2026; the capture flag and
+extended existing cron schedule are configured. A Saturday smoke run exited
+MARKET_CLOSED successfully. Actual eligible-session capture/persistence remains
+unobserved. See docs/forward-capture-activation-2026-10-31.md. Updating context
 does not authorize those changes. Further reversible source implementation and
 tests may proceed on review branches. Never silently deploy later work.
 
@@ -72,3 +74,21 @@ tested, approved, deployed, observed and validated at every update.
    If not approved, prepare remaining ledger/execution source independently.
 5. Keep documentation synchronized at milestones and explicitly request the
    next production/policy approval only when the change is concrete and reviewable.
+
+## Source progress after the initial checkpoint
+
+Draft PR #9 (codex/forward-paper-ledger, stacked on #8) adds the inactive
+ledger accounting foundation only. Tested head 03106d39fd82ec00b5372e51323b54fb25d6371e:
+372 Python/API/PostgreSQL tests and both Chromium suites passed in run
+41210571449. Local targeted checks: 110 passed, 2 PostgreSQL-only skipped.
+See PROJECT_HANDOFF.md and docs/forward-paper-ledger.md on the review branch.
+Stages 3–6 remain incomplete: declarations are not verified scanner/feed
+bindings, and no automatic forward executor/runtime has been connected.
+No production change or activation is authorized by this source work.
+PR #8 recorder activation is complete; eligible market-session validation is
+pending. PR #9 remains unapproved and inactive.
+
+Current next steps: inspect Monday's same-day universe and first-seen capture
+observations, verify session/timestamp contracts, then bind trustworthy signals
+to the inactive ledger. Do not treat an existing historical research scan as
+an execution-ready forward signal: it lacks persisted receipt/source binding.
