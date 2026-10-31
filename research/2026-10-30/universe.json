@@ -177,7 +177,11 @@
       "L04_RATIO": 1471,
       "L05_MIN5": 2249
     },
-    "reference_research_candidate_count": 106
+    "reference_research_candidate_count": 103,
+    "pre_nse_reference_candidate_count": 106,
+    "nse_surveillance_excluded_count": 2,
+    "newly_excluded_by_nse_count": 1,
+    "nse_identity_conflict_count": 2
   },
   "candidates": [
     {
@@ -199,7 +203,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "1594",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE002A01018",
@@ -220,7 +233,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "2885",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE090A01021",
@@ -241,7 +263,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "4963",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE397D01024",
@@ -262,7 +293,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "10604",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE237A01036",
@@ -283,7 +323,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "1922",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE758T01015",
@@ -304,7 +353,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "5097",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE062A01020",
@@ -325,7 +383,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "3045",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE296A01032",
@@ -346,7 +413,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "317",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE018A01030",
@@ -367,7 +443,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "11483",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE669C01036",
@@ -388,7 +473,24 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "13538",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_NSE_IDENTITY_CONFLICT",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [
+        {
+          "symbol": "TECHM",
+          "isin": "INE669C01028",
+          "ex_date": "2026-10-23",
+          "subject": "Interim Dividend - Rs  15 Per Share",
+          "kind": "DIVIDEND"
+        }
+      ],
+      "indicator_history_review_required": true,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE101A01026",
@@ -409,7 +511,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "2031",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE860A01027",
@@ -430,7 +541,24 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "7229",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [
+        {
+          "symbol": "HCLTECH",
+          "isin": "INE860A01027",
+          "ex_date": "2026-10-16",
+          "subject": "Interim Dividend - Rs 12 Per Share",
+          "kind": "DIVIDEND"
+        }
+      ],
+      "indicator_history_review_required": true,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE742F01042",
@@ -451,7 +579,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "15083",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE0LEZ01016",
@@ -472,7 +609,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "757645",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INF732E01037",
@@ -493,7 +639,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "11006",
       "reference_price_band": "5",
-      "reference_review_status": "EXCLUDED_REFERENCE_LOW_BAND"
+      "reference_review_status": "EXCLUDED_REFERENCE_LOW_BAND",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "EXCLUDED_REFERENCE_LOW_BAND"
     },
     {
       "isin": "INE591G01025",
@@ -514,7 +669,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "11543",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE745G01043",
@@ -535,7 +699,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "31181",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE721A01047",
@@ -556,7 +729,24 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "4306",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_NSE_IDENTITY_CONFLICT",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [
+        {
+          "symbol": "SHRIRAMFIN",
+          "isin": "INE721A01013",
+          "ex_date": "2026-10-29",
+          "subject": "Interim Dividend - Rs 6.50 Per Share",
+          "kind": "DIVIDEND"
+        }
+      ],
+      "indicator_history_review_required": true,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE947Q01028",
@@ -577,7 +767,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "19234",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE053A01029",
@@ -598,7 +797,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "1512",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE849A01020",
@@ -619,7 +827,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "1964",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE263A01024",
@@ -640,7 +857,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "383",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE191B01025",
@@ -661,7 +887,24 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "11821",
       "reference_price_band": "20",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "EXCLUDED_NSE_ASM",
+      "nse_surveillance": {
+        "matches": [
+          {
+            "symbol": "WELCORP",
+            "isin": "INE191B01025",
+            "category": "ASM_LONGTERM",
+            "stage": "Stage I",
+            "source_asof_date": "2026-10-30"
+          }
+        ],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE280A01028",
@@ -682,7 +925,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "3506",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE646L01027",
@@ -703,7 +955,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "11195",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE066F01020",
@@ -724,7 +985,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "2303",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE494B01023",
@@ -745,7 +1015,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "8479",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE027H01010",
@@ -766,7 +1045,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "22377",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE030A01027",
@@ -787,7 +1075,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "1394",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE00FF01025",
@@ -808,7 +1105,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "5578",
       "reference_price_band": "20",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE121A01024",
@@ -829,7 +1135,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "685",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE200A01026",
@@ -850,7 +1165,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "16783",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE089A01031",
@@ -871,7 +1195,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "881",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE024001021",
@@ -892,7 +1225,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "18268",
       "reference_price_band": "20",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE044A01036",
@@ -913,7 +1255,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "3351",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE733E01010",
@@ -934,7 +1285,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "11630",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE522F01014",
@@ -955,7 +1315,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "20374",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE073K01018",
@@ -976,7 +1345,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "4684",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE067A01029",
@@ -997,7 +1375,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "760",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE0J1Y01017",
@@ -1018,7 +1405,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "9480",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE1TAE01010",
@@ -1039,7 +1435,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "759782",
       "reference_price_band": "20",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE123W01016",
@@ -1060,7 +1465,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "21808",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE1CDF01017",
@@ -1081,7 +1495,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "750174",
       "reference_price_band": "20",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE298A01020",
@@ -1102,7 +1525,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "1901",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE949L01017",
@@ -1123,7 +1555,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "21238",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE214T01019",
@@ -1144,7 +1585,24 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "17818",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [
+        {
+          "symbol": "LTM",
+          "isin": "INE214T01019",
+          "ex_date": "2026-10-23",
+          "subject": "Interim Dividend - Rs 25 Per Share",
+          "kind": "DIVIDEND"
+        }
+      ],
+      "indicator_history_review_required": true,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE200M01039",
@@ -1165,7 +1623,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "18921",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE095A01012",
@@ -1186,7 +1653,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "5258",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE0DYJ01015",
@@ -1207,7 +1683,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "10793",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE377N01017",
@@ -1228,7 +1713,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "25907",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE127D01025",
@@ -1249,7 +1743,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "4244",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE944F01028",
@@ -1270,7 +1773,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "10990",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE121J01017",
@@ -1291,7 +1803,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "29135",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE267A01025",
@@ -1312,7 +1833,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "1424",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE531E01026",
@@ -1333,7 +1863,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "17939",
       "reference_price_band": "20",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE021A01026",
@@ -1354,7 +1893,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "236",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE663F01032",
@@ -1375,7 +1923,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "13751",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE290S01011",
@@ -1396,7 +1953,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "5407",
       "reference_price_band": "20",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE271C01023",
@@ -1417,7 +1983,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "14732",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE356A01018",
@@ -1438,7 +2013,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "4503",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE249Z01020",
@@ -1459,7 +2043,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "509",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE0DRI01029",
@@ -1480,7 +2073,24 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "765553",
       "reference_price_band": "5",
-      "reference_review_status": "EXCLUDED_REFERENCE_LOW_BAND"
+      "reference_review_status": "EXCLUDED_NSE_ASM",
+      "nse_surveillance": {
+        "matches": [
+          {
+            "symbol": "ESDS",
+            "isin": "INE0DRI01029",
+            "category": "ASM_LONGTERM",
+            "stage": "Stage I",
+            "source_asof_date": "2026-10-30"
+          }
+        ],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "EXCLUDED_REFERENCE_LOW_BAND"
     },
     {
       "isin": "INE192A01025",
@@ -1501,7 +2111,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "3432",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE634S01028",
@@ -1522,7 +2141,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "15380",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE010B01027",
@@ -1543,7 +2171,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "7929",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE465A01025",
@@ -1564,7 +2201,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "422",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE619A01035",
@@ -1585,7 +2231,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "17029",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE059A01026",
@@ -1606,7 +2261,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "694",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE702C01027",
@@ -1627,7 +2291,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "25780",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE0IX101010",
@@ -1648,7 +2321,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "7358",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE891D01026",
@@ -1669,7 +2351,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "14255",
       "reference_price_band": "20",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE245A01021",
@@ -1690,7 +2381,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "3426",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE05CZ01011",
@@ -1711,7 +2411,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "18423",
       "reference_price_band": "20",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE061F01013",
@@ -1732,7 +2441,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "14592",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE685A01028",
@@ -1753,7 +2471,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "3518",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE079A01024",
@@ -1774,7 +2501,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "1270",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE795G01014",
@@ -1795,7 +2531,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "467",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE084101034",
@@ -1816,7 +2561,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "764301",
       "reference_price_band": "10",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE670K01029",
@@ -1837,7 +2591,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "3220",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE121E01018",
@@ -1858,7 +2621,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "17869",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE974X01010",
@@ -1879,7 +2651,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "312",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE196A01026",
@@ -1900,7 +2681,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "4067",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE414G01012",
@@ -1921,7 +2711,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "23650",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE180A01020",
@@ -1942,7 +2741,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "2142",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE406A01037",
@@ -1963,7 +2771,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "275",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE854D01024",
@@ -1984,7 +2801,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "10447",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE326A01037",
@@ -2005,7 +2831,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "10440",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE0K9O01026",
@@ -2026,7 +2861,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "765361",
       "reference_price_band": "5",
-      "reference_review_status": "EXCLUDED_REFERENCE_LOW_BAND"
+      "reference_review_status": "EXCLUDED_REFERENCE_LOW_BAND",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "EXCLUDED_REFERENCE_LOW_BAND"
     },
     {
       "isin": "INE049B01025",
@@ -2047,7 +2891,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "7506",
       "reference_price_band": "20",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE674K01013",
@@ -2068,7 +2921,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "21614",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE935A01035",
@@ -2089,7 +2951,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "7406",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE562A01011",
@@ -2110,7 +2981,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "14309",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE01NH01023",
@@ -2131,7 +3011,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "764553",
       "reference_price_band": "10",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE068V01023",
@@ -2152,7 +3041,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "1186",
       "reference_price_band": "20",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE777K01022",
@@ -2173,7 +3071,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "18566",
       "reference_price_band": "20",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE102D01028",
@@ -2194,7 +3101,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "10099",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE259A01022",
@@ -2215,7 +3131,24 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "15141",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [
+        {
+          "symbol": "COLPAL",
+          "isin": "INE259A01022",
+          "ex_date": "2026-11-02",
+          "subject": "Interim Dividend - Rs 24 Per Share",
+          "kind": "DIVIDEND"
+        }
+      ],
+      "indicator_history_review_required": true,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE530B01024",
@@ -2236,7 +3169,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "11809",
       "reference_price_band": "20",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE318A01026",
@@ -2257,7 +3199,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "2664",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE047A01021",
@@ -2278,7 +3229,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "1232",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE346A01027",
@@ -2299,7 +3259,24 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "760407",
       "reference_price_band": "10",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [
+        {
+          "symbol": "ICICIAMC",
+          "isin": "INE346A01027",
+          "ex_date": "2026-10-21",
+          "subject": "Interim Dividend - Rs 30 Per Share",
+          "kind": "DIVIDEND"
+        }
+      ],
+      "indicator_history_review_required": true,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE736A01011",
@@ -2320,7 +3297,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "21174",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE628A01036",
@@ -2341,7 +3327,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "11287",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE572E01012",
@@ -2362,7 +3357,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "18908",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE017A01032",
@@ -2383,7 +3387,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "13776",
       "reference_price_band": "20",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE382Z01011",
@@ -2404,7 +3417,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "5475",
       "reference_price_band": "20",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE216A01030",
@@ -2425,7 +3447,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "547",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE045601023",
@@ -2446,7 +3477,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "5911",
       "reference_price_band": "20",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     },
     {
       "isin": "INE704P01025",
@@ -2467,7 +3507,16 @@
       "mapping_status": "UNIQUE",
       "dhan_security_id": "21508",
       "reference_price_band": "No Band",
-      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE",
+      "nse_surveillance": {
+        "matches": [],
+        "source_asof_matches_snapshot": true,
+        "target_effective_date_verified": false
+      },
+      "corporate_actions": [],
+      "indicator_history_review_required": false,
+      "corporate_action_adjustments_verified": false,
+      "pre_nse_reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
     }
   ],
   "incomplete_histories": [
@@ -4136,9 +5185,10 @@
     }
   ],
   "remaining_gates": [
-    "Verify effective-dated security eligibility, fixed bands and surveillance",
+    "Verify target-session security eligibility and fixed price bands, and refresh dated NSE surveillance lists",
+    "Resolve TECHM and SHRIRAMFIN corporate-action ISIN conflicts before admission",
     "Verify full exchange session calendar and latest completed session",
-    "Validate corporate actions and Dhan candle/chart reconciliation"
+    "Validate corporate-action completeness/adjustments, Dhan candle timestamps and chart reconciliation"
   ],
   "dhan_master": {
     "url": "https://images.dhan.co/api-data/api-scrip-master-detailed.csv",
@@ -4170,5 +5220,67 @@
       "url": "https://images.dhan.co/api-data/api-scrip-master-detailed.csv",
       "retrieved_on": "2026-10-31"
     }
+  },
+  "nse_eligibility_audit": {
+    "source_asof_dates": [
+      "2026-10-30"
+    ],
+    "source_asof_matches_snapshot": true,
+    "surveillance_counts": {
+      "ASM_LONGTERM": 144,
+      "ASM_SHORTTERM": 47,
+      "GSM": 77
+    },
+    "identical_restriction_duplicates": {
+      "ASM_LONGTERM": 1,
+      "ASM_SHORTTERM": 0,
+      "GSM": 0
+    },
+    "broker_clear_but_nse_restricted": [
+      "WELCORP"
+    ],
+    "source_manifests": {
+      "asm": {
+        "label": "asm",
+        "url": "https://www.nseindia.com/api/reportASM",
+        "sha256": "b9ec5b8a5c6b2bd38a1b9c691677beaf9a82ccf24e6095131c11dc70693f621d",
+        "retrieved_at": "2026-10-31T06:35:41.128129+00:00",
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Sat, 31 Oct 2026 06:35:41 GMT"
+        },
+        "payload_sha256": "e083bf25e4aaf6f2fa88a2d373d6663ab4a4322d99fecc8c41cc152534ae8f86"
+      },
+      "gsm": {
+        "label": "gsm",
+        "url": "https://www.nseindia.com/api/reportGSM",
+        "sha256": "95cc832ff6efb65fadb166daaa66c63ccf5ec2aab85b3b3cd0803262a8e5b12b",
+        "retrieved_at": "2026-10-31T06:35:41.003891+00:00",
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Sat, 31 Oct 2026 06:35:41 GMT"
+        },
+        "payload_sha256": "925fc3239e1af520ebc4c7c07ebe842354cf5ce1d0d9b93fff561db76c043fd7"
+      },
+      "corporate_actions": {
+        "label": "corporate_actions",
+        "url": "https://www.nseindia.com/api/corporates-corporateActions?index=equities&from_date=01-10-2026&to_date=02-11-2026",
+        "sha256": "ef216b4420e6283d2e12d271ea1f37ea45fa0afe4cb89dd229edf7b74726407c",
+        "retrieved_at": "2026-10-31T06:35:41.444824+00:00",
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8",
+          "Date": "Sat, 31 Oct 2026 06:35:41 GMT"
+        },
+        "payload_sha256": "ef216b4420e6283d2e12d271ea1f37ea45fa0afe4cb89dd229edf7b74726407c"
+      }
+    },
+    "corporate_action_query_from": "2026-10-01",
+    "corporate_action_query_to": "2026-11-02",
+    "corporate_action_point_in_time_verified": false,
+    "corporate_action_completeness_verified": false,
+    "surveillance_target_effective_date_verified": false
   }
 }
