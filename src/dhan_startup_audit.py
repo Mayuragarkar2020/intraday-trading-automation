@@ -12,7 +12,8 @@ from src.dhan_history_client import fetch_intraday
 from src.dhan_candle_audit import audit_candles
 from src.dhan_complete_sessions import fetch_complete_sessions
 from src.dhan_verified_indicators import calculate_session_indicators
-from src.dhan_rvol_research import research_rvol
+from src.dhan_rvol_research import research_rvol,validated_session_groups
+from src.dhan_research_scanner import research_snapshot
 
 LOG=logging.getLogger("dhan_validation")
 IST=ZoneInfo("Asia/Kolkata")
@@ -94,6 +95,25 @@ def run_startup_audit():
         except Exception as exc:
             reports["rvol_research"]={"status":"REJECTED","error_type":type(exc).__name__,
                 "trading_approved":False}
+        try:
+            extended=fetch_intraday(token,"2885",5,
+                "2026-09-12 09:15:00","2026-10-31 09:15:00")
+            complete,discarded=validated_session_groups(extended,
+                as_of=datetime.now(IST),expected_bars=72)
+            if len(complete)<21:raise ValueError("Insufficient verified sessions")
+            scan=research_snapshot("RELIANCE",complete[-21:],at_slot="10:30")
+            reports["historical_scanner"]={
+                "date":complete[-1][0].time[:10],
+                "at_slot":"10:30","status":scan["status"],
+                "reason":scan["reason"],
+                "entry":scan["entry"],"stop":scan["stop"],
+                "discarded_dates":discarded,
+                "execution_enabled":False,
+                "calendar_verified":False,
+                "chart_reconciled":False}
+        except Exception as exc:
+            reports["historical_scanner"]={"status":"REJECTED",
+                "error_type":type(exc).__name__,"execution_enabled":False}
         result={"status":"FETCHED_AUDITED","candidate_security_id":"2885",
                 "timestamp_verified":False,"comparison":reports,"orders_enabled":False}
     except Exception as exc:
