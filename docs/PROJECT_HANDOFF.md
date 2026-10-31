@@ -13,7 +13,7 @@ Owner: Mayur Agarkar. Private repository: https://github.com/Mayuragarkar2020/in
 ## Working agreement and approval boundary
 - Continue authorized implementation/testing autonomously; stop for genuinely missing input or production approval.
 - Mayur requires approval before production changes. PRs #5, #6 and #7 were approved, merged and deployed.
-- PR #8 is OPEN and UNAPPROVED. Mayur's latest request is to update project context; it is NOT approval to activate PR #8.
+- Mayur approved PR #8 recorder merge/deploy, capture flag and extended cron schedule on 31 October 2026. It is merged and deployed; see the activation checkpoint below. PR #9 remains unapproved/inactive.
 - No existing approval authorizes real-money orders, automatic forward paper execution, revised exit timing or later releases.
 - Keep source, tests, evidence and continuity in GitHub. Temporary local copies are disposable; do not depend on Mayur's computer.
 - No subagents unless expressly authorized. Never expose credentials or ask for tokens in chat.
@@ -32,7 +32,7 @@ Owner: Mayur Agarkar. Private repository: https://github.com/Mayuragarkar2020/in
 | Paper module | Deterministic replay/failure injection; NOT automatic forward paper trading |
 | Scanner coverage | RELIANCE only; NOT the full 103-stock research pool |
 | Chart check | User-reported exact API/chart OHLC match for one historical RELIANCE candle |
-| Forward recorder | Implemented/tested in PR #8, not merged/deployed/enabled |
+| Forward recorder | PR #8 approved, merged and deployed on existing cron; actual weekday capture unobserved |
 | Monday 2 November | Research/data-validation target; do not promise automatic paper trades |
 
 The web deployment was rechecked through Render after PR #7. Later documentation
@@ -42,7 +42,7 @@ commits can make main newer than that live release without changing production.
 Confirmed workspace: tea-da6sf5qfngtc73c8jfi0 (My Workspace).
 - Web: srv-dbicbu1srm7s73ds0o30, intraday-cockpit-preview, Singapore, branch main, auto-deploy off.
 - Research cron: crn-dbimqnbbc2fs73ap21vg, intraday-session-research, Singapore, auto-deploy off.
-- Current cron schedule rechecked: */5 3-6 * * 1-5 UTC; command python -m src.run_scheduled_research. Current application gate is 08:30–11:40 IST.
+- Current cron schedule: */5 3-10 * * 1-5 UTC; command python -m src.run_scheduled_research; FORWARD_CAPTURE_ENABLED=true. Application gate 08:30–15:25 IST, capture gate 09:20–15:25.
 - PostgreSQL: dpg-dbicbq8ae00c73bqrp6g-a, Singapore, PostgreSQL 18, 1 GB. External access closed.
 - SCAN_DATABASE_URL is an internal secret. Dhan/cockpit credentials remain in existing secret mechanisms.
 - No new paid service was created for paper replay or proposed capture.
@@ -120,7 +120,7 @@ Mayur supplied the Dhan RELIANCE NSE regular 5m chart for 30 October 2026,
 - For a 15:15 continuous-session end, 72 bars end at 15:15 close. A 15:15 next-open flatten cannot assume a subsequent executable bar.
 - Earlier flatten (for example 15:10) is a PROPOSAL only. Keep partial/unfilled exits unresolved; do not manufacture auction fills or silently alter the locked exit policy.
 
-## PR #8 — completed proposal, pending production approval
+## PR #8 — approved recorder; activation verified 31 October
 URL: https://github.com/Mayuragarkar2020/intraday-trading-automation/pull/8
 Branch: codex/forward-feed-capture
 Tested source head: 81999fd81c7430070301d45dcfcd8f190a9bddac.
@@ -144,14 +144,14 @@ Validation:
 - Local Windows TestClient hangs at asyncio socketpair under sandbox; use CI evidence for API/browser coverage rather than claiming local success.
 - Local pytest temporary-directory restrictions were avoided with a new workspace basetemp.
 
-Pending approval request (already presented; NOT yet answered):
+Approved request (Mayur answered on 31 October 2026; activation details below):
 Merge/deploy PR #8 to the EXISTING RESEARCH CRON, enable
 FORWARD_CAPTURE_ENABLED=true, and extend schedule from */5 3-6 * * 1-5 to
 */5 3-10 * * 1-5 UTC. Command unchanged. Additional invocations/runtime cost;
 no additional paid service. Keep auto-deploy off. No web deploy is needed
-for the recorder-only code. No such production changes have been made.
-After approval, read the Render cron/deploy skills, inspect actual settings,
-deploy the intended merged commit and verify the resulting cron build;
+for the recorder-only code. Those approved production settings are now active; see the exact deployment checkpoint below.
+Render cron/deploy skills, settings and intended merged commit were checked;
+the recorder build is live. Actual
 weekday observation/persistence must be checked separately.
 Rollback proposal: disable capture flag and restore previous schedule;
 retain immutable evidence.
@@ -179,7 +179,7 @@ No work continues between chat turns unless an explicit automation/service does 
 - User can run authenticated Diagnostics; never recover tokens from browser memory.
 - New-chat starter: "Continue Intraday Trading Automation. Read docs/PROJECT_HANDOFF.md and docs/NEXT_WORK_PLAN.md first. Use Context Mode for bulk analysis. Continue until you need my input or approval; do not make unapproved production changes."
 
-## Later checkpoint — inactive ledger foundation (PR #9)
+## Earlier checkpoint — inactive ledger foundation (before PR #8 activation)
 
 31 October 2026: draft https://github.com/Mayuragarkar2020/intraday-trading-automation/pull/9
 Branch codex/forward-paper-ledger, stacked on PR #8; tested source head
@@ -211,3 +211,16 @@ Read docs/forward-paper-ledger.md on that branch (not present on main).
   trusted session/signal/executor integration is reviewed and tested.
 - This main-branch documentation checkpoint does not merge either proposal
   or deploy anything. Before the next release recheck actual main and cron.
+
+## Current activation checkpoint — supersedes earlier pending statements
+
+Mayur approved PR #8 on 31 October 2026. It is merged and deployed to the existing
+research cron: 69a0c31ec3b4a8a492414b09b8422f774bc50a96,
+dep-dbivtvnf3r2c73ej3l7g (live). Capture flag true, extended schedule and auto-deploy
+off were verified. One successful Saturday smoke run returned MARKET_CLOSED
+with execution_enabled=false. Actual weekday capture/persistence remains
+unobserved. Read docs/forward-capture-activation-2026-10-31.md for evidence,
+including the environment-update intermediate build and SQL access limitation.
+The web remains at PR #7. PR #9 remains draft/unapproved/undeployed; no forward
+paper executor or broker ordering was activated. Earlier pending statements
+in historical checkpoints describe the earlier time, not current authorization.

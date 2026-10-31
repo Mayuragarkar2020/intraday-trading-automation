@@ -13,7 +13,7 @@ These documents distinguish approved/deployed behavior from pending proposals.
 - Automatic scanner coverage is RELIANCE only.
 - Paper lab supports deterministic candle replay, execution-failure scenarios and an append-only replay journal. Automatic forward paper trades are **not ready**.
 - PR #7 chart reconciliation is deployed. Mayur reported one exact RELIANCE 30 October 09:15 IST API/chart OHLC match under opening-time labels.
-- [PR #8](https://github.com/Mayuragarkar2020/intraday-trading-automation/pull/8) proposes opt-in full-session research capture. It is tested but not approved, merged or enabled.
+- [PR #8](https://github.com/Mayuragarkar2020/intraday-trading-automation/pull/8) adds opt-in full-session research capture. It is approved, merged and deployed on the existing research cron; actual eligible-session capture is still unobserved.
 - Render auto-deploy is off. Production changes require Mayur's approval. No approval authorizes real-money orders.
 
 ## Implemented account policy
