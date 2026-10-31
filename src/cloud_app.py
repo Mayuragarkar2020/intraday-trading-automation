@@ -10,6 +10,7 @@ from src.risk_engine import size_long
 from src.candle_pipeline import scan_demo
 from src.candle_input import BatchInput,scan_batch
 from src.scan_store import ScanStore
+from src.research_snapshot import load_research_snapshot
 from src.dhan_history_client import fetch_intraday
 from src.dhan_historical_diagnostics import historical_diagnostics
 from src.dhan_candle_audit import audit_candles
@@ -55,6 +56,13 @@ def health():
 def status():
     return {"mode":"PREVIEW_ONLY","broker_connected":False,
             "execution_enabled":False,"persistent_state_ready":False}
+
+@app.get("/api/universe-research", dependencies=[Depends(require_token)])
+def universe_research():
+    try:
+        return load_research_snapshot()
+    except (OSError, ValueError, TypeError):
+        raise HTTPException(status_code=503, detail="Research snapshot unavailable") from None
 
 class HistoryProbe(BaseModel):
     security_id: str = Field(pattern=r"^[0-9]{1,12}$")
