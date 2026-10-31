@@ -39,6 +39,16 @@ def run_startup_audit():
                 }
             except (ValueError,OverflowError,TypeError) as exc:
                 reports["open" if assumption else "close"]={"status":"INVALID","error_type":type(exc).__name__}
+        # Compare the CAS 72-bar continuous-session reference separately.
+        # This is a diagnostic hypothesis, NOT verified instrument eligibility.
+        try:
+            cas=audit_candles(data,as_of=datetime.now(IST),timestamps_are_open=True,cas_eligible=True)
+            reports["cas_72_reference"]={"missing_slots":[s["first_missing"] for s in cas["sessions"]],
+                "received":[s["received"] for s in cas["sessions"]],
+                "session_complete":[s["session_complete"] for s in cas["sessions"]],
+                "eligibility_verified":False}
+        except (ValueError,OverflowError,TypeError) as exc:
+            reports["cas_72_reference"]={"status":"INVALID","error_type":type(exc).__name__}
         result={"status":"FETCHED_AUDITED","candidate_security_id":"2885",
                 "timestamp_verified":False,"comparison":reports,"orders_enabled":False}
     except Exception as exc:
