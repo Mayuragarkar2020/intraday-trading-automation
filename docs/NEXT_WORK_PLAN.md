@@ -1,6 +1,25 @@
 # Next work plan — automatic paper trading
 Updated: 31 October 2026. Read PROJECT_HANDOFF.md first.
 
+## Current work order after Mayur's simplification
+
+Read docs/AUTOMATION_OBJECTIVES.md. Priorities:
+1. Keep the daily liquid-stock/band universe automatic; no daily per-stock screenshots.
+2. Activate the reviewed full-pool research scanner only after approval (PR #11).
+3. Inspect actual coverage, source freshness and broker/runtime behaviour in a market session.
+4. Continue the paper execution/ledger work on PR #9 using the confirmed mechanics.
+
+Mayur confirmed EMA10-close exits remain active before 1.5R; preserve existing
+trade-manager code. The 1.5R threshold additionally requests cost breakeven.
+PR #10 is optional diagnostic work, not the next prerequisite or an approved
+release. Earlier chronological plans below remain historical context.
+
+PR #11 tested head 874680b4860506106add2e965c66917d6d928121: 365 full tests
+and both Chromium suites passed (run 41219670517). Pending approval scope:
+merge/deploy existing web + research cron; set UNIVERSE_SCAN_ENABLED=true on
+cron only; keep schedule/compute plans/auto-deploy off/capture flag as is.
+No new service; more requests/runtime. No paper or live execution activation.
+
 ## Immediate checkpoint
 PR #8 was approved, merged and deployed on 31 October 2026; the capture flag and
 extended existing cron schedule are configured. A Saturday smoke run exited

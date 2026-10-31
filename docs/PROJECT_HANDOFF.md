@@ -3,9 +3,29 @@
 Updated: 31 October 2026 (IST). Read this first when resuming.
 Owner: Mayur Agarkar. Private repository: https://github.com/Mayuragarkar2020/intraday-trading-automation
 
+## Current priority — simplified automation workflow
+
+Latest direction from Mayur on 31 October: keep engineering focused on the
+liquid daily universe, full-pool setup scanning and the agreed paper trade
+manager. Read docs/AUTOMATION_OBJECTIVES.md. No daily manual chart checks are
+required for every stock. Do not expand diagnostics as the default next task.
+
+PR #11 (codex/universe-wide-research) is the next concrete release proposal.
+Head 874680b4860506106add2e965c66917d6d928121 passed 365 Python/API/PostgreSQL
+tests and both Chromium suites in run 41219670517. It is OPEN, UNAPPROVED and
+UNDEPLOYED. Activation requires separate approval for existing web + research
+cron deploys and UNIVERSE_SCAN_ENABLED=true on the cron only. Keep the existing
+schedule/compute plans, auto-deploy off and capture flag true. More full-pool
+requests/runtime; no new service. No paper/live orders or PR #9 source.
+
+PR #10 remains optional/unapproved and is not a prerequisite for universe or
+scanner research work. Do not merge/deploy it automatically. PR #9 remains
+inactive paper-ledger/signal development, separate from this scanner release.
+This latest priority supersedes older 'next decision = PR #10' statements below.
+
 ## Resume order and source of truth
-1. Read this file, then docs/NEXT_WORK_PLAN.md.
-2. Inspect current main, open PRs #9 and #10, CI and actual Render deploy/settings. Reconcile changes since this checkpoint before acting.
+1. Read this file, docs/AUTOMATION_OBJECTIVES.md, then docs/NEXT_WORK_PLAN.md.
+2. Inspect current main, open PRs #9, #10 and #11, CI and actual Render deploy/settings. Reconcile changes since this checkpoint before acting.
 3. Use current source and dated evidence over older README text, chat memory or general trading memories.
 4. Read docs/forward-feed-capture.md on branch codex/forward-feed-capture (PR #8); that document is not on main at this checkpoint.
 5. Use Context Mode for bulk code/log processing, indexed retrieval and concise summaries. Never index credentials.
@@ -66,7 +86,7 @@ Confirmed workspace: tea-da6sf5qfngtc73c8jfi0 (My Workspace).
 ## Locked implemented trading and replay policy
 - Capital INR 980,000; planned risk 1% inclusive of estimated costs, capped at INR 9,800.
 - Long-only; one daily filled entry; no leverage.
-- Trade manager requests cost-breakeven stop after 1.5 price R, then EMA10 close exit. No fixed 2R take profit.
+- EMA10-close exits apply to completed post-entry candles BEFORE 1.5R too (Mayur explicitly chose to keep current code on 31 October). At 1.5 price R also request cost breakeven. No fixed 2R take profit.
 - Replay assumptions: entry window 09:45–11:30 IST; force-exit request default 15:15; explicit per-share cost, adverse slippage, tick size and volume participation.
 - Costs are declared simulation assumptions, not verified broker charges or live approval.
 - Later-bar entry only; stop-first ambiguity; stop changes next bar; EMA exit next open.
@@ -277,3 +297,26 @@ broker data. PR #10 remains OPEN/UNAPPROVED/UNDEPLOYED. Proposed release scope:
 existing web service only; no cron deployment/config change and no PR #9
 ledger/signal source. After approval and verified deploy, the user can run
 Diagnostics → Compare closing candles with Dhan and retain the actual result.
+
+## Full-universe scanner source checkpoint (PR #11)
+
+The existing saved 109-candidate snapshot selects 103 research candidates,
+two identity holds and four exclusions. The new runner sends each selected
+stock through the existing detector; narrow/unknown bands and existing holds
+cannot become scan successes. Tests use synthetic broker prices, not actual
+103-symbol broker coverage or a throughput demonstration.
+
+Reference history is cached per universe revision/security ID, warmed before
+09:40, then each setup cycle fetches current candles. Complete/incomplete
+coverage is persisted; invalid/stale data and auth/429 failures visibly hold.
+The cockpit latest-scan path reads full-pool cycles when present, preserving
+the existing RELIANCE fallback and excluding warm-up from setup displays.
+No public order endpoint or trade-manager logic is changed. Research timestamp/
+session assumptions and normal 72/75-bar reference shapes do not become
+execution clearance. The reviewed calendar still ends on 6 November.
+
+Production is unchanged by this source work. Both auto-deploy settings and
+the existing cron schedule were rechecked. Local targeted validation: 62 passed,
+2 PostgreSQL-only skipped, 1 API test deselected for known Windows TestClient
+sandbox behaviour; full CI passed above. Read docs/universe-wide-scanner.md
+on codex/universe-wide-research for exact activation scope and limits.
