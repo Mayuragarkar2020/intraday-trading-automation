@@ -1,0 +1,4174 @@
+{
+  "mode": "LIQUIDITY_RESEARCH_ONLY",
+  "execution_enabled": false,
+  "target_date": "2026-11-02",
+  "asof_date": "2026-10-30",
+  "calendar_completeness_verified": false,
+  "restrictions_verified": false,
+  "tradable_count": 0,
+  "config": {
+    "universe": {
+      "price_min": 300,
+      "price_max": 5000,
+      "required_history_sessions": 20
+    },
+    "liquidity": {
+      "avg_turnover_20d_min_cr": 100,
+      "median_turnover_20d_min_cr": 50,
+      "last_turnover_min_cr": 75,
+      "last_to_avg_ratio_min": 0.75,
+      "min_turnover_5d_cr": 30
+    }
+  },
+  "sources": [
+    {
+      "filename": "2026-10-01.zip",
+      "sha256": "ccc5fb27872716bbcc99d2d87e522ab304f6620e11c3a5045c30e1ff25cbfb73",
+      "asof_date": "2026-10-01",
+      "eq_rows": 2662,
+      "url": "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20261001_F_0000.csv.zip"
+    },
+    {
+      "filename": "2026-10-05.zip",
+      "sha256": "43913a4ef72663e2d3fbb0c3b9c686ed8c3d23e5df6ee6b756f8a5c954559ceb",
+      "asof_date": "2026-10-05",
+      "eq_rows": 2678,
+      "url": "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20261005_F_0000.csv.zip"
+    },
+    {
+      "filename": "2026-10-06.zip",
+      "sha256": "f444e5ba9821fe09ac3bff69f53144369ce536be6481acc78ab00d175ae55b56",
+      "asof_date": "2026-10-06",
+      "eq_rows": 2679,
+      "url": "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20261006_F_0000.csv.zip"
+    },
+    {
+      "filename": "2026-10-07.zip",
+      "sha256": "e11ec2f3c54236e4fae5fc19e88f45d2a2159a31308c77c5ff5dcf051b632b95",
+      "asof_date": "2026-10-07",
+      "eq_rows": 2678,
+      "url": "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20261007_F_0000.csv.zip"
+    },
+    {
+      "filename": "2026-10-08.zip",
+      "sha256": "07fdfc3409b83fac6ee4a736ceb4fde20069c5d1a490d960b332c178cb703e39",
+      "asof_date": "2026-10-08",
+      "eq_rows": 2681,
+      "url": "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20261008_F_0000.csv.zip"
+    },
+    {
+      "filename": "2026-10-09.zip",
+      "sha256": "8adbb3410c8cf4372290484a9b1798490ef279d30fc2439c93f082cc20ed198c",
+      "asof_date": "2026-10-09",
+      "eq_rows": 2675,
+      "url": "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20261009_F_0000.csv.zip"
+    },
+    {
+      "filename": "2026-10-12.zip",
+      "sha256": "818f673b3cdb96ae8ec4e466c7c4fd3a28d035482173a675dd24f9437a3ecd99",
+      "asof_date": "2026-10-12",
+      "eq_rows": 2696,
+      "url": "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20261012_F_0000.csv.zip"
+    },
+    {
+      "filename": "2026-10-13.zip",
+      "sha256": "b3aba7f1e20587e4c77a5de2b720cbcd5d8f4c8fe42e1b67f06f0d7deaabbf46",
+      "asof_date": "2026-10-13",
+      "eq_rows": 2691,
+      "url": "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20261013_F_0000.csv.zip"
+    },
+    {
+      "filename": "2026-10-14.zip",
+      "sha256": "db0b3819da45da615d3aa5ac7888a2b0670189d73f8d33f1e377146c89d9c94f",
+      "asof_date": "2026-10-14",
+      "eq_rows": 2689,
+      "url": "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20261014_F_0000.csv.zip"
+    },
+    {
+      "filename": "2026-10-15.zip",
+      "sha256": "3d1c7039e2c70868cc44b51d1f9e4b0f942afc0575fe8c4a524aed9e01eac3e8",
+      "asof_date": "2026-10-15",
+      "eq_rows": 2687,
+      "url": "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20261015_F_0000.csv.zip"
+    },
+    {
+      "filename": "2026-10-16.zip",
+      "sha256": "d2c4406c1ecbfbcb9acdafa424f921caad7467d97da47c65973b34aa0aac70bc",
+      "asof_date": "2026-10-16",
+      "eq_rows": 2691,
+      "url": "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20261016_F_0000.csv.zip"
+    },
+    {
+      "filename": "2026-10-19.zip",
+      "sha256": "f0a2e9bf7cb185bb112704355772d2954d662abee3d7295414aabc26d6ecfbde",
+      "asof_date": "2026-10-19",
+      "eq_rows": 2698,
+      "url": "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20261019_F_0000.csv.zip"
+    },
+    {
+      "filename": "2026-10-21.zip",
+      "sha256": "7d19ef4c8f7e3bf80828a7a33c4fe7d2cd8a56cbecc5e2ce42ce81a35e2ba243",
+      "asof_date": "2026-10-21",
+      "eq_rows": 2694,
+      "url": "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20261021_F_0000.csv.zip"
+    },
+    {
+      "filename": "2026-10-22.zip",
+      "sha256": "4e1e097210a023fa6a2bfd67610528d28ac0307c6417c8c85cfa4b01196d37b2",
+      "asof_date": "2026-10-22",
+      "eq_rows": 2694,
+      "url": "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20261022_F_0000.csv.zip"
+    },
+    {
+      "filename": "2026-10-23.zip",
+      "sha256": "009b57f15cb36e14fa956b2e585b69b23f279eb8532c2c63c0adf0aa2ed77689",
+      "asof_date": "2026-10-23",
+      "eq_rows": 2706,
+      "url": "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20261023_F_0000.csv.zip"
+    },
+    {
+      "filename": "2026-10-26.zip",
+      "sha256": "723bee076946c104b9cd56d09ca9b3776b062f19c136acc289c7c279290377e3",
+      "asof_date": "2026-10-26",
+      "eq_rows": 2709,
+      "url": "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20261026_F_0000.csv.zip"
+    },
+    {
+      "filename": "2026-10-27.zip",
+      "sha256": "d6de1583722c44599c1fa394072a9b496a9041b40e81cd670720f91f2834330e",
+      "asof_date": "2026-10-27",
+      "eq_rows": 2712,
+      "url": "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20261027_F_0000.csv.zip"
+    },
+    {
+      "filename": "2026-10-28.zip",
+      "sha256": "4e93e09854c535af09dcf656677f7e960dddbe55c38d379b02c98ff2e88edccf",
+      "asof_date": "2026-10-28",
+      "eq_rows": 2711,
+      "url": "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20261028_F_0000.csv.zip"
+    },
+    {
+      "filename": "2026-10-29.zip",
+      "sha256": "715d25908016922815de203654ea5ef0c22cb32175b315814789f7f42aba5516",
+      "asof_date": "2026-10-29",
+      "eq_rows": 2712,
+      "url": "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20261029_F_0000.csv.zip"
+    },
+    {
+      "filename": "2026-10-30.zip",
+      "sha256": "ce2b0e6615bbc48990bb32ab081f85568451bb6f16fc54bff7d786faa7d2ca44",
+      "asof_date": "2026-10-30",
+      "eq_rows": 2703,
+      "url": "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_20261030_F_0000.csv.zip"
+    }
+  ],
+  "summary": {
+    "latest_eq_count": 2703,
+    "complete_history_count": 2570,
+    "incomplete_history_count": 133,
+    "excluded_liquidity_count": 2461,
+    "liquidity_candidate_count": 109,
+    "unique_dhan_mapping_count": 109,
+    "failed_rule_counts": {
+      "E04_PRICE": 1580,
+      "L01_AVG20": 2292,
+      "L02_MED20": 2236,
+      "L03_LAST": 2262,
+      "L04_RATIO": 1471,
+      "L05_MIN5": 2249
+    },
+    "reference_research_candidate_count": 106
+  },
+  "candidates": [
+    {
+      "isin": "INE009A01021",
+      "symbol": "INFY",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1185.00",
+        "avg_turnover_20d_cr": "1859.97672387275",
+        "median_turnover_20d_cr": "1669.05151706",
+        "last_turnover_cr": "1530.802064105",
+        "min_turnover_5d_cr": "1530.802064105",
+        "activity_ratio": "0.8230221617599820943156908675",
+        "avg_volume_20d": "16829532.75"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "1594",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE002A01018",
+      "symbol": "RELIANCE",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1164.90",
+        "avg_turnover_20d_cr": "1794.2410887985",
+        "median_turnover_20d_cr": "1735.978954815",
+        "last_turnover_cr": "1711.91718188",
+        "min_turnover_5d_cr": "895.119649",
+        "activity_ratio": "0.9541177005518095771694757068",
+        "avg_volume_20d": "15103496.6"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "2885",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE090A01021",
+      "symbol": "ICICIBANK",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1398.00",
+        "avg_turnover_20d_cr": "1721.3449415905",
+        "median_turnover_20d_cr": "1619.642345505",
+        "last_turnover_cr": "1468.95450963",
+        "min_turnover_5d_cr": "1103.92431208",
+        "activity_ratio": "0.8533760283239368786541867631",
+        "avg_volume_20d": "12566731.2"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "4963",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE397D01024",
+      "symbol": "BHARTIARTL",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1973.70",
+        "avg_turnover_20d_cr": "1681.7767803025",
+        "median_turnover_20d_cr": "1385.76521366",
+        "last_turnover_cr": "1423.53002359",
+        "min_turnover_5d_cr": "569.21515098",
+        "activity_ratio": "0.8464440942833986930651235982",
+        "avg_volume_20d": "8969938.35"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "10604",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE237A01036",
+      "symbol": "KOTAKBANK",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "461.60",
+        "avg_turnover_20d_cr": "1216.38454814175",
+        "median_turnover_20d_cr": "1032.466988860",
+        "last_turnover_cr": "954.8642682",
+        "min_turnover_5d_cr": "743.34871451",
+        "activity_ratio": "0.7850019713409956688815269823",
+        "avg_volume_20d": "27694574.2"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "1922",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE758T01015",
+      "symbol": "ETERNAL",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "343.65",
+        "avg_turnover_20d_cr": "913.75077480575",
+        "median_turnover_20d_cr": "832.7020109575",
+        "last_turnover_cr": "1327.81177557",
+        "min_turnover_5d_cr": "713.11284971",
+        "activity_ratio": "1.453144349839017416927749400",
+        "avg_volume_20d": "28455280.55"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "5097",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE062A01020",
+      "symbol": "SBIN",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "961.85",
+        "avg_turnover_20d_cr": "857.084551815",
+        "median_turnover_20d_cr": "784.07799554",
+        "last_turnover_cr": "724.12469336",
+        "min_turnover_5d_cr": "637.179899345",
+        "activity_ratio": "0.8448696127197271878412639151",
+        "avg_volume_20d": "8951482.15"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "3045",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE296A01032",
+      "symbol": "BAJFINANCE",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "939.10",
+        "avg_turnover_20d_cr": "794.109871910",
+        "median_turnover_20d_cr": "749.6645645725",
+        "last_turnover_cr": "880.26433954",
+        "min_turnover_5d_cr": "364.977247215",
+        "activity_ratio": "1.108491873325766020195400545",
+        "avg_volume_20d": "8350530.9"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "317",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE018A01030",
+      "symbol": "LT",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "3871.70",
+        "avg_turnover_20d_cr": "778.0925074625",
+        "median_turnover_20d_cr": "688.787373125",
+        "last_turnover_cr": "679.30726119",
+        "min_turnover_5d_cr": "418.50490972",
+        "activity_ratio": "0.8730417716080360360433124353",
+        "avg_volume_20d": "2099948.7"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "11483",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE669C01036",
+      "symbol": "TECHM",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1790.80",
+        "avg_turnover_20d_cr": "722.8301896835",
+        "median_turnover_20d_cr": "536.36785184",
+        "last_turnover_cr": "559.12439619",
+        "min_turnover_5d_cr": "365.46209226",
+        "activity_ratio": "0.7735210899738698309996291128",
+        "avg_volume_20d": "4280026.85"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "13538",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE101A01026",
+      "symbol": "M&M",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "2840.30",
+        "avg_turnover_20d_cr": "701.0872477015",
+        "median_turnover_20d_cr": "672.691764835",
+        "last_turnover_cr": "533.04774454",
+        "min_turnover_5d_cr": "397.73112082",
+        "activity_ratio": "0.7603158469756595548892858726",
+        "avg_volume_20d": "2463431.3"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "2031",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE860A01027",
+      "symbol": "HCLTECH",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1428.10",
+        "avg_turnover_20d_cr": "654.8069931875",
+        "median_turnover_20d_cr": "494.402068335",
+        "last_turnover_cr": "636.41096816",
+        "min_turnover_5d_cr": "259.59089269",
+        "activity_ratio": "0.9719061872904701704721055767",
+        "avg_volume_20d": "4911162.8"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "7229",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE742F01042",
+      "symbol": "ADANIPORTS",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1850.00",
+        "avg_turnover_20d_cr": "605.170295448",
+        "median_turnover_20d_cr": "397.47935271",
+        "last_turnover_cr": "1152.8493814",
+        "min_turnover_5d_cr": "222.88838272",
+        "activity_ratio": "1.904999948066783455169558532",
+        "avg_volume_20d": "3426188.75"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "15083",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE0LEZ01016",
+      "symbol": "ATHERENERG",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1756.00",
+        "avg_turnover_20d_cr": "583.541074827",
+        "median_turnover_20d_cr": "452.3656640",
+        "last_turnover_cr": "1378.64387552",
+        "min_turnover_5d_cr": "279.31106278",
+        "activity_ratio": "2.362548130701374923112889460",
+        "avg_volume_20d": "3828861.15"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "757645",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INF732E01037",
+      "symbol": "LIQUIDBEES",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1000.00",
+        "avg_turnover_20d_cr": "576.3030904699",
+        "median_turnover_20d_cr": "491.677489557",
+        "last_turnover_cr": "568.999247536",
+        "min_turnover_5d_cr": "257.422262435",
+        "activity_ratio": "0.9873263859682850758851611274",
+        "avg_volume_20d": "5763033"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "11006",
+      "reference_price_band": "5",
+      "reference_review_status": "EXCLUDED_REFERENCE_LOW_BAND"
+    },
+    {
+      "isin": "INE591G01025",
+      "symbol": "COFORGE",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "2045.00",
+        "avg_turnover_20d_cr": "534.604984454",
+        "median_turnover_20d_cr": "468.36342592",
+        "last_turnover_cr": "1248.77294704",
+        "min_turnover_5d_cr": "306.08065441",
+        "activity_ratio": "2.335879730555431189784482518",
+        "avg_volume_20d": "2781753.45"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "11543",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE745G01043",
+      "symbol": "MCX",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "3188.80",
+        "avg_turnover_20d_cr": "501.6086544845",
+        "median_turnover_20d_cr": "490.11514194",
+        "last_turnover_cr": "551.79569698",
+        "min_turnover_5d_cr": "320.83080755",
+        "activity_ratio": "1.100052186194986810950292915",
+        "avg_volume_20d": "1555884.05"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "31181",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE721A01047",
+      "symbol": "SHRIRAMFIN",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "823.15",
+        "avg_turnover_20d_cr": "500.284552274",
+        "median_turnover_20d_cr": "500.1993421275",
+        "last_turnover_cr": "398.49847447",
+        "min_turnover_5d_cr": "398.49847447",
+        "activity_ratio": "0.7965436323361570531562065251",
+        "avg_volume_20d": "5553277.2"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "4306",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE947Q01028",
+      "symbol": "LAURUSLABS",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "2405.50",
+        "avg_turnover_20d_cr": "416.86759761",
+        "median_turnover_20d_cr": "299.116270965",
+        "last_turnover_cr": "1856.04421991",
+        "min_turnover_5d_cr": "374.92860998",
+        "activity_ratio": "4.452359047695570785526181880",
+        "avg_volume_20d": "1971994.65"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "19234",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE053A01029",
+      "symbol": "INDHOTEL",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "811.65",
+        "avg_turnover_20d_cr": "414.89676852225",
+        "median_turnover_20d_cr": "309.3479485425",
+        "last_turnover_cr": "487.79850645",
+        "min_turnover_5d_cr": "327.76554426",
+        "activity_ratio": "1.175710546474985235612727069",
+        "avg_volume_20d": "5389328.55"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "1512",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE849A01020",
+      "symbol": "TRENT",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "3017.30",
+        "avg_turnover_20d_cr": "382.3179203815",
+        "median_turnover_20d_cr": "230.017295365",
+        "last_turnover_cr": "1343.65507798",
+        "min_turnover_5d_cr": "152.51991995",
+        "activity_ratio": "3.514496722097723016801615444",
+        "avg_volume_20d": "1329060.5"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "1964",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE263A01024",
+      "symbol": "BEL",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "369.90",
+        "avg_turnover_20d_cr": "378.594864494",
+        "median_turnover_20d_cr": "358.20193413",
+        "last_turnover_cr": "399.157170955",
+        "min_turnover_5d_cr": "291.85652103",
+        "activity_ratio": "1.054312164240478948666359614",
+        "avg_volume_20d": "10155784.45"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "383",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE191B01025",
+      "symbol": "WELCORP",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "2341.60",
+        "avg_turnover_20d_cr": "367.980513833",
+        "median_turnover_20d_cr": "351.693940165",
+        "last_turnover_cr": "411.84043538",
+        "min_turnover_5d_cr": "276.52840074",
+        "activity_ratio": "1.119190880761976643924276109",
+        "avg_volume_20d": "1435443.5"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "11821",
+      "reference_price_band": "20",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE280A01028",
+      "symbol": "TITAN",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "4436.50",
+        "avg_turnover_20d_cr": "355.8699258825",
+        "median_turnover_20d_cr": "279.226041705",
+        "last_turnover_cr": "509.02926657",
+        "min_turnover_5d_cr": "164.4351374",
+        "activity_ratio": "1.430380117981842792365844728",
+        "avg_volume_20d": "805955.05"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "3506",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE646L01027",
+      "symbol": "INDIGO",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "4877.60",
+        "avg_turnover_20d_cr": "348.0638603235",
+        "median_turnover_20d_cr": "269.015853435",
+        "last_turnover_cr": "794.41433527",
+        "min_turnover_5d_cr": "141.57045477",
+        "activity_ratio": "2.282380981845256075632384412",
+        "avg_volume_20d": "726152.45"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "11195",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE066F01020",
+      "symbol": "HAL",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "4853.70",
+        "avg_turnover_20d_cr": "331.993221621",
+        "median_turnover_20d_cr": "315.018959425",
+        "last_turnover_cr": "337.45347339",
+        "min_turnover_5d_cr": "213.1718827",
+        "activity_ratio": "1.016446877265564676147662473",
+        "avg_volume_20d": "689654.8"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "2303",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE494B01023",
+      "symbol": "TVSMOTOR",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "4195.20",
+        "avg_turnover_20d_cr": "319.9865881515",
+        "median_turnover_20d_cr": "277.03923890",
+        "last_turnover_cr": "349.13743838",
+        "min_turnover_5d_cr": "118.66416819",
+        "activity_ratio": "1.091100225159119218735484746",
+        "avg_volume_20d": "792860.5"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "8479",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE027H01010",
+      "symbol": "MAXHEALTH",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "860.00",
+        "avg_turnover_20d_cr": "318.76684811825",
+        "median_turnover_20d_cr": "288.3206957475",
+        "last_turnover_cr": "594.25901232",
+        "min_turnover_5d_cr": "205.816154305",
+        "activity_ratio": "1.864243461414008807740864754",
+        "avg_volume_20d": "3690960.9"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "22377",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE030A01027",
+      "symbol": "HINDUNILVR",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1864.60",
+        "avg_turnover_20d_cr": "312.227230533",
+        "median_turnover_20d_cr": "247.31016582",
+        "last_turnover_cr": "296.27962903",
+        "min_turnover_5d_cr": "121.21659631",
+        "activity_ratio": "0.9489230920833650284748272591",
+        "avg_volume_20d": "1693042.8"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "1394",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE00FF01025",
+      "symbol": "ACUTAAS",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "4003.60",
+        "avg_turnover_20d_cr": "309.998731257",
+        "median_turnover_20d_cr": "110.236513555",
+        "last_turnover_cr": "457.68892049",
+        "min_turnover_5d_cr": "411.29875331",
+        "activity_ratio": "1.476421915128935053001438549",
+        "avg_volume_20d": "860117.95"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "5578",
+      "reference_price_band": "20",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE121A01024",
+      "symbol": "CHOLAFIN",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1586.00",
+        "avg_turnover_20d_cr": "306.7349395135",
+        "median_turnover_20d_cr": "266.27951177",
+        "last_turnover_cr": "566.10664756",
+        "min_turnover_5d_cr": "249.26429652",
+        "activity_ratio": "1.845589056329478069581153946",
+        "avg_volume_20d": "1972646.05"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "685",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE200A01026",
+      "symbol": "GVT&D",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "4020.00",
+        "avg_turnover_20d_cr": "294.3451953145",
+        "median_turnover_20d_cr": "272.189986945",
+        "last_turnover_cr": "258.91778728",
+        "min_turnover_5d_cr": "216.61281311",
+        "activity_ratio": "0.8796399309435074750184622484",
+        "avg_volume_20d": "734790.9"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "16783",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE089A01031",
+      "symbol": "DRREDDY",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1352.00",
+        "avg_turnover_20d_cr": "292.5646886205",
+        "median_turnover_20d_cr": "223.83693858",
+        "last_turnover_cr": "232.30953448",
+        "min_turnover_5d_cr": "232.30953448",
+        "activity_ratio": "0.7940450215485166963456143071",
+        "avg_volume_20d": "2334541"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "881",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE024001021",
+      "symbol": "AEROFLEX",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "536.40",
+        "avg_turnover_20d_cr": "291.9531467125",
+        "median_turnover_20d_cr": "122.0521848925",
+        "last_turnover_cr": "744.711895075",
+        "min_turnover_5d_cr": "69.871795135",
+        "activity_ratio": "2.550792493455646298851158850",
+        "avg_volume_20d": "5399895.8"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "18268",
+      "reference_price_band": "20",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE044A01036",
+      "symbol": "SUNPHARMA",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1777.70",
+        "avg_turnover_20d_cr": "288.99470384",
+        "median_turnover_20d_cr": "253.63529004",
+        "last_turnover_cr": "926.66288003",
+        "min_turnover_5d_cr": "185.15073963",
+        "activity_ratio": "3.206504713467139363753677293",
+        "avg_volume_20d": "1634025.85"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "3351",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE733E01010",
+      "symbol": "NTPC",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "316.25",
+        "avg_turnover_20d_cr": "286.935345309",
+        "median_turnover_20d_cr": "263.815308615",
+        "last_turnover_cr": "486.069732665",
+        "min_turnover_5d_cr": "185.507270975",
+        "activity_ratio": "1.694004383257673067684913555",
+        "avg_volume_20d": "9238870.65"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "11630",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE522F01014",
+      "symbol": "COALINDIA",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "389.00",
+        "avg_turnover_20d_cr": "277.89214993675",
+        "median_turnover_20d_cr": "247.698613420",
+        "last_turnover_cr": "815.39783843",
+        "min_turnover_5d_cr": "176.812243695",
+        "activity_ratio": "2.934224081592767817157636747",
+        "avg_volume_20d": "6857026.3"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "20374",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE073K01018",
+      "symbol": "SONACOMS",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "890.50",
+        "avg_turnover_20d_cr": "265.7847969755",
+        "median_turnover_20d_cr": "162.324627015",
+        "last_turnover_cr": "304.530083045",
+        "min_turnover_5d_cr": "203.78814365",
+        "activity_ratio": "1.145776908650917058517637741",
+        "avg_volume_20d": "3229933.55"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "4684",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE067A01029",
+      "symbol": "CGPOWER",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "804.00",
+        "avg_turnover_20d_cr": "262.405140616",
+        "median_turnover_20d_cr": "207.53822058",
+        "last_turnover_cr": "214.76603751",
+        "min_turnover_5d_cr": "93.6915551",
+        "activity_ratio": "0.8184520966541795197343520628",
+        "avg_volume_20d": "3122723.6"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "760",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE0J1Y01017",
+      "symbol": "LICI",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "383.25",
+        "avg_turnover_20d_cr": "242.311647234",
+        "median_turnover_20d_cr": "220.61108710",
+        "last_turnover_cr": "201.81752696",
+        "min_turnover_5d_cr": "181.22808522",
+        "activity_ratio": "0.8328841360444597702957151447",
+        "avg_volume_20d": "6228363.65"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "9480",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE1TAE01010",
+      "symbol": "TMCV",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "396.35",
+        "avg_turnover_20d_cr": "242.04978294775",
+        "median_turnover_20d_cr": "227.8417184325",
+        "last_turnover_cr": "339.00194582",
+        "min_turnover_5d_cr": "171.209877605",
+        "activity_ratio": "1.400546373938201580780888503",
+        "avg_volume_20d": "5901308.95"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "759782",
+      "reference_price_band": "20",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE123W01016",
+      "symbol": "SBILIFE",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1658.60",
+        "avg_turnover_20d_cr": "237.418825504",
+        "median_turnover_20d_cr": "217.38194194",
+        "last_turnover_cr": "206.37933068",
+        "min_turnover_5d_cr": "131.99325798",
+        "activity_ratio": "0.8692627058612205508385648963",
+        "avg_volume_20d": "1419847.25"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "21808",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE1CDF01017",
+      "symbol": "VAML",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "356.45",
+        "avg_turnover_20d_cr": "230.14222294675",
+        "median_turnover_20d_cr": "221.0143368075",
+        "last_turnover_cr": "245.573304335",
+        "min_turnover_5d_cr": "98.320886855",
+        "activity_ratio": "1.067050197007180307764005353",
+        "avg_volume_20d": "6230339.35"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "750174",
+      "reference_price_band": "20",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE298A01020",
+      "symbol": "CUMMINSIND",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "4452.60",
+        "avg_turnover_20d_cr": "226.5161237715",
+        "median_turnover_20d_cr": "215.98465870",
+        "last_turnover_cr": "308.67034957",
+        "min_turnover_5d_cr": "109.68066073",
+        "activity_ratio": "1.362685995286471306223475259",
+        "avg_volume_20d": "487422.3"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "1901",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE949L01017",
+      "symbol": "AUBANK",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "864.00",
+        "avg_turnover_20d_cr": "214.20129471",
+        "median_turnover_20d_cr": "181.19715464",
+        "last_turnover_cr": "294.7989105",
+        "min_turnover_5d_cr": "190.613362",
+        "activity_ratio": "1.376270441778227475775466101",
+        "avg_volume_20d": "2292042.7"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "21238",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE214T01019",
+      "symbol": "LTM",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "4233.50",
+        "avg_turnover_20d_cr": "209.3451605405",
+        "median_turnover_20d_cr": "188.94599391",
+        "last_turnover_cr": "163.2782015",
+        "min_turnover_5d_cr": "111.42214264",
+        "activity_ratio": "0.7799473418847536848298314293",
+        "avg_volume_20d": "501693"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "17818",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE200M01039",
+      "symbol": "VBL",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "392.00",
+        "avg_turnover_20d_cr": "208.47770190325",
+        "median_turnover_20d_cr": "179.91954867",
+        "last_turnover_cr": "549.91015854",
+        "min_turnover_5d_cr": "108.1803728",
+        "activity_ratio": "2.637740887968927395942774377",
+        "avg_volume_20d": "4973670.85"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "18921",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE095A01012",
+      "symbol": "INDUSINDBK",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "838.00",
+        "avg_turnover_20d_cr": "204.9760991115",
+        "median_turnover_20d_cr": "170.3722884775",
+        "last_turnover_cr": "165.107842525",
+        "min_turnover_5d_cr": "165.107842525",
+        "activity_ratio": "0.8054980226508602374876354902",
+        "avg_volume_20d": "2372739.05"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "5258",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE0DYJ01015",
+      "symbol": "SYRMA",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1625.30",
+        "avg_turnover_20d_cr": "202.501831636",
+        "median_turnover_20d_cr": "164.390182055",
+        "last_turnover_cr": "248.66750185",
+        "min_turnover_5d_cr": "124.23498486",
+        "activity_ratio": "1.227976556266332773132369140",
+        "avg_volume_20d": "1243096.55"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "10793",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE377N01017",
+      "symbol": "WAAREEENER",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "2304.00",
+        "avg_turnover_20d_cr": "199.8788865005",
+        "median_turnover_20d_cr": "175.03555315",
+        "last_turnover_cr": "153.44699278",
+        "min_turnover_5d_cr": "133.57091914",
+        "activity_ratio": "0.7676998579818291616859146622",
+        "avg_volume_20d": "843976.5"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "25907",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE127D01025",
+      "symbol": "HDFCAMC",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "2309.50",
+        "avg_turnover_20d_cr": "199.7991246265",
+        "median_turnover_20d_cr": "181.155532015",
+        "last_turnover_cr": "183.70332537",
+        "min_turnover_5d_cr": "87.49044861",
+        "activity_ratio": "0.9194400912086620702990330076",
+        "avg_volume_20d": "863742.2"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "4244",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE944F01028",
+      "symbol": "RADICO",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "4086.70",
+        "avg_turnover_20d_cr": "188.187917209",
+        "median_turnover_20d_cr": "170.17750106",
+        "last_turnover_cr": "222.45760514",
+        "min_turnover_5d_cr": "201.87456654",
+        "activity_ratio": "1.182103550744654652266368290",
+        "avg_volume_20d": "435748.25"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "10990",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE121J01017",
+      "symbol": "INDUSTOWER",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "378.30",
+        "avg_turnover_20d_cr": "187.13388359175",
+        "median_turnover_20d_cr": "179.2648409475",
+        "last_turnover_cr": "197.57209544",
+        "min_turnover_5d_cr": "145.226433285",
+        "activity_ratio": "1.055779379169097626092044912",
+        "avg_volume_20d": "4911758.85"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "29135",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE267A01025",
+      "symbol": "HINDZINC",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "505.80",
+        "avg_turnover_20d_cr": "186.126657195",
+        "median_turnover_20d_cr": "149.049950960",
+        "last_turnover_cr": "173.624790295",
+        "min_turnover_5d_cr": "103.42108305",
+        "activity_ratio": "0.9328314004645657870995322906",
+        "avg_volume_20d": "3532113.45"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "1424",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE531E01026",
+      "symbol": "HINDCOPPER",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "400.85",
+        "avg_turnover_20d_cr": "185.688856166",
+        "median_turnover_20d_cr": "169.7098602025",
+        "last_turnover_cr": "143.532035685",
+        "min_turnover_5d_cr": "103.22732545",
+        "activity_ratio": "0.7729706491200897497374053591",
+        "avg_volume_20d": "4215345.2"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "17939",
+      "reference_price_band": "20",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE021A01026",
+      "symbol": "ASIANPAINT",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "2320.00",
+        "avg_turnover_20d_cr": "185.357243326",
+        "median_turnover_20d_cr": "158.74085101",
+        "last_turnover_cr": "304.67824003",
+        "min_turnover_5d_cr": "141.27311443",
+        "activity_ratio": "1.643735278767295320215038619",
+        "avg_volume_20d": "799020.65"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "236",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE663F01032",
+      "symbol": "NAUKRI",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1189.60",
+        "avg_turnover_20d_cr": "184.646593424",
+        "median_turnover_20d_cr": "181.664127975",
+        "last_turnover_cr": "254.7027953",
+        "min_turnover_5d_cr": "92.58411447",
+        "activity_ratio": "1.379406955616730230264830190",
+        "avg_volume_20d": "1526305.85"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "13751",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE290S01011",
+      "symbol": "CARTRADE",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "2189.80",
+        "avg_turnover_20d_cr": "180.147114272",
+        "median_turnover_20d_cr": "86.59537016",
+        "last_turnover_cr": "389.76689803",
+        "min_turnover_5d_cr": "46.98984774",
+        "activity_ratio": "2.163603339443450044230969961",
+        "avg_volume_20d": "681952.85"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "5407",
+      "reference_price_band": "20",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE271C01023",
+      "symbol": "DLF",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "691.55",
+        "avg_turnover_20d_cr": "179.33482661075",
+        "median_turnover_20d_cr": "165.8452498375",
+        "last_turnover_cr": "206.82612291",
+        "min_turnover_5d_cr": "86.26747005",
+        "activity_ratio": "1.153295914791388706849161285",
+        "avg_volume_20d": "2697899.75"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "14732",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE356A01018",
+      "symbol": "MPHASIS",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "2525.60",
+        "avg_turnover_20d_cr": "178.8250310605",
+        "median_turnover_20d_cr": "171.57273696",
+        "last_turnover_cr": "216.70773615",
+        "min_turnover_5d_cr": "97.5973707",
+        "activity_ratio": "1.211842295593862031074225549",
+        "avg_volume_20d": "732997.75"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "4503",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE249Z01020",
+      "symbol": "MAZDOCK",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1705.30",
+        "avg_turnover_20d_cr": "177.5664243565",
+        "median_turnover_20d_cr": "131.35847811",
+        "last_turnover_cr": "173.57914541",
+        "min_turnover_5d_cr": "128.72003889",
+        "activity_ratio": "0.9775448598407616603619188056",
+        "avg_volume_20d": "941661.45"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "509",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE0DRI01029",
+      "symbol": "ESDS",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1160.00",
+        "avg_turnover_20d_cr": "177.406599348",
+        "median_turnover_20d_cr": "181.354848055",
+        "last_turnover_cr": "145.15694441",
+        "min_turnover_5d_cr": "123.20843027",
+        "activity_ratio": "0.8182161483477893647855190610",
+        "avg_volume_20d": "1254689.1"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "765553",
+      "reference_price_band": "5",
+      "reference_review_status": "EXCLUDED_REFERENCE_LOW_BAND"
+    },
+    {
+      "isin": "INE192A01025",
+      "symbol": "TATACONSUM",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1025.90",
+        "avg_turnover_20d_cr": "175.54565585125",
+        "median_turnover_20d_cr": "143.781117075",
+        "last_turnover_cr": "139.76477415",
+        "min_turnover_5d_cr": "139.76477415",
+        "activity_ratio": "0.7961733571375345618020207009",
+        "avg_volume_20d": "1800444.5"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "3432",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE634S01028",
+      "symbol": "MANKIND",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "2492.80",
+        "avg_turnover_20d_cr": "173.749027102",
+        "median_turnover_20d_cr": "148.878547745",
+        "last_turnover_cr": "170.55063609",
+        "min_turnover_5d_cr": "170.55063609",
+        "activity_ratio": "0.9815918911009362205389760571",
+        "avg_volume_20d": "725508.2"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "15380",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE010B01027",
+      "symbol": "ZYDUSLIFE",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1245.50",
+        "avg_turnover_20d_cr": "165.415009769",
+        "median_turnover_20d_cr": "151.096416035",
+        "last_turnover_cr": "451.7244568",
+        "min_turnover_5d_cr": "66.71716473",
+        "activity_ratio": "2.730855304067191817958487020",
+        "avg_volume_20d": "1437237"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "7929",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE465A01025",
+      "symbol": "BHARATFORG",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1720.00",
+        "avg_turnover_20d_cr": "162.0745390435",
+        "median_turnover_20d_cr": "185.600354255",
+        "last_turnover_cr": "182.40678975",
+        "min_turnover_5d_cr": "182.40678975",
+        "activity_ratio": "1.125449998664151221544485910",
+        "avg_volume_20d": "906719.35"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "422",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE619A01035",
+      "symbol": "PATANJALI",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "364.85",
+        "avg_turnover_20d_cr": "157.1908436835",
+        "median_turnover_20d_cr": "126.5966479125",
+        "last_turnover_cr": "298.42306414",
+        "min_turnover_5d_cr": "79.83950026",
+        "activity_ratio": "1.898476127151958635985152598",
+        "avg_volume_20d": "4374696"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "17029",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE059A01026",
+      "symbol": "CIPLA",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1378.90",
+        "avg_turnover_20d_cr": "152.1640206375",
+        "median_turnover_20d_cr": "132.856686955",
+        "last_turnover_cr": "197.043829",
+        "min_turnover_5d_cr": "135.35068453",
+        "activity_ratio": "1.294943628424600223359749286",
+        "avg_volume_20d": "1139324.35"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "694",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE702C01027",
+      "symbol": "APLAPOLLO",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "2165.10",
+        "avg_turnover_20d_cr": "151.5716361615",
+        "median_turnover_20d_cr": "131.600314405",
+        "last_turnover_cr": "241.19409164",
+        "min_turnover_5d_cr": "194.31970853",
+        "activity_ratio": "1.591287774864467546945184989",
+        "avg_volume_20d": "709882.3"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "25780",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE0IX101010",
+      "symbol": "DATAPATTNS",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "3800.00",
+        "avg_turnover_20d_cr": "148.5542617855",
+        "median_turnover_20d_cr": "119.70133070",
+        "last_turnover_cr": "155.54196475",
+        "min_turnover_5d_cr": "128.3139332",
+        "activity_ratio": "1.047038051150559799972585621",
+        "avg_volume_20d": "367470.8"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "7358",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE891D01026",
+      "symbol": "REDINGTON",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "326.95",
+        "avg_turnover_20d_cr": "147.80268637925",
+        "median_turnover_20d_cr": "114.0848327125",
+        "last_turnover_cr": "199.66020305",
+        "min_turnover_5d_cr": "69.7750596",
+        "activity_ratio": "1.350856387939307915378597877",
+        "avg_volume_20d": "3888519.35"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "14255",
+      "reference_price_band": "20",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE245A01021",
+      "symbol": "TATAPOWER",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "345.05",
+        "avg_turnover_20d_cr": "147.762373616",
+        "median_turnover_20d_cr": "130.5808945525",
+        "last_turnover_cr": "122.190690075",
+        "min_turnover_5d_cr": "78.3951604",
+        "activity_ratio": "0.8269404929332358269119482172",
+        "avg_volume_20d": "4282176.9"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "3426",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE05CZ01011",
+      "symbol": "RATNAVEER",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "360.25",
+        "avg_turnover_20d_cr": "146.785879906",
+        "median_turnover_20d_cr": "141.8081669725",
+        "last_turnover_cr": "223.042348155",
+        "min_turnover_5d_cr": "63.258067985",
+        "activity_ratio": "1.519508199956520142100268046",
+        "avg_volume_20d": "4316253.15"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "18423",
+      "reference_price_band": "20",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE061F01013",
+      "symbol": "FORTIS",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "768.15",
+        "avg_turnover_20d_cr": "142.496891263",
+        "median_turnover_20d_cr": "109.7868975575",
+        "last_turnover_cr": "110.573897255",
+        "min_turnover_5d_cr": "56.88524304",
+        "activity_ratio": "0.7759741021361568592973073778",
+        "avg_volume_20d": "1882123.9"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "14592",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE685A01028",
+      "symbol": "TORNTPHARM",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "4613.40",
+        "avg_turnover_20d_cr": "141.7207817505",
+        "median_turnover_20d_cr": "144.049301575",
+        "last_turnover_cr": "201.81507814",
+        "min_turnover_5d_cr": "102.95172358",
+        "activity_ratio": "1.424033057447398560312247930",
+        "avg_volume_20d": "306738.2"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "3518",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE079A01024",
+      "symbol": "AMBUJACEM",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "348.05",
+        "avg_turnover_20d_cr": "141.16413726575",
+        "median_turnover_20d_cr": "98.3011643125",
+        "last_turnover_cr": "128.34023733",
+        "min_turnover_5d_cr": "128.34023733",
+        "activity_ratio": "0.9091561059052255237864438406",
+        "avg_volume_20d": "3968997.7"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "1270",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE795G01014",
+      "symbol": "HDFCLIFE",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "524.90",
+        "avg_turnover_20d_cr": "140.197219328",
+        "median_turnover_20d_cr": "123.9684370225",
+        "last_turnover_cr": "131.409749865",
+        "min_turnover_5d_cr": "58.710014335",
+        "activity_ratio": "0.9373206579622583254549383697",
+        "avg_volume_20d": "2607211.85"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "467",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE084101034",
+      "symbol": "INDOMIM",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1171.60",
+        "avg_turnover_20d_cr": "139.3901889355",
+        "median_turnover_20d_cr": "127.88200554",
+        "last_turnover_cr": "128.41182356",
+        "min_turnover_5d_cr": "125.55316414",
+        "activity_ratio": "0.9212400423635266233296194699",
+        "avg_volume_20d": "1177213.6"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "764301",
+      "reference_price_band": "10",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE670K01029",
+      "symbol": "LODHA",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1037.00",
+        "avg_turnover_20d_cr": "139.242958252",
+        "median_turnover_20d_cr": "131.19912047",
+        "last_turnover_cr": "114.83528661",
+        "min_turnover_5d_cr": "68.22474406",
+        "activity_ratio": "0.8247116267249412359174013565",
+        "avg_volume_20d": "1317666.5"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "3220",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE121E01018",
+      "symbol": "JSWENERGY",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "500.35",
+        "avg_turnover_20d_cr": "138.9865570485",
+        "median_turnover_20d_cr": "83.3973877675",
+        "last_turnover_cr": "153.942778665",
+        "min_turnover_5d_cr": "65.85971546",
+        "activity_ratio": "1.107609123746269630222625940",
+        "avg_volume_20d": "2864975.7"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "17869",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE974X01010",
+      "symbol": "TIINDIA",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "2120.00",
+        "avg_turnover_20d_cr": "138.4496014975",
+        "median_turnover_20d_cr": "139.13054354",
+        "last_turnover_cr": "160.21082433",
+        "min_turnover_5d_cr": "34.54372281",
+        "activity_ratio": "1.157177937654756953880700714",
+        "avg_volume_20d": "625805.2"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "312",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE196A01026",
+      "symbol": "MARICO",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "800.00",
+        "avg_turnover_20d_cr": "138.20341356925",
+        "median_turnover_20d_cr": "130.0251836375",
+        "last_turnover_cr": "193.0227088",
+        "min_turnover_5d_cr": "64.192430025",
+        "activity_ratio": "1.396656593458753686304436375",
+        "avg_volume_20d": "1765409.25"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "4067",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE414G01012",
+      "symbol": "MUTHOOTFIN",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "2408.60",
+        "avg_turnover_20d_cr": "137.9140833345",
+        "median_turnover_20d_cr": "150.39492304",
+        "last_turnover_cr": "188.51137719",
+        "min_turnover_5d_cr": "45.45797325",
+        "activity_ratio": "1.366875467915630893055508090",
+        "avg_volume_20d": "541437"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "23650",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE180A01020",
+      "symbol": "MFSL",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1200.00",
+        "avg_turnover_20d_cr": "137.089623419",
+        "median_turnover_20d_cr": "118.00465337",
+        "last_turnover_cr": "215.02306571",
+        "min_turnover_5d_cr": "60.91167417",
+        "activity_ratio": "1.568485348105484535060702441",
+        "avg_volume_20d": "1063820.55"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "2142",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE406A01037",
+      "symbol": "AUROPHARMA",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1681.40",
+        "avg_turnover_20d_cr": "136.1420685955",
+        "median_turnover_20d_cr": "141.375072755",
+        "last_turnover_cr": "159.41511591",
+        "min_turnover_5d_cr": "67.64841876",
+        "activity_ratio": "1.170946773136288752403408827",
+        "avg_volume_20d": "825002.65"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "275",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE854D01024",
+      "symbol": "UNITDSPR",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1333.70",
+        "avg_turnover_20d_cr": "135.628624104",
+        "median_turnover_20d_cr": "121.63331758",
+        "last_turnover_cr": "221.83423656",
+        "min_turnover_5d_cr": "111.00541502",
+        "activity_ratio": "1.635600434830759285573825731",
+        "avg_volume_20d": "1032584.35"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "10447",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE326A01037",
+      "symbol": "LUPIN",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "2011.00",
+        "avg_turnover_20d_cr": "130.6738618915",
+        "median_turnover_20d_cr": "133.630406275",
+        "last_turnover_cr": "152.53479972",
+        "min_turnover_5d_cr": "72.77063973",
+        "activity_ratio": "1.167293883505573489213586751",
+        "avg_volume_20d": "663117.2"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "10440",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE0K9O01026",
+      "symbol": "LALITHAA",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "360.40",
+        "avg_turnover_20d_cr": "124.79510472375",
+        "median_turnover_20d_cr": "109.4715045325",
+        "last_turnover_cr": "113.948046455",
+        "min_turnover_5d_cr": "49.919840515",
+        "activity_ratio": "0.9130810596075754951814234264",
+        "avg_volume_20d": "3378436.35"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "765361",
+      "reference_price_band": "5",
+      "reference_review_status": "EXCLUDED_REFERENCE_LOW_BAND"
+    },
+    {
+      "isin": "INE049B01025",
+      "symbol": "WOCKPHARMA",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1901.10",
+        "avg_turnover_20d_cr": "124.1678789285",
+        "median_turnover_20d_cr": "99.018322785",
+        "last_turnover_cr": "96.33532018",
+        "min_turnover_5d_cr": "93.57964149",
+        "activity_ratio": "0.7758473528848236646714799085",
+        "avg_volume_20d": "630911.4"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "7506",
+      "reference_price_band": "20",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE674K01013",
+      "symbol": "ABCAPITAL",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "369.45",
+        "avg_turnover_20d_cr": "123.85311119475",
+        "median_turnover_20d_cr": "108.3477315725",
+        "last_turnover_cr": "326.144606105",
+        "min_turnover_5d_cr": "38.905025195",
+        "activity_ratio": "2.633317830766167451847768998",
+        "avg_volume_20d": "3339867.65"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "21614",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE935A01035",
+      "symbol": "GLENMARK",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "2298.70",
+        "avg_turnover_20d_cr": "123.4061699915",
+        "median_turnover_20d_cr": "112.95577587",
+        "last_turnover_cr": "99.2415896",
+        "min_turnover_5d_cr": "53.74941115",
+        "activity_ratio": "0.8041866108220973569797022915",
+        "avg_volume_20d": "548959.5"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "7406",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE562A01011",
+      "symbol": "INDIANB",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "865.50",
+        "avg_turnover_20d_cr": "122.94044461875",
+        "median_turnover_20d_cr": "95.000700970",
+        "last_turnover_cr": "130.82572055",
+        "min_turnover_5d_cr": "69.455636125",
+        "activity_ratio": "1.064138989863775016314315643",
+        "avg_volume_20d": "1466549"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "14309",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE01NH01023",
+      "symbol": "DHOOTTRANS",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1545.40",
+        "avg_turnover_20d_cr": "121.2158106925",
+        "median_turnover_20d_cr": "101.343129915",
+        "last_turnover_cr": "92.35164407",
+        "min_turnover_5d_cr": "65.86702676",
+        "activity_ratio": "0.7618778733764149469184972592",
+        "avg_volume_20d": "819615.8"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "764553",
+      "reference_price_band": "10",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE068V01023",
+      "symbol": "GLAND",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "3095.90",
+        "avg_turnover_20d_cr": "117.7186642135",
+        "median_turnover_20d_cr": "93.549277975",
+        "last_turnover_cr": "92.89177764",
+        "min_turnover_5d_cr": "85.17499544",
+        "activity_ratio": "0.7890998276324915376245100498",
+        "avg_volume_20d": "393336.15"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "1186",
+      "reference_price_band": "20",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE777K01022",
+      "symbol": "RRKABEL",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "2055.70",
+        "avg_turnover_20d_cr": "115.6525260715",
+        "median_turnover_20d_cr": "93.063529215",
+        "last_turnover_cr": "174.93973413",
+        "min_turnover_5d_cr": "38.84762683",
+        "activity_ratio": "1.512632192934954124609010097",
+        "avg_volume_20d": "478424.55"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "18566",
+      "reference_price_band": "20",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE102D01028",
+      "symbol": "GODREJCP",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "818.00",
+        "avg_turnover_20d_cr": "114.3623116215",
+        "median_turnover_20d_cr": "73.1314710525",
+        "last_turnover_cr": "770.77628274",
+        "min_turnover_5d_cr": "59.215111535",
+        "activity_ratio": "6.739775296699186614910707067",
+        "avg_volume_20d": "1370331.45"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "10099",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE259A01022",
+      "symbol": "COLPAL",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1596.50",
+        "avg_turnover_20d_cr": "113.576412719",
+        "median_turnover_20d_cr": "78.89643507",
+        "last_turnover_cr": "86.45355248",
+        "min_turnover_5d_cr": "60.04364131",
+        "activity_ratio": "0.7611928428651395148841705688",
+        "avg_volume_20d": "653321.55"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "15141",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE530B01024",
+      "symbol": "IIFL",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "527.65",
+        "avg_turnover_20d_cr": "113.32422871725",
+        "median_turnover_20d_cr": "97.8580744825",
+        "last_turnover_cr": "88.80411599",
+        "min_turnover_5d_cr": "44.836217345",
+        "activity_ratio": "0.7836286820144261457060430801",
+        "avg_volume_20d": "1946125.8"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "11809",
+      "reference_price_band": "20",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE318A01026",
+      "symbol": "PIDILITIND",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1461.60",
+        "avg_turnover_20d_cr": "112.666536794",
+        "median_turnover_20d_cr": "91.658972775",
+        "last_turnover_cr": "114.76868285",
+        "min_turnover_5d_cr": "91.66620146",
+        "activity_ratio": "1.018658122596273401523225310",
+        "avg_volume_20d": "774550.3"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "2664",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE047A01021",
+      "symbol": "GRASIM",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "2981.40",
+        "avg_turnover_20d_cr": "112.585101786",
+        "median_turnover_20d_cr": "92.59052832",
+        "last_turnover_cr": "154.9613876",
+        "min_turnover_5d_cr": "63.68948771",
+        "activity_ratio": "1.376393369475724959309493198",
+        "avg_volume_20d": "385817.6"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "1232",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE346A01027",
+      "symbol": "ICICIAMC",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "2706.90",
+        "avg_turnover_20d_cr": "110.893710924",
+        "median_turnover_20d_cr": "93.19969270",
+        "last_turnover_cr": "83.47638181",
+        "min_turnover_5d_cr": "41.84873483",
+        "activity_ratio": "0.7527602883378100847727385230",
+        "avg_volume_20d": "385490.35"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "760407",
+      "reference_price_band": "10",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE736A01011",
+      "symbol": "CDSL",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1263.00",
+        "avg_turnover_20d_cr": "110.784234573",
+        "median_turnover_20d_cr": "103.056672905",
+        "last_turnover_cr": "112.27099896",
+        "min_turnover_5d_cr": "83.12163971",
+        "activity_ratio": "1.013420360692389977830785405",
+        "avg_volume_20d": "885040.75"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "21174",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE628A01036",
+      "symbol": "UPL",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "513.35",
+        "avg_turnover_20d_cr": "110.43957529575",
+        "median_turnover_20d_cr": "103.18868178",
+        "last_turnover_cr": "120.39295641",
+        "min_turnover_5d_cr": "41.002086565",
+        "activity_ratio": "1.090125130304019122788061657",
+        "avg_volume_20d": "2140362.2"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "11287",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE572E01012",
+      "symbol": "PNBHOUSING",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1060.00",
+        "avg_turnover_20d_cr": "109.8193592215",
+        "median_turnover_20d_cr": "70.48524856",
+        "last_turnover_cr": "168.0854206",
+        "min_turnover_5d_cr": "56.73517592",
+        "activity_ratio": "1.530562751335858285050702125",
+        "avg_volume_20d": "967089.05"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "18908",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE017A01032",
+      "symbol": "GESHIP",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1593.60",
+        "avg_turnover_20d_cr": "109.529339589",
+        "median_turnover_20d_cr": "98.909109325",
+        "last_turnover_cr": "91.49340512",
+        "min_turnover_5d_cr": "69.33992474",
+        "activity_ratio": "0.8353323909677682042798097018",
+        "avg_volume_20d": "711436.55"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "13776",
+      "reference_price_band": "20",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE382Z01011",
+      "symbol": "GRSE",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1943.70",
+        "avg_turnover_20d_cr": "109.43845292",
+        "median_turnover_20d_cr": "83.68571750",
+        "last_turnover_cr": "342.95738864",
+        "min_turnover_5d_cr": "54.02320052",
+        "activity_ratio": "3.133792369037813331690873468",
+        "avg_volume_20d": "545515.35"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "5475",
+      "reference_price_band": "20",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE216A01030",
+      "symbol": "BRITANNIA",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "4640.00",
+        "avg_turnover_20d_cr": "105.4984156925",
+        "median_turnover_20d_cr": "108.631435605",
+        "last_turnover_cr": "95.68805405",
+        "min_turnover_5d_cr": "78.25106573",
+        "activity_ratio": "0.9070093936662081120948677985",
+        "avg_volume_20d": "223761.35"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "547",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE045601023",
+      "symbol": "PARAS",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1249.70",
+        "avg_turnover_20d_cr": "103.628251472",
+        "median_turnover_20d_cr": "84.92682169",
+        "last_turnover_cr": "186.56725395",
+        "min_turnover_5d_cr": "98.04243814",
+        "activity_ratio": "1.800351268113501225167135376",
+        "avg_volume_20d": "813096.1"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "5911",
+      "reference_price_band": "20",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    },
+    {
+      "isin": "INE704P01025",
+      "symbol": "COCHINSHIP",
+      "asof_date": "2026-10-30",
+      "metrics": {
+        "close": "1114.20",
+        "avg_turnover_20d_cr": "101.7230246765",
+        "median_turnover_20d_cr": "92.37312260",
+        "last_turnover_cr": "88.73703067",
+        "min_turnover_5d_cr": "54.75228796",
+        "activity_ratio": "0.8723396787718600197221495957",
+        "avg_volume_20d": "840735.3"
+      },
+      "liquidity_pass": true,
+      "failed_rules": [],
+      "status": "HOLD_RESTRICTIONS_AND_CALENDAR",
+      "mapping_status": "UNIQUE",
+      "dhan_security_id": "21508",
+      "reference_price_band": "No Band",
+      "reference_review_status": "HOLD_EFFECTIVE_DATE_AND_SURVEILLANCE"
+    }
+  ],
+  "incomplete_histories": [
+    {
+      "isin": "INE00TV01023",
+      "symbol": "SUDARSHAN",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26"
+      ]
+    },
+    {
+      "isin": "INE011D01013",
+      "symbol": "SHERVANI",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-09",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-16",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-27"
+      ]
+    },
+    {
+      "isin": "INE01C001026",
+      "symbol": "AARTECH",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09"
+      ]
+    },
+    {
+      "isin": "INE029N01014",
+      "symbol": "SHAHINVEST",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19"
+      ]
+    },
+    {
+      "isin": "INE032E01017",
+      "symbol": "ARYAMAN",
+      "missing_dates": [
+        "2026-10-05"
+      ]
+    },
+    {
+      "isin": "INE043C01018",
+      "symbol": "IVP",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09"
+      ]
+    },
+    {
+      "isin": "INE050001010",
+      "symbol": "PPL",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE058B01018",
+      "symbol": "ZENITHEXPO",
+      "missing_dates": [
+        "2026-10-09",
+        "2026-10-15",
+        "2026-10-21",
+        "2026-10-22"
+      ]
+    },
+    {
+      "isin": "INE084K01015",
+      "symbol": "AMANTA",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16"
+      ]
+    },
+    {
+      "isin": "INE095I01015",
+      "symbol": "PPAP",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16"
+      ]
+    },
+    {
+      "isin": "INE09PO01019",
+      "symbol": "ZETWERK",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22"
+      ]
+    },
+    {
+      "isin": "INE0AK901016",
+      "symbol": "RRECL",
+      "missing_dates": [
+        "2026-10-12",
+        "2026-10-19"
+      ]
+    },
+    {
+      "isin": "INE0B9K01033",
+      "symbol": "BANSALWIRE",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15"
+      ]
+    },
+    {
+      "isin": "INE0BJO01010",
+      "symbol": "JPL",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27"
+      ]
+    },
+    {
+      "isin": "INE0CHO01012",
+      "symbol": "ADL",
+      "missing_dates": [
+        "2026-10-13"
+      ]
+    },
+    {
+      "isin": "INE0D4501011",
+      "symbol": "GERMAN",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE0DNW01011",
+      "symbol": "FAIRCHEMOR",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE0GIU01018",
+      "symbol": "UMAEXPORTS",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16"
+      ]
+    },
+    {
+      "isin": "INE0J1N01028",
+      "symbol": "ORIENTCABL",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE0JUI01012",
+      "symbol": "HEXAGON",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16"
+      ]
+    },
+    {
+      "isin": "INE0KWF01020",
+      "symbol": "MANIKA",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05"
+      ]
+    },
+    {
+      "isin": "INE0L2Y01011",
+      "symbol": "ARHAM",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-28",
+        "2026-10-29"
+      ]
+    },
+    {
+      "isin": "INE0LDG01026",
+      "symbol": "TONBO",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22"
+      ]
+    },
+    {
+      "isin": "INE0LLZ01011",
+      "symbol": "SONA",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08"
+      ]
+    },
+    {
+      "isin": "INE0N2201019",
+      "symbol": "FUSIONCX",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21"
+      ]
+    },
+    {
+      "isin": "INE0NLT01028",
+      "symbol": "BLSE",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05"
+      ]
+    },
+    {
+      "isin": "INE0OWC01011",
+      "symbol": "KHAZANCHI",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26"
+      ]
+    },
+    {
+      "isin": "INE0PK601023",
+      "symbol": "OCCLLTD",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09"
+      ]
+    },
+    {
+      "isin": "INE0Q8P01029",
+      "symbol": "BONDADA",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-28"
+      ]
+    },
+    {
+      "isin": "INE0TGX01019",
+      "symbol": "CHEMBONDCH",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09"
+      ]
+    },
+    {
+      "isin": "INE115S01010",
+      "symbol": "HALDER",
+      "missing_dates": [
+        "2026-10-15"
+      ]
+    },
+    {
+      "isin": "INE116G01013",
+      "symbol": "VARDHACRLC",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE133A01029",
+      "symbol": "JSWDULUX",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21"
+      ]
+    },
+    {
+      "isin": "INE155E01016",
+      "symbol": "INVPRECQ",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23"
+      ]
+    },
+    {
+      "isin": "INE157H01023",
+      "symbol": "KMSUGAR",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15"
+      ]
+    },
+    {
+      "isin": "INE165G01010",
+      "symbol": "ASSAMENT",
+      "missing_dates": [
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-19",
+        "2026-10-21"
+      ]
+    },
+    {
+      "isin": "INE178C01020",
+      "symbol": "SMARTLINK",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16"
+      ]
+    },
+    {
+      "isin": "INE186H01022",
+      "symbol": "BASML",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE18AK01028",
+      "symbol": "HDFIRE",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19"
+      ]
+    },
+    {
+      "isin": "INE1BZC01019",
+      "symbol": "OMFREIGHT",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE1JTV01015",
+      "symbol": "VEEGALAND",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE1O5L01025",
+      "symbol": "VNL",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22"
+      ]
+    },
+    {
+      "isin": "INE1QJA01015",
+      "symbol": "SWASTIKAIN",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14"
+      ]
+    },
+    {
+      "isin": "INE1TUG01013",
+      "symbol": "GSPLTRANS",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14"
+      ]
+    },
+    {
+      "isin": "INE211501023",
+      "symbol": "NITYAS",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22"
+      ]
+    },
+    {
+      "isin": "INE214A01019",
+      "symbol": "CYBERTECH",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE234I01028",
+      "symbol": "KAUSHALYA",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09"
+      ]
+    },
+    {
+      "isin": "INE24OJ01029",
+      "symbol": "BUILDPRO",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07"
+      ]
+    },
+    {
+      "isin": "INE274K01012",
+      "symbol": "BTTL",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09"
+      ]
+    },
+    {
+      "isin": "INE287C01037",
+      "symbol": "MICEL",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23"
+      ]
+    },
+    {
+      "isin": "INE28SO01013",
+      "symbol": "BONFIG",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22"
+      ]
+    },
+    {
+      "isin": "INE295A01018",
+      "symbol": "EVERESTIND",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE2WKE01011",
+      "symbol": "TRIVENIPT",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26"
+      ]
+    },
+    {
+      "isin": "INE307K01028",
+      "symbol": "SRIT",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19"
+      ]
+    },
+    {
+      "isin": "INE318C01014",
+      "symbol": "SAYAJIHOTL",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-09"
+      ]
+    },
+    {
+      "isin": "INE344D01018",
+      "symbol": "KAMANWALA",
+      "missing_dates": [
+        "2026-10-08"
+      ]
+    },
+    {
+      "isin": "INE356Y01018",
+      "symbol": "SMT",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22"
+      ]
+    },
+    {
+      "isin": "INE362D01010",
+      "symbol": "VIJSOLX",
+      "missing_dates": [
+        "2026-10-15"
+      ]
+    },
+    {
+      "isin": "INE363L01045",
+      "symbol": "BELDING",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09"
+      ]
+    },
+    {
+      "isin": "INE388G01026",
+      "symbol": "TICL",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09"
+      ]
+    },
+    {
+      "isin": "INE389K01018",
+      "symbol": "WELINV",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23"
+      ]
+    },
+    {
+      "isin": "INE390D01011",
+      "symbol": "TERAI",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE398L01017",
+      "symbol": "KANCOTEA",
+      "missing_dates": [
+        "2026-10-23",
+        "2026-10-29"
+      ]
+    },
+    {
+      "isin": "INE424C01010",
+      "symbol": "GINNIFILA",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09"
+      ]
+    },
+    {
+      "isin": "INE471W01019",
+      "symbol": "PALASHSECU",
+      "missing_dates": [
+        "2026-10-26"
+      ]
+    },
+    {
+      "isin": "INE483S01038",
+      "symbol": "CCAVENUE",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16"
+      ]
+    },
+    {
+      "isin": "INE497D01022",
+      "symbol": "DAMODARIND",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09"
+      ]
+    },
+    {
+      "isin": "INE505M01015",
+      "symbol": "ADROITIND",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14"
+      ]
+    },
+    {
+      "isin": "INE535F01024",
+      "symbol": "RAJOOENG",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE542C01019",
+      "symbol": "NKIND",
+      "missing_dates": [
+        "2026-10-05",
+        "2026-10-12"
+      ]
+    },
+    {
+      "isin": "INE546V01010",
+      "symbol": "EIFFL",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23"
+      ]
+    },
+    {
+      "isin": "INE553C01016",
+      "symbol": "NECCLTD",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE561C01019",
+      "symbol": "BHARATGEAR",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09"
+      ]
+    },
+    {
+      "isin": "INE566M01025",
+      "symbol": "AZADIND",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22"
+      ]
+    },
+    {
+      "isin": "INE568Z01015",
+      "symbol": "URAVIDEF",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23"
+      ]
+    },
+    {
+      "isin": "INE580P01029",
+      "symbol": "ACEVECTOR",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE593W01028",
+      "symbol": "FOCUS",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE605D01012",
+      "symbol": "NEAGI",
+      "missing_dates": [
+        "2026-10-07",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-22",
+        "2026-10-29"
+      ]
+    },
+    {
+      "isin": "INE620D01011",
+      "symbol": "INDPRUD",
+      "missing_dates": [
+        "2026-10-27"
+      ]
+    },
+    {
+      "isin": "INE645H01027",
+      "symbol": "SUTLEJTEX",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE648Z01023",
+      "symbol": "ACCURACY",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE661T01029",
+      "symbol": "PARASHLTH",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27"
+      ]
+    },
+    {
+      "isin": "INE670C01026",
+      "symbol": "IIRM",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21"
+      ]
+    },
+    {
+      "isin": "INE671C01016",
+      "symbol": "SUNLOC",
+      "missing_dates": [
+        "2026-10-22"
+      ]
+    },
+    {
+      "isin": "INE680Z01018",
+      "symbol": "AVG",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE697V01011",
+      "symbol": "PANSARI",
+      "missing_dates": [
+        "2026-10-28"
+      ]
+    },
+    {
+      "isin": "INE729D01010",
+      "symbol": "KILITCH",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE738V01013",
+      "symbol": "ARTNIRMAN",
+      "missing_dates": [
+        "2026-10-07"
+      ]
+    },
+    {
+      "isin": "INE753K01015",
+      "symbol": "EMMBI",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE757B01015",
+      "symbol": "TRANSWORLD",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16"
+      ]
+    },
+    {
+      "isin": "INE770A01010",
+      "symbol": "PRADPME",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE782D01027",
+      "symbol": "ALFREDHE",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-14",
+        "2026-10-21",
+        "2026-10-29"
+      ]
+    },
+    {
+      "isin": "INE794W01014",
+      "symbol": "MODTHREAD",
+      "missing_dates": [
+        "2026-10-19"
+      ]
+    },
+    {
+      "isin": "INE798F01010",
+      "symbol": "PANCHMAHQ",
+      "missing_dates": [
+        "2026-10-05"
+      ]
+    },
+    {
+      "isin": "INE804W01029",
+      "symbol": "RUNWALENTR",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE809I01019",
+      "symbol": "ONMOBILE",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09"
+      ]
+    },
+    {
+      "isin": "INE823B01015",
+      "symbol": "COMPEAU",
+      "missing_dates": [
+        "2026-10-22"
+      ]
+    },
+    {
+      "isin": "INE826B01026",
+      "symbol": "INDTONER",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-28",
+        "2026-10-29"
+      ]
+    },
+    {
+      "isin": "INE829S01016",
+      "symbol": "MSL",
+      "missing_dates": [
+        "2026-10-19"
+      ]
+    },
+    {
+      "isin": "INE830C01026",
+      "symbol": "EMAMIPAP",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23"
+      ]
+    },
+    {
+      "isin": "INE834I01025",
+      "symbol": "KHADIM",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23"
+      ]
+    },
+    {
+      "isin": "INE843L01012",
+      "symbol": "SIEL",
+      "missing_dates": [
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-29"
+      ]
+    },
+    {
+      "isin": "INE855A01019",
+      "symbol": "WHBRADY",
+      "missing_dates": [
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-16",
+        "2026-10-27",
+        "2026-10-28"
+      ]
+    },
+    {
+      "isin": "INE864I01014",
+      "symbol": "MTARTECH",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16"
+      ]
+    },
+    {
+      "isin": "INE864J01012",
+      "symbol": "TAMBOLIIN",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09"
+      ]
+    },
+    {
+      "isin": "INE864X01013",
+      "symbol": "DPWIRES",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE878E01021",
+      "symbol": "SETCO",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09"
+      ]
+    },
+    {
+      "isin": "INE883C01025",
+      "symbol": "PACIFICI",
+      "missing_dates": [
+        "2026-10-15",
+        "2026-10-23"
+      ]
+    },
+    {
+      "isin": "INE885E01042",
+      "symbol": "MAZDA",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09"
+      ]
+    },
+    {
+      "isin": "INE885F01015",
+      "symbol": "MASKINVEST",
+      "missing_dates": [
+        "2026-10-09",
+        "2026-10-22",
+        "2026-10-23"
+      ]
+    },
+    {
+      "isin": "INE888C01040",
+      "symbol": "SADHNANIQ",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09"
+      ]
+    },
+    {
+      "isin": "INE914G01029",
+      "symbol": "POLYSPIN",
+      "missing_dates": [
+        "2026-10-13",
+        "2026-10-22"
+      ]
+    },
+    {
+      "isin": "INE916G01016",
+      "symbol": "GEECEE",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE921B01025",
+      "symbol": "DBSTOCKBRO",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09"
+      ]
+    },
+    {
+      "isin": "INE926K01017",
+      "symbol": "AHLEAST",
+      "missing_dates": [
+        "2026-10-15"
+      ]
+    },
+    {
+      "isin": "INE946H01037",
+      "symbol": "VIPULLTD",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09"
+      ]
+    },
+    {
+      "isin": "INE979R01011",
+      "symbol": "SHYAMCENT",
+      "missing_dates": [
+        "2026-10-01"
+      ]
+    },
+    {
+      "isin": "INE997I01012",
+      "symbol": "SHRIKRISH",
+      "missing_dates": [
+        "2026-10-06",
+        "2026-10-15"
+      ]
+    },
+    {
+      "isin": "INF0R8F01257",
+      "symbol": "NXT100CASE",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13"
+      ]
+    },
+    {
+      "isin": "INF109K1A716",
+      "symbol": "PHARMAIETF",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27"
+      ]
+    },
+    {
+      "isin": "INF109KC18O0",
+      "symbol": "GSEC10IETF",
+      "missing_dates": [
+        "2026-10-07",
+        "2026-10-14",
+        "2026-10-28",
+        "2026-10-29"
+      ]
+    },
+    {
+      "isin": "INF179KC1LA2",
+      "symbol": "HFTSEINDIA",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15"
+      ]
+    },
+    {
+      "isin": "INF200KB1CJ6",
+      "symbol": "SBIDEFETF",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26",
+        "2026-10-27",
+        "2026-10-28"
+      ]
+    },
+    {
+      "isin": "INF204KC1HS1",
+      "symbol": "FARBEES",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15"
+      ]
+    },
+    {
+      "isin": "INF205KA1CB9",
+      "symbol": "IVZBANKNF",
+      "missing_dates": [
+        "2026-10-09"
+      ]
+    },
+    {
+      "isin": "INF209KC1134",
+      "symbol": "ABGSEC",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-16",
+        "2026-10-21"
+      ]
+    },
+    {
+      "isin": "INF209KC1670",
+      "symbol": "ABSL10BANK",
+      "missing_dates": [
+        "2026-10-13"
+      ]
+    },
+    {
+      "isin": "INF209KC1746",
+      "symbol": "BIRLATOTAL",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06",
+        "2026-10-07",
+        "2026-10-08",
+        "2026-10-09",
+        "2026-10-12",
+        "2026-10-13",
+        "2026-10-14",
+        "2026-10-15",
+        "2026-10-16",
+        "2026-10-19",
+        "2026-10-21",
+        "2026-10-22",
+        "2026-10-23",
+        "2026-10-26"
+      ]
+    },
+    {
+      "isin": "INF740KA1WV7",
+      "symbol": "MSCIADD",
+      "missing_dates": [
+        "2026-10-05"
+      ]
+    },
+    {
+      "isin": "INF740KA1ZR8",
+      "symbol": "INSURADD",
+      "missing_dates": [
+        "2026-10-01",
+        "2026-10-05",
+        "2026-10-06"
+      ]
+    },
+    {
+      "isin": "INF754K01XF3",
+      "symbol": "ENEXT50",
+      "missing_dates": [
+        "2026-10-27",
+        "2026-10-28"
+      ]
+    },
+    {
+      "isin": "INF754K01XI7",
+      "symbol": "ELMDIV",
+      "missing_dates": [
+        "2026-10-14",
+        "2026-10-28"
+      ]
+    },
+    {
+      "isin": "INF789F1AZE6",
+      "symbol": "GILT5BETA",
+      "missing_dates": [
+        "2026-10-22"
+      ]
+    }
+  ],
+  "remaining_gates": [
+    "Verify effective-dated security eligibility, fixed bands and surveillance",
+    "Verify full exchange session calendar and latest completed session",
+    "Validate corporate actions and Dhan candle/chart reconciliation"
+  ],
+  "dhan_master": {
+    "url": "https://images.dhan.co/api-data/api-scrip-master-detailed.csv",
+    "sha256": "0df6ffffd7cd66b0257b2c4b4fbe9b09678ae3bf7620debdf250688f457cbc33",
+    "retrieved_on": "2026-10-31",
+    "effective_date_verified": false
+  },
+  "calendar_reference": "https://nsearchives.nseindia.com/content/circulars/CMTR71775.pdf",
+  "validation_run": "2026-10-31",
+  "reference_sources": {
+    "nse_equities": {
+      "filename": "0.csv",
+      "sha256": "e99e5163b9edd041d3bed2c31c60c26ba954e741ca2d87a4594ffc3fea9c4cec",
+      "effective_date_verified": false,
+      "url": "https://nsearchives.nseindia.com/content/equities/EQUITY_L.csv",
+      "retrieved_on": "2026-10-31"
+    },
+    "nse_price_bands": {
+      "filename": "1.csv",
+      "sha256": "9ead77d29a0cc281fad9439641f51db6507a878c897457ef2891a02bdbbef5ce",
+      "effective_date_verified": false,
+      "url": "https://nsearchives.nseindia.com/content/equities/sec_list.csv",
+      "retrieved_on": "2026-10-31"
+    },
+    "dhan_master": {
+      "filename": "2.csv",
+      "sha256": "0df6ffffd7cd66b0257b2c4b4fbe9b09678ae3bf7620debdf250688f457cbc33",
+      "effective_date_verified": false,
+      "url": "https://images.dhan.co/api-data/api-scrip-master-detailed.csv",
+      "retrieved_on": "2026-10-31"
+    }
+  }
+}
