@@ -9,7 +9,7 @@ import hashlib
 import json
 import re
 from datetime import datetime, time
-from decimal import Decimal
+from decimal import Decimal, ROUND_DOWN
 from zoneinfo import ZoneInfo
 
 from src.scan_store import ScanStore
@@ -154,7 +154,8 @@ def transition(previous, command):
         if q:
             old_q = position["quantity"]
             entry_fee = Decimal(position["remaining_entry_fee"])
-            allocated = entry_fee if q == old_q else entry_fee * q / old_q
+            allocated = entry_fee if q == old_q else (entry_fee * q / old_q).quantize(
+                Decimal("0.000001"), rounding=ROUND_DOWN)
             realised = q * (price - Decimal(position["entry_price"])) - fee - allocated
             cash += q * price - fee
             position["quantity"] -= q
@@ -168,6 +169,10 @@ def transition(previous, command):
                 order["status"] = "FILLED"
     state.update(cash=amount(cash), position=position, last_at=at.isoformat(),
                  sequence=state["sequence"] + 1)
+    basis = (Decimal(position["entry_price"]) * position["quantity"] +
+             Decimal(position["remaining_entry_fee"])) if position else Decimal(0)
+    if cash + basis != CAPITAL + Decimal(state["realised_pnl"]):
+        raise ValueError("Cash/position/P&L reconciliation failed")
     return state
 
 

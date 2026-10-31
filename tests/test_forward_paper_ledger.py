@@ -205,6 +205,20 @@ def test_fractional_entry_fee_allocation_reconciles_on_final_exit(ledger):
     assert ledger.audit("test")["event_count"] == 5
 
 
+@pytest.mark.parametrize("n", [3, 7, 13, 99])
+def test_many_single_share_exits_preserve_exact_cash_basis_identity(n):
+    state = transition(initial_state(), entry(quantity=n))
+    state = transition(state, filled(quantity=n, fee="1"))
+    state = transition(state, exit_request())
+    for _ in range(n):
+        state = transition(state, exited(quantity=1, price="101", fee="0.1"))
+        position = state["position"]
+        basis = (Decimal(position["entry_price"]) * position["quantity"] +
+                 Decimal(position["remaining_entry_fee"])) if position else Decimal(0)
+        assert Decimal(state["cash"]) + basis == Decimal("980000") + Decimal(state["realised_pnl"])
+    assert state["position"] is None
+
+
 @pytest.mark.skipif(not os.getenv("TEST_UNIVERSE_DATABASE_URL"), reason="PostgreSQL CI only")
 def test_postgres_concurrent_fills_and_restart():
     backend = ForwardPaperLedger(os.environ["TEST_UNIVERSE_DATABASE_URL"])

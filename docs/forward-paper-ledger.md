@@ -26,7 +26,10 @@ replay engine. Importing it creates no tables. No production database was used.
   fill or forced flat state is created.
 - Cash, actual declared simulation fees, realised partial-exit P&L, remaining
   entry-fee basis, orders and fills are atomically persisted. Fee basis is
-  apportioned on partial exit; its residual is allocated on final exit.
+  apportioned to six decimal places (rounded down) on partial exit; its residual
+  is allocated on final exit. Every transition checks the exact cash plus open
+  cost-basis equals initial capital plus realised P&L identity. This is internal
+  simulation precision, not a claim about broker fee/settlement rounding.
 - PostgreSQL advisory transaction locks/SQLite immediate transactions serialize
   writers. Immutable event IDs reject conflicting retry payloads. Same-command
   retries return their original result, which can be older than the current
