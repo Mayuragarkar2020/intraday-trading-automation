@@ -71,7 +71,7 @@ def create_paper_router(require_token):
     @router.get("/runs/{run_id}/trades.csv")
     def trade_csv(run_id: str):
         data=saved(run_id)["result"]
-        fields=["plan_id","symbol","quantity","entry","exit_average","entry_bar_close","exit_bar_close","exit_reason","fees","net_pnl","planned_risk","net_r","risk_budget_breached"]
+        fields=["plan_id","symbol","quantity","entry","exit_average","entry_bar_close","exit_bar_close","exit_reason","fees","net_pnl","planned_risk","net_r","risk_budget_breached","exit_fill_at","closure_deadline_breached"]
         output=io.StringIO(newline="");writer=csv.DictWriter(output,fieldnames=fields)
         writer.writeheader()
         for row in data["trades"]:
