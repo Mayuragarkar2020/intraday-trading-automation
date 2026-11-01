@@ -1,5 +1,31 @@
 # Intraday Trading Automation — authoritative project handoff
 
+## 1 November 2026 — inactive deadline and persistent manager source
+
+PR #9 now proposes replay v2: force_exit is a completed-closure deadline, default
+15:00 IST, capped at 15:00. Flatten attempts start ten minutes earlier. Partial,
+unfilled or late exits stay visible; late recovery retains the deadline breach.
+Old stored replay runs are immutable; the engine-version change creates new IDs.
+
+An inactive receipt-time simulator connects ranked entry reservations to durable
+fills, initial/cost-breakeven stops, EMA10 exits before 1.5R, partial/rejected exits,
+clock-driven flatten requests and persistent breach state. Its fill model is
+NEXT_TIMELY_CLOSE_AT_RECEIPT, distinct from historical replay next-open fills.
+A signal/order decision cannot use an earlier bar. Gaps cannot generate fills.
+Clock events request/cancel/flag exposure but cannot manufacture closing prices.
+All effects of one bar are journaled atomically; retries/concurrent workers and
+restart audit are tested. Source attestations are caller declarations until a
+trusted adapter verifies them; current research sources MUST remain held.
+
+Local checks: 139 passed, four PostgreSQL-only skipped. Exact-head CI must be
+checked on the current PR head; do not reuse the former 447-test result.
+No runtime/API/cron imports the simulator. No production changes or activation.
+The verified signal adapter, authoritative session/reference contracts and actual
+full-universe operation remain incomplete. Calendar still ends 6 November.
+Next: inspect CI, verify actual 2 November research operation and evidence, bind
+trusted persisted signals/receipts, then obtain approval for a concrete release.
+
+
 Updated: 31 October 2026 (IST). Read this first when resuming.
 Owner: Mayur Agarkar. Private repository: https://github.com/Mayuragarkar2020/intraday-trading-automation
 
