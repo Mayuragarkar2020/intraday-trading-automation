@@ -1,5 +1,28 @@
 # Intraday Trading Automation — authoritative project handoff
 
+## Human-choice cockpit ready for approval — 1 November 2026
+
+PR #14: https://github.com/Mayuragarkar2020/intraday-trading-automation/pull/14
+Exact head 620bc0e824c8ec542ecd87d3927dbcc7c97ac55f passed 539 full
+Python/API/PostgreSQL tests and both Chromium suites (run 41274461258).
+It is draft/unapproved/undeployed. The current release proposal is existing WEB
+SERVICE ONLY, with no cron/config/schedule/compute change or trading activation.
+
+The main screen is shortlist -> Mayur's stock choice -> trade status/journal.
+It includes a read-only plan review, advisory ranking, durable choice, withdrawal,
+stale-tab/concurrency protection and an immutable choice-to-entry guard. Manual
+sizing and diagnostic tools are under Advanced. Saved choices remain SELECTED_HELD;
+no automatic paper or broker executor is connected by this release. The next
+implementation priority is connecting that exact approved choice to the verified
+full-session paper manager and automatic journal. Do not substitute PR #13's
+automatic liquidity winner. Existing rule/risk/closure limits remain unchanged.
+
+Final validation used GitHub CI after the local execution environment became
+unavailable; all code/context is preserved in GitHub. Production recheck confirmed
+web PR #9 and cron PR #12 still live with auto-deploy off. Do not re-request prior
+PR #12 approval or deploy PR #14 without its separate web-release approval.
+
+
 ## 1 November 2026 — human stock choice is the primary workflow
 
 Mayur clarified: the system shortlists setups; HE chooses which stock to trade;
