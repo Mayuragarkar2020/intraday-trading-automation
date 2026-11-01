@@ -199,6 +199,9 @@ class ForwardPaperLedger(ScanStore):
     One global PostgreSQL writer lock deliberately serializes this initial small
     ledger. SQLite is a test backend. Nothing initializes on import/deployment.
     """
+    def validate_entry(self,db,account_id,command):
+        """Extension point under the account writer lock; not source clearance."""
+
     def initialize(self):
         with self.connection() as db:
             if self.postgres:
@@ -231,6 +234,8 @@ class ForwardPaperLedger(ScanStore):
                 return {"status": "ALREADY_APPLIED", "state": json.loads(old[1])}
             row = db.execute("SELECT payload FROM forward_paper_accounts WHERE account_id="+p,
                              (account_id,)).fetchone()
+            if command.get("kind")=="ENTRY_REQUEST":
+                self.validate_entry(db,account_id,command)
             state = transition(json.loads(row[0]) if row else initial_state(), command)
             result = encode(state)
             db.execute("INSERT INTO forward_paper_events VALUES ("+",".join([p]*5)+")",

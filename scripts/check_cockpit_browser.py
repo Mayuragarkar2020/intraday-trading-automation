@@ -7,12 +7,19 @@ ROOT = Path(__file__).resolve().parents[1]
 report = json.loads((ROOT / "research/2026-10-30/universe.json").read_text())
 html = (ROOT / "src/static/cockpit.html").read_text()
 requests = []
+Path("ui-review").mkdir(exist_ok=True)
+workspace_choice = None
+choice_events = []
+choice_candidates = [dict(symbol=s,receipt_id=str(i)*64,entry="1000",initial_stop="990",
+    quantity=890,planned_risk="9790",avg_turnover_20d_cr=str(turnover))
+    for s,i,turnover in (("STOCK1",2,200),("STOCK0",1,100))]
 with sync_playwright() as p:
     browser = p.chromium.launch()
     page = browser.new_page(viewport={"width": 1368, "height": 900})
     errors = []
     page.on("pageerror", lambda error: errors.append(str(error)))
     def serve(route):
+        global workspace_choice
         request = route.request
         path = request.url.split("cockpit.test", 1)[-1]
         requests.append(path)
@@ -21,6 +28,24 @@ with sync_playwright() as p:
             return
         if request.headers.get("x-access-token") != "fixture-preview":
             route.fulfill(status=401, json={"detail": "Denied"})
+            return
+        if path == "/api/paper/workspace":
+            route.fulfill(json=dict(mode="HUMAN_CHOICE_PAPER_PREVIEW",execution_enabled=False,
+                paper_runtime_enabled=False,status="SHORTLIST_AVAILABLE",candidates=choice_candidates,
+                selected=workspace_choice,selection_blocked=False,position=None,fills=[],realised_pnl="0",
+                choice_journal=choice_events,message="Paper execution remains held."))
+            return
+        if path == "/api/paper/choice":
+            command=request.post_data_json
+            assert set(command)=={"action","request_id","receipt_id","expected_choice_id"}
+            if command["action"]=="CHOOSE":
+                candidate=next(c for c in choice_candidates if c["receipt_id"]==command["receipt_id"])
+                workspace_choice={**candidate,"choice_id":"c"*64,"effective_status":"SELECTED_HELD"}
+            else: workspace_choice=None
+            result=dict(status="SELECTED_HELD" if workspace_choice else "WITHDRAWN",selected=workspace_choice,
+                action=command["action"],at="2026-11-02T09:45:20+05:30",execution_enabled=False,paper_runtime_enabled=False)
+            choice_events.append(result)
+            route.fulfill(json=result)
             return
         payload = {
             "/api/dhan-chart-reconciliation": {"status": "SAMPLE_MATCHED", "matching_convention": "OPEN", "candidates": {"OPEN": {"raw_timestamp_ist": "2026-10-30T09:15:00+05:30", "present": True, "ohlc": {"open": "1170.40", "high": "1174.60", "low": "1162.70", "close": "1164.30"}}}, "forward_paper_ready": False, "execution_enabled": False},
@@ -69,6 +94,19 @@ with sync_playwright() as p:
     symbols = Path(csv_path).read_text().splitlines()[1:]
     assert len(symbols) == 103 and "LIQUIDBEES" not in symbols
     page.locator('[data-view="scanner"]').click()
+    expect(page.locator("#choiceRows")).to_contain_text("STOCK0")
+    page.get_by_role("button",name="Review STOCK0",exact=True).click()
+    expect(page.locator("#choiceDialog")).to_be_visible()
+    expect(page.locator("#choiceDetails")).to_contain_text("9,790")
+    page.get_by_role("button",name="Save my stock choice",exact=True).click()
+    expect(page.locator("#chosenStock")).to_contain_text("STOCK0")
+    expect(page.locator("#chosenStock")).to_contain_text("No order submitted")
+    expect(page.locator("#choiceJournal")).to_contain_text("Chose STOCK0")
+    assert not any(path.startswith("/api/orders") for path in requests)
+    page.screenshot(path="ui-review/human-choice-desktop.png",full_page=True)
+    page.get_by_role("button",name="Withdraw stock choice",exact=True).click()
+    expect(page.locator("#chosenStock")).to_contain_text("No stock selected")
+    page.locator("#scannerAdvanced").evaluate("(el) => el.open = true")
     page.locator("#refresh").click()
     expect(page.locator("#refreshStatus")).to_contain_text("No stored scan")
     page.route("**/api/latest-scan",lambda route:route.fulfill(status=200,json={"status":"AVAILABLE","source":"PERSISTED_UNIVERSE_SCAN","live":False,"execution_enabled":False,"coverage":{"selected":2,"scanned":1,"complete":False},"snapshot":{"candle_close":"2026-11-02T09:45:00+05:30","setups":[{"symbol":"STOCK0","status":"ARMED","reason":"WAIT_FOR_NEXT_CANDLE_BREAKOUT","entry":"101.05","stop":"98.95"},{"symbol":"STOCK1","status":"HOLD","reason":"INVALID_OR_UNAVAILABLE_CANDLE_DATA","entry":None,"stop":None}]}}))
@@ -94,6 +132,9 @@ with sync_playwright() as p:
     expect(page.locator("#token")).to_have_value("")
     expect(page.locator("#scanCoverageBadge")).to_have_text("Not loaded")
     expect(page.locator("#candidates")).not_to_contain_text("STOCK0")
+    expect(page.locator("#choiceRows")).not_to_contain_text("STOCK0")
+    expect(page.locator("#choiceJournal")).not_to_contain_text("Chose STOCK0")
+    expect(page.locator("#choiceDialogTitle")).not_to_contain_text("STOCK0")
     expect(page.locator("#dhanReconcile")).to_be_disabled()
     expect(page.locator("#dhanReconcileResult")).not_to_contain_text("1170.40")
     page.get_by_label("Access token", exact=True).fill("fixture-preview")
@@ -111,6 +152,13 @@ with sync_playwright() as p:
     page.locator('[data-view="universe"]').click()
     assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
     page.screenshot(path="ui-review/universe-mobile.png", full_page=True)
+    page.locator('[data-view="scanner"]').click()
+    expect(page.locator("#choiceRows")).to_contain_text("STOCK0")
+    page.get_by_role("button",name="Review STOCK0",exact=True).click()
+    expect(page.locator("#choiceDialog")).to_be_visible()
+    assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
+    page.screenshot(path="ui-review/human-choice-mobile.png",full_page=True)
+    page.locator("#choiceClose").click()
     page.locator('[data-view="diagnostics"]').click()
     page.locator("#dhanReconcile").click()
     expect(page.locator("#dhanReconcileResult")).to_contain_text("One candle matched exactly")
