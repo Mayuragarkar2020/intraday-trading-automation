@@ -1,53 +1,52 @@
-# Audit packet — 2026-11-01 / independent auditor briefing
+# Audit packet — Phase1 close-out,2026-11-01
 ## a. Session summary
-[ASSUMED] Bad news: local baseline UNKNOWN; new C0/bracket/IPO strategy not implemented or empirically validated.
-[READ_CODE] Phase 1 only. Added AUDITOR_BRIEFING.md to draft PR19; parent 5620916c13f18414fd8606da8f1a0b3d360aa2fb.
-[READ_CODE] Verified main/input CI, PR stack, targeted source and all existing design/audit records.
-[READ_CODE] Briefing quotes visible feedback, flags policy conflicts and distinguishes proposals from approvals.
-[ASSUMED] Actual Render state and exact prior auditor-reviewed SHA remain unverifiable / NOT RECONSTRUCTABLE.
+[ASSUMED] Bad news:local baseline UNKNOWN;new strategy not implemented/tested;fee/slippage/participation/freshness inputs remain unresolved.
+[READ_CODE] Phase1 only;PR19 branch codex/phase1-review-round2,parent2260ba34044156808f6f0ff58332e19dffa101b4.
+[READ_CODE] Mayur approvedD042..046;D047consolidates unchanged constraints;append-only proposal CORRECTION entries.
+[READ_CODE] Canonical SPEC_CURRENT.md plus parameter register and session-sliced Phase2 plan added;detail amended for ARM-time sizing.
+[READ_CODE] No Phase2/application/broker/deployment/cron/Render action.
 
 ## b. Safety invariants
-[ASSUMED] UNVERIFIED: new-strategy mutation tests for INR9800, long-only, daily fill, five arms and buffer formula; none run locally.
-[READ_CODE] Legacy named tests/CI evidence and future named tests are separated in briefing section8.
-[READ_CODE] PASS source/diff scope: PREVIEW_ONLY source unchanged; no application, broker/order, deployment, cron or Render changes.
-[RAN_TEST] PASS limited scan of four proposed audit Markdown files: private-key/token/JWT/bearer/credential-assignment/private-URL patterns, zero matches.
-[ASSUMED] Whole-repository secrets absence and runtime PREVIEW_ONLY are not established by this limited scan.
-[READ_CODE] Protected src/run_daily.py and root render.yaml unchanged.
+[ASSUMED] UNVERIFIED:9800,long-only,dailyfill,fivearms,newbuffer mutation protection;planned namedtests in PHASE2_PLAN,not run.
+[READ_CODE] PASS scope only:PREVIEW_ONLY/application paths untouched;no broker/order code/config/legacyfile change.
+[RAN_TEST] PASS limited fourteen-Markdown document scan:private-key/token/JWT/bearer/credential-assignment/private-URL patterns,zero matches.
+[ASSUMED] Runtime PREVIEW_ONLY/whole-repo secrets absence/actualRender state unverifiable by this docs-only session.
+[READ_CODE] No deployment/cron/Render changes;src/run_daily.py and root render.yaml untouched.
 
 ## c. Traceability delta
-[READ_CODE] Added briefing evidence note only; no status promoted to TESTED or DEPLOYED; no decision changed.
-[READ_CODE] New briefing separates amended D003/005/006/016, D018..041 and P001..023.
+[READ_CODE] D042..047DESIGNED only;D003/016/022/031/033current interpretation updated byappend-only notes;no TESTED/DEPLOYED promotion.
+[READ_CODE] P005/P013bundles superseded with freshness/capacity separately proposedP024/P025;P020supersededD039/040;P023supersededD044.
+[READ_CODE] D045removes trigger sizing;D046defers live multi-arm without changing paper5-arm policy.
 
 ## d. Deviations and risks
-[READ_CODE] Later manual band-only admission conflicts with earlier shared restricted/liquidity filters;75 slots conflicts with initial25–50 policy.
-[ASSUMED] Accepted IPO substitutes remain experimental;75-slot sweep latency unmeasured; mixed-history tie and T-1 calendar meaning unresolved.
-[ASSUMED] Stop-limit failure can exceed9800 and delay15:00 exit; paper DB atomicity is not external broker atomicity.
-[READ_CODE] Historical P005/P013 bundles and stale P020 disclosed rather than silently rewritten.
-[ASSUMED] Missing chat history/prior-reviewed SHA NOT RECONSTRUCTABLE; contextual approvals do not approve every engineering proposal.
+[ASSUMED] Paper cash-reservation policy proposedP026 may reduce concurrently affordable arms;not silently approved by ARM-time sizing.
+[ASSUMED] Equal/missing IPO trade priority handling remains proposed;manual history-name CSV may lack priority.
+[ASSUMED] Fee/tick/data schema/clock/latency/participation remain unverified;75capacity/no-tradep95unmeasured.
+[READ_CODE] Manual minimal gate narrows prior band-only admission;IPOprofile never overrides TFT/suspension/bands.
+[ASSUMED] STOP_NOT_FILLED/halts can exceed9800 and15:00;no maxloss/flat guarantee.
+[READ_CODE] Historical briefing/details retained with explicit current-spec precedence;no history rewritten.
 
 ## e. Unverified claims
-[ASSUMED] New strategy performance, buffer calibration, live order feasibility, supervision, Telegram latency and clean external checkout not verified.
-[ASSUMED] Briefing commit CI unknown at writing; parent success is not its result.
+[ASSUMED] Official-source read is documented-only,not daily file ingestion,fee calibration or broker permission proof.
+[ASSUMED] New commitCIunknown at write;input-head success cannot be transferred.
+[ASSUMED] Clean checkout/supervision/Telegram delivery/new-strategy empirical results not verified.
 
 ## f. Test results
-[READ_CODE: CI-reported] main79a2d308: test-phase-1 SUCCESS539passed/3warnings/41.97s; run41290657216; browser job passed.
-[READ_CODE: CI-reported] input5620916c: test-phase-1 SUCCESS539passed/3warnings/36.97s; run41307666713; browser checks passed; conditional live smoke skipped.
-[READ_CODE] CI commands: python -m pytest -q; python scripts/check_cockpit_browser.py; python -m scripts.check_paper_browser.
-[READ_CODE] Historical local pytest timeout180s/two dots/counts UNKNOWN; clone exit1 getaddrinfo thread error; segmented local prerequisites absent.
-[ASSUMED] Current local application tests: none; pass/fail/skip/duration N/A.
-[RAN_TEST] functions.exec document validation:4audit paths,12sections,215briefing lines,8pinned reading URLs,15request rows,14file delta groups,append-only log,packet<=120lines,zero secret-pattern matches.
-[RAN_TEST] Read-only git probe: repo is not a Git repository; no verified clean checkout in workspace.
+[READ_CODE: CI-reported] Input2260ba34044156808f6f0ff58332e19dffa101b4 test-phase-1 SUCCESS:run41309261141 and41309257347.
+[READ_CODE] Links:https://github.com/Mayuragarkar2020/intraday-trading-automation/actions/runs/41309261141 ;https://github.com/Mayuragarkar2020/intraday-trading-automation/actions/runs/41309257347 .
+[ASSUMED] No local application command;counts/failures/skips/durationN/A;no new empirical evidence. Historical local180stimeout/countsUNKNOWN retained.
+[RAN_TEST] functions.exec JS validates14docs-onlypaths,append-onlydecision/logprefix,47DIDs,canonical<=150lines,every canonical contentline cites IDs,ARM-time docs,eight required packet sections/coverage retained,zero limited secretpatterns.
+[READ_CODE] CI result for final PRhead reported after commit in task reply,not self-embedded.
 
 ## g. Open questions
-[ASSUMED] 1. Mayur: T-1 prior calendar day or exchange session?
-[ASSUMED] 2. Mayur/auditor: approve a comparable mixed-history trigger tie policy or proposed hold?
-[ASSUMED] 3. Auditor: reconcile manual status-filter bypass,75capacity and experimental IPO strategy.
-[ASSUMED] 4. Auditor: review stop-failure/OHLC assumptions and event-time late-receipt reconciliation.
-[ASSUMED] 5. Mayur/auditor: provide clean source baseline and exact prior-reviewed SHA before separately authorized Phase2.
+[ASSUMED] 1.Mayur:approve paper cash reservations across arms or specify another fixed-quantity budget policy?
+[ASSUMED] 2.Mayur:equal IPOpriorities=>SID and missingpriority=>hold;require priority for all manual IPOprofiles?
+[ASSUMED] 3.Mayur:pin quote5s/candle90s freshness before slice1;fees still require effective-dated official verification.
+[ASSUMED] 4.Auditor:review conservative confirmation-bar exclusion and stop-failure paths;no Phase2 permission requested here.
 
-## h. Suggested next step and first auditor paths
-[ASSUMED] Review briefing and resolve explicit conflicts; do not start Phase2.
-[READ_CODE] First five: docs/audit/AUDITOR_BRIEFING.md; docs/design/TIME_AND_EXECUTION.md; docs/design/LIFECYCLE_AND_ATOMICITY.md; docs/design/JOURNAL_ALERTS_RECOVERY.md; docs/design/SETUP_AND_UNIVERSE.md.
+## h. Suggested next step / first auditor paths
+[READ_CODE] First5:docs/design/SPEC_CURRENT.md;docs/design/PARAMETER_REGISTER.md;docs/design/PHASE2_PLAN.md;docs/design/TIME_AND_EXECUTION.md;docs/audit/DECISIONS.md.
+[ASSUMED] Resolve parameter/reservation/tie details and obtain clean baseline;wait for separate explicit “start Phase2”.
 
 ## Coverage map — paths relative to docs/design/; coverage means designed, NOT tested
 | Phase1 item | Document and section |
@@ -91,3 +90,10 @@
 
 
 | [READ_CODE] Independent auditor update | ../audit/AUDITOR_BRIEFING.md sections1–12 |
+
+| [READ_CODE] Close-out1 Corrections | ../audit/DECISIONS.md — CORRECTION Phase1close-out |
+| [READ_CODE] Close-out2 Canonical spec | SPEC_CURRENT.md — allsections |
+| [READ_CODE] Close-out3 ARMtime/delay/journal | TIME_AND_EXECUTION.md — Sizing;Confirmationdelay;JOURNAL_ALERTS_RECOVERY.md — Close-out |
+| [READ_CODE] Close-out4 Parameters/sources | PARAMETER_REGISTER.md — table;Tradability;Fees |
+| [READ_CODE] Close-out5 Slicedplan | PHASE2_PLAN.md — prerequisites,slices,mutationtargets,livechecklist |
+| [READ_CODE] Close-out6 Audit/CI | ../audit/PROGRESS_LOG.md;thispacket;finaltaskreply |

@@ -1,4 +1,6 @@
-# Time and execution — round 2 resting bracket specification
+# Time and execution — current resting bracket detail
+
+[READ_CODE; D-042–D-047] Close-out2026-11-01: SPEC_CURRENT.md is canonical;this file supplies execution detail. Mayur requires ARM-time frozen quantity and fees;all previous trigger-time sizing proposals are superseded.
 
 [READ_CODE] Approval update2026-11-01: Mayur answered “all yes” to the five round2 questions. Approved scope: C0 filter scope/prior3 width denominator; max(T-S)/T2.5%; one-tick default T/S buffers; stop-limit rather than plain-limit; proposed override bounds and conservative low<Q stop-no-fill rule with sensitivity. This is design approval of those choices, not implementation/test proof, buffer calibration or Phase2 authorization. Other proposals remain proposed.
 
@@ -28,7 +30,7 @@
 ## Resting stop-limit entry and all-or-nothing
 
 [ASSUMED: Mayur strategy / placeholder] Entry stop-limit trigger T; L=ceil_tick(T+max(0.0015*T,3*tau)).0.15% and3ticks are PLACEHOLDERS pending historical analysis; formula/config version ENTRY_BUFFER_REVIEW_V2 and effective tick/source pinned at arm. No market entry/chase/repricing.
-[ASSUMED: proposal] Fix accepted T/S and buffer policy at confirmation; compute final full quantity at trigger using frozen L/stop-limit and fees. A bar-level trigger is discovered from a resting order's high>=T in that SAME candle, not a fresh order submitted after its close. In pure replay record a contingent order with quantity policy; live feasibility of trigger-time sizing for an already-resting broker order is unresolved and must be checked before live. A real order normally needs quantity before acceptance; no broker capability is assumed.
+[READ_CODE; D-045] At confirmation compute and freeze T,S,L,Q,full q and estimated entry/exit fees with their versions. The resting intent has that quantity from ARM onward in paper and future live. Trigger detection resolves fill eligibility only,never sizes/resizes. Persist quote/cash snapshot and immutable arm-time cost calculations;no contingent sizing policy. Any changed prices/override requires a new explicit validated confirmation,not automatic repricing.
 [ASSUMED: proposal] Candle O,H,Lo,C for a fully eligible rested arm: O>L => CANCELLED/GAPPED_THROUGH with zero fill EVEN IF Lo later returns; never chase. If T<=O<=L, base entry=O. If O<T and H>=T, base entry=T. If H<T, remain ARMED until expiry/cutoff/other invalidation. Adverse buy slippage ceil_tick(base*(1+slip)) must remain<=L and within observed tradable OHLC; otherwise zero fill GAPPED_THROUGH/NO_VALID_LIMIT_PRICE. No close>=T condition or TRIGGER_RETRACE_UNMODELED restriction remains in the primary model.
 [ASSUMED: proposal] Require full q<=floor(volume*participation_pct/100) plus valid tradability evidence; insufficient full capacity gives zero fill and PARTIAL_MODEL_ANOMALY (if positive partial implied), never shrink q to available volume. Same applies to exits: all-or-nothing, pending exposure if full exit unproven.
 [ASSUMED: proposal] Initial bar O<=S invalidates before entry. If O<T and both H>=T and Lo<=S, OHLC cannot order entry vs invalidation: retain LOW_FIRST=no-entry and HIGH_FIRST=entry-then-stop paths, primary result selects worse net outcome where both paths are feasible, tag ENTRY_STOP_PATH_AMBIGUOUS. If O>=T within L, entry at open precedes later stop movement. No profitable omission of same-bar stop risk.
@@ -52,7 +54,7 @@
 ## Sizing on stop LIMIT, overrides and precedence
 
 [ASSUMED: Mayur-approved sizing] Worst-case modeled per-share price risk=L-Q, plus estimated fees. Also report trigger-based L-S+fees. “Worst-case” is bounded modeled stop-limit risk, NOT a guaranteed max loss if the stop fails.
-[ASSUMED: proposal] q is largest positive integer with q*(L-Q)+fees_entry(q,L)+fees_exit(q,Q)<=9800 AND q*L+fees_entry(q,L)<=min(cash,980000). Decimal/nonlinear fee model; pin approved fees or hold. Slippage must fit L/Q; do not double-count it by adding allowances already represented by these bounds. Store both risk calculations and stop-limit buffer premium q*(S-Q). q=0/unknown fee/tick/cash => REJECTED_BY_RISK, skip.
+[ASSUMED; D-022,D-045] At ARM/confirmation q is largest positive integer with q*(L-Q)+fees_entry(q,L)+fees_exit(q,Q)<=9800 AND q*L+fees_entry(q,L)<=min(cash,980000). Decimal/nonlinear fee model; pin approved fees or hold. Slippage must fit L/Q; do not double-count it by adding allowances already represented by these bounds. Store both risk calculations and stop-limit buffer premium q*(S-Q). q=0/unknown fee/tick/cash => REJECTED_BY_RISK at confirmation, no arm. Fees fixed from frozen limit prices/version at arm; actual modeled execution costs are journaled separately,never used to increase frozen quantity at trigger.
 [ASSUMED: review defaults; approved scope stated above] Max trigger distance (T-S)/T<=2.5%: limits broad invalidation distance without confusing prior-range width; report rejection/sample bias and replay1%/1.5%/2%/2.5%/3% sensitivity before approval. Not an optimization result.
 [ASSUMED: review defaults; approved scope stated above] Overrides relative to rule T0/S0: abs(T-T0)<=max(0.10%*T0,2*tau), abs(S-S0)<=max(0.10%*T0,2*tau). Require T>=high(C0)+tau; S<=min(low4)-tau; risk/distance/tick/freshness/live_price<T all pass. This permits only modest later entry/wider stop, avoiding overrides that erase the actual breakout/invalidation levels. Log bound model and OVERRIDDEN cohort; bounds approved by Mayur2026-11-01; not implemented/tested.
 [ASSUMED: proposal] Exit precedence: halt/nontradable holds exposure; existing protective fill beats any replacement; STOP_NOT_FILLED recovery critical; active-stop touch beats EMA or1.5R within an ambiguous bar; EMA10 close<EMA10 requests cancel-confirm-marketable exit; else1.5R high requests stop modification effective NEXT bar; flatten from14:50 uses same cancel-confirm-exit sequence and15:00 deadline. No fixed target.
@@ -64,3 +66,16 @@
 [READ_CODE] Existing code lacks the C0 breakout signal, four-candle tick stop and resting stop-limit bracket. Previous design's following-close primary model is also superseded.
 [ASSUMED: proposal] New immutable engine/rule/config IDs; preserve all stored runs. ALL old-rule runs are non-evidence for the new strategy (not necessarily erroneous for their recorded rule). Flag optimistic gap-chase/partial fills/stop fills below Q; rerun only from authentic timestamp-normalized data. No production run IDs/counts verified here.
 [ASSUMED: proposal] Detailed real-data buffer/selection/stop sensitivity protocol is in REPLAY_ANALYSIS_AND_TEST_PLAN.md. No analysis or new application tests run this round.
+
+## Confirmation delay and last eligible C0 close
+[READ_CODE; D-018,D-045] Candle labels are exchange OPEN times;C0 close is signal-known time,not its label. Human confirmation delay reduces remaining execution opportunity.
+[ASSUMED; D-018,P-026] For conservative bar-only replay,confirmation INSIDE the next candle excludes that partial candle entirely;order must precede the next full eligible candle open. Faster observed post-confirmation quotes/sub-bars form a separately evidenced cohort,not whole-candle hindsight.
+| C0 OPEN label | C0 closes | Confirmation inside next candle | First full rested fill candle | Primary result |
+|---|---|---|---|---|
+| [ASSUMED; D-018]14:10 |14:15 |[14:15,14:20) |[14:20,14:25) |Eligible |
+| [ASSUMED; D-018]14:15 |14:20 |[14:20,14:25) |[14:25,14:30) |LAST C0 CLOSE14:20 for full-bar model under this delay assumption |
+| [ASSUMED; D-018]14:20 |14:25 |[14:25,14:30) |[14:30,14:35) |Ineligible;only verified post-confirmation sub-bar evidence before14:30 could permit entry |
+| [READ_CODE; D-004,D-018]14:25 |14:30 |>=14:30 |None |Hidden/shadow-only,no confirmation |
+[ASSUMED; D-018] Confirmation exactly on a boundary must have verified acceptance ordering before execution evidence;equal timestamps without ordering proof cannot borrow that candle. Receipt latency still only guards stale evidence;never backdate human action.
+[ASSUMED; D-015,D-045] Journal setup_age_at_selection_seconds=confirmed_at-C0.close,setup_age_at_arm_seconds,confirmation_quote_age,arm_to_fill_window_delay and order acceptance time;record rejected attempts including already-broken and expired. Existing “selection age” metric is retained with an explicit unit/formula.
+[READ_CODE; D-046] Future live multi-arm deferred;paper5-arm batch resolution unchanged. Pre-live must resolve cash/margin blocking and simultaneous external fills;see PHASE2_PLAN.

@@ -1,3 +1,5 @@
+[READ_CODE; D-042–D-047] CLOSE-OUT PRECEDENCE2026-11-01:read SPEC_CURRENT.md first. Older calendar-only/band-only/mixed-history-hold/trigger-time sizing wording and future test targets below are superseded by the current upload window,minimal manual tradability,standard-before-IPO tie and ARM-time frozen quantity/fees. Live multi-arm deferred;PHASE2_PLAN.md and PARAMETER_REGISTER.md define remaining gates. Historical descriptions below are preserved as detail,not current contrary policy.
+
 # Replay analysis and Phase2 test targets — round 2
 
 [ASSUMED] Analysis/test DESIGN ONLY. No real historical dataset was downloaded/analyzed this round; no new application test or Phase2 code was written. Parameter values remain placeholders, not empirical recommendations.

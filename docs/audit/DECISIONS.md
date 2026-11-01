@@ -159,3 +159,24 @@
 | D-040 |2026-11-01|[READ_CODE: user acceptance] Available-sessionRVOL andfirstdayprior3volume/20actual5mEMAcloses/3completed15mrisingclose model acceptedfornow,separateexperimentalIPOcohort|Mayur|Explicitacceptanceofshort-historymodelanswer|approved|IPO_SHORT_HISTORY_POLICY.md section3|
 | D-041 |2026-11-01|[READ_CODE: user condition] CurrentIPOpolicy acceptedsubjecttolaterrevision,notpermanentlylocked|Mayur|Explicitqualificationofacceptance|approved|IPO_SHORT_HISTORY_V1;futureversionhistoryrequired|
 [ASSUMED] No test/empiricalproofcomesfromapproval;remainingT-1mapping/tie/source/clean-checkoutdetailsstillseparategates.
+
+## CORRECTION — Phase 1 close-out, 2026-11-01 (append-only)
+[READ_CODE] Historical rows above are preserved verbatim. This entry governs their current interpretation; no old approval is expanded.
+| Historical row | Current disposition | Evidence / remaining proposal |
+|---|---|---|
+| [READ_CODE] P-005 | superseded as a bundled proposal | TTL15min approved D-005; trigger-time resizing superseded D-045;90s candle/5s quote remain proposed P-024 |
+| [READ_CODE] P-013 | superseded as a bundled proposal | Conservative stop rule approved D-029; AON approved D-012; participation value and freshness remain proposed P-024/P-025 |
+| [READ_CODE] P-020 | superseded | N0 priority/allocation and IPO indicator policy approved D-039/D-040; missing actual data still holds, not a blanket N0 prohibition |
+| [READ_CODE] P-023 | superseded | Mixed-profile hold replaced by Mayur's D-044 ranking |
+[READ_CODE] D-016/D-031 band-only wording is narrowed by D-043; D-003 gains D-044 mixed-profile precedence; D-022 retains L-Q risk but D-045 replaces all trigger-time sizing. D-033 is made precise by D-042. Earlier claims in AUDITOR_BRIEFING.md remain dated snapshots.
+| ID | Date | Decision | Who decided | Rationale | Status | Implementing design |
+|---|---|---|---|---|---|---|
+| D-042 |2026-11-01|[READ_CODE] Upload window opens at previous trading-session close and ends23:59 on the calendar day before target trading day; no same-day additions.|Mayur|Explicit Phase1 close-out decision|approved|docs/design/SPEC_CURRENT.md#universe-and-pool-d-008-d-030d-043|
+| D-043 |2026-11-01|[READ_CODE] Manual minimal gate: regular rolling-settlement series allowing intraday square-off; no trade-for-trade/equivalent, not suspended, verified exclusion of2%/5% bands. Liquidity/history gates waived; unknown required status held.|Mayur|Explicit Phase1 close-out decision|approved|docs/design/PARAMETER_REGISTER.md#tradability-sources-d-043|
+| D-044 |2026-11-01|[READ_CODE] Simultaneous standard/IPO tie lacking comparable ADV20: standard-profile wins; IPO candidates then ascending CSV priority.|Mayur|Explicit Phase1 close-out decision|approved|docs/design/SPEC_CURRENT.md#selection-sizing-and-atomicity-d-001d-003-d-017-d-022-d-028-d-044d-046|
+| D-045 |2026-11-01|[READ_CODE] Size full quantity and fees at ARM/confirmation using frozen T,S,L,Q in paper and future live. Remove trigger-time sizing.|Mayur|Explicit Phase1 close-out decision|approved|docs/design/TIME_AND_EXECUTION.md#sizing-on-stop-limit-overrides-and-precedence|
+| D-046 |2026-11-01|[READ_CODE] Defer live multi-arm: pre-live resolve cash/margin blocking and simultaneous fills before cancellation; consider one broker-resident order with others internal, or explicit double-fill rule. Paper multi-arm unchanged.|Mayur|Explicit Phase1 close-out decision|approved|docs/design/PHASE2_PLAN.md#deferred-live-checklist-d-023-d-046|
+| D-047 |2026-11-01|[READ_CODE] Consolidated unchanged constraints: PREVIEW_ONLY; no broker code/secrets/deploy/Render/cron changes; long-only;9800 planned risk including costs;980000capital;no leverage;one filled entry/day;five arms;09:15–14:35 scan;entry14:30;close15:00;Phase2 requires explicit instruction.|Mayur|Restates existing hard constraints, not a new implementation approval|approved|docs/design/SPEC_CURRENT.md|
+| P-024 |2026-11-01|[ASSUMED] Fresh quote<=5s and last validation candle<=90s; last eligible receipt reconciliation<=90s.|Codex proposal|Unbundles P005/P013 remaining freshness choices|proposed|docs/design/PARAMETER_REGISTER.md|
+| P-025 |2026-11-01|[ASSUMED] Full-fill participation/liquidity policy with numeric percentage UNSET; no guessed default.|Codex proposal|Unbundles P013 capacity choice|proposed|docs/design/PARAMETER_REGISTER.md|
+| P-026 |2026-11-01|[ASSUMED] Arm-time cash reservations across paper arms sum to available cash; freeze per-arm quantity; release on cancellation/fill conversion. No full-candle evidence from confirmation candle; equal/missing IPO priorities need deterministic policy.|Codex proposal|Explicit engineering details, not implicit approval of all implications of D045|proposed|docs/design/SPEC_CURRENT.md;docs/design/PHASE2_PLAN.md|

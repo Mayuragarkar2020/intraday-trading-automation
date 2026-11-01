@@ -1,3 +1,5 @@
+[READ_CODE; D-042–D-047] CLOSE-OUT PRECEDENCE2026-11-01:read SPEC_CURRENT.md first. Older calendar-only/band-only/mixed-history-hold/trigger-time sizing wording and future test targets below are superseded by the current upload window,minimal manual tradability,standard-before-IPO tie and ARM-time frozen quantity/fees. Live multi-arm deferred;PHASE2_PLAN.md and PARAMETER_REGISTER.md define remaining gates. Historical descriptions below are preserved as detail,not current contrary policy.
+
 # Universe and scanning pool — two admission routes and fixed75-slot design
 
 [READ_CODE]2026-11-01:Mayur accepted the proposed IPO ranking/allocation and short-history indicator model “for now”,subject to later revision. Current policy version IPO_SHORT_HISTORY_V1 is approved as a design policy,NOT empirically validated,implemented or activated. Changes later require a new version and preserved historical lineage;no retroactive result rewrite. Mixed-history trade-tie and precise calendarT-1 mapping were not separately approved by this answer.

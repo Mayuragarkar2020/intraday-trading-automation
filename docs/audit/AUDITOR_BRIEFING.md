@@ -212,3 +212,7 @@
 [READ_CODE] 6.https://raw.githubusercontent.com/Mayuragarkar2020/intraday-trading-automation/5620916c13f18414fd8606da8f1a0b3d360aa2fb/docs/design/UNIVERSE_AND_POOL_CONTRACT.md
 [READ_CODE] 7.https://raw.githubusercontent.com/Mayuragarkar2020/intraday-trading-automation/5620916c13f18414fd8606da8f1a0b3d360aa2fb/docs/design/REPLAY_ANALYSIS_AND_TEST_PLAN.md
 [READ_CODE] 8.https://raw.githubusercontent.com/Mayuragarkar2020/intraday-trading-automation/5620916c13f18414fd8606da8f1a0b3d360aa2fb/docs/audit/DECISIONS.md
+
+## Close-out addendum — 2026-11-01
+[READ_CODE; D-042–D-047] Sections1–12 are a historical briefing at2260ba34044156808f6f0ff58332e19dffa101b4. SPEC_CURRENT.md is now canonical. Mayur settled upload timing,minimal manual tradability,standard-beforeIPO ties,ARM-time sizing and live multi-arm deferral. Earlier unresolved statements on these items are superseded,not silently erased.
+[READ_CODE] Input briefing-head test-phase-1 CI now SUCCESS: https://github.com/Mayuragarkar2020/intraday-trading-automation/actions/runs/41309261141 and https://github.com/Mayuragarkar2020/intraday-trading-automation/actions/runs/41309257347 . This is CI-reported,not local/new-strategy test evidence.

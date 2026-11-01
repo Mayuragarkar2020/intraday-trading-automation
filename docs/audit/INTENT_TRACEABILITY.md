@@ -122,3 +122,16 @@
 [READ_CODE] docs/audit/AUDITOR_BRIEFING.md adds external-auditor context,current PR/CI source snapshots,verbatimfeedback/conflicts anddecisiondelta. All product/decision implementationstatusesunchanged;no TESTED/DEPLOYEDpromotion. LocalbaselineUNKNOWN.
 [READ_CODE: CI-reported] Verifiedinputmain79a2d308... andworking5620916c... bothSUCCESS539legacytests/browserjobs;sourcecodeidentical. Doesnotvalidate newC0/bracket/manual/IPO designs.
 [ASSUMED] Exactauditor-reviewedrevisionNOT RECONSTRUCTABLE;comparisonR1b82089ed... notclaimedreviewed. CurrentRenderstateunverifiablebyCodex;noPhase2.
+
+## Phase1 close-out delta —2026-11-01
+[READ_CODE] Prior rows remain dated history;current specification is docs/design/SPEC_CURRENT.md. No TESTED/DEPLOYED promotion this session;no local application tests run. Actual Render state unverifiable by Codex.
+| Item | Current status | Evidence path / test target | Evidence type | Updated |
+|---|---|---|---|---|
+| [READ_CODE] D-042 upload window | DESIGNED | docs/design/SPEC_CURRENT.md — Universe;future test_manual_upload_window_session_to_calendar_end | READ_CODE |2026-11-01|
+| [READ_CODE] D-043 manual tradability | DESIGNED | docs/design/PARAMETER_REGISTER.md — Tradability sources;future test_manual_minimal_tradability_gate | READ_CODE |2026-11-01|
+| [READ_CODE] D-044 mixed-profile tie | DESIGNED | docs/design/LIFECYCLE_AND_ATOMICITY.md — Close-out;future test_standard_before_ipo_then_csv_priority | READ_CODE |2026-11-01|
+| [READ_CODE] D-045 ARM sizing | DESIGNED | docs/design/TIME_AND_EXECUTION.md — Sizing;future test_arm_time_quantity_and_fee_snapshot | READ_CODE |2026-11-01|
+| [READ_CODE] D-046 live multi-arm deferred | DESIGNED | docs/design/PHASE2_PLAN.md — Deferred live checklist | READ_CODE |2026-11-01|
+| [READ_CODE] D-047 consolidated unchanged constraints | DESIGNED | docs/design/SPEC_CURRENT.md;PHASE2_PLAN.md — Mutation protection | READ_CODE |2026-11-01|
+[READ_CODE] D-003/D-016/D-022/D-031/D-033 current interpretation amended byD-042..045;P005/P013/P020/P023 append-only corrections in DECISIONS.md. Earlier band-only/mixed-tie/trigger-size evidence does not describe current intent.
+[ASSUMED] Local baseline remains UNKNOWN;official fee/tradability sources documented-only until effective-date samples/schema/fee fixtures verified.

@@ -1,3 +1,6 @@
+# Current-detail precedence
+[READ_CODE; D-042–D-047] SPEC_CURRENT.md is canonical;older band-only/mixed-history/timing wording below is historical detail where it conflicts. No implementation claim.
+
 # Journal, alerts and recovery — round 2 resting bracket
 
 ## Manual CSV/source amendment
@@ -94,3 +97,9 @@
 | [ASSUMED] Telegram down | Block new handoffs/entries; show red banner | Manager and clock remain priority; no automatic abandonment | Delayed incident, daily-alive absence; no phone-delivery guarantee |
 | [ASSUMED] Stop crossed without valid fill | No new entry after incident | STOP_NOT_FILLED, full exposure, cancel-confirm then marketable recovery; no invented Q fill | CRITICAL, excess-loss cohort |
 | [ASSUMED] Halt/circuit | Suspend/cancel entry, no fill | Hold, immediate alert request, first full valid tradable exit | HALTED exposure; late closure breach if applicable |
+
+## Close-out journal additions
+[READ_CODE; D-045] Freeze arm-time T,S,L,Q,q,fee component estimates/version,cash snapshot and arm event;never replace with trigger-time resized quantity. Keep modeled actual cost separately and report estimated-versus-modeled difference.
+[ASSUMED; D-005,D-015,D-045] Existing selection-age field is explicit:setup_age_at_selection_seconds=confirmed_at-C0.close;also record setup_age_at_arm_seconds,confirmation_quote_age,arm_to_fill_window_delay,receipt/acceptance timestamps and rejection age/reason.
+[ASSUMED; D-043] Manual gate evidence includes rolling-settlement series,TFT-equivalent exclusions,suspension and current band with effective date/source/hash;daily failure visible,never silent deletion.
+[READ_CODE; D-044] Persist mixed-profile tie version/CSVpriority/winner reason;previous hold policy superseded.
