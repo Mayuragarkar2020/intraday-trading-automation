@@ -1,5 +1,7 @@
 # Intraday Trading Automation — authoritative project handoff
 
+[READ_CODE] IPO follow-up:Mayur reaffirmedT-1manualentry,askedforanotherzero-historyrankingmethod andauthorizedseparateshort-historyIPOdesign. docs/design/IPO_SHORT_HISTORY_POLICY.md proposesCSVpriorityandexplicitindicatorprofiles;exactparameters/tiepolicyremainproposed. NoPhase2;localbaselineUNKNOWN;noapp/deploychange.
+
 ## Automatic/manual universe and75-slot amendment —2026-11-01
 
 [READ_CODE] Mayur approved all automatic gates;manual route nowT-1CSV with only2%/5%band exclusion foradmission,persistentuseridentifier,up to25manualscan slots from possibly100members. Automatic pool50;totalcapacity75beforeoverlap. Manual ranking usesavailable completed-day liquidity if<20history. D016/D020amended,D030..036registered;old same-filter/manual20cap/same-day-add/25-auto text below is historical.

@@ -93,3 +93,15 @@
 | P-019 | DESIGNED | available-history rank/dedup section4 | READ_CODE |2026-11-01|Exact metric-window/ties proposed|
 | P-020 | DESIGNED | zero/short-history policy section5 | READ_CODE |2026-11-01|IPO indicator and ranking gap unresolved|
 [ASSUMED] Local baseline UNKNOWN;no new source/CI/runtime/market/capacity test. Actual Render state unverifiable by Codex.75-slot capacity is not measured throughput.
+
+
+## IPOalternative —2026-11-01
+
+[READ_CODE] D033reaffirmed,D037/D038approveddirection;exactproposalsP021..023notapproved. LocalbaselineUNKNOWN;no TESTED/DEPLOYEDpromotion.
+|Item|Status|Evidence|Evidence type|Updated|Limit|
+|---|---|---|---|---|---|
+| D-037 | DESIGNED | docs/design/IPO_SHORT_HISTORY_POLICY.md | READ_CODE |2026-11-01|DirectionapprovedonlyforDrows;parametersproposed,noapplicationtest|
+| D-038 | DESIGNED | docs/design/IPO_SHORT_HISTORY_POLICY.md | READ_CODE |2026-11-01|DirectionapprovedonlyforDrows;parametersproposed,noapplicationtest|
+| P-021 | DESIGNED | docs/design/IPO_SHORT_HISTORY_POLICY.md | READ_CODE |2026-11-01|DirectionapprovedonlyforDrows;parametersproposed,noapplicationtest|
+| P-022 | DESIGNED | docs/design/IPO_SHORT_HISTORY_POLICY.md | READ_CODE |2026-11-01|DirectionapprovedonlyforDrows;parametersproposed,noapplicationtest|
+| P-023 | DESIGNED | docs/design/IPO_SHORT_HISTORY_POLICY.md | READ_CODE |2026-11-01|DirectionapprovedonlyforDrows;parametersproposed,noapplicationtest|

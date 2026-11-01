@@ -58,11 +58,14 @@
 [ASSUMED] Systematic/manual rank revisions freeze before09:15;no same-day CSV-induced rotation. Status/feed failures are suspended/held visibly and do not hide missing coverage. Existing arms/positions retain required management feeds even if pool membership changes.
 [READ_CODE] Scan every5m interval09:15–14:35;post14:30 newly surfaced setups remain hidden/shadow per existing cutoff rule. Up to75capacity is an approved target,not measured throughput. Prior measured complete-sweep p95<=60s no-trade gate remains for verification/any further expansion;if75cannotmeet safety/freshness,hold new trading and report rather than silently reduce quotas.
 
-## 5. IPO edge cases — membership is not qualification
+## 5. IPO edge cases — separate policy authorized
 
-[ASSUMED] N=0 completed sessions =>average daily liquidity undefined. Keep a band-valid IPO in manual U as RANK_PENDING_ZERO_HISTORY;do not invent yesterday's turnover or treat offer size/IPO demand as daily traded value. Default:no rankable pool place until a ranking policy for zero-history names is approved. This technical edge case awaits Mayur;it is not a new universe admission threshold.
+[READ_CODE] Mayur reaffirmedT-1,requested a differentzero-historyrankingmethod and agreed to DESIGN a separateIPOshort-historypolicy. See IPO_SHORT_HISTORY_POLICY.md for proposedCSVprioritylane and available-history/firstdayindicatorprofiles;exactdefaults not approved by that “Yes”.
+
+
+[ASSUMED] N=0 completed sessions =>average daily liquidity undefined. Keep a band-valid IPO in manual U as RANK_PENDING_ZERO_HISTORY;do not invent yesterday's turnover or treat offer size/IPO demand as daily traded value. Proposed replacement is PRIORITY_IPO CSV ranking,not fake liquidity;exactlaneallocation awaits Mayur. Pending approval is not a new universe admission threshold.
 [ASSUMED] Short-history N1..19 ranks on available completed-day mean,but current approved RVOL construction expects20 matching prior5m slots and EMA/15m warm-up. Such a name remains in the selected manual pool with explicit SETUP_DATA_HOLD if required indicators cannot be computed. It is monitored separately;no fabricated qualified setup.
-[ASSUMED] First-listing-day IPO may have no prior slots/EMA/HTF at all;4current candles alone cannot satisfy every existing indicator rule. Changing RVOL to available-session baseline or other IPO-specific warm-up is a separate strategy proposal requiring Mayur. Do not silently waive setup conditions because manual universe entry bypasses automatic liquidity thresholds.
+[ASSUMED] First-listing-day IPO may have no prior slots/EMA/HTF at all;4current candles alone cannot satisfy every existing indicator rule. Mayur has now authorized designing available-session and listing-day alternatives;their exactRVOL/HTFsubstitutes still require approval,as IPO_SHORT_HISTORY_POLICY.md specifies. Do not silently waive setup conditions because manual universe entry bypasses automatic liquidity thresholds.
 [ASSUMED] Pre-listing unknown mapping/band can be stored as CSV pending intent onT-1;final universe admission waits for verified identity/band. No same-day new upload is needed to revalidate an existing pending membership. Distinguish NEW_ENTRY from automated validation.
 
 ## 6. Cockpit,provenance and data schema

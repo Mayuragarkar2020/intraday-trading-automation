@@ -1,5 +1,7 @@
 # Next work plan — Phase1 round2 review, NOT Phase2
 
+[READ_CODE] IPO follow-up:Mayur reaffirmedT-1manualentry,askedforanotherzero-historyrankingmethod andauthorizedseparateshort-historyIPOdesign. docs/design/IPO_SHORT_HISTORY_POLICY.md proposesCSVpriorityandexplicitindicatorprofiles;exactparameters/tiepolicyremainproposed. NoPhase2;localbaselineUNKNOWN;noapp/deploychange.
+
 [READ_CODE] Latest universe contract:automatic all10agreed gates;manualT-1 CSV withband-only admission andpersistentidentifier;capacity75=50automatic+25manual. D030..036 supersede old same-filter/manual20cap/25-systematic and same-day-add assumptions. See UNIVERSE_AND_POOL_CONTRACT.md.
 
 [READ_CODE]2026-11-01 approval update: Mayur answered “all yes” to five round2 questions. D-024..029 approved filter/width scope,maxdistance,tick defaults,stop-limit semantics,override bounds and conservative stop model. Exact buffer calibration,clean checkout baseline and Phase2 authorization remain pending. No application/production change.

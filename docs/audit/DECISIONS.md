@@ -135,3 +135,16 @@
 [READ_CODE] Historical current-row text before this amendment (explicit superseded records):
 | PRECSV-D-016 | 2026-11-01 | [ASSUMED: user requirement] About twenty persistent manual catalysts until removed; daily revalidation, visible suspension on failure, thirty-day reminder. | Mayur | Controlled persistent discretionary additions; exact cap to be specified. | superseded | [READ_CODE] docs/design/SETUP_AND_UNIVERSE.md; design proposal only, implementation pending |
 | PRECSV-D-020 |2026-11-01|[ASSUMED: user-approved] Initial25–50 systematic pool plus catalysts; scale only after measured complete-sweep p95<=60s in no-trade observation |Mayur|Evidence-based capacity| superseded |[READ_CODE] docs/design/SETUP_AND_UNIVERSE.md#hybrid-universe-and-pool|
+
+
+## IPO follow-up —2026-11-01
+
+[READ_CODE] Mayur's answers:1)tradingdayTmanualentryonT-1;2)useanotherrankingmethodforN0;3)yes,separateIPOshort-historypolicy design. D033reaffirmed,not approval ofSunday/Fridaymapping;noPhase2authorization.
+| ID |Date|Decision|Who decided|Rationale|Status|Design|
+|---|---|---|---|---|---|---|
+| D-037 |2026-11-01|[READ_CODE: user answer] Useanother rankingmethod forzero-completed-sessionIPO,ratherthan makeundefineddailyliquidity thefinalselectionmethod|Mayur|Explicit answer2|approved|docs/design/IPO_SHORT_HISTORY_POLICY.md|
+| D-038 |2026-11-01|[READ_CODE: user answer] DesignaseparateIPOshort-historysetup/datapolicy|Mayur|Explicit answer3;exactindicatorparametersnotapproved|approved|docs/design/IPO_SHORT_HISTORY_POLICY.md|
+| P-021 |2026-11-01|[ASSUMED] N0CSVmanual_prioritylane,proposed5initialIPOslotswithinmanual25withunusedcapacityflexibility;prioritythenSID|Codex proposal|No fabricatedliquidity/comparable-unitclaim|proposed|IPO_SHORT_HISTORY_POLICY.md section2|
+| P-022 |2026-11-01|[ASSUMED] N1..19availablematching-slotRVOL;N0C0vol/previous3vol,20actual5mcloses,3completed15mstrictlyrisingcloseswhenfullHTFnotready|Codex proposal|ExplicitexperimentalIPOprofilewithoutfakehistory|proposed|IPO_SHORT_HISTORY_POLICY.md section3|
+| P-023 |2026-11-01|[ASSUMED] Mixed-historysimultaneoustieholdswhen20Dmetricundefineduntilcomparabletiepolicyapproved|Codex proposal|Do notsilentlymixuserpriorityandrupeeADV|proposed|IPO_SHORT_HISTORY_POLICY.md section4|
+[READ_CODE] P020's oldN0-rankpending/indicatorholdremain interim limitations,not final desiredpolicy;D037/D038authorize alternatives. ExactT-1calendar mapping remainsunresolved bythe repeatedT-1term;no same-dayadditions underanyinterpretation.

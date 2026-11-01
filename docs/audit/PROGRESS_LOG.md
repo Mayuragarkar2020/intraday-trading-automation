@@ -183,3 +183,17 @@
 [RAN_TEST] Exactdocvalidation:functions.exec JS over mfiles asserts12allowedMarkdownpaths,36currentapprovedDIDs,originalprogresslogprefix,packet<=120lines,coverage30rows,required route/quota/CSV/IPOsections and no active old20cap/25-auto/samefilter intraday proposal. Hypothetical7-daymean(10..70)=40,top25of100count25,50+25-5=70and50+12=62. Private-key/GitHub-token/JWT/bearer/credential-assignment/private-URL pattern scan0matches. Document checks only,not application tests.
 [READ_CODE] No app/test/config/workflow/dependency/cron/Render/brokercode/endpoint/client/secrets change;legacyfiles/workspace untouched;Phase2NOTSTARTED. Traceability remainsDESIGNED/noTESTED/DEPLOYED.
 [ASSUMED] Openquestions:T-1calendarvstradingsession;N0ranking;short-historyIPOsetupbaseline/armedtie policy. Remaining source/operational/performance/buffer/cleancheckout andallproduction work deferred. No previous approved trade/risk rule relaxed.
+
+
+## 2026-11-01 — session8 / Phase1 IPO follow-up design
+
+[READ_CODE] Useranswers:T-1fortradingdayT;useanotherrankingmethodforN0;yes,separateIPOshort-historypolicy. Parenta0ea658c1eff12fbb33df184879e6c6a8733685b;branch codex/phase1-review-round2;range a0ea658c1eff12fbb33df184879e6c6a8733685b..codex/phase1-review-round2(exactendpointinPR19).
+[ASSUMED] Badnews:localbaselineUNKNOWN,firstdayIPOdata/profileefficacy/tiecomparabilityunverified.No userapprovalofexactnewparametersorPhase2.
+[READ_CODE] Readlatestcanonicalcontract,setup/overview/testplan,continuity/auditbeforeupdate. AddedIPO_SHORT_HISTORY_POLICY.md withCSVpriorityalternative,N1..19available-slotRVOL,N0currentprior3volume/20actualEMAcloses/3risingHTFcloses proposals,identity/date/session/warm-upguardsandseparatecohorts.
+[ASSUMED] Proposed5priorityIPOslotswithinmanual25withflexibleunusedcapacity,remaininghistorymanualnamesliquidityranked;no fabricatedN0liquidity,no ordinarymissinghistoryrelabelledIPO. Exactpriorityallocation/indicator/tiechangesnotapproved.
+[READ_CODE] ReaffirmedD033withoutinventingcalendar-vstrading-sessionanswer;D037/D038recorddirectionapprovedbyMayur;P021..023remainproposed. SamecoreC0/stop/risk/cutoffbracketpreserved;experimentalIPOprofilesnotclaimedSTANDARD20.
+[READ_CODE] Files11:docs/design/IPO_SHORT_HISTORY_POLICY.md;UNIVERSE_AND_POOL_CONTRACT.md;SETUP_AND_UNIVERSE.md;README.md;REPLAY_ANALYSIS_AND_TEST_PLAN.md(allunderdesign);docs/PROJECT_HANDOFF.md;docs/NEXT_WORK_PLAN.md;docs/audit/DECISIONS.md;INTENT_TRACEABILITY.md;AUDIT_PACKET.md;PROGRESS_LOG.md(last3underaudit).
+[ASSUMED] ApplicationtestsNOTRUN;commandnone;counts/skips/durationN/A. No sourcefetch/CI/runtime/dataanalysis/actualCSVuploadorpoolaction.
+[RAN_TEST] Exactdoccheck:functions.exec JS overipofiles asserts11allowedMarkdownpaths,38currentDIDs,priorlogprefixintact,packet<=120lines,31coverageentries,requiredIPOprofile/proposalterms;laneallocationexamples100H8I=>20H5I,100H2I=>23H2I,10H30I=>10H15I,0H30I=>0H25I. Credential/private-key/GitHub-token/JWT/bearer/credential-assignment/private-URLpatternscan0matches.Documentchecksnotapplicationtests.
+[READ_CODE] Noapp/test/config/workflow/dependency/cron/Render/brokerpathorlegacyfilechange;originalworkspaceuntouched;Phase2NOTSTARTED. NoPRmerged/closed.
+[ASSUMED] Deferred:userreviewexactIPOdefaults/tie/calendar mapping,cleancheckout/baseline,empiricalcalibrationandallimplementation/productionactions. StopatIPOdesigncheckpoint.

@@ -76,3 +76,9 @@
 [ASSUMED] Planned test_pool_50auto_25manual_100upload:100manualmembers top25basedavailable daily mean;N7vsN20actual lookback labels;zero-historyunrankable;underfilled pool usesactualcount,no invalid padding. Overlap50+25-5=70unique;50+12=62;no unused manual slots silently reassigned.
 [ASSUMED] Planned test_pool_keeps_ipo_membership_while_setup_data_held:ranked IPO withN<20not silently replaced due RVOLwarmup;scan available5mprices with visible holds,not fabricated indicators. Trade tie policy for a future approved short-historysetup requires explicit handling because old20Dtrade-ranking may be undefined.
 [ASSUMED] No testcode/replayanalysis executed. Buffer/risk/cutoff/lifecycle tests elsewhere remain applicable. Add IPO/available-history cohorts toreal-data studies;do not blendthemwith20-session systemic evidence.
+
+
+## IPO alternative design —not executed
+
+[READ_CODE] SeparateIPOpolicy design authorized;see IPO_SHORT_HISTORY_POLICY.md. Futuretests targetCSVpriority/missingpriority,lanequotaarithmetic,N0vsmissingolddata,availableNmatching-slotRVOL,firstday3priorvolumebaseline,20actual5mcloses and3completedHTFrisingcloses,source-timecontracts,cohortlineage andexplicitmixed-historytiehold. No script/testcodeor empirical result added.
+[ASSUMED] ExactIPOparameters remain proposed andmustnotbe used toretroactivelydeclare oldSTANDARD20resultsvalid.

@@ -8,6 +8,10 @@
 [READ_CODE] Source main79a2d3086c8aea660dc31068e2758db1f7332808 reread for detector/qualifier/scanner/choice guard. Historical CI evidence remains separate from local UNKNOWN baseline. Actual Render state **unverifiable by Codex**; no deployment/config/cron change.
 [ASSUMED] Single proposed Phase2 application foundation: origin/main containing PR14 HumanChoicePaperLedger; PR13/15 remain open/reference-only. No merge/cherry-pick/closure. Mayur supplies clean checkout; baseline verification and explicit Phase1 approval precede Phase2.
 
+## IPO follow-up design
+
+[READ_CODE] Mayur reaffirmedT-1manualentry,requested another zero-historyrankingmethod and authorized a separateIPOshort-historypolicy. See IPO_SHORT_HISTORY_POLICY.md. CSVpriority/laneallocation and newRVOL/HTFprofiles remain proposed;no Phase2.
+
 ## Universe/pool definition review
 
 [READ_CODE] See UNIVERSE_AND_POOL_CONTRACT.md for the two admission routes,universe/pool/setup/arm sets,approved50/25quotas,manual exceptions and identifier lineage. Exact import/timing/IPOedge details remain proposed;no Phase2 started.

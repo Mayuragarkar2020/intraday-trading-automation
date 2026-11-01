@@ -1,56 +1,54 @@
-# Audit packet —2026-11-01 / two-route universe and75-slot amendment
+# Audit packet —2026-11-01 / IPO follow-up design
 ## a. Session summary
-[ASSUMED] BAD NEWS:IPO N0ranking/short-historysetup calculations unresolved;local baseline UNKNOWN;no empirical75-slot capacity evidence.
-[READ_CODE] Mayur-approved automatic gates;manualT-1CSV band-only admission;identifier lineage;50auto25manualquota.
-[READ_CODE] Parent8e74b4b3de77e18e31248cb77a9c42f06685fff4;branch codex/phase1-review-round2;12Markdown files.
-[READ_CODE] D016/D020 amended,D030..036 user-approved;old same-filter/manual20cap/same-day-add/25-auto superseded.
-[READ_CODE] Phase2NOTSTARTED;no deploy/Render/cron/broker/app action.
+[ASSUMED] BAD NEWS:IPOpriorityallocation/indicator/tieparametersunapproved,localbaselineUNKNOWN,noempiricalIPOanalysis.
+[READ_CODE] Mayur reaffirmedT-1,requestedalternativeN0ranking,authorizedshort-historyIPOdesign.
+[READ_CODE] D037/D038approveddirection;P021..023exactdefaultsproposed.
+[READ_CODE] Parenta0ea658c1eff12fbb33df184879e6c6a8733685b;branch codex/phase1-review-round2;11Markdownfiles.
+[READ_CODE] Phase2NOTSTARTED;noapp/test/broker/deploy/cron/Renderaction.
 
 ## b. Safety invariants
-[READ_CODE] PASS diff-only:PREVIEW_ONLY/app paths untouched;no real-money/broker order code/client/endpoint/credential.
-[RAN_TEST] PASS limited scan:12proposed Markdown files,0credential/private-URL pattern matches.
-[ASSUMED] UNVERIFIED:whole-repo secret absence,actual runtime/Render settings.
-[ASSUMED] UNVERIFIED current tests:9800L-Qrisk,980000cash,long-only,daily-fill,five-arm,stop-limit formula;no application test.
-[READ_CODE] PASS scope:no config/workflow/cron/deploy/Render change;legacy files untouched.
-[ASSUMED] Manual admission exemptions do not waive setup/risk/tradability;stop-failureloss may exceed9800.
+[READ_CODE] PASS diff-only:PREVIEW_ONLY/app pathsuntouched;no brokerordercode/endpoint/client/credential.
+[RAN_TEST] PASS limitedcredential/private-URLscan:11proposedMarkdownfiles,0matches.
+[ASSUMED] UNVERIFIED:repo-widesecretabsence,actualruntime/Renderstate.
+[ASSUMED] UNVERIFIEDcurrenttests:9800risk,980000cash,long-only,dailyfill,fivearms,limitformula.
+[READ_CODE] PASSscope:legacyfiles/config/workflow/deploy/cronuntouched.
+[ASSUMED] IPOuniverseexceptiondoesnotwaivetraderisk/cutoff/stop-failurelosssemantics.
 
 ## c. Traceability delta
-[READ_CODE] D030..036 DESIGNED;D016/D020amended;PI1/PI2/PI7route-aware evidence;no TESTED/DEPLOYED.
-[READ_CODE] P014..017superseded as old bundles;P018..020exact import/rank/IPOdetails proposed.
-[READ_CODE] Source identifier and available-history fields propagate to setup/trade/shadow/journal.
+[READ_CODE] D037/D038andP021..023DESIGNED;no TESTED/DEPLOYEDpromotion.
+[READ_CODE] D033T-1reaffirmed;calendar-mappingnotexplicitlyapproved.
+[READ_CODE] NewIPOprofile/rankingproposalslinkedfromcanonicalcontract/overview/testplan.
 
 ## d. Deviations,risks,assumptions
-[READ_CODE] New manual route explicitly supersedes prior shared price/history/liquidity/restriction admission filters.
-[ASSUMED] Resolvable identity/band proof is operational prerequisite;unknown band cannot be declared non2%/5%.
-[ASSUMED] N0completed sessions gives no daily-average score;default visible rankpending,not invented liquidity.
-[ASSUMED] N1..19ranking works,but20-slotRVOL/EMA/HTF may hold setup;membership/pool not silently removed.
-[ASSUMED] CalendarT-1default,CSVcolumns/commit-time guard,stable tie/overlap/noquota-lending details proposed.
-[ASSUMED] Route-specific final validity proposed:automatic dailyhistory failure not a hidden manual admission gate;shared band/feed failures stillhold.
-[ASSUMED] Ranking on shorter history is less comparable;track lookback/IPOcohorts;no profitability claim.
-[ASSUMED]75capacity is target,not measured performance;no silent quota reduction or same-day CSVrotation.
-[READ_CODE] No old progress entries edited;historical decision rows explicitly preserved.
+[ASSUMED] CSVpriorityisdiscretion,notliquidity;5IPOslotallocationwithmanual25isproposed,notuser-approved.
+[ASSUMED] Available-sessionRVOLandcurrent3barvolumearestatisticallydifferentfromSTANDARD20.
+[ASSUMED] ReducedHTF3risingcloseconfirmationisaproposedstrategyvariant,notexistingEMA20proof.
+[ASSUMED] Firstdayneeds20actual5mclosesandverifiedinstrument-sessionstart;no syntheticIPOprice/historyseed.
+[ASSUMED] Mixedhistorytiecanlack20DADV;defaultproposalholds,tiealternativeneedsreview.
+[READ_CODE] No currentnew-test,replay,source-capability,capacityorprofitabilityclaim.
+[READ_CODE] Priorprogressprefixretained;useranswersnotstretchedintoexactparameter/Phase2approval.
 
 ## e. Unverified claims
-[ASSUMED] No actualstock/IPOupload,bandproof,current universe count,liquidityrank,p95or source/session validation performed.
-[ASSUMED] Actual Render state unverifiable by Codex;no new CI/runtime/Telegram/supervisor proof.
-[ASSUMED] First-listing-daysetup/armedtie fallback needs explicit policy ifIPOshort-historysignals later allowed.
-[ASSUMED] No Phase2 authorization inferred from universe instructions.
+[ASSUMED] No realIPOdataset/firstdayranking/profileoutcome/Telegram/supervisiontest.
+[ASSUMED] ActualRenderstateunverifiablebyCodex;localbaselineUNKNOWN.
+[ASSUMED] T-1calendarvstrading-sessionmappingstillneedsresolutionbeforeimplementation.
+[ASSUMED] CurrentDhan/marketIPOstart/tick/bandcapabilitynotverifiedhere.
 
 ## f. Test results
-[ASSUMED] Application command:none;pass/fail/skips/duration N/A(docs only).
-[RAN_TEST] functions.exec doc validator:12allowedMarkdown paths,append-only log,36current DIDs,packet<=120lines,30coverage rows.
-[RAN_TEST] Hypothetical lookback/quotaarithmetic checked,including50+25-5=70and50+12=62;not application tests.
-[RAN_TEST] Credential/private-URL pattern scan0matches;no applicationcode/test/dependency added.
+[ASSUMED] ApplicationtestsNOTRUN;commandnone;pass/fail/skips/durationN/A.
+[RAN_TEST] functions.exec docvalidator:11Markdownpaths,append-onlylog,38currentDIDs,packet<=120lines,31coveragerows.
+[RAN_TEST] Hypotheticallaneallocations<=25manual/75totalchecked;notruntime/invarianttests.
+[RAN_TEST] Credential/private-URLscan0matches;noapplicationtestcodeadded.
 
-## g. Numbered open questions
-[ASSUMED] 1. DoesT-1mean previous calendar day(Sunday forMonday),or previous trading session(Friday)?
-[ASSUMED] 2. ForN0first-dayIPO,hold liquidity rankpending or approve a separate ranking source/policy?
-[ASSUMED] 3. ForN<20IPO,keep current indicator hold or approve a separately specified short-historysetup/RVOLpolicy?
-[READ_CODE] All requested admission/quota/identifier rules are recorded approved;these edge cases are not silently decided.
+## g. Numbered open choices
+[ASSUMED] 1. AcceptCSVpriorityandproposed5IPOslotreservation/flexiblemanualquota?
+[ASSUMED] 2. Acceptavailable-sessionRVOLandfirstdayprior3volume/20closes/3HTFrisingcloseprofile?
+[ASSUMED] 3. Choosecomparablemixed-historytiebreakbeforeallowingcompetingIPOprimaryentries;currentproposalholds.
+[ASSUMED] ExactT-1calendar mappingstillpending;no same-day additionsunderanyinterpretation.
 
-## h. Suggested next step / first auditor paths
-[ASSUMED] ResolveIPO/timing details;clean checkout/baseline and explicit Phase2 approval remain separate.
-[READ_CODE] First5:UNIVERSE_AND_POOL_CONTRACT.md;SETUP_AND_UNIVERSE.md;REPLAY_ANALYSIS_AND_TEST_PLAN.md;../audit/DECISIONS.md;../audit/PROGRESS_LOG.md(paths relative design/).
+## h. Suggested next step / auditor first paths
+[ASSUMED] ReviewIPOdefaults;cleancheckout/baselineandexplicitPhase2approvalremainseparate.
+[READ_CODE] First5:IPO_SHORT_HISTORY_POLICY.md;UNIVERSE_AND_POOL_CONTRACT.md;REPLAY_ANALYSIS_AND_TEST_PLAN.md;../audit/DECISIONS.md;../audit/PROGRESS_LOG.md(design-relative).
 
 ## Coverage map — paths relative to docs/design/; coverage means designed, NOT tested
 | Phase1 item | Document and section |
@@ -87,4 +85,6 @@
 | [READ_CODE] Universe/pool definition refinement | UNIVERSE_AND_POOL_CONTRACT.md — sections1–7 |
 
 | [READ_CODE] ManualT-1CSV and75-slot amendment | UNIVERSE_AND_POOL_CONTRACT.md sections1–7;REPLAY_ANALYSIS_AND_TEST_PLAN.md amendment tests |
+
+| [READ_CODE] IPO ranking/short-historyfollow-up | IPO_SHORT_HISTORY_POLICY.md sections1–5 |
 
