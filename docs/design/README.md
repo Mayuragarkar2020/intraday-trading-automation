@@ -1,69 +1,75 @@
-# Phase 1 design review — preview paper system
+# Phase1 design review — round2 C0 resting bracket
 
-[ASSUMED: proposal] Status: DESIGN ONLY / NOT APPROVED / NOT IMPLEMENTED. D-001..017 in ../audit/DECISIONS.md are Mayur-approved intent; precise engineering choices below remain Codex proposals. No Phase 2, activation or production change is authorized by this document.
-[READ_CODE] Source baseline: main 79a2d3086c8aea660dc31068e2758db1f7332808. Read current handoff plus audit packet for proposed/deployed distinctions. Actual Render state is **unverifiable by Codex**.
-[READ_CODE: CI-reported] Current main test-phase-1 run 41290657216 succeeded: Python/PostgreSQL 539 passed, 3 warnings, 41.97s; both browser scripts passed. Local baseline UNKNOWN: fresh clone failed; existing directory is an unversioned mixed copy. See BASELINE_AND_REFERENCES.md.
-[ASSUMED] Phase 2 gate: approved Phase 1 design plus reproducible baseline evidence for the implementation's exact starting revision. Main CI is evidence for main only, not PR15 or the mixed local copy.
+[ASSUMED] DESIGN ONLY, not Phase2 or a release. Mayur's strategy definition supersedes the old three-bar-range setup wherever different. Round1 following-close primary fills, receipt-based cutoff and top100 initial pool are SUPERSEDED.
+[READ_CODE] Source main79a2d3086c8aea660dc31068e2758db1f7332808 reread for detector/qualifier/scanner/choice guard. Historical CI evidence remains separate from local UNKNOWN baseline. Actual Render state **unverifiable by Codex**; no deployment/config/cron change.
+[ASSUMED] Single proposed Phase2 application foundation: origin/main containing PR14 HumanChoicePaperLedger; PR13/15 remain open/reference-only. No merge/cherry-pick/closure. Mayur supplies clean checkout; baseline verification and explicit Phase1 approval precede Phase2.
 
-## Review map
+## Authoritative strategy and review map
 
-[ASSUMED: proposal] Read in this order:
-1. TIME_AND_EXECUTION.md — cutoff convention, stop-limit, risk, precedence and replay correction.
-2. LIFECYCLE_AND_ATOMICITY.md — transitions, five arms, DB constraints and race-test design.
-3. SETUP_AND_UNIVERSE.md — exact existing rules, warm-up, hybrid publication, pool/manual catalysts/scaling.
-4. JOURNAL_ALERTS_RECOVERY.md — authoritative events, shadow data, Telegram, supervision and failures.
-5. BASELINE_AND_REFERENCES.md — source identity, baseline limits, test segmentation and every discovered legacy reference at pinned main.
+[ASSUMED: Mayur strategy] C0.close strictly exceeds highest prior3highs; qualify only at C0 close. Default proposed T=highC0+one effective tick; S=minLow(C0,prior3)-one tick. Confirm with fresh price<T to arm a resting stop-limit bracket;15min signal lifetime. Same eligible trigger candle can fill, all-or-nothing. Protective failure is STOP_NOT_FILLED/critical, not an assumed capped loss.
+[ASSUMED: Mayur amendment] Fill candle START before14:30; receipt only guards stale/known evidence. Last eligible bar14:25–14:30;14:30-opening bar ineligible. Scan09:15–14:35, hidden postcutoff setups. Initial25–50 systematic stocks plus filtered catalysts; growth only after measured complete-sweep p95<=60s in no-trade observation.
+[ASSUMED: hard constraints] PREVIEW_ONLY; no real-money/broker-order path or secrets; capital980000; planned risk<=9800 INCLUDING fees on L-Q; long-only; one filled entry/day; no leverage;<=5 arms; close by15:00 or report unresolved/late exposure honestly. Protected legacy entrypoints untouched.
 
-## Fixed boundaries
+| Document | Review section |
+|---|---|
+| [READ_CODE] SETUP_AND_UNIVERSE.md | Side-by-side change map; preserved calculations; hybrid/final universe, pool/manual/scaling |
+| [READ_CODE] TIME_AND_EXECUTION.md | Signal/lifetime; exchange cutoff; resting entry; protective OHLC rule; L-Q risk/overrides/precedence |
+| [READ_CODE] LIFECYCLE_AND_ATOMICITY.md | Same-candle transitions; DB invariants; stop-cancel-confirm-exit; sole implementation base |
+| [READ_CODE] REPLAY_ANALYSIS_AND_TEST_PLAN.md | Historical buffer/stop/selection protocol; future mutation tests; broker-neutral pre-live checklist |
+| [READ_CODE] JOURNAL_ALERTS_RECOVERY.md | Bracket journal/excess loss; MFE/MAE bounds/shadow; Telegram and independent supervision |
+| [READ_CODE] BASELINE_AND_REFERENCES.md | Clone error uncertainty; clean checkout; segmented baseline; protected references/Render checklist |
 
-[ASSUMED: approved user intent] PREVIEW_ONLY; simulated fills only; no broker order endpoint, real-money path or secret in the repository. Long only; available capital at most INR980,000; planned risk at most INR9,800 including estimated entry/exit costs and adverse stop execution; one filled entry per IST session; no leverage; at most five simultaneous arms.
-[ASSUMED: proposal] Faults block new entries. Existing exposure remains explicitly OPEN/EXIT_PENDING/HALTED/RECOVERY_EXIT_PENDING until a full valid paper exit is recorded. A promise of instantaneous flat during a halt, DB outage or missing feed would conflict with D-013/D-014; never fabricate that state. A persisted manager plus independent supervisor owns each open position; loss of that ownership is a critical incident.
-[READ_CODE] Conflicts requiring later implementation: held single choice, old 09:45–11:30 guards, same-day-only universe contract, replay max(open,trigger) fill/partial fills, no relational daily-fill constraint and no five-arm model. Existing indicator/ledger libraries are reusable only behind the new contract.
+## Versioned defaults, not calibrated parameters
 
-## Proposed versioned config envelope
+[ASSUMED: proposed, awaiting Mayur] C0_V2_FILTERS retains C0 EMA10>EMA20, close>EMA10/EMA20/VWAP, RVOL>=1.2 and completed15m rising-EMA trend; prior3 width<=2.5% with denominator close(-1C). Tick buffers one tick beyond highC0/minLow4. These item7 defaults remain explicitly unapproved.
+[ASSUMED: placeholder] ENTRY_BUFFER_REVIEW_V2 L=ceil_tick(T+max(0.15%*T,3ticks)); STOP_BUFFER_REVIEW_V2 Q=floor_tick(S*(1-1.0%)). Final values require replay analysis, not approval by repetition. Full q risk uses L-Q+fees; L-S risk reported separately.
+[ASSUMED: proposed, awaiting Mayur] Max distance(T-S)/T<=2.5%; override deltas<=max(0.10%T0,2ticks) while retaining trigger above highC0 and stop below all4 lows. Proposed candle age90s/quote age5s/participation1%/adverse slippage5bps require sensitivity review. No broker-certified charges claimed.
+[ASSUMED] Hard risk/quantity/arm caps are invariants, not optimization knobs. Unfilled/halted stop can lose more than9800; no max-loss guarantee. Candle path/selection timing uncertainty is journaled, not hidden.
 
-[ASSUMED: proposal] Config is stored as a canonical document and SHA-256 hash, not silently changed defaults: schema_version=paper-v3-design; timezone=Asia/Kolkata; max_armed=5; max_daily_filled_entries=1; capital_cap=980000; risk_cap=9800; scan_start=09:15; scan_end=14:35; entry_cutoff=14:30; closure_deadline=15:00.
-[ASSUMED: proposal] Additional proposed values: limit_buffer_pct=0.0015; limit_buffer_ticks=3; setup_ttl_minutes=15; source_close_age_max_seconds=90; quote_age_max_seconds=5; fill_participation_pct=1; adverse_slippage_bps=5; manual_membership_cap=20; review_reminder_days=30; flatten_request_time=14:50; heartbeat_seconds=30; outage_critical_seconds=600.
-[ASSUMED: proposal] These are not broker-certified costs or calibrated liquidity estimates. Pin fee-model version and coefficients separately; absence of an approved/available model holds entry. No quantity rounding or client-supplied capital may bypass hard caps.
-[ASSUMED: proposal] Paper outcome groups: PRIMARY (Mayur-confirmed session account) and SHADOW (independent hypothetical alternatives). Never combine their daily entry count, cash or P&L.
+## Updated flow
 
-## Flow
-
-[ASSUMED: proposal] Diagram describes future behavior only; it is not proof of deployed wiring.
-
+[ASSUMED] Future behavior only, not implemented wiring.
 ```mermaid
 flowchart TD
- U["Evening provisional universe"] --> V{"Revalidated before 09:15?"}
- V -- No --> H["No new scan or entry; fault visible"]
- V -- Yes --> P["Eligible pool; scan 09:15–14:35"]
- P --> Q{"Setup known before 14:30?"}
- Q -- No --> S["Hidden shadow record only"]
- Q -- Yes --> A["Cockpit and Telegram"]
- A --> C["Mayur confirms proposal or valid override"]
- C --> G{"Fresh data, risk and five-arm slot?"}
- G -- No --> R["Reject with reason"]
- G -- Yes --> M["Persist SELECTED and ARMED atomically"]
- M --> T{"Five-minute close breakout?"}
- T -- "No; cutoff reached" --> X["CANCELLED: CUTOFF_REACHED"]
- T -- Yes --> W["Earliest interval; liquidity tie-break"]
- W --> F{"Following candle: full valid limit fill?"}
- F -- "Gap beyond limit" --> Z["CANCELLED: GAPPED_THROUGH"]
- F -- "No liquidity or fault" --> N["No fill; cancel or recovery hold"]
- F -- Yes --> E["One fill; cancel other arms atomically"]
- E --> B["SL, EMA10, breakeven; flatten from 14:50"]
- B --> D{"Valid full exit?"}
- D -- Yes --> J["EXITED then JOURNALED; MFE and MAE"]
- D -- "Halt, outage or no liquidity" --> O["Exposure visible; alert and recovery"]
- O --> D
- Z --> S
- X --> S
- H --> S
+ U["Provisional evening universe"] --> V{"Final revalidation before09:15?"}
+ V -- No --> H["No new scan or entry; visible fault"]
+ V -- Yes --> P["25–50 systematic plus catalysts; scan09:15–14:35"]
+ P --> C{"C0 closes above prior3highs?"}
+ C -- No --> P
+ C -- Yes --> Q{"Known before14:30?"}
+ Q -- No --> SH["Hidden shadow evidence"]
+ Q -- Yes --> A["Cockpit and Telegram;15min lifetime"]
+ A --> M["Mayur confirms T/S; fresh price below T"]
+ M --> F{"Valid risk, tick, expiry and free slot?"}
+ F -- No --> R["Rejected with reason"]
+ F -- Yes --> AR["Resting paper arm; cap5"]
+ AR --> W{"Eligible candle opens before14:30?"}
+ W -- No --> X["CUTOFF_REACHED; reconcile prior window only"]
+ W -- Yes --> G{"Open above entry limit?"}
+ G -- Yes --> GC["GAPPED_THROUGH; no fill or auto-rearm"]
+ G -- No --> T["Trigger touch; ADV20 then security-ID tie"]
+ T --> E["One full fill plus bracket; atomic other-arm cancels"]
+ E --> S{"Protective fill valid within stop limit?"}
+ S -- Yes --> J["Exited and journaled; MFE/MAE"]
+ S -- "Gap or uncertain crossing" --> NF["STOP_NOT_FILLED; critical exposure"]
+ NF --> CE["Cancel, confirm, reconcile, marketable exit"]
+ S -- Untouched --> MG["Manage5m EMA10,1.5R and14:50 flatten"]
+ MG --> D{"Exit, breakeven or hold?"}
+ D -- "EMA or flatten" --> CE
+ D -- "1.5R" --> MOD["Cancel-confirm; raise stop next bar"]
+ MOD --> S
+ D -- Hold --> S
+ CE --> J
+ CE -- "Halt, cancel unknown or no price" --> O["Visible pending exposure; recovery and deadline flags"]
+ O --> CE
 ```
+[ASSUMED] No trigger-touch branches remain ARMED until expiry/cutoff/invalidation. Qualified but unselected/cancelled setups retain shadow evidence; no selection means no primary trade.
 
-## Numbered open questions (engineering proposals, not reopened decisions)
+## Numbered questions — proposed, awaiting Mayur; not blockers to documenting defaults
 
-[ASSUMED: proposal] 1. Accept receipt-time cutoff <=14:30 and next-candle-close simulation? It conservatively excludes a usual delayed 14:25 trigger's 14:30 closing receipt; details/examples in TIME_AND_EXECUTION.md.
-[ASSUMED: proposal] 2. Accept 0.15% or three ticks (larger), 15-minute setup shelf life, five-second quote freshness and the all-or-nothing conservative fill model? Approved risk/arm/time caps remain fixed.
-[ASSUMED: proposal] 3. Accept the initial top-100 systematic pool plus up to twenty filtered manual catalysts, with capacity gates and reserved manager bandwidth? No afternoon performance claim.
-[ASSUMED: proposal] 4. Which existing independent host can run the watchdog, and which authenticated Telegram chat receives alerts? Connection setup and any new hosting/cost require separate approval; no credentials requested in repo or design.
-[ASSUMED: proposal] 5. Approve the design only after audit, then separately authorize Phase 2's pure lifecycle/replay slice. No deployment or activation is bundled.
+[ASSUMED] 1. Keep the existing filter thresholds applied to C0, with prior3 width using close(-1C) denominator?
+[ASSUMED] 2. Accept a maximum(T-S)/T distance of2.5% pending distance sensitivity analysis?
+[ASSUMED] 3. Confirm one effective tick beyond highC0 and minLow4 as default entry/SL buffers?
+[ASSUMED] 4. Confirm stop-limit entry/protection rather than plain limit? A plain limit could execute without waiting for the breakout; draft defaults remain stop-limit.
+[ASSUMED] 5. Accept proposed override bounds and the pessimistic low<Q stop rule for primary replay, with continuous-touch alternative reported separately?
+[ASSUMED] 6. Final entry/stop-limit buffers remain deferred to evidence; provide the promised clean checkout before implementation baseline/Phase2. No Phase2 or live release is requested here.

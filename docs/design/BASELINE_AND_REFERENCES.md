@@ -3,9 +3,9 @@
 ## Baseline status and source identity
 
 [READ_CODE: CI-reported] Pinned main 79a2d3086c8aea660dc31068e2758db1f7332808; workflow test-phase-1; https://github.com/Mayuragarkar2020/intraday-trading-automation/actions/runs/41290657216 completed SUCCESS. Test job: 539 passed, 3 warnings, 41.97s, no skipped count in summary; PostgreSQL18 service configured. Chromium job: cockpit and paper browser scripts passed. This is independent CI-reported evidence, not local RAN_TEST.
-[RAN_TEST] Existing directory is not a Git repository. Commands git rev-parse --show-toplevel, git status --short --branch and git log --oneline --branches --not --remotes -5 failed. Therefore branch/status/uncommitted/unpushed are unavailable, not clean. Comparison against recorded PR15 codex/human-paper-controller 9ec22efae49a633c6f8cba09f78ac41b204de739: sixteen differing files, forty-seven missing files, four extra non-generated files. Exact lists in PROGRESS_LOG session3; no reset/clean/stash/checkout/delete.
-[RAN_TEST] Separate git clone of origin/main to baseline-main-20261101 failed with getaddrinfo() thread failed to start. No faithful local checkout established. Old workspace was not used for another pytest run. Original manifest/log files remain intact.
-[RAN_TEST] Probe: pytest-timeout absent, Playwright absent, Chromium cache absent; pg_isready/docker commands unavailable. Existing PostgreSQL service not established or contacted; no test credentials obtained/used.
+[READ_CODE: prior-session test record] Existing directory is not a Git repository. Commands git rev-parse --show-toplevel, git status --short --branch and git log --oneline --branches --not --remotes -5 failed. Therefore branch/status/uncommitted/unpushed are unavailable, not clean. Comparison against recorded PR15 codex/human-paper-controller 9ec22efae49a633c6f8cba09f78ac41b204de739: sixteen differing files, forty-seven missing files, four extra non-generated files. Exact lists in PROGRESS_LOG session3; no reset/clean/stash/checkout/delete.
+[READ_CODE: prior-session test record] Separate git clone of origin/main to baseline-main-20261101 failed with getaddrinfo() thread failed to start. No faithful local checkout established. Old workspace was not used for another pytest run. Original manifest/log files remain intact.
+[READ_CODE: prior-session test record] Probe: pytest-timeout absent, Playwright absent, Chromium cache absent; pg_isready/docker commands unavailable. Existing PostgreSQL service not established or contacted; no test credentials obtained/used.
 [ASSUMED] Local baseline UNKNOWN. Main CI baseline CI-reported PASS. No claim for PR15 or the mixed directory. Proposed Phase2 requires approved design and exact starting-source baseline from reproducible CI/local evidence; cannot borrow another branch's result.
 
 | Segment | Intended command | Current outcome/count/duration |
@@ -16,8 +16,17 @@
 | [ASSUMED] d Chromium | python scripts/check_cockpit_browser.py; python -m scripts.check_paper_browser | not runnable locally: checkout/Playwright/Chromium unavailable; N/A; not run; rely on pinned CI |
 
 [READ_CODE] Angle-bracket node lists are unexecuted protocols, not literal completed commands. CI's actual command is python -m pytest -q. Local unavailable segments have no test counts or measured test duration.
-[RAN_TEST] Prior session full-suite command python -m pytest -q --basetemp=.test-phase1-baseline-20261101 timed out after180s, output only two dots. This session did not rerun that mixed snapshot.
+[READ_CODE: prior-session test record] Prior session full-suite command python -m pytest -q --basetemp=.test-phase1-baseline-20261101 timed out after180s, output only two dots. This session did not rerun that mixed snapshot.
 [ASSUMED] No exact slow/hanging test name is known; do not infer it from alphabetical order. CI lacked --durations and timing per test, so no top20 slow list can be invented. Prior Windows TestClient reports are hypotheses, not a new diagnosis.
+
+## Clone failure explanation and clean checkout handoff
+
+[READ_CODE] Prior recorded native Git error is getaddrinfo() thread failed to start. The recorded process failed before a clean checkout existed; no original files were reset/cleaned/stashed/checked-out/deleted.
+[ASSUMED] Interpretation: Git/libcurl's resolver could not start a DNS helper thread. The exact root cause is UNKNOWN: sandbox/process/thread limits or host runtime restrictions are plausible; the message is not proof of a bad repository, invalid credentials or ordinary DNS “name not found”. No diagnosis or resolver/thread experiment ran this round.
+[ASSUMED: proposal] Mayur supplies a NEW clean checkout, not an overwrite of the mixed directory. Verify git rev-parse --show-toplevel; git branch --show-current; git status --porcelain=v1; git rev-parse HEAD; git rev-parse origin/main; and git log --oneline origin/main..HEAD. Compare HEAD/origin/main with the agreed pinned implementation SHA; inspect intended origin identity with credentials redacted. Any mismatch/uncommitted content is reported before action; no reset/clean/stash command.
+[ASSUMED: proposal] Single Phase2 base is origin/main79a2d3086c8aea660dc31068e2758db1f7332808 (PR14 HumanChoicePaperLedger), subject to rechecking current main when checkout is provided. PR13/15 reference-only, no merge/closure. Docs branch is not an alternate application base.
+[ASSUMED: proposal] Reproduce CI in an isolated Python3.11 environment with reviewed pinned requirements and test-only timeout dependency; PostgreSQL18 for concurrency; Playwright/Chromium for browser scripts. No credentials in repo. Run collection, explicit pure tests, PostgreSQL and browser segments separately under reviewed per-test/process budgets; capture exact SHA/commands/counts/durations. No environment installation/change or test retry now.
+[ASSUMED] Baseline for supplied clean checkout remains UNKNOWN until verified; previous main CI evidence is historical, not a new run and not proof for PR15/this future implementation.
 
 ## Proposed test architecture (design only)
 
@@ -25,12 +34,14 @@
 [ASSUMED: proposal] Collection process budget30s; pure per-test10s/process120s; API/SQLite per-test15s/process180s; PG per-test30s/process180s; browser each script process120s. Use pytest-timeout where supported and a supervising process budget; collect --durations=20 and -vv during diagnosis, optionally -o faulthandler_timeout=10. Install/CI modifications would be later approved implementation, not made here.
 [ASSUMED: proposal] A hang record must name last STARTED node, elapsed time, timeout mode/platform and stack dump, distinguishing setup/teardown. Report every segment independently and don't let one process hang hide others. Missing PG/browser prerequisites mean NOT_RUNNABLE, not test skips/passes.
 [ASSUMED: proposal] Phase2 smallest slice: pure lifecycle/replay adapter only, tests first. Required invariant tests pin literal9800 cost-inclusive cap, positive BUY/SL side, one daily fill and five-arm cap so changing configured invariants makes tests fail. Two same-candle armed candidates must yield deterministic highest-ADV single fill regardless of arrival order. Pure “race” is an interleaving/replay test, not proof of SQL concurrency.
-[ASSUMED: proposal] Gap test: following candle O>L, even with later return inside L, is CANCELLED/GAPPED_THROUGH, zero fill and no auto-rearm; manual new confirmation requires fresh validation. Other tests cover proposed cutoff, AON anomaly, overridden prices, stop/EMA/BE precedence and idempotent recovery. PG race/constraint test is separately designed in LIFECYCLE_AND_ATOMICITY.md and cannot be represented as a pure-module test.
+[ASSUMED: proposal] Gap test: same eligible trigger candle O>L, even with later return inside L, is CANCELLED/GAPPED_THROUGH, zero fill and no auto-rearm; manual new confirmation requires fresh validation. Other tests cover proposed cutoff, AON anomaly, overridden prices, stop/EMA/BE precedence and idempotent recovery. PG race/constraint test is separately designed in LIFECYCLE_AND_ATOMICITY.md and cannot be represented as a pure-module test.
 [ASSUMED: proposal] No new test, module, dependency, workflow, broker path or deployment is created in Phase1. Test designs do not count as TESTED traceability.
+
+[ASSUMED] Round2 mutation/signal/resting-stop/cutoff test targets are authoritative in REPLAY_ANALYSIS_AND_TEST_PLAN.md; older illustrative tests here do not authorize the superseded next-candle-close model.
 
 ## Every literal legacy reference at pinned main
 
-[RAN_TEST] Targeted reference inventory used main's recursive Git tree metadata, SHA-verified157 locally available blobs (raw/LF-normalized), and fetched only66 missing/different blobs through GitHub. It searched UTF-8 content for literal run_daily or render.yaml; outputs were only matches. This avoids reading the full repository into conversation context. All required remote blobs were readable. This is exact-literal scope, not proof about aliases/external service settings or later branches.
+[READ_CODE: prior-session test record] Targeted reference inventory used main's recursive Git tree metadata, SHA-verified157 locally available blobs (raw/LF-normalized), and fetched only66 missing/different blobs through GitHub. It searched UTF-8 content for literal run_daily or render.yaml; outputs were only matches. This avoids reading the full repository into conversation context. All required remote blobs were readable. This is exact-literal scope, not proof about aliases/external service settings or later branches.
 [READ_CODE] Five matches at pinned main:
 | Path | Line | Reference |
 |---|---:|---|

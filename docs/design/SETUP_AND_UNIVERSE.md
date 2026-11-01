@@ -1,30 +1,34 @@
-# Exact existing setup, universe, pool and scaling
+# Setup and universe — authoritative C0 strategy, round 2
 
-[READ_CODE] Source claims in this document refer to main 79a2d3086c8aea660dc31068e2758db1f7332808. They are code readings, not market validation. Proposed changes are separately labelled.
+[READ_CODE] As-implemented source below was reread at main79a2d3086c8aea660dc31068e2758db1f7332808. New strategy is Mayur's authoritative definition, NOT implemented by this docs-only revision.
+[ASSUMED] Existing filter defaults, distance and tick defaults marked “proposed, awaiting Mayur” remain proposals under strategy item7, even where other strategy structure is authoritative.
 
-## As implemented: auditable setup
+## Side-by-side change map
 
-| Component | Exact current behavior | Evidence |
-|---|---|---|
-| [READ_CODE] Session bars | Ordered contiguous same-session 5m CLOSE times; open 09:15; generic close helper permits through 15:30; initial candle close must be 09:20 | src/candle_session.py; qualified_scanner.py::qualify |
-| [READ_CODE] Range | Last three completed current-session candles by default; configurable minimum cannot be below three; range does not span sessions | setup_detector.py::detect_setup |
-| [READ_CODE] 5m EMA | SMA seed from first period closes; alpha=2/(period+1); recursive EMA thereafter; full Decimal calculation | candle_pipeline.py::ema |
-| [READ_CODE] Warm-up | >=20 prior closes required; universe candidate uses last 200 historical 5m closes plus current-session closes | qualified_scanner.py; universe_scanner.py::candidate_from |
-| [READ_CODE] Alignment | EACH of last three bars EMA10>EMA20, close>EMA10, close>EMA20, close>its session VWAP | setup_detector.py |
-| [READ_CODE] VWAP | Sum(((H+L+C)/3)*volume)/sum(volume) over complete current session from first 09:20 close; rejects zero total volume | session_vwap.py |
-| [READ_CODE] Relative volume | Latest range bar volume divided by mean of matching HH:MM slot from twenty distinct prior sessions; every slot volume>0; threshold >=1.2 | qualified_scanner.py::baseline_for_slot; setup_detector.py |
-| [READ_CODE] Higher timeframe | Aggregate exactly three consecutive 5m bars into completed 15m bar; >=21 completed 15m closes; EMA10>EMA20 AND each strictly rising versus its preceding EMA value | dhan_research_scanner.py::aggregate_15m; qualified_scanner.py::higher_tf_confirmed |
-| [READ_CODE] HTF timeliness | Latest 15m close cannot be future or >15m behind latest 5m; prior history precedes current session; same latest HTF boolean supplied to all three range bars | qualified_scanner.py::qualify |
-| [READ_CODE] Range width | (max(high)-min(low))/latest.close <=0.025 | setup_detector.py |
-| [READ_CODE] Proposal prices | Trigger=max(high)+0.05; SL=min(low)-0.05; reject nonpositive SL. This fixed buffer is not instrument-tick-aware | setup_detector.py |
-| [READ_CODE] Breakout | Later bar low<=initialSL invalidates FIRST; otherwise high>=trigger means breakout, independent of close>trigger | setup_detector.py::confirm_breakout |
-| [READ_CODE] Orchestration | Scan window 09:45–11:30; reference warm-up 08:30–09:40; history accepts 72/75-bar sessions; reference dates must match calendar | universe_scanner.py |
-| [READ_CODE] Source gates | Present research paths are not execution certification. Indicators and closed-bar normalization do not prove source timestamp convention/session validity | research_input_gate.py; handoff |
+| Topic | As implemented (READ_CODE) | Authoritative target / default (ASSUMED) | Required implementation change |
+|---|---|---|---|
+| Signal | Last3 bars qualify a range; no C0 close breakout comparison | C0.close>highest high of -1C/-2C/-3C, strictly; surface after C0 close | setup_detector.detect_setup:four-bar input, separate prior3 range and C0; equality false |
+| Entry | Prior-range high+fixed0.05 | T0=high(C0)+one effective tick (default proposed, awaiting Mayur) | setup_detector:effective tick input; include C0 ID/high; no fixed buffer |
+| SL | Last3 minimum low-fixed0.05 | S0=min(lowC0,low-1,low-2,low-3)-one effective tick (default proposed, awaiting Mayur) | setup_detector:four-low stop and tick validation |
+| Trend/VWAP | All last3 bars EMA10>EMA20 and close>both/VWAP | Keep thresholds but apply to C0 only (proposed, awaiting Mayur) | qualified_scanner computes C0 indicator snapshot; detector checks C0 only |
+| RVOL | Latest range bar volume/20 matching slots>=1.2 | C0 slot ratio>=1.2 (proposed, awaiting Mayur) | qualified_scanner binds matching slot to C0, not last pre-signal bar |
+| HTF | Latest completed15m EMA10>EMA20, both rising | Same confirmation at C0 close (proposed, awaiting Mayur) | qualified_scanner:no future15m, no stale HTF; attach source IDs |
+| Width | Last3 range width/latest range close<=2.5% | Width of -1C..-3C only<=2.5% (proposed, awaiting Mayur); denominator close(-1C) proposal | detector:exclude C0 from width high/low; document denominator/config |
+| Required bars | >=3 current-session candles | >=4 contiguous current-session bars; prior3 cannot span sessions | qualified_scanner:four inputs, C0 explicit; earliest possible09:35 |
+| Entry interpretation | Detector says ARMED before human choice; confirm_breakout uses later high | Detector says DETECTED/SURFACED; human confirmation creates resting arm; same trigger candle may fill | detector terminology; qualified_scanner result schema; universe_scanner persisted output |
+| Lifetime | No explicit C0+15min contract in detector | Expire15min after C0 close; pre-entry low<=S invalidates | stable C0 expiry/invalidation IDs; no renewal by repeated scan |
+| Scan window | universe_scanner09:45–11:30; warm-up until09:40 | Scan09:15–14:35, hidden post-cutoff; warm references/final universe before09:15 | universe_scanner window/publication/cache/freshness/visibility gates |
+| Price/evidence fields | range-high/low trigger/stop and current receipt | C0 and prior3 IDs, T0/S0, tick source, expiry, filter/width snapshot | version candidate/receipt payload and hashes; do not reinterpret old stored receipts |
+| Execution | Pure breakout helper not a resting bracket | Entry stop-limit plus protective stop-limit, AON, same candle, stop-failure recovery | detector output feeds future broker-neutral lifecycle; no broker call in these modules |
 
-[ASSUMED: proposal] Preserve these rules across the new scan window, but rename detector output SETUP_QUALIFIED/DETECTED: its legacy ARMED label is not a user arm. Only a confirmed choice may produce ARMED in the new lifecycle.
-[ASSUMED: proposal] Preserve the 0.05 *strategy range buffer* in rule version until explicitly changed; require resulting proposed/override prices to be valid on the instrument tick grid. The separate stop-limit tolerance is not a replacement for this buffer. Unknown/incompatible ticks hold rather than silently change the strategy.
-[ASSUMED: proposal] At 09:15 there is no current completed range; first possible detection is 09:30 (three bars), provided twenty matching prior slots and completed 15m confirmation exist. Prior-day HTF alone fails freshness before first completed current 15m bar. Do not fabricate an earlier signal to satisfy a scheduler window.
-[ASSUMED: proposal] Early/late changes must test opening three-bar cases, exact slot-volume coverage through 14:35, intraday HTF aggregation and reference session shapes. The old window guard and warm-up timing need redesign, not just a wider string range. Afternoon results remain UNVALIDATED; bucket every detection, selection and fill.
+## Exact preserved calculations and proposed filter scope
+
+[READ_CODE] EMA uses initial SMA seed, alpha2/(n+1), Decimal recurrence. Universe candidate uses last200 prior5m closes, minimum20; session VWAP=sum(((H+L+C)/3)*V)/sumV from09:20 opening close; positive total volume, ordered contiguous bars.
+[READ_CODE] RVOL baseline uses20 distinct prior sessions, matching HH:MM slot with positive volume each. HTF uses21+completed15m closes, EMA10>EMA20 and both rising vs preceding values; latest15m no future and at most15min old. No rounding changes are implied.
+[ASSUMED: proposed, awaiting Mayur] Apply trend/VWAP/RVOL checks to C0; prior3 define only breakout reference/width. Width=(maxHighPrior3-minLowPrior3)/close(-1C). Retain2.5%, RVOL1.2 and HTF direction until reviewed; these choices are not silently approved by retaining old defaults.
+[ASSUMED] Same-session first four bars: -3 closes09:20,-2 closes09:25,-1 closes09:30,C0 closes09:35. Scanner active09:15 does not mean a valid C0 exists then. Warm EMA/20-slot/HTF beforehand; C0 cannot use unfinished15m bars. Original09:45–11:30 and afternoon windows remain separate cohorts; afternoon strategy efficacy UNVALIDATED.
+[ASSUMED: proposed, awaiting Mayur] Maximum distance(T-S)/T<=2.5% and bounded overrides are in TIME_AND_EXECUTION. This is a guard proposal, not replay-selected optimum.
+[ASSUMED] All old-rule replay/scanner outcomes are NON_EVIDENCE_FOR_C0_V2: missing C0 confirmation, four-bar stop/tick fields and resting bracket semantics. Preserve them unchanged with original rule IDs; do not relabel as new strategy, even if selected stocks overlap.
 
 ## Hybrid universe and pool
 
@@ -34,7 +38,7 @@
 [ASSUMED: proposal] 08:30–09:10 T: revalidate effective band/restrictions/security/series/Dhan mapping/tick sources, complete reference cache/EMA/RVOL/ADV, create immutable FINAL_VALIDATED revision by 09:15. Pre-open real-time five-minute candles are not available; use prior completed history for warm-up. Current-session VWAP begins only with current-session bars.
 [ASSUMED: proposal] If a required date/status is unknown or whole-source retrieval fails, no new scanning/arming/entries; show UNIVERSE_FINAL_NOT_READY plus failed source. For verified per-stock exclusions, publish final with explicit exclusion/suspension reasons. Do not reuse provisional/stale final. A late final is research-only for that day under this conservative proposal; any broader late-start behavior needs reviewed config.
 [ASSUMED: proposal] Runtime reference revision is pinned per setup. New restrictions after final immediately hold/cancel unfilled attempts; an existing position retains its manager/feed and exit authority. Eligibility hold must not disable protective exits.
-[ASSUMED: proposal] Proposed systematic pool: top100 final eligible names by 20D mean traded value; stable tie security ID; plus eligible manual-catalyst memberships up to20, deduplicated. Persist pool membership/reason/rank/version, source provenance, exclusions and capacity truncation. No automatic pool churn intraday; active arms/positions retain feeds until terminal even if removed from a future pool.
+[ASSUMED: proposal] Initial systematic pool:25 names by default, operational range25–50 final eligible names by 20D mean traded value; stable tie security ID; plus eligible manual-catalyst memberships up to20, deduplicated. Persist pool membership/reason/rank/version, source provenance, exclusions and capacity truncation. No automatic pool churn intraday; active arms/positions retain feeds until terminal even if removed from a future pool.
 [ASSUMED: proposal] A pool capacity shortfall is explicit POOL_COVERAGE_INCOMPLETE; never represent missing stocks as no setups. No entry competition resolves on partial armed coverage. Pool size/freshness is subject to actual load evidence, not solely broker advertised ceilings.
 
 ## Persistent manual catalysts
@@ -45,6 +49,8 @@
 [ASSUMED: proposal] Same liquidity minima apply; no news exception for 2%/5%/unknown/restricted/thin stocks. Thirty-day reminder is once per thirty days since explicit review, not daily spam. Manual note can be revised with history.
 [ASSUMED: proposal] If also systematic, fetch/scan once and record both provenance memberships; a manual-selected trade retains universe_source=manual_catalyst plus systematic_member=true for separate journal cohorts. No duplicate setup/arm/fill from dual membership.
 [ASSUMED: proposal] Extra read-only feed/history requests share the broker budget; no extra subscription fee or entitlement is asserted. Show added instrument/request counts, warm-up cost and any service plan impact before later activation approval.
+
+[ASSUMED: Mayur-approved amendment D-020] Scale above the initial25–50 systematic pool ONLY after no-trade observation establishes measured complete-sweep p95<=60seconds, including source latency, indicator/receipt persistence and all required armed/catalyst coverage. Incomplete/error intervals count as failures, not omitted fast samples. Proposed minimum observation:five full sessions and at least100 complete sweeps, stratified opening/original/midday/late; no real or primary-paper trades during measurement. More samples if p95 uncertainty crosses60s. This observation protocol is proposed; the60s gate is approved.
 
 ## Scaling: documented-only limits, not exercised
 
@@ -61,4 +67,5 @@
 
 [ASSUMED: proposal] A sweep fitting five minutes is insufficient: all armed evidence must be timely and quotes fresh. Use shared account-wide rate limiter, reserve management/clock priority and prevent research jobs starving active positions; no uncoordinated workers each assuming5/s.
 [ASSUMED: proposal] Prefer warm historical references and five-minute REST pool scanning first, conditionally reduce pool until measured complete p95 sweep<=60s. For reliable fresh arm quotes/management, evaluate one shared WebSocket feed with aggregated five-minute bars and explicit gap detection; this is a future architecture option, not a deployed feature or approval to consume ticks.
-[ASSUMED: proposal] Subscription size is count(unique(pool ∪ arms ∪ open-position instruments)), not pool+5 when arms are already members. Worst disjoint case N+5 plus a retained position and manual additions, bounded by deduped120-member pool proposal. Historical REST requests are not WebSocket instrument subscriptions. Reconnect/warm-up and missed ticks hold primary entries; never mix incomplete socket bars with historical bars silently.
+[ASSUMED: proposal] Subscription size is count(unique(pool ∪ arms ∪ open-position instruments)), not pool+5 when arms are already members. Worst disjoint case N+5 plus a retained position and manual additions, bounded by deduped initial45–70-member pool (25–50 systematic plus up to20 catalysts). Historical REST requests are not WebSocket instrument subscriptions. Reconnect/warm-up and missed ticks hold primary entries; never mix incomplete socket bars with historical bars silently.
+

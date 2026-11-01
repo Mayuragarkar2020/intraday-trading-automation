@@ -1,5 +1,12 @@
 # Intraday Trading Automation — authoritative project handoff
 
+## Phase1 review round2 — 1 November 2026
+
+[READ_CODE] Round2 design supersedes round1: authoritative C0.close>prior3high signal, proposed one-tick C0/prior4 prices, resting entry/protective bracket, same-candle fill, cutoff by fill-candle START<14:30 and initial25–50 pool with measured no-trade p95<=60s scale gate. See docs/design/README.md and amended D-005/D-018..023.
+[ASSUMED] Defaults/filter scope/distance/override and calibrated limit buffers remain proposed/placeholder awaiting Mayur. STOP_NOT_FILLED may lose beyond9800; no guaranteed maximum-loss claim.
+[ASSUMED] Phase2 single design base is origin/main79a2d308/PR14 foundation; PR13/15 remain open reference-only. No application/test/broker path or deployment/config change; no Phase2. Actual Render state **unverifiable by Codex**; older recorded webPR14/cronPR12 checkpoints below are historical, not new proof.
+[READ_CODE] Local baseline remains UNKNOWN from prior clone failure. No new local/CI test run this round; Mayur supplies clean checkout; exact-source baseline and explicit design approval required before Phase2.
+
 ## Phase 1 design review checkpoint — 1 November 2026
 
 [READ_CODE] Source pinned main 79a2d3086c8aea660dc31068e2758db1f7332808. Phase0 accepted; Phase1 design-only proposal is in docs/design/README.md. Latest user-approved decision register D-001..017 supersedes older single-choice,11:30-cutoff,partial-fill assumptions. See audit packet for evidence limits.

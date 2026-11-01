@@ -1,17 +1,28 @@
-# Next work plan — Phase 1 design review
+# Next work plan — Phase1 round2 review, NOT Phase2
 
-[READ_CODE] Updated2026-11-01. Read PROJECT_HANDOFF.md latest checkpoint, docs/audit/AUDIT_PACKET.md and docs/design/README.md. Current approved intent is Mayur's D-001..017 in docs/audit/DECISIONS.md; older single-choice/window assumptions are conflicts, not authority.
-
-## Source, documented deployment and verification
-
-[READ_CODE] Current-main baseline inspected: 79a2d3086c8aea660dc31068e2758db1f7332808. Latest handoff documents approved web PR14 at ceaaf577c8e30e4713da19176828b1b43b3a0226, deploy dep-dbjcdlc9v7es739n1hs0; research cron PR12 at6d6e8152da96da2c575a59e0b980448b774d059b, deploy dep-dbjbnf67bikc73f03i8g.
-[ASSUMED] Those are historical documented deployment checkpoints, NOT fresh proof. Actual Render state is **unverifiable by Codex**. This corrects the former current-web PR9 statement; PR9 is historical.
-[READ_CODE] PR15 is proposed inactive controller work; it does not implement the newly approved five-arm/all-day/stop-limit/AON contract unchanged. PR13's automatic winner prototype is not an approved replacement for human confirmation. PR10 remains deferred according to handoff.
-[READ_CODE: CI-reported] Current main test-phase-1 run41290657216 succeeded (539 tests, both browser checks). Local baseline UNKNOWN because separate clone failed and original workspace is mixed/unversioned. No test run on original workspace this session.
+[READ_CODE] Source main79a2d3086c8aea660dc31068e2758db1f7332808; docs proposal stacks on round1 PR18. Current strategy/decisions in docs/design/README.md and docs/audit/DECISIONS.md supersede older three-bar/no-C0, next-close/receipt-cutoff defaults.
+[ASSUMED] Actual Render state **unverifiable by Codex**. Historical documentary checkpoint: webPR14 ceaaf577c8e30e4713da19176828b1b43b3a0226; research cronPR12 6d6e8152da96da2c575a59e0b980448b774d059b. No current runtime proof. Prior main CI539/both browsers is historical CI-reported, not this session RAN_TEST.
+[ASSUMED] Local baseline UNKNOWN; Mayur will supply clean checkout. No clone/test retry this round. Review baseline instructions and explicit error uncertainty before Phase2.
+[ASSUMED: design choice] Single Phase2 base is origin/main/PR14 HumanChoicePaperLedger foundation. PR13/15 stay open, reference-only; no merge/closure. Any selective reuse requires explicit review/tests/provenance.
+[ASSUMED: constraint] PREVIEW_ONLY; no broker/real-money path,secrets,deploy,Render/cron changes. Long-only,capital980000,planned cost-inclusive L-Q risk<=9800,one filled entry/day,no leverage,<=5 arms; scan09:15–14:35,entry candle START<14:30,closure15:00; protected legacy files untouched.
 
 ## Next checkpoint
 
-[ASSUMED: proposal] Review docs/design/README.md and numbered engineering proposals, then independent audit of limit semantics, cutoff, DB atomicity, exact rules and supervised recovery. All design is proposed, not implementation or activation.
-[ASSUMED: proposal] Phase2 ONLY after Mayur explicitly approves Phase1 AND an exact-source reproducible baseline exists for implementation. Then tests-first pure lifecycle/replay slice; no deployment, cron/config change, or broker order path.
-[ASSUMED: proposal] Separate PG constraint/concurrency and actual market/source/alert/supervision validation remain required before any forward-paper release request. Reviewed calendar ends6November; no automatic extension or afternoon performance validation.
-[ASSUMED: approved constraint] PREVIEW_ONLY; no real-money orders/secrets; long-only, INR9,800 maximum planned cost-inclusive risk, one daily fill, no leverage. Do not edit/archive src/run_daily.py or root render.yaml. No Render/deploy/cron change without explicit approval.
+[ASSUMED] Review round2 docs and numbered open questions. Phase2 requires Mayur's explicit design approval and verified exact-source baseline in supplied clean checkout. No implementation/deployment approval is bundled. Buffer/stop parameters remain placeholders until empirical analysis; afternoon efficacy not validated.
+[ASSUMED] Detailed future tests/real-data analysis are in docs/design/REPLAY_ANALYSIS_AND_TEST_PLAN.md. Reviewed calendar remains through6November only, not extended here.
+
+## Restored acceptance checks — Phase2 and later test targets ONLY
+
+[ASSUMED: future target] Human confirmation required; selecting nothing produces no trade. Preserve exact selected stock/setup/proposal/override; advisory ranking cannot introduce unconfirmed stocks.
+[ASSUMED: future target] C0 closes STRICTLY above preceding3highs; equality/one-tick boundaries; four contiguous current bars; tick T/S from C0/prior4; C0 filters/prior3width defaults audited.
+[ASSUMED: future target] Reject stale/revised/wrong-session/unknown tick/source or already-broken selection;15min expiry; pre-entry low<=S invalidates; no pre-confirmation or backdated evidence; cutoff based on exchange open with receipt stale guard.
+[ASSUMED: future target] Cost-inclusive L-Q risk literal9800,capital980000,long-only/no leverage,one daily filled entry and five-arm literal caps are mutation-protected; frozen limit formula has independent numeric fixtures. Trigger-risk comparison is journaled.
+[ASSUMED: future target] Same-bar resting trigger/fill, O>L GAPPED_THROUGH with zero fill/no chase/no automatic re-arm, exact final14:25 vs ineligible14:30 candle boundaries, all-or-nothing/anomalies.
+[ASSUMED: future target] Two arms same candle deterministic ADV20 then securityID; retries/concurrent writers/restart produce one fill; DB unique fill/five slots; atomic bracket/other-arm cancellation/outbox; pending/open/filled-day prevents invalid replacement/arming.
+[ASSUMED: future target] Protective S/Q resting fills, gap belowQ/low-cross ambiguity STOP_NOT_FILLED, no assumed cap on realized gap loss, stop-cancel-confirm-exit races cannot create short exposure; same-candle protective loss pessimism.
+[ASSUMED: future target] Initial SL immutable;5m EMA exit before1.5R; BE modification next bar and fee/stop-limit aware; no target; halt/nontradable/rejected exits remain pending; early flatten and persistent15:00 breach/late recovery.
+[ASSUMED: future target] Feed/DB/worker outage recovery, missed bars, authoritative event/projection reconciliation, no synthetic flat/fill, restart with multiple arms, independent clock/supervision and Telegram failures remain visible.
+[ASSUMED: future target] Immutable decision/fill/stop journal reconciles cash/cost/P&L/netR; selected/unselected/cancelled/hidden shadow cohorts; original vs override, source/config/rule/model/time buckets, MFE/MAE uncertainty/excess-loss tagging.
+[ASSUMED: future target] Manual catalyst cap/persistence/suspend-revalidate/reminder; hidden postcutoff setups never cockpit/push; chart symbol M&M encoding/link only.
+[ASSUMED: future target] Authentication, stale-tab/double-click/lock-clearing/mobile browser behavior; Telegram alive/qualified/armed/cancelled/entered/exited/critical/heartbeat events and outbox idempotence.
+[ASSUMED: later validation] Separate PG constraint/concurrency and browser/service tests only with prerequisites; exact commands/counts/durations; no pure test labelled PG proof. No-trade pool25–50 observation p95<=60s before scale-up. Genuine source/market/session validation precedes any release request; stop-failure buffer analysis and future broker preflight are not already validated.
