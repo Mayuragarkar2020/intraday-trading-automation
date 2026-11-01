@@ -9,6 +9,13 @@ from src.scan_store import ScanStore
 from src.universe_store import UniverseStore
 
 def main():
+    if os.getenv("FORWARD_PAPER_ENABLED")=="true":
+        # Future opt-in worker gets priority so universe research cannot delay
+        # protective clock/exit processing. Source verification still must pass.
+        from src.human_paper_controller import run_configured_cycle
+        paper=run_configured_cycle()
+        print(json.dumps({"paper_status":paper["status"],"feed_status":paper.get("feed_status"),
+                          "execution_enabled":False,"paper_runtime_enabled":paper.get("paper_runtime_enabled",False)}),flush=True)
     if os.getenv("UNIVERSE_SCAN_ENABLED") == "true":
         from src.run_universe_research import main as run_universe_research
         return run_universe_research()
@@ -45,4 +52,3 @@ def main():
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

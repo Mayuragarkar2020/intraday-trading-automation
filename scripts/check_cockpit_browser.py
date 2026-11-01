@@ -106,6 +106,22 @@ with sync_playwright() as p:
     page.screenshot(path="ui-review/human-choice-desktop.png",full_page=True)
     page.get_by_role("button",name="Withdraw stock choice",exact=True).click()
     expect(page.locator("#chosenStock")).to_contain_text("No stock selected")
+    def completed_workspace(route):
+        route.fulfill(json=dict(mode="HUMAN_CHOICE_PAPER_PREVIEW",execution_enabled=False,
+            paper_runtime_enabled=True,status="NO_SETUP_READY_STOCKS",candidates=[],
+            selected={"symbol":"STOCK0","choice_id":"c"*64,"effective_status":"COMPLETED"},
+            selection_blocked=True,position=None,fills=[],realised_pnl="-123",choice_journal=[],
+            trades=[dict(symbol="STOCK0",entry="1000",exit_average="998",net_pnl="-123",net_r="-0.5",exit_reason="EMA10")],
+            paper_worker={"at":"2026-11-02T10:25:20+05:30","status":"DAILY_ENTRY_USED"},
+            paper_worker_fresh=True,message="Paper trade completed. Live broker execution disabled."))
+    page.route("**/api/paper/workspace",completed_workspace)
+    page.locator("#choiceRefresh").click()
+    expect(page.locator("#managedTrades")).to_contain_text("STOCK0")
+    expect(page.locator("#managedTrades")).to_contain_text("-123")
+    expect(page.locator("#chosenStock")).to_contain_text("journal saved")
+    expect(page.locator("#choiceWithdraw")).to_be_disabled()
+    page.unroute("**/api/paper/workspace",completed_workspace)
+    page.locator("#choiceRefresh").click()
     page.locator("#scannerAdvanced").evaluate("(el) => el.open = true")
     page.locator("#refresh").click()
     expect(page.locator("#refreshStatus")).to_contain_text("No stored scan")
@@ -135,6 +151,7 @@ with sync_playwright() as p:
     expect(page.locator("#choiceRows")).not_to_contain_text("STOCK0")
     expect(page.locator("#choiceJournal")).not_to_contain_text("Chose STOCK0")
     expect(page.locator("#choiceDialogTitle")).not_to_contain_text("STOCK0")
+    expect(page.locator("#managedTrades")).not_to_contain_text("-123")
     expect(page.locator("#dhanReconcile")).to_be_disabled()
     expect(page.locator("#dhanReconcileResult")).not_to_contain_text("1170.40")
     page.get_by_label("Access token", exact=True).fill("fixture-preview")
