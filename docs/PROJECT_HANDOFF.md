@@ -1,5 +1,37 @@
 # Intraday Trading Automation — authoritative project handoff
 
+## Tested inactive bridge checkpoint — 1 November 2026
+
+PR #13: https://github.com/Mayuragarkar2020/intraday-trading-automation/pull/13
+Exact head 4d59fa1eef0b6ddfae17e9582cb86a9dec7ed59f passed 515 full
+Python/API/PostgreSQL tests and both Chromium suites in run 41272813266.
+It is draft/unapproved/undeployed. Full interval assembly now reads all selected
+instruments from complete committed cycles; incomplete coverage holds. The
+working setup is the most recent ARMED receipt known before the breakout bar
+opens. Both receipt IDs survive ranking/reservation; later receipt fills and
+EMA exits preserve source lineage and restart/cash/audit identities. Computed
+EMA precision and legacy batch fingerprints are preserved. Duplicate workers
+reuse only already committed decisions; changed inputs/costs conflict.
+
+Successful trade-path tests use explicitly synthetic future clearance fixtures.
+Actual current producers cannot write those verified receipt/universe formats,
+and real research sources remain held without ledger writes. This is not
+automatic forward paper completion or permission to set verification flags true.
+
+PR #12 remains LIVE on the research cron (6d6e8152da96da2c575a59e0b980448b774d059b,
+dep-dbjbnf67bikc73f03i8g), with the approved receipt flag configured. Web remains
+at PR #9; execution is disabled. No PR #13 runtime was activated or deployed.
+
+Next essential external evidence is the 2 November market session. Inspect actual
+same-day universe, full-pool coverage, first-seen/source timing and storage growth;
+then resolve timestamp/session/reference contracts and implement independently
+verified source producers. A full-session position feed, pinned account and cost/
+liquidity assumptions, independent clock scheduling and actual validation still
+precede any proposed runtime activation. Calendar ends 6 November. Do not assume
+automatic readiness on Monday. No work runs between chats except deployed services.
+No further production mutation is requested by this checkpoint.
+
+
 ## 1 November 2026 — PR #12 approved and receipt recorder deployed
 
 Mayur approved PR #12 merge, existing RESEARCH CRON deployment and
