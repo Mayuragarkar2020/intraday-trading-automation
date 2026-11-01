@@ -41,7 +41,10 @@ def test_persisted_run_idempotence_and_restart_readback(client):
     assert client.get("/api/paper/runs/"+rid,headers=HEAD).json()["result"]==first.json()["result"]
     export=client.get("/api/paper/runs/"+rid+"/trades.csv",headers=HEAD)
     assert export.headers["cache-control"]=="no-store"
-    assert list(csv.DictReader(io.StringIO(export.text)))[0]["symbol"]=="EXAMPLE"
+    row=list(csv.DictReader(io.StringIO(export.text)))[0]
+    assert row["symbol"]=="EXAMPLE"
+    assert row["exit_fill_at"]==first.json()["result"]["trades"][0]["exit_fill_at"]
+    assert row["closure_deadline_breached"]=="False"
 
 def test_empty_journal_does_not_require_schema_write(client):
     assert client.get("/api/paper/runs",headers=HEAD).json()["runs"]==[]

@@ -92,8 +92,8 @@ def test_partial_exit_realized_and_remaining_mark_reconcile_to_equity():
     assert D(summary["net_realized_pnl"])<0 and D(summary["closed_trade_net_pnl"])==0
     assert D(summary["ending_equity_estimate"])==D(980000)+D(summary["net_realized_pnl"])+D(summary["unrealized_pnl_estimate"])
 
-def test_force_exit_is_next_open_at_declared_time():
-    data=example_request();data["force_exit"]="09:55";data["entry_end"]="09:50"
+def test_force_exit_attempts_begin_ten_minutes_before_deadline():
+    data=example_request();data["force_exit"]="10:05";data["entry_end"]="09:50"
     result=run(data)
     assert result["trades"][0]["exit_reason"]=="SESSION_FLATTEN"
     assert result["trades"][0]["exit_bar_close"].endswith("10:00:00+05:30")

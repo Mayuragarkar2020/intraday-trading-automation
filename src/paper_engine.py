@@ -18,7 +18,8 @@ from src.trade_manager import open_long, on_completed_candle
 
 D = Decimal
 IST = ZoneInfo("Asia/Kolkata")
-VERSION = "paper-replay-1"
+VERSION = "paper-replay-2-deadline"
+FLATTEN_LEAD_MINUTES = 10
 
 def text_number(value):
     return format(value, "f")
@@ -37,8 +38,11 @@ def replay(request: ReplayRequest, *, as_of=None):
     if now.tzinfo is None:
         raise ValueError("Aware replay clock required")
     start, end, flatten = map(_clock, (request.entry_start, request.entry_end, request.force_exit))
-    if not time(9,15) <= start < end < flatten <= time(15,25):
-        raise ValueError("Require session open <= entry start < entry end < force exit <= 15:25")
+    if not time(9,15) <= start < end < flatten <= time(15,0):
+        raise ValueError("Require session open <= entry start < entry end < closure deadline <= 15:00")
+    flatten_request = (datetime.combine(now.date(), flatten) - timedelta(minutes=FLATTEN_LEAD_MINUTES)).time()
+    if end > flatten_request:
+        raise ValueError("Entry window must end before the ten-minute flatten lead")
     ids, dates, events = set(), set(), []
     for plan in request.plans:
         if plan.plan_id in ids:
@@ -93,7 +97,10 @@ def replay(request: ReplayRequest, *, as_of=None):
         position["remaining"] -= qty
         position["exit_value"] += price*qty
         position["fees"] += fee
-        record("EXIT_FILL",plan,bar,reason=reason,quantity=qty,price=text_number(price),fee=text_number(fee),timing="NEXT_OPEN" if position["pending_exit"] else "STOP_WITHIN_BAR")
+        # Next-open simulation has an explicit price instant. For intrabar stops,
+        # use the close as a conservative latest fill time; no tick path is known.
+        fill_at = parse_close(bar.time) - (timedelta(minutes=5) if position["pending_exit"] else timedelta())
+        record("EXIT_FILL",plan,bar,reason=reason,quantity=qty,price=text_number(price),fee=text_number(fee),fill_at=fill_at.isoformat(),timing="NEXT_OPEN" if position["pending_exit"] else "STOP_WITHIN_BAR")
         if position["remaining"]:
             position["pending_exit"] = reason
             return
@@ -102,7 +109,9 @@ def replay(request: ReplayRequest, *, as_of=None):
         journal.append({"plan_id":plan.plan_id,"symbol":plan.symbol,
             "entry":text_number(position["entry"]),"exit_average":text_number(position["exit_value"]/position["quantity"]),
             "quantity":position["quantity"],"entry_bar_close":position["entered_at"],"exit_bar_close":bar.time,
-            "exit_reason":reason,"fees":text_number(position["fees"]),"net_pnl":text_number(net),
+            "exit_reason":reason,"exit_fill_at":fill_at.isoformat(),
+            "closure_deadline_breached":fill_at.time()>flatten,
+            "fees":text_number(position["fees"]),"net_pnl":text_number(net),
             "planned_risk":text_number(position["risk"]),"net_r":text_number(net/position["risk"]),
             "risk_budget_breached":-net>policy.capital*policy.max_risk_fraction})
         states[plan.plan_id].update(state="CLOSED",reason=reason)
@@ -115,7 +124,7 @@ def replay(request: ReplayRequest, *, as_of=None):
         if position and position["plan_id"] == plan.plan_id:
             position["mark"] = bar.close
             stop_hit = bar.low <= position["stop"]
-            reason = position["pending_exit"] or ("SESSION_FLATTEN" if opened.time()>=flatten else "STOP" if stop_hit else None)
+            reason = position["pending_exit"] or ("SESSION_FLATTEN" if opened.time()>=flatten_request else "STOP" if stop_hit else None)
             if reason:
                 # An already pending market exit/flatten uses next open; stops gap down at open.
                 base = bar.open if position["pending_exit"] or reason=="SESSION_FLATTEN" else min(bar.open,position["stop"])
@@ -123,7 +132,7 @@ def replay(request: ReplayRequest, *, as_of=None):
                 sell(plan,bar,base,reason,capacity)
                 if position:
                     position["pending_exit"] = reason
-            elif opened.time() < flatten:
+            elif opened.time() < flatten_request:
                 managed, action = on_completed_candle(position["managed"],bar.high,bar.low,bar.close,bar.ema10)
                 position["managed"] = managed
                 if action == "REQUEST_EXIT_EMA10_CLOSE":
@@ -188,6 +197,10 @@ def replay(request: ReplayRequest, *, as_of=None):
         open_position={k:(text_number(v) if isinstance(v,D) else v) for k,v in position.items() if k!="managed"}
     if any(r["kind"] in ("EXIT_UNFILLED","STOP_CHANGE_REJECTED") for r in ledger):
         notices.append("Execution or stop-change failures occurred; inspect the event ledger.")
+    deadline = datetime.combine(next(iter(dates)),flatten,tzinfo=IST)
+    deadline_breached = any(t["closure_deadline_breached"] for t in journal) or bool(position and now >= deadline)
+    if deadline_breached:
+        notices.append("CLOSURE_DEADLINE_BREACH: exposure was not confirmed closed by the deadline; late recovery does not erase the breach.")
     wins=sum(D(t["net_pnl"])>0 for t in journal)
     # A partially exited trade has realised P&L even before its journal row closes.
     partial_realized=D(0)
@@ -201,7 +214,10 @@ def replay(request: ReplayRequest, *, as_of=None):
         "input_sha256":hashlib.sha256(canonical.encode()).hexdigest(),
         "assumptions":{"capital":text_number(policy.capital),"risk_fraction":text_number(policy.max_risk_fraction),
             "max_trades_per_day":policy.max_trades_per_day,"entry_start":request.entry_start,"entry_end":request.entry_end,
-            "force_exit":request.force_exit,"round_trip_cost_per_share":text_number(cost),"slippage_bps":text_number(request.slippage_bps),
+            "force_exit":request.force_exit,"force_exit_semantics":"COMPLETED_CLOSURE_DEADLINE",
+            "flatten_request_at":flatten_request.isoformat(timespec="minutes"),
+            "flatten_lead_minutes":FLATTEN_LEAD_MINUTES,
+            "round_trip_cost_per_share":text_number(cost),"slippage_bps":text_number(request.slippage_bps),
             "participation_pct":text_number(request.participation_pct),"signal_origin":"EXPLICIT_TEST_PLAN_NOT_AUTOMATIC_SCANNER",
             "fill_model":"ADVERSE_SLIPPAGE_TICK_ROUNDING_VOLUME_CAP_STOP_FIRST_IOC_ENTRY",
             "calendar":"NORMAL_2026_SESSIONS_ONLY","eligibility_verified":False},
@@ -209,6 +225,7 @@ def replay(request: ReplayRequest, *, as_of=None):
             "closed_trade_net_pnl":text_number(realized),"unrealized_pnl_estimate":text_number(unrealized),
             "cash":text_number(cash),"ending_equity_estimate":text_number(last_equity),"max_drawdown_pct_estimate":text_number(max_dd*100),
             "open_positions":int(position is not None),"complete":position is None,
+            "closure_deadline":deadline.isoformat(),"closure_deadline_breached":deadline_breached,
             "risk_breaches":sum(t["risk_budget_breached"] for t in journal)},
         "orders":list(states.values()),"trades":journal,"events":ledger,"equity_curve":curve,"open_position":open_position,
         "warnings":["Simulation only. Declared reference status, OHLCV and EMA inputs are unverified.",
