@@ -33,12 +33,21 @@ class BreakoutCandidate(Strict):
     avg_turnover_20d_cr:Decimal=Field(gt=0,le=1000000000,max_digits=30,decimal_places=18)
     entry_limit:Decimal=Field(ge=300,le=5000,max_digits=16,decimal_places=6)
     initial_stop:Decimal=Field(gt=0,le=5000,max_digits=16,decimal_places=6)
+    evidence_kind:Literal["TICK_RECEIPT","COMPLETED_BAR_RECEIPT"]="TICK_RECEIPT"
+    setup_receipt_id:str|None=Field(default=None,pattern=r"^[a-f0-9]{64}$")
+    breakout_receipt_id:str|None=Field(default=None,pattern=r"^[a-f0-9]{64}$")
 
     @model_validator(mode="after")
     def valid_prices(self):
         if self.initial_stop>=self.entry_limit: raise ValueError("Stop must be below entry limit")
         if instant(self.setup_known_at)>=instant(self.breakout_observed_at):
             raise ValueError("Setup must be known before breakout observation")
+        if (self.setup_receipt_id is None)!=(self.breakout_receipt_id is None):
+            raise ValueError("Both receipt identities required")
+        if self.setup_receipt_id is not None:
+            if (self.evidence_kind!="COMPLETED_BAR_RECEIPT" or self.signal_id!=
+                    hashlib.sha256(encode([self.setup_receipt_id,self.breakout_receipt_id]).encode()).hexdigest()):
+                raise ValueError("Signal must bind both receipt identities")
         return self
 
 
@@ -69,7 +78,10 @@ class EntryBatch(Strict):
             raise ValueError("Signal or reference identity mismatch")
         for candidate in self.candidates:
             known,seen=instant(candidate.setup_known_at),instant(candidate.breakout_observed_at)
-            if not start<=seen<start+timedelta(minutes=5) or known.date()!=start.date():
+            valid_seen=(start<=seen<start+timedelta(minutes=5) if candidate.evidence_kind=="TICK_RECEIPT"
+                        else start+timedelta(minutes=5)<=seen<=decision)
+            if (not valid_seen or known.date()!=start.date() or
+                    candidate.evidence_kind=="COMPLETED_BAR_RECEIPT" and known>=start):
                 raise ValueError("Breakout belongs to a different interval/session")
         return self
 
@@ -80,6 +92,10 @@ def canonical_batch(batch):
     data["decision_at"]=instant(batch.decision_at).isoformat()
     data["round_trip_cost_per_share"]=format(batch.round_trip_cost_per_share.normalize(),"f")
     for row in data["candidates"]:
+        for key in ("setup_receipt_id","breakout_receipt_id"):
+            if row[key] is None: row.pop(key)
+        if row["evidence_kind"]=="TICK_RECEIPT":
+            row.pop("evidence_kind")  # retain fingerprints of existing v1 reservations
         for field in ("avg_turnover_20d_cr","entry_limit","initial_stop"):
             row[field]=format(Decimal(row[field]).normalize(),"f")
         for field in ("setup_known_at","breakout_observed_at"):
@@ -102,7 +118,9 @@ def reserve_paper_entry(ledger,account_id,batch):
     if not isinstance(batch,EntryBatch): batch=EntryBatch.model_validate(batch)
     ranked=ranked_candidates(batch)
     ranking=[{"symbol":c.symbol,"security_id":c.security_id,"signal_id":c.signal_id,
-              "avg_turnover_20d_cr":format(c.avg_turnover_20d_cr.normalize(),"f")} for c in ranked]
+              "avg_turnover_20d_cr":format(c.avg_turnover_20d_cr.normalize(),"f"),
+              **({"setup_receipt_id":c.setup_receipt_id,"breakout_receipt_id":c.breakout_receipt_id}
+                 if c.setup_receipt_id is not None else {})} for c in ranked]
     def held(reason): return {"status":reason,"ranking_policy":POLICY,"ranking":ranking,
         "execution_enabled":False,"paper_runtime_enabled":False}
     if not all((batch.timestamp_verified,batch.session_contract_verified,
@@ -164,4 +182,3 @@ def reserve_paper_entry(ledger,account_id,batch):
         return {"status":"RESERVED" if result["status"]=="APPLIED" else "ALREADY_RESERVED", "command":command,
                 "execution_enabled":False,"paper_runtime_enabled":False}
     return held("HELD_INSUFFICIENT_CASH_OR_RISK")
-
