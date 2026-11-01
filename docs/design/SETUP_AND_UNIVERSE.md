@@ -34,6 +34,9 @@
 
 ## Hybrid universe and pool
 
+[READ_CODE] Definitions/refinements now centralized in UNIVERSE_AND_POOL_CONTRACT.md. U contains all eligible stocks,not an arbitrary25/50. P is an explicit capacity subset plus eligible manual memberships. P-014..017 specify proposed ranking/readiness/count/freeze behavior;not approved merely by this cross-reference.
+
+
 [READ_CODE] config/universe.yaml and screening.py use: EQ series, close INR300–5000, twenty completed sessions; 20D mean turnover>=100Cr; median>=50Cr; latest>=75Cr; latest/mean>=0.75; minimum last-five-session turnover>=30Cr; all twenty volumes>0. Unknown schema/missing files fail run. Restrictions exclude 2%/5%, ASM/GSM, unknown restriction/mapping holds.
 [READ_CODE] Current universe runner publishes same-day, checks same-day publication and scans eligible snapshot candidates; it does not implement the hybrid/final pool contract.
 [ASSUMED: proposal] D-008 stages: after T-1 official reports are actually available, build provisional target-T list from twenty COMPLETED exchange sessions through T-1, official cash-market data/bands/security/status sources plus Dhan identity/reference feed. Proposed evening attempt 18:30 IST; missing reports mean PROVISIONAL_INCOMPLETE, not synthetic prices. Store publication effective date, retrieval time, originals/hashes and provisional revision.

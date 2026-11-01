@@ -1,5 +1,7 @@
 # Next work plan — Phase1 round2 review, NOT Phase2
 
+[READ_CODE] Universe/pool clarification:docs/design/UNIVERSE_AND_POOL_CONTRACT.md separates all eligible U from scanned subset P,qualified setups Q and user-confirmed arms A. New exact P-014..017 proposals await Mayur;no approval/implementation/performance inferred. Phase2 remains unstarted;existing runtime unchanged.
+
 [READ_CODE]2026-11-01 approval update: Mayur answered “all yes” to five round2 questions. D-024..029 approved filter/width scope,maxdistance,tick defaults,stop-limit semantics,override bounds and conservative stop model. Exact buffer calibration,clean checkout baseline and Phase2 authorization remain pending. No application/production change.
 
 [READ_CODE] Source main79a2d3086c8aea660dc31068e2758db1f7332808; docs proposal stacks on round1 PR18. Current strategy/decisions in docs/design/README.md and docs/audit/DECISIONS.md supersede older three-bar/no-C0, next-close/receipt-cutoff defaults.

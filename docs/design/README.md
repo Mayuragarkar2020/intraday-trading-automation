@@ -6,6 +6,10 @@
 [READ_CODE] Source main79a2d3086c8aea660dc31068e2758db1f7332808 reread for detector/qualifier/scanner/choice guard. Historical CI evidence remains separate from local UNKNOWN baseline. Actual Render state **unverifiable by Codex**; no deployment/config/cron change.
 [ASSUMED] Single proposed Phase2 application foundation: origin/main containing PR14 HumanChoicePaperLedger; PR13/15 remain open/reference-only. No merge/cherry-pick/closure. Mayur supplies clean checkout; baseline verification and explicit Phase1 approval precede Phase2.
 
+## Universe/pool definition review
+
+[READ_CODE] See UNIVERSE_AND_POOL_CONTRACT.md for precise R/U/P/Q/A sets,existing eligibility gates,automatic capacity selection,manual union/dedup and visible eligible-but-unscanned names. New exact rules remain proposed;no Phase2 started.
+
 ## Authoritative strategy and review map
 
 [ASSUMED: Mayur strategy] C0.close strictly exceeds highest prior3highs; qualify only at C0 close. Default proposed T=highC0+one effective tick; S=minLow(C0,prior3)-one tick. Confirm with fresh price<T to arm a resting stop-limit bracket;15min signal lifetime. Same eligible trigger candle can fill, all-or-nothing. Protective failure is STOP_NOT_FILLED/critical, not an assumed capped loss.

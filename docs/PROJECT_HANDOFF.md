@@ -1,5 +1,7 @@
 # Intraday Trading Automation — authoritative project handoff
 
+[READ_CODE] Universe/pool clarification:docs/design/UNIVERSE_AND_POOL_CONTRACT.md separates all eligible U from scanned subset P,qualified setups Q and user-confirmed arms A. New exact P-014..017 proposals await Mayur;no approval/implementation/performance inferred. Phase2 remains unstarted;existing runtime unchanged.
+
 ## Round2 five-answer approval —2026-11-01
 
 [READ_CODE] Mayur replied “all yes” to all five review questions. See D-024..029: C0 filters/prior3width denominator,maxdistance2.5%,one-tick defaults,stop-limit rather than plain-limit,override bounds and conservative low<Q stop failure with sensitivity. Design choices approved; implementation remains absent.

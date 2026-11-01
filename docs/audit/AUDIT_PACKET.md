@@ -1,51 +1,52 @@
-# Audit packet —2026-11-01 / round2 approval record
+# Audit packet —2026-11-01 / universe and pool definition
 ## a. Session summary
-[ASSUMED] Local baseline UNKNOWN; no application test or replay analysis this session.
-[READ_CODE] Mayur's “all yes” approves five round2 design answers only; recorded as D-024..029.
-[READ_CODE] Current design/decision/continuity documents updated; implementation status still DESIGNED.
-[READ_CODE] Branch codex/phase1-review-round2; parent60895519b47c0a3878fbdd0d2f32d38fd81654ec; docs-only update to PR19.
-[READ_CODE] Phase2 NOT STARTED; no production/Render/cron/broker action.
+[ASSUMED] Local baseline UNKNOWN;no application test,current universe counts or measured sweep performance.
+[READ_CODE] New precise universe/pool contract;P-014..017 proposed,not approved.
+[READ_CODE] Existing config/screening reread;no filter/source edit.
+[READ_CODE] Branch codex/phase1-review-round2,parent7ba633478f9ec772c7beb5b060d87c605df1bc77;9Markdown files only.
+[READ_CODE] Phase2 NOT STARTED;no production/Render/cron/broker action.
 
 ## b. Safety invariants
-[READ_CODE] PASS diff scope: PREVIEW_ONLY/app paths unchanged; no real-money/broker code,endpoint,credential or client library.
-[RAN_TEST] PASS limited scan:10 proposed Markdown files;zero credential/private-URL pattern matches.
-[ASSUMED] UNVERIFIED: whole-repo secret absence and actual runtime/Render state.
-[ASSUMED] UNVERIFIED by current tests:9800 planned L-Q risk,980000capital,long-only,daily-fill,five-arm,buffer mutation protections.
-[READ_CODE] PASS session scope:no deployment/config/workflow/cron/Render change;legacy entrypoints untouched.
-[ASSUMED] STOP_NOT_FILLED losses may exceed9800; approved planned-risk rule is not a guaranteed loss cap.
+[READ_CODE] PASS diff-only:PREVIEW_ONLY/app paths untouched;no real-money or broker-order path/client/endpoint.
+[RAN_TEST] PASS limited credential/private-URL scan:9proposed Markdown files,0matches.
+[ASSUMED] UNVERIFIED:whole-repo secret absence and actual runtime/Render state.
+[ASSUMED] UNVERIFIED current tests:9800risk,980000capital,long-only,daily fill,five arms,limit formula;no application test.
+[READ_CODE] PASS scope:no config/deploy/cron/Render/workflow change;legacy entrypoints untouched.
+[ASSUMED] Planned risk cap is not a guaranteed realized loss cap.
 
 ## c. Traceability delta
-[READ_CODE] D-024..029 added as approved by Mayur; DESIGNED only,no TESTED/DEPLOYED promotion.
-[READ_CODE] D-005/D-006 confirmation wording updated;P-011/P-012 superseded.
-[READ_CODE] P-013 stop-model portion approved;freshness/capacity proposals remain proposed.
-[READ_CODE] Pending final buffer calibration/clean checkout/Phase2 are explicitly retained.
+[READ_CODE] PI1/PI2/PI7 and D008/D016/D020 supplement evidence;status remains DESIGNED.
+[READ_CODE] P014..017 registered proposed;no new user approval/no TESTED/DEPLOYED promotion.
+[READ_CODE] Clear U/P/Q/A definitions and visible eligible-but-unscanned distinction added.
 
 ## d. Deviations,risks,assumptions
-[READ_CODE] “All yes” interpreted against the five immediately preceding review questions,not as general implementation/deployment authorization.
-[ASSUMED] No empirical validation arises from design approval.
-[ASSUMED] Live trigger-sizing/resting-quantity and multi-order exclusivity limitations remain unresolved.
-[ASSUMED] Intrabar path/stop failure/fallback risk and15:00 unfilled exposure remain as round2 design.
-[READ_CODE] No prior progress entry rewritten;updated design labels carry explicit approval-scope notice.
+[ASSUMED] Capacity-limited pool can miss setups in otherwise eligible U;not an eligibility failure.
+[ASSUMED] TopADV selection is liquidity/capacity policy,not validated strategy superiority.
+[ASSUMED] Initial25 count,readiness promotion,manual union and freeze rules remain proposed.
+[ASSUMED] Existing liquidity defaults are not empirically certified;spread/impact risk still needs runtime evidence.
+[ASSUMED] Classification exclusions are a proposed ordinary-equity safeguard,not existing code proof.
+[READ_CODE] Manual membership cannot bypass eligibility;dedup avoids double scanning/counting.
+[READ_CODE] No silent intraday rotation/failed coverage represented as “no setup” in proposed contract.
 
 ## e. Unverified claims
-[ASSUMED] No new source/market/CI/runtime/Telegram/supervisor check performed.
-[ASSUMED] Local clean-checkout baseline and afternoon performance unverified.
-[ASSUMED] Entry0.15%/3ticks and stop1% remain placeholders pending analysis.
-[ASSUMED] Actual Render state unverifiable by Codex.
+[ASSUMED] No real U/P size,stock list,latency,data-source freshness or current market readiness claimed.
+[ASSUMED] No new CI/source-contract/Telegram/supervisor verification.
+[ASSUMED] Actual Render state unverifiable by Codex;no empirical pool performance.
+[ASSUMED] Existing capacity/secret/runtime limitations retained;no Phase2 authorization inferred.
 
 ## f. Test results
-[ASSUMED] Application tests:NOT RUN;command none;counts/skips/duration N/A.
-[RAN_TEST] functions.exec document validator:10 allowed Markdown paths,append-only log,29current decision IDs,packet<=120lines,coverage retained.
-[RAN_TEST] Credential/private-URL patterns:0matches. Not application invariant tests.
+[ASSUMED] Application command:none;pass/fail/skips/duration N/A (docs only).
+[RAN_TEST] functions.exec doc validator:9paths,append-only log,required sections/proposal status,packet<=120lines.
+[RAN_TEST] Hypothetical arithmetic25+8-3=30,total100 leaves70not scanned;not observed project counts.
+[RAN_TEST] Credential/private-URL pattern scan:0matches.
 
-## g. Remaining open items
-[ASSUMED] 1. Clean checkout and exact-source baseline before any separately authorized Phase2.
-[ASSUMED] 2. Empirical buffer/stop/selection analysis and remaining freshness/liquidity/supervision proposals.
-[READ_CODE] No approved review choice is reopened;no Phase2/deploy approval requested in this record.
+## g. Numbered open questions
+[ASSUMED] 1. Approve initial25 automatic ADV-ranked systematic names plus eligible manual members and explicit readiness/freeze rules (P014..017)?
+[ASSUMED] 2. Clean checkout/Phase2 authorization and empirical capacity remain separate gates;no operational change requested here.
 
-## h. Suggested next step / first auditor files
-[ASSUMED] Review approved design record;await clean checkout and separate implementation instruction.
-[READ_CODE] First5:docs/audit/DECISIONS.md;docs/design/README.md;docs/design/TIME_AND_EXECUTION.md;docs/audit/PROGRESS_LOG.md;docs/audit/INTENT_TRACEABILITY.md.
+## h. Suggested next step / auditor first paths
+[ASSUMED] Review exact universe/pool definitions before implementing any selector.
+[READ_CODE] First5:docs/design/UNIVERSE_AND_POOL_CONTRACT.md;docs/design/SETUP_AND_UNIVERSE.md;docs/audit/DECISIONS.md;config/universe.yaml;src/screening.py.
 
 ## Coverage map — paths relative to docs/design/; coverage means designed, NOT tested
 | Phase1 item | Document and section |
@@ -78,4 +79,6 @@
 | [READ_CODE] R2-8 Clone/setup | BASELINE_AND_REFERENCES.md — Clone failure explanation and clean checkout handoff |
 | [READ_CODE] R2-9 Mutation/new tests | REPLAY_ANALYSIS_AND_TEST_PLAN.md — Phase2 tests-first protocol |
 | [READ_CODE] R2-10 Audit coverage | ../audit/AUDIT_PACKET.md — this coverage map |
+
+| [READ_CODE] Universe/pool definition refinement | UNIVERSE_AND_POOL_CONTRACT.md — sections1–7 |
 

@@ -63,3 +63,15 @@
 | D-027 | DESIGNED | docs/design/TIME_AND_EXECUTION.md;docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved design choice only;not implemented/tested|
 | D-028 | DESIGNED | docs/design/TIME_AND_EXECUTION.md;docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved design choice only;not implemented/tested|
 | D-029 | DESIGNED | docs/design/TIME_AND_EXECUTION.md;docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved design choice only;not implemented/tested|
+
+
+## Universe/pool clarification —2026-11-01
+
+[READ_CODE] Supplemental evidence for PI-1/PI-2/PI-7 and D-008/D-016/D-020:docs/design/UNIVERSE_AND_POOL_CONTRACT.md sections1–6. Status remains DESIGNED,not TESTED/DEPLOYED. Existing PI/D rows are not promoted by this refinement.
+[READ_CODE] Current config/screening thresholds reread;new pool selector not implemented. Local baseline UNKNOWN;actual Render state unverifiable by Codex.
+| Item | Status | Evidence | Evidence type |Updated|Limit|
+|---|---|---|---|---|---|
+| P-014 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|Codex proposal,not user-approved or tested|
+| P-015 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|Codex proposal,not user-approved or tested|
+| P-016 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|Codex proposal,not user-approved or tested|
+| P-017 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|Codex proposal,not user-approved or tested|

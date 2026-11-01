@@ -103,3 +103,15 @@
 | D-027 |2026-11-01|[READ_CODE: user approval] Entry/protective order semantics are stop-limit, not plain limit; buffer values remain placeholders.|Mayur|Explicit “all yes” to corresponding round2 question|approved|docs/design/TIME_AND_EXECUTION.md|
 | D-028 |2026-11-01|[READ_CODE: user approval] Entry/SL override absolute deltas<=max(0.10%T0,2ticks),T>=highC0+tick,S<=minLow4-tick,with tick/freshness/risk/distance checks and own cohort.|Mayur|Explicit “all yes” to corresponding round2 question|approved|docs/design/TIME_AND_EXECUTION.md|
 | D-029 |2026-11-01|[READ_CODE: user approval] Conservative primary protective OHLC model: low<Q or open<Q means STOP_NOT_FILLED; bound valid fills by Q and full capacity,report continuous-touch alternative sensitivity.|Mayur|Explicit “all yes” to corresponding round2 question|approved|docs/design/TIME_AND_EXECUTION.md|
+
+
+## Universe/pool definition checkpoint —2026-11-01
+
+[READ_CODE] Mayur requested proper definition of the stock universe and scanning pool. This authorizes documentation refinement,not approval of the exact proposal below. Existing liquidity thresholds were reread in config/universe.yaml and screening.py;they are current defaults,not empirically certified strategy choices. No previous approved decision reopened.
+| ID | Date | Decision | Who decided | Rationale | Status | Evidence/design |
+|---|---|---|---|---|---|---|
+| P-014 |2026-11-01|[ASSUMED] Initial systematic N25 within approved25–50 range;any increase gated by measured no-trade complete-sweep p95<=60s.|Codex proposal|Freeze an explicit initial observation size.|proposed|docs/design/UNIVERSE_AND_POOL_CONTRACT.md|
+| P-015 |2026-11-01|[ASSUMED] Automatically select eligible,data-ready U names by20D mean traded value descending,numeric security ID ascending;show readiness skips and all eligible-but-unscanned names.|Codex proposal|Separate liquidity/capacity selection from setup detection;no hidden sampling.|proposed|docs/design/UNIVERSE_AND_POOL_CONTRACT.md|
+| P-016 |2026-11-01|[ASSUMED] Scanning pool is deduplicated systematic UNION eligible manual catalysts;manuals do not bypass filters or silently consume systematic slots;benchmark total scanned load.|Codex proposal|Preserve user catalyst coverage/provenance with honest counts.|proposed|docs/design/UNIVERSE_AND_POOL_CONTRACT.md|
+| P-017 |2026-11-01|[ASSUMED] Freeze systematic membership preopen;no automatic intraday rotation;explicit catalyst revisions and visible data/status holds retain expected coverage denominator.|Codex proposal|Reproducibility and no silent degradation.|proposed|docs/design/UNIVERSE_AND_POOL_CONTRACT.md|
+[ASSUMED] Ordinary-equity classification/readiness/count/freeze details remain proposed pending Mayur;no Phase2 or operational activation.
