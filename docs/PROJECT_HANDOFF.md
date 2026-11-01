@@ -1,5 +1,41 @@
 # Intraday Trading Automation — authoritative project handoff
 
+## Current checkpoint — 1 November 2026 (supersedes older release status)
+
+Mayur approved PR #14's web-only release. It is merged at
+ceaaf577c8e30e4713da19176828b1b43b3a0226 and Render confirms web deploy
+dep-dbjcdlc9v7es739n1hs0 LIVE. No repeat merge/deploy is required.
+Research cron remains PR #12 at 6d6e8152da96da2c575a59e0b980448b774d059b,
+dep-dbjbnf67bikc73f03i8g LIVE. Both auto-deploy settings remain off.
+This turn independently confirmed Render deployment state; a fresh public HTTP
+health check could not resolve/retrieve the endpoint, so no new HTTP success
+is claimed. No production mutation was made during this continuation.
+
+PR #15: https://github.com/Mayuragarkar2020/intraday-trading-automation/pull/15
+Branch codex/human-paper-controller, tested source head
+9ec22efae49a633c6f8cba09f78ac41b204de739.
+CI run 41277228486 completed successfully: 565 tests passed, one skipped;
+both Chromium browser suites passed. Live-source smoke was skipped.
+It remains DRAFT / UNAPPROVED / UNDEPLOYED. Do not confuse PR #14 approval
+with authority to deploy or enable this controller.
+
+The controller binds the exact saved human choice to prospective paper entry,
+initial SL, EMA10-close exits before 1.5R, additional cost breakeven, 14:50
+flatten requests, 15:00 closure/breach accounting, recovery and derived completed
+trade journals. Per-order cost/slippage/tick/participation assumptions are pinned.
+The optional chosen-stock feed/worker defaults OFF; actual source/reference
+verification remains false. Synthetic cleared fixtures prove software behavior,
+not actual market readiness. See docs/human-paper-controller.md on PR #15.
+
+Next: inspect 2 November actual same-day universe, complete pool coverage and
+receipt timing; resolve independently verified timestamp/session/reference
+production and then validate the chosen-stock full-session feed. Do not set
+clearance flags true to bypass evidence. Any forward-paper production release
+and activation require a separate concrete approval after readiness review.
+No actual automatic forward-paper session or live-money trading is complete.
+Calendar ends 6 November. No subagents. No background work between chat turns
+except already deployed services.
+
 ## Human-choice cockpit ready for approval — 1 November 2026
 
 PR #14: https://github.com/Mayuragarkar2020/intraday-trading-automation/pull/14
