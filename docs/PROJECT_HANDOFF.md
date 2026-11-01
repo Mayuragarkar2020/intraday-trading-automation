@@ -1,5 +1,14 @@
 # Intraday Trading Automation — authoritative project handoff
 
+## Phase 1 design review checkpoint — 1 November 2026
+
+[READ_CODE] Source pinned main 79a2d3086c8aea660dc31068e2758db1f7332808. Phase0 accepted; Phase1 design-only proposal is in docs/design/README.md. Latest user-approved decision register D-001..017 supersedes older single-choice,11:30-cutoff,partial-fill assumptions. See audit packet for evidence limits.
+[ASSUMED] Actual Render state is **unverifiable by Codex** this session. Last documented approved web release is PR14 at ceaaf577c8e30e4713da19176828b1b43b3a0226 / dep-dbjcdlc9v7es739n1hs0; research cron PR12 at6d6e8152da96da2c575a59e0b980448b774d059b / dep-dbjbnf67bikc73f03i8g. NEXT_WORK_PLAN now uses the same documentary checkpoint; older PR9 web statements below are historical.
+[READ_CODE: CI-reported] Current-main test-phase-1 run41290657216 SUCCESS:539 tests and both Chromium scripts passed. This is not a local run. Separate clone failed; local baseline UNKNOWN; original workspace unchanged and not used for another test run.
+[ASSUMED: proposal] Design covers five confirmed arms, close-detected/next-candle stop-limit paper entries, AON, DB daily-fill constraint, hybrid universe, exact current rules, shadow/MFE/MAE/Telegram and supervision. Precise limit/cutoff/TTL/pool choices are proposed, not silently approved.
+[READ_CODE] No application/test/workflow/Render/cron change; protected legacy entrypoints untouched. No Phase2 begun. PR15 remains a previous proposal, not the design's deployed implementation.
+[ASSUMED: next step] Independent design review, resolve numbered proposals, then explicit Phase1 approval and exact-source baseline before Phase2. No production action is bundled.
+
 ## Current checkpoint — 1 November 2026 (supersedes older release status)
 
 Mayur approved PR #14's web-only release. It is merged at
