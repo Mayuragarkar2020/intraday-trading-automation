@@ -32,7 +32,9 @@ class PaperBar(BaseModel):
     close: Decimal = Field(gt=0, le=10000000, max_digits=16, decimal_places=6)
     high: Decimal = Field(gt=0, le=10000000, max_digits=16, decimal_places=6)
     low: Decimal = Field(gt=0, le=10000000, max_digits=16, decimal_places=6)
-    ema10: Decimal = Field(gt=0, le=10000000, max_digits=16, decimal_places=6)
+    # Derived EMA uses Decimal arithmetic and need not lie on the price grid.
+    # Preserve its precision so close<EMA decisions do not change by rounding.
+    ema10: Decimal = Field(gt=0, le=10000000, max_digits=40, decimal_places=30)
     volume: int = Field(ge=0, le=1000000000000, strict=True)
     participation_pct: Decimal = Field(gt=0, le=10, max_digits=12, decimal_places=6)
     slippage_bps: Decimal = Field(ge=0, le=100, max_digits=12, decimal_places=6)
@@ -112,7 +114,8 @@ def manage_bar(previous, command):
         if order["side"] != "SELL":
             raise ValueError("Unexpected pending order with exposure")
         px = price(False)
-        q = min(position["quantity"],capacity) if not gap and not b.reject_exit and b.low <= px <= b.high else 0
+        q = min(position["quantity"],capacity) if (instant(order["at"])<close and not gap
+            and not b.reject_exit and b.low <= px <= b.high) else 0
         apply(dict(kind="EXIT_RESULT",at=b.at,order_id=order["order_id"],
                    quantity=q,price=amount(px) if q else "0",fee=amount(cost*q/2)))
     elif position:
@@ -130,7 +133,11 @@ def manage_bar(previous, command):
                 else:
                     # Only future bars consult this new stop. Initial stop remains
                     # immutable in the entry order for the original R calculation.
-                    s["position"]["stop"] = amount(max(money(position["stop"]),money(position["entry_price"])+cost))
+                    target=money(position["entry_price"])+cost
+                    if entry["selection"].get("cost_breakeven_includes_execution") is True:
+                        from decimal import ROUND_CEILING
+                        target=((target+b.tick_size)/(1-slip)/b.tick_size).to_integral_value(rounding=ROUND_CEILING)*b.tick_size
+                    s["position"]["stop"] = amount(max(money(position["stop"]),target))
                     m["stop_change_status"] = "COST_BREAKEVEN_NEXT_BAR"
     elif pending:
         order = pending[0]

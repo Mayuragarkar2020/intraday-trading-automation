@@ -8,6 +8,7 @@ from src.forward_paper_ledger import encode, instant, identifier, amount, Forwar
 from src.risk_engine import RiskPolicy, size_long
 from src.universe_receipts import UniverseReceiptStore
 from src.universe_store import UniverseStore
+from src.paper_trade_journal import trade_journal
 
 ACCOUNT="paper-main"  # pinned: API clients cannot reset daily limits/account IDs
 COST=Decimal("1")     # explicit paper assumption, not certified broker charges
@@ -107,6 +108,11 @@ class PaperChoiceStore(UniverseReceiptStore):
         candidates,status=self.catalog(now)
         with self.connection() as db:
             selected=self.selected(db);account=self.account(db)
+            worker=None
+            if self.table_exists(db,"paper_worker_status"):
+                p="%s" if self.postgres else "?"
+                row=db.execute("SELECT payload FROM paper_worker_status WHERE account_id="+p,(ACCOUNT,)).fetchone()
+                worker=json.loads(row[0]) if row else None
             events=[]
             if self.table_exists(db,"paper_choice_events"):
                 p="%s" if self.postgres else "?"
@@ -115,16 +121,32 @@ class PaperChoiceStore(UniverseReceiptStore):
         if selected:
             selected={**selected,"effective_status":"SELECTED_HELD" if
                 instant(selected["chosen_at"]).date()==now.date() and now.time()<time(11,30) else "EXPIRED"}
+        pending=[o for o in (account["orders"].values() if account else []) if o["status"]=="PENDING"]
+        phase=("EXIT_PENDING" if any(o["side"]=="SELL" for o in pending) else "MANAGING") if account and account["position"] else (
+            "WAITING_ENTRY_FILL" if pending else "COMPLETED" if account and now.date().isoformat() in account["used_entry_dates"] else
+            selected["effective_status"] if selected else "NO_STOCK_CHOICE")
+        if selected and account and phase=="SELECTED_HELD" and any(o.get("selection",{}).get("human_choice_id")==selected["choice_id"]
+                and o["status"]=="IOC_CANCELLED" and not o["filled"] for o in account["orders"].values()):phase="ENTRY_CANCELLED"
+        if selected and phase in {"EXIT_PENDING","MANAGING","WAITING_ENTRY_FILL","COMPLETED","ENTRY_CANCELLED"}:
+            selected["effective_status"]=phase
         occupied=bool(account and (account["position"] or any(o["status"]=="PENDING" for o in account["orders"].values())
                                    or now.date().isoformat() in account["used_entry_dates"]))
-        return dict(mode="HUMAN_CHOICE_PAPER_PREVIEW",execution_enabled=False,paper_runtime_enabled=False,
-            status=status,candidates=candidates,selected=selected,selection_blocked=occupied,
+        return dict(mode="HUMAN_CHOICE_PAPER_PREVIEW",execution_enabled=False,paper_runtime_enabled=bool(worker and worker.get("enabled")),
+            paper_worker=worker,paper_worker_fresh=bool(worker and timedelta()<=now-instant(worker["at"])<=timedelta(minutes=7)),
+            status=status,management_state=phase,candidates=candidates,selected=selected,selection_blocked=occupied,
             position=account["position"] if account else None,
             fills=(account["fills"][-20:] if account else []),
             realised_pnl=account["realised_pnl"] if account else "0",choice_journal=events,
+            **trade_journal(account),
+            last_price_at=(account.get("management",{}).get("last_close_at") if account else None),
+            last_control_at=account["last_at"] if account else None,
+            price_feed_stale=bool(account and account["position"] and (not account.get("management",{}).get("last_close_at") or
+                now-instant(account["management"]["last_close_at"])>timedelta(minutes=7))),
+            closure_deadline_breached=bool(account and account.get("management",{}).get("closure_deadline_breached")),
             policy=dict(capital="980000",risk_cap="9800",one_filled_entry_per_day=True,
                         close_by="15:00 IST",cost_assumption_per_share=amount(COST)),
-            message="You choose the stock. Paper execution is held until market-data checks and the trading runtime are ready.")
+            message=("Paper worker status: "+worker["status"]+". Live broker execution is disabled." if worker else
+                     "You choose the stock. Paper execution is held until market-data checks and the trading runtime are ready."))
 
     def choose(self,command,now):
         now=instant(now.isoformat())
