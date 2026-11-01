@@ -28,18 +28,23 @@ future verified source/universe formats. Tests explicitly construct synthetic
 future clearances to exercise wiring; they are not proof of real verification.
 Real stored research receipts are tested to hold without touching the ledger.
 
-This pair-level library does not claim complete full-pool candidate coverage.
-A future coordinator must derive all valid pairs for an interval from stored
-coverage, rather than trusting a caller-chosen subset. Contract verification,
-automatic interval assembly, full-session position feed, pinned execution
-assumptions/account identity, feed-independent clock scheduling and incident
-recovery remain required before activation. No paper runtime is wired yet.
+reserve_interval reads an entire committed scan cycle, holds incomplete coverage,
+and derives pairs for every selected instrument from retained receipts. The most
+recent ARMED setup known before that bar opens is the working setup. Callers do
+not choose the ranking subset. The pair-level helper is an internal building
+block; a future runtime must use the coverage coordinator. Bounded JSON queries
+avoid loading multi-day full-pool candle payloads into RAM. Duplicate workers reuse
+only committed original decision times, while changed costs/inputs still conflict.
 
-Local targeted checks: 63 passed, three PostgreSQL-only skipped before the final
-golden fingerprint assertion. Full exact-head CI is required. The synthetic test
-covers stored IDs -> liquidity winner -> later receipt fill -> pre-1.5R EMA request
--> later exit, restart/audit/cash reconciliation. Actual data/session/reference
-verification and market coverage remain unproven. PR #12's approved recorder is
-live separately; reviewed calendar still ends 6 November.
+Contract verification, full-session position feed, pinned execution assumptions/
+account identity, feed-independent clock scheduling and incident recovery remain
+required before activation. No paper runtime is wired yet.
+
+Local targeted checks: 47 passed, 12 PostgreSQL-only cases skipped before the final
+backwards-clock guard. Full exact-head CI exercises both SQLite and PostgreSQL,
+including the interval coordinator and source-to-fill/exit path. Golden tick-batch
+fingerprint compatibility is checked against the deployed pre-bridge source.
+Actual data/session/reference verification and market coverage remain unproven.
+PR #12's approved recorder is live separately; calendar still ends 6 November.
 
 Do not deploy or activate this later proposal under the PR #12 recorder approval.

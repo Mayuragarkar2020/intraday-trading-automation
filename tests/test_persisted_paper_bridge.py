@@ -4,12 +4,15 @@ from datetime import timedelta
 from decimal import Decimal
 import hashlib
 import json
+import os
+from uuid import uuid4
+from urllib.parse import urlencode
 
 import pytest
 
 from src.forward_paper_ledger import ForwardPaperLedger, encode
 from src.paper_entry_selection import EntryBatch, canonical_batch
-from src.persisted_paper_bridge import reserve_from_receipts, manage_from_receipt, FLAGS
+from src.persisted_paper_bridge import reserve_from_receipts, manage_from_receipt, reserve_interval, FLAGS
 from src.universe_receipts import UniverseReceiptStore
 from src.universe_scanner import UniverseScanStore, candidate_from, prepare_history, digest
 from src.universe_store import UniverseStore
@@ -24,7 +27,7 @@ def stamp(clock): return at(clock+":00")
 
 class FutureFixtureStore:
     """TEST ONLY: current producer never writes these clearance flags/mode."""
-    def __init__(self,backend): self.backend=backend;self.postgres=False
+    def __init__(self,backend): self.backend=backend;self.postgres=backend.postgres
     def connection(self): return self.backend.connection()
     def read(self,rid):
         r=deepcopy(self.backend.read(rid))
@@ -35,9 +38,22 @@ class FutureFixtureStore:
         return r
 
 
-@pytest.fixture
-def evidence(tmp_path):
+@pytest.fixture(params=["sqlite","postgres"])
+def evidence(tmp_path,request):
     url="sqlite:///"+str(tmp_path/"bridge.db")
+    cleanup=None
+    if request.param=="postgres":
+        if not os.getenv("TEST_UNIVERSE_DATABASE_URL"):pytest.skip("PostgreSQL CI only")
+        import psycopg
+        from psycopg import sql
+        base=os.environ["TEST_UNIVERSE_DATABASE_URL"]
+        schema="bridge_"+uuid4().hex
+        with psycopg.connect(base) as db:
+            db.execute(sql.SQL("CREATE SCHEMA {}").format(sql.Identifier(schema)))
+        url=base+("&" if "?" in base else "?")+urlencode({"options":"-csearch_path="+schema})
+        def cleanup():
+            with psycopg.connect(base) as db:
+                db.execute(sql.SQL("DROP SCHEMA {} CASCADE").format(sql.Identifier(schema)))
     universe=UniverseStore(url);universe.initialize()
     snapshot={"mode":"VERIFIED_PAPER_UNIVERSE","target_date":"2026-11-02",
         "asof_date":"2026-10-30","restrictions_verified":True,
@@ -48,7 +64,8 @@ def evidence(tmp_path):
     payload,proof=encode(snapshot),'{}'
     revision=hashlib.sha256((payload+"\n"+proof).encode()).hexdigest()
     with universe.backend.connection() as db:
-        db.execute("INSERT INTO universe_research_snapshots VALUES (?,?,?,?,?,?)",
+        p="%s" if universe.backend.postgres else "?"
+        db.execute("INSERT INTO universe_research_snapshots VALUES ("+",".join([p]*6)+")",
             (revision,"2026-11-02","2026-10-30",at("08:30:00").isoformat(),payload,proof))
     scan=UniverseScanStore(url);scan.initialize()
     store=UniverseReceiptStore(url)
@@ -74,7 +91,27 @@ def evidence(tmp_path):
             r=store.record(revision,sid,c,digest(history),digest(raw),observed.isoformat(),
                            clock=lambda t=observed:t+timedelta(seconds=1))["receipt"]
             ids[(symbol,clock)]=r["receipt_id"]
-    return store,FutureFixtureStore(store),ids,ForwardPaperLedger(url)
+    try:
+        yield store,FutureFixtureStore(store),ids,ForwardPaperLedger(url)
+    finally:
+        if cleanup:cleanup()
+
+
+def cycle(evidence,*,complete=True):
+    _,store,ids,_=evidence
+    from src.universe_scanner import VERSION
+    sample=store.read(ids[("STOCK0","10:05")])
+    close=sample["candle_close"]
+    cid=digest([VERSION,"SCAN",sample["universe_revision"],close])
+    payload={"cycle_id":cid,"candle_close":close,"universe_revision":sample["universe_revision"],
+        "mode":"FULL_UNIVERSE_RESEARCH_ONLY","execution_enabled":False,
+        "coverage_complete":complete,"selected_count":2,"receipt_evidence_enabled":True,
+        "rows":[dict(symbol=s,security_id=str(100+i),selected=True,status="SCANNED",
+                     receipt_id=ids[(s,"10:05")]) for i,s in enumerate(("STOCK0","STOCK1"))]}
+    with store.connection() as db:
+        p="%s" if store.postgres else "?"
+        db.execute("INSERT INTO universe_scan_cycles VALUES ("+",".join([p]*4)+")",(cid,close,payload["mode"],encode(payload)))
+    return cid
 
 
 def pairs(ids):
@@ -106,6 +143,12 @@ def test_synthetic_future_source_reserves_liquidity_winner_and_journals_both_ids
     assert ranking[0]["breakout_receipt_id"]==ids[("STOCK1","10:05")]
     assert ledger.read("account")["position"] is None
     assert reserve(ledger,future,ids)["status"]=="ALREADY_RESERVED"
+    retry=reserve_from_receipts(ledger,"account",future,pairs(ids),
+        decision_at=at("10:05:25").isoformat(),round_trip_cost_per_share="1")
+    assert retry["status"]=="ALREADY_RESERVED"
+    with pytest.raises(ValueError,match="conflict"):
+        reserve_from_receipts(ledger,"account",future,pairs(ids),
+            decision_at=at("10:05:25").isoformat(),round_trip_cost_per_share="2")
 
 
 def test_synthetic_future_receipt_to_fill_ema_exit_and_recovery(evidence):
@@ -118,6 +161,9 @@ def test_synthetic_future_receipt_to_fill_ema_exit_and_recovery(evidence):
     # The bar opened at 10:05, before the 10:05:20 reservation. It cannot fill.
     with pytest.raises(ValueError,match="prospective later bar"):manage("10:10")
     assert manage("10:15")["state"]["position"]
+    retry=manage_from_receipt(ledger,"account",future,ids[("STOCK1","10:15")],
+        decision_at=at("10:15:25").isoformat(),participation_pct="1",slippage_bps="0",tick_size="0.05")
+    assert retry["status"]=="ALREADY_APPLIED"
     assert manage("10:20")["state"]["position"]  # EMA request, still exposed
     assert manage("10:25")["state"]["position"] is None
     state=ledger.read("account")
@@ -168,3 +214,25 @@ def test_legacy_tick_batch_fingerprint_is_unchanged():
     assert hashlib.sha256(encode(value).encode()).hexdigest()=="fa837041f88a86bfd909c3c621ec844b72d8923c480692979be4fd22e262277f"
     assert all(not any(k in c for k in ("evidence_kind","setup_receipt_id","breakout_receipt_id"))
                for c in value["candidates"])
+
+
+def test_interval_assembles_all_persisted_candidates_before_ranking(evidence):
+    _,store,_,ledger=evidence
+    result=reserve_interval(ledger,"account",store,cycle(evidence),
+        decision_at=at("10:05:20").isoformat(),round_trip_cost_per_share="1")
+    assert result["command"]["symbol"]=="STOCK1"
+    assert len(result["command"]["selection"]["ranking"])==2
+
+
+def test_partial_interval_holds_without_a_reservation(evidence):
+    _,store,_,ledger=evidence
+    result=reserve_interval(ledger,"account",store,cycle(evidence,complete=False),
+        decision_at=at("10:05:20").isoformat(),round_trip_cost_per_share="1")
+    assert result["status"]=="HELD_INCOMPLETE_INTERVAL_COVERAGE"
+
+
+def test_actual_receipts_hold_complete_interval_without_ledger_writes(evidence):
+    real,_,_,ledger=evidence
+    result=reserve_interval(ledger,"account",real,cycle(evidence),
+        decision_at=at("10:05:20").isoformat(),round_trip_cost_per_share="1")
+    assert result["status"]=="HELD_SOURCE_VERIFICATION"
