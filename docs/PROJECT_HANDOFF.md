@@ -1,5 +1,11 @@
 # Intraday Trading Automation — authoritative project handoff
 
+## IPO current-policy acceptance —2026-11-01
+
+[READ_CODE]2026-11-01:Mayur accepted the proposed IPO ranking/allocation and short-history indicator model “for now”,subject to later revision. Current policy version IPO_SHORT_HISTORY_V1 is approved as a design policy,NOT empirically validated,implemented or activated. Changes later require a new version and preserved historical lineage;no retroactive result rewrite. Mixed-history trade-tie and precise calendarT-1 mapping were not separately approved by this answer.
+
+[ASSUMED] LocalbaselineUNKNOWN;cleancheckout/baseline,explicitPhase2instruction andallproductionactionsremainseparate. Noapp/test/deploy/cron/Renderchange.
+
 [READ_CODE] IPO follow-up:Mayur reaffirmedT-1manualentry,askedforanotherzero-historyrankingmethod andauthorizedseparateshort-historyIPOdesign. docs/design/IPO_SHORT_HISTORY_POLICY.md proposesCSVpriorityandexplicitindicatorprofiles;exactparameters/tiepolicyremainproposed. NoPhase2;localbaselineUNKNOWN;noapp/deploychange.
 
 ## Automatic/manual universe and75-slot amendment —2026-11-01

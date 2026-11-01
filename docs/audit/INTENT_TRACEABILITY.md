@@ -105,3 +105,13 @@
 | P-021 | DESIGNED | docs/design/IPO_SHORT_HISTORY_POLICY.md | READ_CODE |2026-11-01|DirectionapprovedonlyforDrows;parametersproposed,noapplicationtest|
 | P-022 | DESIGNED | docs/design/IPO_SHORT_HISTORY_POLICY.md | READ_CODE |2026-11-01|DirectionapprovedonlyforDrows;parametersproposed,noapplicationtest|
 | P-023 | DESIGNED | docs/design/IPO_SHORT_HISTORY_POLICY.md | READ_CODE |2026-11-01|DirectionapprovedonlyforDrows;parametersproposed,noapplicationtest|
+
+
+## IPOpolicy provisionalacceptance —2026-11-01
+
+[READ_CODE] D039..041recorduseracceptance;P021/P022supersededstatusonly.Names/thresholdsnotimplementedbythisrecord.LocalbaselineUNKNOWN,no TESTED/DEPLOYEDpromotion.
+|Item|Status|Evidence|Evidence type|Updated|Limit|
+|---|---|---|---|---|---|
+| D-039 | DESIGNED | docs/design/IPO_SHORT_HISTORY_POLICY.md | READ_CODE |2026-11-01|Acceptedprovisionalpolicy,notimplemented/empiricallyvalidated|
+| D-040 | DESIGNED | docs/design/IPO_SHORT_HISTORY_POLICY.md | READ_CODE |2026-11-01|Acceptedprovisionalpolicy,notimplemented/empiricallyvalidated|
+| D-041 | DESIGNED | docs/design/IPO_SHORT_HISTORY_POLICY.md | READ_CODE |2026-11-01|Acceptedprovisionalpolicy,notimplemented/empiricallyvalidated|

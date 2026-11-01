@@ -1,5 +1,11 @@
 # Next work plan — Phase1 round2 review, NOT Phase2
 
+## IPO current-policy acceptance —2026-11-01
+
+[READ_CODE]2026-11-01:Mayur accepted the proposed IPO ranking/allocation and short-history indicator model “for now”,subject to later revision. Current policy version IPO_SHORT_HISTORY_V1 is approved as a design policy,NOT empirically validated,implemented or activated. Changes later require a new version and preserved historical lineage;no retroactive result rewrite. Mixed-history trade-tie and precise calendarT-1 mapping were not separately approved by this answer.
+
+[ASSUMED] LocalbaselineUNKNOWN;cleancheckout/baseline,explicitPhase2instruction andallproductionactionsremainseparate. Noapp/test/deploy/cron/Renderchange.
+
 [READ_CODE] IPO follow-up:Mayur reaffirmedT-1manualentry,askedforanotherzero-historyrankingmethod andauthorizedseparateshort-historyIPOdesign. docs/design/IPO_SHORT_HISTORY_POLICY.md proposesCSVpriorityandexplicitindicatorprofiles;exactparameters/tiepolicyremainproposed. NoPhase2;localbaselineUNKNOWN;noapp/deploychange.
 
 [READ_CODE] Latest universe contract:automatic all10agreed gates;manualT-1 CSV withband-only admission andpersistentidentifier;capacity75=50automatic+25manual. D030..036 supersede old same-filter/manual20cap/25-systematic and same-day-add assumptions. See UNIVERSE_AND_POOL_CONTRACT.md.

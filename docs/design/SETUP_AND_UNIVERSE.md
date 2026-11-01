@@ -1,5 +1,7 @@
 # Setup and universe — authoritative C0 strategy, round 2
 
+[READ_CODE]2026-11-01:Mayur accepted the proposed IPO ranking/allocation and short-history indicator model “for now”,subject to later revision. Current policy version IPO_SHORT_HISTORY_V1 is approved as a design policy,NOT empirically validated,implemented or activated. Changes later require a new version and preserved historical lineage;no retroactive result rewrite. Mixed-history trade-tie and precise calendarT-1 mapping were not separately approved by this answer.
+
 [READ_CODE] Approval update2026-11-01: Mayur answered “all yes” to the five round2 questions. Approved scope: C0 filter scope/prior3 width denominator; max(T-S)/T2.5%; one-tick default T/S buffers; stop-limit rather than plain-limit; proposed override bounds and conservative low<Q stop-no-fill rule with sensitivity. This is design approval of those choices, not implementation/test proof, buffer calibration or Phase2 authorization. Other proposals remain proposed.
 
 [READ_CODE] As-implemented source below was reread at main79a2d3086c8aea660dc31068e2758db1f7332808. New strategy is Mayur's authoritative definition, NOT implemented by this docs-only revision.
@@ -47,7 +49,7 @@
 
 [READ_CODE] Capacity75:top50automatic by20D mean traded value plus top25manual by available daily average traded value. For manual historyN1..19 use available completed sessions;20+use latest20 proposed window. Use fewer if fewer candidates;100manual=>top25ranked,not a25-upload cap.
 [ASSUMED] Stable tie numeric security ID;overlaps scanned once whileboth provenance flags/user identifier retained;do not lend unused quota or invent members to force75unique. Quota is approved,these exact counting details proposed.
-[ASSUMED] Pool membership independent of indicator readiness:chosen short-history IPO can be monitored each5m with SETUP_DATA_HOLD. Current20-slot RVOL/EMA/15m warm-up rules are NOT automatically changed by universe/ranking exception. N0averageundefined;Mayur requested alternative ranking. ProposedCSVprioritylane and separateIPOindicatorprofiles are in IPO_SHORT_HISTORY_POLICY.md,not implemented/parameter-approved.
+[ASSUMED] Pool membership independent of indicator readiness:chosen short-history IPO can be monitored each5m with SETUP_DATA_HOLD. Current20-slot RVOL/EMA/15m warm-up rules are NOT automatically changed by universe/ranking exception. N0averageundefined;Mayur requested alternative ranking. ProposedCSVprioritylane and separateIPOindicatorprofiles are in IPO_SHORT_HISTORY_POLICY.md,notimplemented;parametersnowacceptedprovisionally.
 [READ_CODE] Scanning09:15–14:35 persists;75capacity not measured throughput. Prior no-trade complete-sweep p95<=60s evidence requirement remains before operational confidence/further scale-up. No hidden quota reduction ifperformancefails;explicit capacity/entry hold.
 [ASSUMED] Manual persistence has no old20-membership cap;25manualSCANNED names versus100uploaded entries are different quantities. See contract for CSV field/schema/idempotency proposals and future tests.
 

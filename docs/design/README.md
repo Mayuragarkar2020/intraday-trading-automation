@@ -1,5 +1,7 @@
 # Phase1 design review — round2 C0 resting bracket
 
+[READ_CODE]2026-11-01:Mayur accepted the proposed IPO ranking/allocation and short-history indicator model “for now”,subject to later revision. Current policy version IPO_SHORT_HISTORY_V1 is approved as a design policy,NOT empirically validated,implemented or activated. Changes later require a new version and preserved historical lineage;no retroactive result rewrite. Mixed-history trade-tie and precise calendarT-1 mapping were not separately approved by this answer.
+
 [READ_CODE] Latest Mayur amendment:automatic admission all agreed thresholds;manualT-1 CSV with band-only admission and persistent user identifier;capacity75=50automatic+25manual,ranked withincohorts with available daily history for short-listed IPOs. This supersedes prior shared manual filters/20cap/25-systematic proposals. See UNIVERSE_AND_POOL_CONTRACT.md;no Phase2.
 
 [READ_CODE] Approval update2026-11-01: Mayur answered “all yes” to the five round2 questions. Approved scope: C0 filter scope/prior3 width denominator; max(T-S)/T2.5%; one-tick default T/S buffers; stop-limit rather than plain-limit; proposed override bounds and conservative low<Q stop-no-fill rule with sensitivity. This is design approval of those choices, not implementation/test proof, buffer calibration or Phase2 authorization. Other proposals remain proposed.
@@ -10,7 +12,7 @@
 
 ## IPO follow-up design
 
-[READ_CODE] Mayur reaffirmedT-1manualentry,requested another zero-historyrankingmethod and authorized a separateIPOshort-historypolicy. See IPO_SHORT_HISTORY_POLICY.md. CSVpriority/laneallocation and newRVOL/HTFprofiles remain proposed;no Phase2.
+[READ_CODE] Mayur reaffirmedT-1manualentry,requested another zero-historyrankingmethod and authorized a separateIPOshort-historypolicy. See IPO_SHORT_HISTORY_POLICY.md. CSVpriority/laneallocation and newRVOL/HTFprofiles nowacceptedforcurrentpolicy,subjectrevision;no Phase2.
 
 ## Universe/pool definition review
 

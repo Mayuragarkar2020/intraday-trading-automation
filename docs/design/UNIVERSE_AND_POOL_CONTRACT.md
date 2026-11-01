@@ -1,5 +1,7 @@
 # Universe and scanning pool — two admission routes and fixed75-slot design
 
+[READ_CODE]2026-11-01:Mayur accepted the proposed IPO ranking/allocation and short-history indicator model “for now”,subject to later revision. Current policy version IPO_SHORT_HISTORY_V1 is approved as a design policy,NOT empirically validated,implemented or activated. Changes later require a new version and preserved historical lineage;no retroactive result rewrite. Mixed-history trade-tie and precise calendarT-1 mapping were not separately approved by this answer.
+
 [READ_CODE] Mayur's latest instruction supersedes earlier same-filter manual admission,20-member manual cap,25-systematic pilot and same-day catalyst additions. This is Phase1 documentation only;no implementation/Phase2/activation.
 [ASSUMED] Universe membership,scanning membership,indicator readiness,qualified setup and armed trade remain different states. Manual admission exemptions do NOT waive approved setup,risk,position or fill rules.
 
@@ -60,12 +62,12 @@
 
 ## 5. IPO edge cases — separate policy authorized
 
-[READ_CODE] Mayur reaffirmedT-1,requested a differentzero-historyrankingmethod and agreed to DESIGN a separateIPOshort-historypolicy. See IPO_SHORT_HISTORY_POLICY.md for proposedCSVprioritylane and available-history/firstdayindicatorprofiles;exactdefaults not approved by that “Yes”.
+[READ_CODE] Mayur reaffirmedT-1,requested a differentzero-historyrankingmethod and agreed to DESIGN a separateIPOshort-historypolicy. See IPO_SHORT_HISTORY_POLICY.md for proposedCSVprioritylane and available-history/firstdayindicatorprofiles;exactranking/allocation/indicator defaults are now accepted byMayur'slatestanswer,subjecttolaterrevision.
 
 
-[ASSUMED] N=0 completed sessions =>average daily liquidity undefined. Keep a band-valid IPO in manual U as RANK_PENDING_ZERO_HISTORY;do not invent yesterday's turnover or treat offer size/IPO demand as daily traded value. Proposed replacement is PRIORITY_IPO CSV ranking,not fake liquidity;exactlaneallocation awaits Mayur. Pending approval is not a new universe admission threshold.
+[ASSUMED] N=0 completed sessions =>average daily liquidity undefined. Keep a band-valid IPO in manual U as RANK_PENDING_ZERO_HISTORY;do not invent yesterday's turnover or treat offer size/IPO demand as daily traded value. Proposed replacement is PRIORITY_IPO CSV ranking,not fake liquidity;laneallocation now provisionallyaccepted;implementation/validationpending. Pending approval is not a new universe admission threshold.
 [ASSUMED] Short-history N1..19 ranks on available completed-day mean,but current approved RVOL construction expects20 matching prior5m slots and EMA/15m warm-up. Such a name remains in the selected manual pool with explicit SETUP_DATA_HOLD if required indicators cannot be computed. It is monitored separately;no fabricated qualified setup.
-[ASSUMED] First-listing-day IPO may have no prior slots/EMA/HTF at all;4current candles alone cannot satisfy every existing indicator rule. Mayur has now authorized designing available-session and listing-day alternatives;their exactRVOL/HTFsubstitutes still require approval,as IPO_SHORT_HISTORY_POLICY.md specifies. Do not silently waive setup conditions because manual universe entry bypasses automatic liquidity thresholds.
+[ASSUMED] First-listing-day IPO may have no prior slots/EMA/HTF at all;4current candles alone cannot satisfy every existing indicator rule. Mayur has now authorized designing available-session and listing-day alternatives;their exactRVOL/HTFsubstitutes are now provisionallyaccepted,as IPO_SHORT_HISTORY_POLICY.md records;notvalidated/implemented. Do not silently waive setup conditions because manual universe entry bypasses automatic liquidity thresholds.
 [ASSUMED] Pre-listing unknown mapping/band can be stored as CSV pending intent onT-1;final universe admission waits for verified identity/band. No same-day new upload is needed to revalidate an existing pending membership. Distinguish NEW_ENTRY from automated validation.
 
 ## 6. Cockpit,provenance and data schema
@@ -79,4 +81,4 @@
 ## 7. Approval/open implementation details
 
 [READ_CODE] Mayur approves automatic gates,manual band-only route/exemptions,CSV/pre-day-only addition,persistent displayed identifier,and75capacity split50/25 with liquidity ranking/available-history fallback. Earlier same-filter/manual20cap/intraday-add and25-auto proposals are superseded.
-[ASSUMED] Exact CSV columns/idempotency,calendar-day vs previous-session interpretation,ranking tie/overlap treatment and zero-history/short-indicator-history behavior remain proposed. No Phase2,app/test/config/broker/deploy/cron/Render change;local baseline UNKNOWN,actual Render state unverifiable by Codex.
+[ASSUMED] Exact CSV columns/idempotency,calendar-day vs previous-session interpretation,ranking tie/overlap treatment and remainingCSV/timing/rankingimplementationdetails remainproposed;IPOpriority/allocation/indicatorprofile nowacceptedprovisionally. No Phase2,app/test/config/broker/deploy/cron/Render change;local baseline UNKNOWN,actual Render state unverifiable by Codex.

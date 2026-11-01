@@ -144,7 +144,18 @@
 |---|---|---|---|---|---|---|
 | D-037 |2026-11-01|[READ_CODE: user answer] Useanother rankingmethod forzero-completed-sessionIPO,ratherthan makeundefineddailyliquidity thefinalselectionmethod|Mayur|Explicit answer2|approved|docs/design/IPO_SHORT_HISTORY_POLICY.md|
 | D-038 |2026-11-01|[READ_CODE: user answer] DesignaseparateIPOshort-historysetup/datapolicy|Mayur|Explicit answer3;exactindicatorparametersnotapproved|approved|docs/design/IPO_SHORT_HISTORY_POLICY.md|
-| P-021 |2026-11-01|[ASSUMED] N0CSVmanual_prioritylane,proposed5initialIPOslotswithinmanual25withunusedcapacityflexibility;prioritythenSID|Codex proposal|No fabricatedliquidity/comparable-unitclaim|proposed|IPO_SHORT_HISTORY_POLICY.md section2|
-| P-022 |2026-11-01|[ASSUMED] N1..19availablematching-slotRVOL;N0C0vol/previous3vol,20actual5mcloses,3completed15mstrictlyrisingcloseswhenfullHTFnotready|Codex proposal|ExplicitexperimentalIPOprofilewithoutfakehistory|proposed|IPO_SHORT_HISTORY_POLICY.md section3|
+| P-021 |2026-11-01|[ASSUMED] N0CSVmanual_prioritylane,proposed5initialIPOslotswithinmanual25withunusedcapacityflexibility;prioritythenSID|Codex proposal|No fabricatedliquidity/comparable-unitclaim|superseded|IPO_SHORT_HISTORY_POLICY.md section2|
+| P-022 |2026-11-01|[ASSUMED] N1..19availablematching-slotRVOL;N0C0vol/previous3vol,20actual5mcloses,3completed15mstrictlyrisingcloseswhenfullHTFnotready|Codex proposal|ExplicitexperimentalIPOprofilewithoutfakehistory|superseded|IPO_SHORT_HISTORY_POLICY.md section3|
 | P-023 |2026-11-01|[ASSUMED] Mixed-historysimultaneoustieholdswhen20Dmetricundefineduntilcomparabletiepolicyapproved|Codex proposal|Do notsilentlymixuserpriorityandrupeeADV|proposed|IPO_SHORT_HISTORY_POLICY.md section4|
 [READ_CODE] P020's oldN0-rankpending/indicatorholdremain interim limitations,not final desiredpolicy;D037/D038authorize alternatives. ExactT-1calendar mapping remainsunresolved bythe repeatedT-1term;no same-dayadditions underanyinterpretation.
+
+
+## IPO provisional policy accepted —2026-11-01
+
+[READ_CODE] Mayur:“Yes go ahead for now.This is the currently accepted policy subjected to revision later.” Context:both preceding questions onCSVpriority/allocation andseparateshort-historyindicator model. Not a blanketPhase2/deploymentapproval. P021/P022supersededbyuserdecisionsbelow;P023mixed-historytieproposalremainspending.
+|ID|Date|Decision|Who decided|Rationale|Status|Design|
+|---|---|---|---|---|---|---|
+| D-039 |2026-11-01|[READ_CODE: user acceptance] N0CSVprioritylane withproposed5IPOslots/flexiblemanual25allocation is acceptedfornow;historymanualnamesretainavailable-liquidityrank|Mayur|Explicitacceptanceofranking/allocationanswer|approved|docs/design/IPO_SHORT_HISTORY_POLICY.md section2|
+| D-040 |2026-11-01|[READ_CODE: user acceptance] Available-sessionRVOL andfirstdayprior3volume/20actual5mEMAcloses/3completed15mrisingclose model acceptedfornow,separateexperimentalIPOcohort|Mayur|Explicitacceptanceofshort-historymodelanswer|approved|IPO_SHORT_HISTORY_POLICY.md section3|
+| D-041 |2026-11-01|[READ_CODE: user condition] CurrentIPOpolicy acceptedsubjecttolaterrevision,notpermanentlylocked|Mayur|Explicitqualificationofacceptance|approved|IPO_SHORT_HISTORY_V1;futureversionhistoryrequired|
+[ASSUMED] No test/empiricalproofcomesfromapproval;remainingT-1mapping/tie/source/clean-checkoutdetailsstillseparategates.

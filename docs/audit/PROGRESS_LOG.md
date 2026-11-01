@@ -197,3 +197,16 @@
 [RAN_TEST] Exactdoccheck:functions.exec JS overipofiles asserts11allowedMarkdownpaths,38currentDIDs,priorlogprefixintact,packet<=120lines,31coverageentries,requiredIPOprofile/proposalterms;laneallocationexamples100H8I=>20H5I,100H2I=>23H2I,10H30I=>10H15I,0H30I=>0H25I. Credential/private-key/GitHub-token/JWT/bearer/credential-assignment/private-URLpatternscan0matches.Documentchecksnotapplicationtests.
 [READ_CODE] Noapp/test/config/workflow/dependency/cron/Render/brokerpathorlegacyfilechange;originalworkspaceuntouched;Phase2NOTSTARTED. NoPRmerged/closed.
 [ASSUMED] Deferred:userreviewexactIPOdefaults/tie/calendar mapping,cleancheckout/baseline,empiricalcalibrationandallimplementation/productionactions. StopatIPOdesigncheckpoint.
+
+
+## 2026-11-01 — session9 / Phase1 IPO provisional policy acceptance
+
+[READ_CODE] Mayur:“Yes go ahead for now.This is the currently accepted policy subjected to revision later.” Context=twoquestionsonIPOalternativeCSVpriority/allocationandshort-historysetupmodel.Parent8f98e0d54026a60e85204d08153b507a5725c093;branch codex/phase1-review-round2;range 8f98e0d54026a60e85204d08153b507a5725c093..codex/phase1-review-round2(immutableheadinPR19).
+[ASSUMED] Badnews/limits:localbaselineUNKNOWN,no empiricalIPO/replay/capacityvalidation,currentRenderstateunverifiablebyCodex.Acceptanceisnotcompletedcode/testproof.
+[READ_CODE] RecordedCSVpriority/flexible5IPOslotswithinmanual25andavailable-history/firstdayRVOL/EMA/HTFprofilesascurrentacceptedprovisionalIPO_SHORT_HISTORY_V1.D039..041approvedbyMayur,P021/P022superseded;P023mixed-historytieandprecisecalendarT-1mappingremainseparate.Nosilentapprovalofotherparameters.
+[READ_CODE] UpdatedIPOpolicy,contract,setup,overview,continuityandtraceabilitywithscopedapprovalnotices.Priorprogressentriesretained.Policycanberevisedlaterwithnewversion/history;noretroactiveresultrewrite.
+[READ_CODE] Files10:docs/design/IPO_SHORT_HISTORY_POLICY.md;UNIVERSE_AND_POOL_CONTRACT.md;SETUP_AND_UNIVERSE.md;README.md(allunderdesign);docs/PROJECT_HANDOFF.md;docs/NEXT_WORK_PLAN.md;docs/audit/DECISIONS.md;INTENT_TRACEABILITY.md;AUDIT_PACKET.md;PROGRESS_LOG.md(last3underaudit).
+[ASSUMED] ApplicationtestsNOTRUN;commandnone;pass/fail/skips/durationN/A.Nodatafetch,CI/runtimecheck,replayanalysis,clone/environmentorpoolaction.
+[RAN_TEST] Exactdoccheck:functions.exec JS overaccFiles asserts10allowedMarkdownpaths,41currentDIDs,unchangedhistoricalprogressprefix,packet<=120lines,retainedcoverageandacceptedpolicy/scopelabels.Credential/private-key/GitHub-token/JWT/bearer/credential-assignment/private-URLpatternscan0matches.Notapplicationinvarianttests.
+[READ_CODE] Noapp/test/dependency/config/workflow/cron/Render/brokerorlegacyfilechange.Originalworkspaceuntouched.NoPRmerged/closed.Phase2NOTSTARTED.
+[ASSUMED] Deferred:remainingcalendar/tiepolicy,cleancheckout/exact-sourcebaseline,separatePhase2authorization,allimplementation/validation/productionchanges.NoapprovedIPOreviewchoicereopened.

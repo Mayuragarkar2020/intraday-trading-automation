@@ -1,54 +1,49 @@
-# Audit packet —2026-11-01 / IPO follow-up design
+# Audit packet —2026-11-01 / IPO policy provisional acceptance
 ## a. Session summary
-[ASSUMED] BAD NEWS:IPOpriorityallocation/indicator/tieparametersunapproved,localbaselineUNKNOWN,noempiricalIPOanalysis.
-[READ_CODE] Mayur reaffirmedT-1,requestedalternativeN0ranking,authorizedshort-historyIPOdesign.
-[READ_CODE] D037/D038approveddirection;P021..023exactdefaultsproposed.
-[READ_CODE] Parenta0ea658c1eff12fbb33df184879e6c6a8733685b;branch codex/phase1-review-round2;11Markdownfiles.
-[READ_CODE] Phase2NOTSTARTED;noapp/test/broker/deploy/cron/Renderaction.
+[ASSUMED] LocalbaselineUNKNOWN;no applicationtest/replayanalysis/empiricalevidence.
+[READ_CODE] MayuracceptedbothIPOreviewanswersforcurrentpolicy,subjecttolaterrevision.
+[READ_CODE] D039..041approved;IPO_SHORT_HISTORY_V1;implementationstatusDESIGNEDonly.
+[READ_CODE] Parent8f98e0d54026a60e85204d08153b507a5725c093;branch codex/phase1-review-round2;10Markdownfiles.
+[READ_CODE] Phase2NOTSTARTED;noapp/broker/deploy/Render/cronaction.
 
 ## b. Safety invariants
-[READ_CODE] PASS diff-only:PREVIEW_ONLY/app pathsuntouched;no brokerordercode/endpoint/client/credential.
-[RAN_TEST] PASS limitedcredential/private-URLscan:11proposedMarkdownfiles,0matches.
-[ASSUMED] UNVERIFIED:repo-widesecretabsence,actualruntime/Renderstate.
-[ASSUMED] UNVERIFIEDcurrenttests:9800risk,980000cash,long-only,dailyfill,fivearms,limitformula.
-[READ_CODE] PASSscope:legacyfiles/config/workflow/deploy/cronuntouched.
-[ASSUMED] IPOuniverseexceptiondoesnotwaivetraderisk/cutoff/stop-failurelosssemantics.
+[READ_CODE] PASSdiffscope:PREVIEW_ONLY/app pathsunchanged;no brokerordercode/client/endpoint/credentials.
+[RAN_TEST] PASStargetedscan:10proposedMarkdownfiles,0credential/private-URLpatterns.
+[ASSUMED] UNVERIFIED:whole-reposecretabsence/actualRenderstate.
+[ASSUMED] UNVERIFIEDbycurrenttests:9800risk,980000cash,long-only,dailyfill,fivearms,limitformula.
+[READ_CODE] PASSscope:protectedlegacyfiles/config/cron/workflow/deployunchanged.
+[ASSUMED] AcceptedIPOprofiledoesnotguaranteeprofit/fills/maxrealizedloss.
 
 ## c. Traceability delta
-[READ_CODE] D037/D038andP021..023DESIGNED;no TESTED/DEPLOYEDpromotion.
-[READ_CODE] D033T-1reaffirmed;calendar-mappingnotexplicitlyapproved.
-[READ_CODE] NewIPOprofile/rankingproposalslinkedfromcanonicalcontract/overview/testplan.
+[READ_CODE] D039..041addedapprovedbyMayur;DESIGNEDonly,no TESTED/DEPLOYEDpromotion.
+[READ_CODE] P021/P022supersededbyacceptedpolicy;P023mixed-historytieremainsproposed.
+[READ_CODE] Design/continuityapprovalnoticesupdated;historicalprogressprefixpreserved.
 
 ## d. Deviations,risks,assumptions
-[ASSUMED] CSVpriorityisdiscretion,notliquidity;5IPOslotallocationwithmanual25isproposed,notuser-approved.
-[ASSUMED] Available-sessionRVOLandcurrent3barvolumearestatisticallydifferentfromSTANDARD20.
-[ASSUMED] ReducedHTF3risingcloseconfirmationisaproposedstrategyvariant,notexistingEMA20proof.
-[ASSUMED] Firstdayneeds20actual5mclosesandverifiedinstrument-sessionstart;no syntheticIPOprice/historyseed.
-[ASSUMED] Mixedhistorytiecanlack20DADV;defaultproposalholds,tiealternativeneedsreview.
-[READ_CODE] No currentnew-test,replay,source-capability,capacityorprofitabilityclaim.
-[READ_CODE] Priorprogressprefixretained;useranswersnotstretchedintoexactparameter/Phase2approval.
+[READ_CODE] “Gofor now”interpretedasacceptanceoftwoprecedingIPOquestions,notPhase2/deployauthorization.
+[ASSUMED] Policyversionedandamendable;laterrevisioncannotrewriterecordedoldoutcomes.
+[ASSUMED] RVOL/HTFsubstitutesremainexperimental/empiricallyunvalidateddespiteuseracceptance.
+[ASSUMED] Mixed-historytiebreakandexactcalendarT-1mappingnotseparatelyapproved.
+[ASSUMED] No newdata/source/capacitycheckoroperationalclearance.
 
 ## e. Unverified claims
-[ASSUMED] No realIPOdataset/firstdayranking/profileoutcome/Telegram/supervisiontest.
-[ASSUMED] ActualRenderstateunverifiablebyCodex;localbaselineUNKNOWN.
-[ASSUMED] T-1calendarvstrading-sessionmappingstillneedsresolutionbeforeimplementation.
-[ASSUMED] CurrentDhan/marketIPOstart/tick/bandcapabilitynotverifiedhere.
+[ASSUMED] Cleancheckout/baseline,currentIPOdata,source/sessioncontract,livefeasibility,Telegram/supervisionnotverified.
+[ASSUMED] ActualRenderstateunverifiablebyCodex;75slotcapacityunmeasured.
+[ASSUMED] No newCI/localtestresultsclaimed.
 
 ## f. Test results
-[ASSUMED] ApplicationtestsNOTRUN;commandnone;pass/fail/skips/durationN/A.
-[RAN_TEST] functions.exec docvalidator:11Markdownpaths,append-onlylog,38currentDIDs,packet<=120lines,31coveragerows.
-[RAN_TEST] Hypotheticallaneallocations<=25manual/75totalchecked;notruntime/invarianttests.
-[RAN_TEST] Credential/private-URLscan0matches;noapplicationtestcodeadded.
+[ASSUMED] ApplicationtestsNOTRUN;commandnone;counts/skips/durationN/A.
+[RAN_TEST] functions.exec doccheck:10Markdownpaths,41currentDIDs,append-onlylog,packet<=120lines,coveragepreserved.
+[RAN_TEST] Credential/private-URLpatternscan0matches.Notapplicationtests.
 
-## g. Numbered open choices
-[ASSUMED] 1. AcceptCSVpriorityandproposed5IPOslotreservation/flexiblemanualquota?
-[ASSUMED] 2. Acceptavailable-sessionRVOLandfirstdayprior3volume/20closes/3HTFrisingcloseprofile?
-[ASSUMED] 3. Choosecomparablemixed-historytiebreakbeforeallowingcompetingIPOprimaryentries;currentproposalholds.
-[ASSUMED] ExactT-1calendar mappingstillpending;no same-day additionsunderanyinterpretation.
+## g. Remaining open items
+[ASSUMED] 1. ExactcalendarT-1mappingandmixed-historytrade-tiepolicybeforeimplementation.
+[ASSUMED] 2. Cleancheckout/exact-sourcebaselineandseparatePhase2instruction.
+[READ_CODE] IPOranking/allocation/indicatorchoicesarenotreopened;currentpolicyacceptedsubjectrevision.
 
-## h. Suggested next step / auditor first paths
-[ASSUMED] ReviewIPOdefaults;cleancheckout/baselineandexplicitPhase2approvalremainseparate.
-[READ_CODE] First5:IPO_SHORT_HISTORY_POLICY.md;UNIVERSE_AND_POOL_CONTRACT.md;REPLAY_ANALYSIS_AND_TEST_PLAN.md;../audit/DECISIONS.md;../audit/PROGRESS_LOG.md(design-relative).
+## h. Suggested next step / first auditor paths
+[ASSUMED] RetainacceptedV1policy;addressremainingoperational/designgatesbeforeimplementation.
+[READ_CODE] First5:IPO_SHORT_HISTORY_POLICY.md;UNIVERSE_AND_POOL_CONTRACT.md;../audit/DECISIONS.md;../audit/PROGRESS_LOG.md;../audit/INTENT_TRACEABILITY.md(design-relative).
 
 ## Coverage map — paths relative to docs/design/; coverage means designed, NOT tested
 | Phase1 item | Document and section |
@@ -87,4 +82,6 @@
 | [READ_CODE] ManualT-1CSV and75-slot amendment | UNIVERSE_AND_POOL_CONTRACT.md sections1–7;REPLAY_ANALYSIS_AND_TEST_PLAN.md amendment tests |
 
 | [READ_CODE] IPO ranking/short-historyfollow-up | IPO_SHORT_HISTORY_POLICY.md sections1–5 |
+
+| [READ_CODE] IPO provisionalpolicy acceptance | IPO_SHORT_HISTORY_POLICY.md approvalnotice;DECISIONS.md D039..041 |
 
