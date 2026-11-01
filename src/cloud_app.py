@@ -229,3 +229,5 @@ def preview(request:PreviewRequest):
 # Paper simulation has its own authenticated router; no live order integration.
 from src.paper_routes import create_paper_router
 app.include_router(create_paper_router(require_token))
+from src.paper_choice_routes import create_choice_router
+app.include_router(create_choice_router(require_token))
