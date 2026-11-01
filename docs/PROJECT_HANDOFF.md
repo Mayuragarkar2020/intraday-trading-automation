@@ -1,5 +1,37 @@
 # Intraday Trading Automation — authoritative project handoff
 
+## 1 November 2026 — PR #12 receipt evidence ready for production approval
+
+PR #9's approved web-only release is live at d724f82f48a6588acb92770f7a78246355e77b6a
+(deploy dep-dbjbh93bc2fs73cbijl0); health/auth checks passed. The research cron is
+still at PR #11 and has not been redeployed or reconfigured.
+
+Next review: https://github.com/Mayuragarkar2020/intraday-trading-automation/pull/12
+Branch codex/universe-receipt-evidence; exact tested head
+c78a74277f582e3782b1624ed8531c8356d3c491. CI run 41271663974 passed
+493 Python/API/PostgreSQL tests and both Chromium suites. Local targeted checks:
+69 passed, three PostgreSQL-only skipped. See docs/universe-receipt-evidence.md
+on that branch. Source records immutable full-pool current candles/first-seen
+times, reference-cache/input hashes, computed scanner output and post-scan known_at.
+Revisions, injected inputs, retries, rollback, restart and concurrency are tested.
+Backfilled setup windows hold; timely evidence still leaves all four verification
+flags and forward_paper_ready/execution_enabled false. No order adapter/runtime.
+
+CONCRETE APPROVAL PENDING: merge PR #12, deploy existing RESEARCH CRON ONLY,
+enable UNIVERSE_RECEIPTS_ENABLED=true there. No web deploy, new service, extra
+broker requests, schedule/compute/command change or automatic paper/live activation.
+Keep existing capture/universe flags true and auto-deploy off. Adds CPU work and
+PostgreSQL writes/retention; actual throughput/coverage/capacity remain unproven.
+Read-only database-size inspection was blocked by the existing empty external
+allowlist; no network access setting was changed. Do not weaken it for this work.
+
+After approval/deployment: inspect actual 2 November same-day universe, full-pool
+coverage, receipt first-seen/timing/row growth and source holds. Then build the
+trusted persisted signal adapter and session/reference clearance from evidence.
+Calendar still ends 6 November. PR #10 remains deferred. No later production or
+automatic execution approval is implied by approval of the PR #9 web release.
+
+
 ## 1 November 2026 — PR #9 approved and deployed to web only
 
 Mayur approved PR #9 merge and the EXISTING WEB SERVICE ONLY deployment.
