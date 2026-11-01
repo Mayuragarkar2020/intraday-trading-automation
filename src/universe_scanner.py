@@ -148,7 +148,7 @@ def candidate_from(symbol,previous,current_raw,received,close):
 
 def run_universe_scan(now,universe_store,store,token,*,fetch=fetch_intraday,
                       clock=lambda:datetime.now(IST),monotonic=runtime.monotonic,
-                      sleep=runtime.sleep,budget_seconds=180,_warm_only=False):
+                      sleep=runtime.sleep,budget_seconds=180,_warm_only=False,receipt_store=None):
     """One bounded sequential scan. Not called by the production cron.
 
     Per-worker spacing is 0.3s; activation must coordinate other consumers of
@@ -245,7 +245,14 @@ def run_universe_scan(now,universe_store,store,token,*,fetch=fetch_intraday,
                 raise ValueError("Invalid receipt clock")
             received = received.astimezone(IST)
             candidate = candidate_from(symbol,previous,raw,received,close)
-            scan = scan_batch(BatchInput(candidates=[candidate]))[0]
+            if receipt_store is None:
+                scan = scan_batch(BatchInput(candidates=[candidate]))[0]
+            else:
+                receipt = receipt_store.record(published["revision"],sid,candidate,
+                    digest(cached),digest(raw),received.isoformat(),clock=clock)["receipt"]
+                scan = receipt["scanner_result"]
+                result.update(receipt_id=receipt["receipt_id"],known_at=receipt["known_at"],
+                              receipt_status=receipt["receipt_status"])
             result.update(status="HOLD" if scan["status"]=="BLOCK" else "SCANNED",
                 setup_status=scan["status"],reason=scan["reason"],
                 entry=scan["entry"],stop=scan["stop"],observed_at=received.isoformat(),
@@ -266,6 +273,8 @@ def run_universe_scan(now,universe_store,store,token,*,fetch=fetch_intraday,
         "mode":"REFERENCE_WARMUP_RESEARCH_ONLY" if _warm_only else "FULL_UNIVERSE_RESEARCH_ONLY",
         "rows":outcomes,"summary":summary,"broker_requests":requests,
         "selected_count":selected,"coverage_complete":selected>0 and selected==summary.get("REFERENCE_READY" if _warm_only else "SCANNED",0),
+        "receipt_evidence_enabled":receipt_store is not None,
+        "receipt_summary":dict(Counter(r.get("receipt_status","NO_RECEIPT") for r in outcomes if r["selected"])),
         "timestamp_verified":False,"session_classification_verified":False,
         "execution_enabled":False,"forward_paper_ready":False})
 
@@ -273,4 +282,3 @@ def run_universe_scan(now,universe_store,store,token,*,fetch=fetch_intraday,
 def warm_universe_references(now,universe_store,store,token,**kwargs):
     """Warm/retry only missing reference prices before the entry window."""
     return run_universe_scan(now,universe_store,store,token,_warm_only=True,**kwargs)
-
