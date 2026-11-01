@@ -1,5 +1,35 @@
 # Intraday Trading Automation — authoritative project handoff
 
+## 1 November 2026 — human stock choice is the primary workflow
+
+Mayur clarified: the system shortlists setups; HE chooses which stock to trade;
+the system then handles rule-based entry, trade management and post-trade journal.
+Liquidity ranking is advisory, never authority to auto-select a different stock.
+This supersedes older automatic-winner assumptions. Read AUTOMATION_OBJECTIVES.md
+and the rewritten NEXT_WORK_PLAN.md. PR #13 remains draft and must not be merged/
+activated unchanged; it must be integrated behind the exact human-choice guard.
+
+Current source proposal: branch codex/human-choice-cockpit. It adds a shortlist/
+read-only plan review, saved stock choice, replace/withdraw before an order,
+position/fill/decision journal and a pinned paper account. Authenticated POST saves
+only a decision, not an order. Source/runtime readiness stays held. A future
+HumanChoicePaperLedger verifies the exact choice/stock/setup/entry/SL/size/time
+under the same writer lock as an entry; no choice means no entry. PR #10 excluded.
+
+Production is unchanged: web PR #9 at d724f82f48a6588acb92770f7a78246355e77b6a;
+cron PR #12 at 6d6e8152da96da2c575a59e0b980448b774d059b with receipt flag.
+No automatic paper/live runtime is active. Proposed next production scope after
+exact-head tests: existing WEB ONLY. No cron/config/compute/schedule change or
+trading activation. Choice tables initialize on authenticated user writes only.
+
+The local Windows workspace disconnected during final checks. All latest source
+is being preserved in GitHub; use exact-head CI for verification. Earlier local
+63-pass/20-skip checks preceded the final choice-hash/no-choice tests. Do not
+claim the final head passed locally. Actual data readiness and full forward
+paper management still require verified sources and runtime integration. Keep
+source work focused on the user journey while market observations are pending.
+
+
 ## Tested inactive bridge checkpoint — 1 November 2026
 
 PR #13: https://github.com/Mayuragarkar2020/intraday-trading-automation/pull/13
