@@ -29,6 +29,11 @@
 | [ASSUMED] ARMED/TRIGGERED->CANCELLED | gap O>L, cutoff/expiry/user/removal/other fill/no AON | GAPPED_THROUGH/SUPERSEDED_BY_FILL/USER_CANCELLED/CUTOFF_REACHED etc | attempt+cause event | Release slot exactly once; manual new confirmation only |
 [ASSUMED: proposal] Same-bar entry-vs-stop ambiguity uses TIME_AND_EXECUTION's pessimistic path model, not low-before-entry guessed ordering. A filled position cannot be “cancelled”; it must follow exit management. Partial-fill suggestions are anomalies and zero fills; no partial position model.
 
+## Route-aware membership and selection guard
+
+[READ_CODE] New manual route bypasses automatic universe price/history/liquidity/restriction thresholds at admission;requiresT-1 CSV and verified non2%/5%band. Source provenance/user identifier and ranking history length must accompany setup and choice. Global300–5000automatic guards must not silently blockmanual admission/confirmation solely on that price criterion.
+[ASSUMED] Setup/risk/quote/tick/stop-distance/override/cutoff guards still apply to both routes. Short-history indicator holds remain explicit pending a separately approved IPO setup-data policy. CSV same-day addition cannot create or swap an arm. Lifecycle events record immutable membership/upload/user label;accepted prior-day membership revalidation is not a new user entry.
+
 ## Selection contract and override bounds
 
 [ASSUMED: review defaults; approved scope stated above] Generated T0/S0 one tick beyond C0/prior4 extrema, accepted overrides within max(0.10%*T0,2ticks), still above highC0/below all4 lows, positive exact ticks, (T-S)/T<=2.5%, fresh quote<T, full15min lifetime and available cost-inclusive risk/cash. Store selection reason, original/overridden values and OVERRIDDEN cohort. Full formula in TIME_AND_EXECUTION.

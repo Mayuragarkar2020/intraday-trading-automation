@@ -1,6 +1,6 @@
 # Next work plan — Phase1 round2 review, NOT Phase2
 
-[READ_CODE] Universe/pool clarification:docs/design/UNIVERSE_AND_POOL_CONTRACT.md separates all eligible U from scanned subset P,qualified setups Q and user-confirmed arms A. New exact P-014..017 proposals await Mayur;no approval/implementation/performance inferred. Phase2 remains unstarted;existing runtime unchanged.
+[READ_CODE] Latest universe contract:automatic all10agreed gates;manualT-1 CSV withband-only admission andpersistentidentifier;capacity75=50automatic+25manual. D030..036 supersede old same-filter/manual20cap/25-systematic and same-day-add assumptions. See UNIVERSE_AND_POOL_CONTRACT.md.
 
 [READ_CODE]2026-11-01 approval update: Mayur answered “all yes” to five round2 questions. D-024..029 approved filter/width scope,maxdistance,tick defaults,stop-limit semantics,override bounds and conservative stop model. Exact buffer calibration,clean checkout baseline and Phase2 authorization remain pending. No application/production change.
 
@@ -27,6 +27,9 @@
 [ASSUMED: future target] Initial SL immutable;5m EMA exit before1.5R; BE modification next bar and fee/stop-limit aware; no target; halt/nontradable/rejected exits remain pending; early flatten and persistent15:00 breach/late recovery.
 [ASSUMED: future target] Feed/DB/worker outage recovery, missed bars, authoritative event/projection reconciliation, no synthetic flat/fill, restart with multiple arms, independent clock/supervision and Telegram failures remain visible.
 [ASSUMED: future target] Immutable decision/fill/stop journal reconciles cash/cost/P&L/netR; selected/unselected/cancelled/hidden shadow cohorts; original vs override, source/config/rule/model/time buckets, MFE/MAE uncertainty/excess-loss tagging.
-[ASSUMED: future target] Manual catalyst cap/persistence/suspend-revalidate/reminder; hidden postcutoff setups never cockpit/push; chart symbol M&M encoding/link only.
+[ASSUMED: future target] ManualT-1CSV/band-only admission/identifier lineage;50auto25manualranking/availablehistory/N0andindicatorholds;persistence/suspend-revalidate/reminder; hidden postcutoff setups never cockpit/push; chart symbol M&M encoding/link only.
 [ASSUMED: future target] Authentication, stale-tab/double-click/lock-clearing/mobile browser behavior; Telegram alive/qualified/armed/cancelled/entered/exited/critical/heartbeat events and outbox idempotence.
-[ASSUMED: later validation] Separate PG constraint/concurrency and browser/service tests only with prerequisites; exact commands/counts/durations; no pure test labelled PG proof. No-trade pool25–50 observation p95<=60s before scale-up. Genuine source/market/session validation precedes any release request; stop-failure buffer analysis and future broker preflight are not already validated.
+[ASSUMED: later validation] Separate PG constraint/concurrency and browser/service tests only with prerequisites; exact commands/counts/durations; no pure test labelled PG proof. No-trade observation of actual75-slot/cohort load,p95<=60s for confidence/further scale;no throughput measurement yet. Genuine source/market/session validation precedes any release request; stop-failure buffer analysis and future broker preflight are not already validated.
+
+[READ_CODE] Latest future acceptance additions are in REPLAY_ANALYSIS_AND_TEST_PLAN.md:manual stock outsideautomaticprice/history/liquiditygates,100manualtop25,T-1serverboundary,nosamedayentry,label throughout,availablehistorylookback,cohortdedup,short-historyindicatorholds.
+[ASSUMED] Open choices:T-1calendar vs trading-session interpretation;zero-completed-session IPO liquidity rank;IPOshort-historysetup/RVOLwarm-up and future armedtie fallback. No Phase2 begun.

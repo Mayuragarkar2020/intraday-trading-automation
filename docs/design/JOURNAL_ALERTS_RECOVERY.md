@@ -1,5 +1,11 @@
 # Journal, alerts and recovery — round 2 resting bracket
 
+## Manual CSV/source amendment
+
+[READ_CODE] Mayur now requires manual stocks admitted byT-1 CSV,only2%/5%band exclusion as admission filter,and a visible user identifier across universe/scanning/setup/selection/trade/journal. This supersedes any same-filter/manual20cap or same-day addition assumption.50automatic/25manual cohort slots,not75manual memberships.
+[ASSUMED] Add upload_id,row_hash,uploaded_at,target_session,user_identifier,reason_type,note,universe_route,manual_rank_lookback_sessions,band_admission_status,pool_selected/status and source-provenance snapshots. Notifications,shadow exports and closed outcomes retain identifier. Editable later labels do not rewrite the uploaded label attached to past trades.
+[ASSUMED] Band-only admission does not create20 matching RVOL slots;indicator/data holds remain separately visible. A zero-history IPO's liquidity rank is unresolved,not fabricated. Manual price/history/liquidity exemptions must carry into route-aware UI/validation so old automatic price filters cannot silently reject membership.
+
 [ASSUMED: proposal] Design only; no service, token, Telegram chat, process supervisor or production migration is configured here.
 
 ## Round 2 additions: bracket risk, path uncertainty and stop failure

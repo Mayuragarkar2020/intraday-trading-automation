@@ -1,5 +1,7 @@
 # Phase1 design review — round2 C0 resting bracket
 
+[READ_CODE] Latest Mayur amendment:automatic admission all agreed thresholds;manualT-1 CSV with band-only admission and persistent user identifier;capacity75=50automatic+25manual,ranked withincohorts with available daily history for short-listed IPOs. This supersedes prior shared manual filters/20cap/25-systematic proposals. See UNIVERSE_AND_POOL_CONTRACT.md;no Phase2.
+
 [READ_CODE] Approval update2026-11-01: Mayur answered “all yes” to the five round2 questions. Approved scope: C0 filter scope/prior3 width denominator; max(T-S)/T2.5%; one-tick default T/S buffers; stop-limit rather than plain-limit; proposed override bounds and conservative low<Q stop-no-fill rule with sensitivity. This is design approval of those choices, not implementation/test proof, buffer calibration or Phase2 authorization. Other proposals remain proposed.
 
 [ASSUMED] DESIGN ONLY, not Phase2 or a release. Mayur's strategy definition supersedes the old three-bar-range setup wherever different. Round1 following-close primary fills, receipt-based cutoff and top100 initial pool are SUPERSEDED.
@@ -8,12 +10,12 @@
 
 ## Universe/pool definition review
 
-[READ_CODE] See UNIVERSE_AND_POOL_CONTRACT.md for precise R/U/P/Q/A sets,existing eligibility gates,automatic capacity selection,manual union/dedup and visible eligible-but-unscanned names. New exact rules remain proposed;no Phase2 started.
+[READ_CODE] See UNIVERSE_AND_POOL_CONTRACT.md for the two admission routes,universe/pool/setup/arm sets,approved50/25quotas,manual exceptions and identifier lineage. Exact import/timing/IPOedge details remain proposed;no Phase2 started.
 
 ## Authoritative strategy and review map
 
 [ASSUMED: Mayur strategy] C0.close strictly exceeds highest prior3highs; qualify only at C0 close. Default proposed T=highC0+one effective tick; S=minLow(C0,prior3)-one tick. Confirm with fresh price<T to arm a resting stop-limit bracket;15min signal lifetime. Same eligible trigger candle can fill, all-or-nothing. Protective failure is STOP_NOT_FILLED/critical, not an assumed capped loss.
-[ASSUMED: Mayur amendment] Fill candle START before14:30; receipt only guards stale/known evidence. Last eligible bar14:25–14:30;14:30-opening bar ineligible. Scan09:15–14:35, hidden postcutoff setups. Initial25–50 systematic stocks plus filtered catalysts; growth only after measured complete-sweep p95<=60s in no-trade observation.
+[ASSUMED: Mayur amendment] Fill candle START before14:30; receipt only guards stale/known evidence. Last eligible bar14:25–14:30;14:30-opening bar ineligible. Scan09:15–14:35, hidden postcutoff setups. Capacity75:50automatic plus25manual;manual liquidity rank may use<20completed sessions. Measured no-trade capacity evidence still pending.
 [ASSUMED: hard constraints] PREVIEW_ONLY; no real-money/broker-order path or secrets; capital980000; planned risk<=9800 INCLUDING fees on L-Q; long-only; one filled entry/day; no leverage;<=5 arms; close by15:00 or report unresolved/late exposure honestly. Protected legacy entrypoints untouched.
 
 | Document | Review section |
@@ -37,9 +39,16 @@
 [ASSUMED] Future behavior only, not implemented wiring.
 ```mermaid
 flowchart TD
- U["Provisional evening universe"] --> V{"Final revalidation before09:15?"}
+ U["Automatic provisional universe"] --> V{"Final revalidation before09:15?"}
+ CSV["T-1 manual CSV with user identifier"] --> BV{"Verified band is not2%/5%?"}
+ BV -- No --> MH["Manual pending or suspended;visible reason"]
+ BV -- Yes --> MU["Manual universe;automatic thresholds waived"]
+ MU --> MR["Rank available daily liquidity;top25manual"]
+ MR --> P
  V -- No --> H["No new scan or entry; visible fault"]
- V -- Yes --> P["25–50 systematic plus catalysts; scan09:15–14:35"]
+ V -- Yes --> AU["Automatic universe;allagreedgates"]
+ AU --> PA["Top50 automatic by20D traded value"]
+ PA --> P["Deduplicated pool up to75;scan09:15–14:35"]
  P --> C{"C0 closes above prior3highs?"}
  C -- No --> P
  C -- Yes --> Q{"Known before14:30?"}

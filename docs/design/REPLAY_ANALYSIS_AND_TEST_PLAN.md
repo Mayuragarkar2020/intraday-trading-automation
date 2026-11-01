@@ -66,3 +66,13 @@
 7. [ASSUMED] Trigger-time sizing for an already resting order: what can be specified before broker acceptance, whether broker-held contingent sizing exists, and whether client emulation would violate the intended resting semantics.
 8. [ASSUMED] Multiple live resting stock entries can fill before client cancellation; a paper DB unique index cannot prevent external fills. Require proven broker/exchange mutual exclusion or revised separately approved live architecture before claiming one-entry safety.
 [ASSUMED] This is a future verification checklist only: no broker order structure, API endpoint, credential, client library, configuration or order call is added.
+
+
+## Approved75-slot/manual-CSV amendment:future tests only
+
+[READ_CODE] Automatic gates now expressly agreed by Mayur;manual membership bypasses those gates except verified2%/5%band exclusion. Add route-specific fixtures,not shared “must pass20sessions/price/liquidity” validation.
+[ASSUMED] Planned test_manual_band_only_admission:manualIPO price250/history7/lowturnover/band10admits membership while same rowfailsautomatic;band2/5rejected,unknownbandpending. Separate test ensuresno fabricated setup/primary fill on unavailable indicators.
+[ASSUMED] Planned test_manual_tminus1_only_and_user_identifier_lineage:server commit boundary,no same-day add/reactivation,CSVidempotency/duplicates,rowerrors,persistent membership/identifier inpool/setup/arm/alert/journal;calendar-vs-trading-day fixture pending Mayur interpretation.
+[ASSUMED] Planned test_pool_50auto_25manual_100upload:100manualmembers top25basedavailable daily mean;N7vsN20actual lookback labels;zero-historyunrankable;underfilled pool usesactualcount,no invalid padding. Overlap50+25-5=70unique;50+12=62;no unused manual slots silently reassigned.
+[ASSUMED] Planned test_pool_keeps_ipo_membership_while_setup_data_held:ranked IPO withN<20not silently replaced due RVOLwarmup;scan available5mprices with visible holds,not fabricated indicators. Trade tie policy for a future approved short-historysetup requires explicit handling because old20Dtrade-ranking may be undefined.
+[ASSUMED] No testcode/replayanalysis executed. Buffer/risk/cutoff/lifecycle tests elsewhere remain applicable. Add IPO/available-history cohorts toreal-data studies;do not blendthemwith20-session systemic evidence.

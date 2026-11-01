@@ -71,7 +71,25 @@
 [READ_CODE] Current config/screening thresholds reread;new pool selector not implemented. Local baseline UNKNOWN;actual Render state unverifiable by Codex.
 | Item | Status | Evidence | Evidence type |Updated|Limit|
 |---|---|---|---|---|---|
-| P-014 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|Codex proposal,not user-approved or tested|
-| P-015 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|Codex proposal,not user-approved or tested|
-| P-016 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|Codex proposal,not user-approved or tested|
-| P-017 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|Codex proposal,not user-approved or tested|
+| P-014 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|SUPERSEDED by D030..036;historical design|
+| P-015 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|SUPERSEDED by D030..036;historical design|
+| P-016 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|SUPERSEDED by D030..036;historical design|
+| P-017 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|SUPERSEDED by D030..036;historical design|
+
+
+## Automatic/manual75-slot amendment —2026-11-01
+
+[READ_CODE] D016/D020 revised and D030..036 user-approved;PI1/PI2/PI7 now refer to route-aware contract. All remain DESIGNED,not implemented/tested/deployed. Existing code's common20day/price filters do not implement the manual exception.
+| Item | Status | Evidence | Evidence type |Updated|Limit|
+|---|---|---|---|---|---|
+| D-030 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|Mayur-approved direction;no runtime or application-test proof|
+| D-031 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|Mayur-approved direction;no runtime or application-test proof|
+| D-032 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|Mayur-approved direction;no runtime or application-test proof|
+| D-033 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|Mayur-approved direction;no runtime or application-test proof|
+| D-034 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|Mayur-approved direction;no runtime or application-test proof|
+| D-035 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|Mayur-approved direction;no runtime or application-test proof|
+| D-036 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|Mayur-approved direction;no runtime or application-test proof|
+| P-018 | DESIGNED | CSV/T-1 schema/timing section3 | READ_CODE |2026-11-01|Proposed calendar interpretation|
+| P-019 | DESIGNED | available-history rank/dedup section4 | READ_CODE |2026-11-01|Exact metric-window/ties proposed|
+| P-020 | DESIGNED | zero/short-history policy section5 | READ_CODE |2026-11-01|IPO indicator and ranking gap unresolved|
+[ASSUMED] Local baseline UNKNOWN;no new source/CI/runtime/market/capacity test. Actual Render state unverifiable by Codex.75-slot capacity is not measured throughput.

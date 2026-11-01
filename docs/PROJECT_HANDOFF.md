@@ -1,5 +1,10 @@
 # Intraday Trading Automation — authoritative project handoff
 
+## Automatic/manual universe and75-slot amendment —2026-11-01
+
+[READ_CODE] Mayur approved all automatic gates;manual route nowT-1CSV with only2%/5%band exclusion foradmission,persistentuseridentifier,up to25manualscan slots from possibly100members. Automatic pool50;totalcapacity75beforeoverlap. Manual ranking usesavailable completed-day liquidity if<20history. D016/D020amended,D030..036registered;old same-filter/manual20cap/same-day-add/25-auto text below is historical.
+[ASSUMED] Zero-historyranking,short-historyIPOindicators andcalendar-vs-trading-dayT-1interpretation are explicitopenpoints. No data fabricated,no setup/risk rules silently relaxed. Capacitynotmeasured;localbaselineUNKNOWN;actualRenderstateunverifiablebyCodex. Phase2NOTSTARTED;noapp/deploy/cron/brokerchanges.
+
 [READ_CODE] Universe/pool clarification:docs/design/UNIVERSE_AND_POOL_CONTRACT.md separates all eligible U from scanned subset P,qualified setups Q and user-confirmed arms A. New exact P-014..017 proposals await Mayur;no approval/implementation/performance inferred. Phase2 remains unstarted;existing runtime unchanged.
 
 ## Round2 five-answer approval —2026-11-01

@@ -1,52 +1,56 @@
-# Audit packet —2026-11-01 / universe and pool definition
+# Audit packet —2026-11-01 / two-route universe and75-slot amendment
 ## a. Session summary
-[ASSUMED] Local baseline UNKNOWN;no application test,current universe counts or measured sweep performance.
-[READ_CODE] New precise universe/pool contract;P-014..017 proposed,not approved.
-[READ_CODE] Existing config/screening reread;no filter/source edit.
-[READ_CODE] Branch codex/phase1-review-round2,parent7ba633478f9ec772c7beb5b060d87c605df1bc77;9Markdown files only.
-[READ_CODE] Phase2 NOT STARTED;no production/Render/cron/broker action.
+[ASSUMED] BAD NEWS:IPO N0ranking/short-historysetup calculations unresolved;local baseline UNKNOWN;no empirical75-slot capacity evidence.
+[READ_CODE] Mayur-approved automatic gates;manualT-1CSV band-only admission;identifier lineage;50auto25manualquota.
+[READ_CODE] Parent8e74b4b3de77e18e31248cb77a9c42f06685fff4;branch codex/phase1-review-round2;12Markdown files.
+[READ_CODE] D016/D020 amended,D030..036 user-approved;old same-filter/manual20cap/same-day-add/25-auto superseded.
+[READ_CODE] Phase2NOTSTARTED;no deploy/Render/cron/broker/app action.
 
 ## b. Safety invariants
-[READ_CODE] PASS diff-only:PREVIEW_ONLY/app paths untouched;no real-money or broker-order path/client/endpoint.
-[RAN_TEST] PASS limited credential/private-URL scan:9proposed Markdown files,0matches.
-[ASSUMED] UNVERIFIED:whole-repo secret absence and actual runtime/Render state.
-[ASSUMED] UNVERIFIED current tests:9800risk,980000capital,long-only,daily fill,five arms,limit formula;no application test.
-[READ_CODE] PASS scope:no config/deploy/cron/Render/workflow change;legacy entrypoints untouched.
-[ASSUMED] Planned risk cap is not a guaranteed realized loss cap.
+[READ_CODE] PASS diff-only:PREVIEW_ONLY/app paths untouched;no real-money/broker order code/client/endpoint/credential.
+[RAN_TEST] PASS limited scan:12proposed Markdown files,0credential/private-URL pattern matches.
+[ASSUMED] UNVERIFIED:whole-repo secret absence,actual runtime/Render settings.
+[ASSUMED] UNVERIFIED current tests:9800L-Qrisk,980000cash,long-only,daily-fill,five-arm,stop-limit formula;no application test.
+[READ_CODE] PASS scope:no config/workflow/cron/deploy/Render change;legacy files untouched.
+[ASSUMED] Manual admission exemptions do not waive setup/risk/tradability;stop-failureloss may exceed9800.
 
 ## c. Traceability delta
-[READ_CODE] PI1/PI2/PI7 and D008/D016/D020 supplement evidence;status remains DESIGNED.
-[READ_CODE] P014..017 registered proposed;no new user approval/no TESTED/DEPLOYED promotion.
-[READ_CODE] Clear U/P/Q/A definitions and visible eligible-but-unscanned distinction added.
+[READ_CODE] D030..036 DESIGNED;D016/D020amended;PI1/PI2/PI7route-aware evidence;no TESTED/DEPLOYED.
+[READ_CODE] P014..017superseded as old bundles;P018..020exact import/rank/IPOdetails proposed.
+[READ_CODE] Source identifier and available-history fields propagate to setup/trade/shadow/journal.
 
 ## d. Deviations,risks,assumptions
-[ASSUMED] Capacity-limited pool can miss setups in otherwise eligible U;not an eligibility failure.
-[ASSUMED] TopADV selection is liquidity/capacity policy,not validated strategy superiority.
-[ASSUMED] Initial25 count,readiness promotion,manual union and freeze rules remain proposed.
-[ASSUMED] Existing liquidity defaults are not empirically certified;spread/impact risk still needs runtime evidence.
-[ASSUMED] Classification exclusions are a proposed ordinary-equity safeguard,not existing code proof.
-[READ_CODE] Manual membership cannot bypass eligibility;dedup avoids double scanning/counting.
-[READ_CODE] No silent intraday rotation/failed coverage represented as “no setup” in proposed contract.
+[READ_CODE] New manual route explicitly supersedes prior shared price/history/liquidity/restriction admission filters.
+[ASSUMED] Resolvable identity/band proof is operational prerequisite;unknown band cannot be declared non2%/5%.
+[ASSUMED] N0completed sessions gives no daily-average score;default visible rankpending,not invented liquidity.
+[ASSUMED] N1..19ranking works,but20-slotRVOL/EMA/HTF may hold setup;membership/pool not silently removed.
+[ASSUMED] CalendarT-1default,CSVcolumns/commit-time guard,stable tie/overlap/noquota-lending details proposed.
+[ASSUMED] Route-specific final validity proposed:automatic dailyhistory failure not a hidden manual admission gate;shared band/feed failures stillhold.
+[ASSUMED] Ranking on shorter history is less comparable;track lookback/IPOcohorts;no profitability claim.
+[ASSUMED]75capacity is target,not measured performance;no silent quota reduction or same-day CSVrotation.
+[READ_CODE] No old progress entries edited;historical decision rows explicitly preserved.
 
 ## e. Unverified claims
-[ASSUMED] No real U/P size,stock list,latency,data-source freshness or current market readiness claimed.
-[ASSUMED] No new CI/source-contract/Telegram/supervisor verification.
-[ASSUMED] Actual Render state unverifiable by Codex;no empirical pool performance.
-[ASSUMED] Existing capacity/secret/runtime limitations retained;no Phase2 authorization inferred.
+[ASSUMED] No actualstock/IPOupload,bandproof,current universe count,liquidityrank,p95or source/session validation performed.
+[ASSUMED] Actual Render state unverifiable by Codex;no new CI/runtime/Telegram/supervisor proof.
+[ASSUMED] First-listing-daysetup/armedtie fallback needs explicit policy ifIPOshort-historysignals later allowed.
+[ASSUMED] No Phase2 authorization inferred from universe instructions.
 
 ## f. Test results
-[ASSUMED] Application command:none;pass/fail/skips/duration N/A (docs only).
-[RAN_TEST] functions.exec doc validator:9paths,append-only log,required sections/proposal status,packet<=120lines.
-[RAN_TEST] Hypothetical arithmetic25+8-3=30,total100 leaves70not scanned;not observed project counts.
-[RAN_TEST] Credential/private-URL pattern scan:0matches.
+[ASSUMED] Application command:none;pass/fail/skips/duration N/A(docs only).
+[RAN_TEST] functions.exec doc validator:12allowedMarkdown paths,append-only log,36current DIDs,packet<=120lines,30coverage rows.
+[RAN_TEST] Hypothetical lookback/quotaarithmetic checked,including50+25-5=70and50+12=62;not application tests.
+[RAN_TEST] Credential/private-URL pattern scan0matches;no applicationcode/test/dependency added.
 
 ## g. Numbered open questions
-[ASSUMED] 1. Approve initial25 automatic ADV-ranked systematic names plus eligible manual members and explicit readiness/freeze rules (P014..017)?
-[ASSUMED] 2. Clean checkout/Phase2 authorization and empirical capacity remain separate gates;no operational change requested here.
+[ASSUMED] 1. DoesT-1mean previous calendar day(Sunday forMonday),or previous trading session(Friday)?
+[ASSUMED] 2. ForN0first-dayIPO,hold liquidity rankpending or approve a separate ranking source/policy?
+[ASSUMED] 3. ForN<20IPO,keep current indicator hold or approve a separately specified short-historysetup/RVOLpolicy?
+[READ_CODE] All requested admission/quota/identifier rules are recorded approved;these edge cases are not silently decided.
 
-## h. Suggested next step / auditor first paths
-[ASSUMED] Review exact universe/pool definitions before implementing any selector.
-[READ_CODE] First5:docs/design/UNIVERSE_AND_POOL_CONTRACT.md;docs/design/SETUP_AND_UNIVERSE.md;docs/audit/DECISIONS.md;config/universe.yaml;src/screening.py.
+## h. Suggested next step / first auditor paths
+[ASSUMED] ResolveIPO/timing details;clean checkout/baseline and explicit Phase2 approval remain separate.
+[READ_CODE] First5:UNIVERSE_AND_POOL_CONTRACT.md;SETUP_AND_UNIVERSE.md;REPLAY_ANALYSIS_AND_TEST_PLAN.md;../audit/DECISIONS.md;../audit/PROGRESS_LOG.md(paths relative design/).
 
 ## Coverage map — paths relative to docs/design/; coverage means designed, NOT tested
 | Phase1 item | Document and section |
@@ -81,4 +85,6 @@
 | [READ_CODE] R2-10 Audit coverage | ../audit/AUDIT_PACKET.md — this coverage map |
 
 | [READ_CODE] Universe/pool definition refinement | UNIVERSE_AND_POOL_CONTRACT.md — sections1–7 |
+
+| [READ_CODE] ManualT-1CSV and75-slot amendment | UNIVERSE_AND_POOL_CONTRACT.md sections1–7;REPLAY_ANALYSIS_AND_TEST_PLAN.md amendment tests |
 
