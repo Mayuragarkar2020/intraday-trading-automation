@@ -1,5 +1,32 @@
 # Intraday Trading Automation — authoritative project handoff
 
+## IPO current-policy acceptance —2026-11-01
+
+[READ_CODE]2026-11-01:Mayur accepted the proposed IPO ranking/allocation and short-history indicator model “for now”,subject to later revision. Current policy version IPO_SHORT_HISTORY_V1 is approved as a design policy,NOT empirically validated,implemented or activated. Changes later require a new version and preserved historical lineage;no retroactive result rewrite. Mixed-history trade-tie and precise calendarT-1 mapping were not separately approved by this answer.
+
+[ASSUMED] LocalbaselineUNKNOWN;cleancheckout/baseline,explicitPhase2instruction andallproductionactionsremainseparate. Noapp/test/deploy/cron/Renderchange.
+
+[READ_CODE] IPO follow-up:Mayur reaffirmedT-1manualentry,askedforanotherzero-historyrankingmethod andauthorizedseparateshort-historyIPOdesign. docs/design/IPO_SHORT_HISTORY_POLICY.md proposesCSVpriorityandexplicitindicatorprofiles;exactparameters/tiepolicyremainproposed. NoPhase2;localbaselineUNKNOWN;noapp/deploychange.
+
+## Automatic/manual universe and75-slot amendment —2026-11-01
+
+[READ_CODE] Mayur approved all automatic gates;manual route nowT-1CSV with only2%/5%band exclusion foradmission,persistentuseridentifier,up to25manualscan slots from possibly100members. Automatic pool50;totalcapacity75beforeoverlap. Manual ranking usesavailable completed-day liquidity if<20history. D016/D020amended,D030..036registered;old same-filter/manual20cap/same-day-add/25-auto text below is historical.
+[ASSUMED] Zero-historyranking,short-historyIPOindicators andcalendar-vs-trading-dayT-1interpretation are explicitopenpoints. No data fabricated,no setup/risk rules silently relaxed. Capacitynotmeasured;localbaselineUNKNOWN;actualRenderstateunverifiablebyCodex. Phase2NOTSTARTED;noapp/deploy/cron/brokerchanges.
+
+[READ_CODE] Universe/pool clarification:docs/design/UNIVERSE_AND_POOL_CONTRACT.md separates all eligible U from scanned subset P,qualified setups Q and user-confirmed arms A. New exact P-014..017 proposals await Mayur;no approval/implementation/performance inferred. Phase2 remains unstarted;existing runtime unchanged.
+
+## Round2 five-answer approval —2026-11-01
+
+[READ_CODE] Mayur replied “all yes” to all five review questions. See D-024..029: C0 filters/prior3width denominator,maxdistance2.5%,one-tick defaults,stop-limit rather than plain-limit,override bounds and conservative low<Q stop failure with sensitivity. Design choices approved; implementation remains absent.
+[ASSUMED] Buffer calibration/local baseline remain pending. Phase2 NOT STARTED; no deployment/Render/cron/broker changes authorized. Actual Render state unverifiable by Codex. This update does not turn placeholders into empirically selected parameters.
+
+## Phase1 review round2 — 1 November 2026
+
+[READ_CODE] Round2 design supersedes round1: authoritative C0.close>prior3high signal, proposed one-tick C0/prior4 prices, resting entry/protective bracket, same-candle fill, cutoff by fill-candle START<14:30 and initial25–50 pool with measured no-trade p95<=60s scale gate. See docs/design/README.md and amended D-005/D-018..023.
+[ASSUMED] Defaults/filter scope/distance/override and calibrated limit buffers remain proposed/placeholder awaiting Mayur. STOP_NOT_FILLED may lose beyond9800; no guaranteed maximum-loss claim.
+[ASSUMED] Phase2 single design base is origin/main79a2d308/PR14 foundation; PR13/15 remain open reference-only. No application/test/broker path or deployment/config change; no Phase2. Actual Render state **unverifiable by Codex**; older recorded webPR14/cronPR12 checkpoints below are historical, not new proof.
+[READ_CODE] Local baseline remains UNKNOWN from prior clone failure. No new local/CI test run this round; Mayur supplies clean checkout; exact-source baseline and explicit design approval required before Phase2.
+
 ## Phase 1 design review checkpoint — 1 November 2026
 
 [READ_CODE] Source pinned main 79a2d3086c8aea660dc31068e2758db1f7332808. Phase0 accepted; Phase1 design-only proposal is in docs/design/README.md. Latest user-approved decision register D-001..017 supersedes older single-choice,11:30-cutoff,partial-fill assumptions. See audit packet for evidence limits.

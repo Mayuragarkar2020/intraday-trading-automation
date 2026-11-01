@@ -1,43 +1,137 @@
-# Intent traceability — Phase 1 design proposal
+# Intent traceability — Phase1 round2
 
-[READ_CODE] Updated2026-11-01; source main 79a2d3086c8aea660dc31068e2758db1f7332808; proposed docs on codex/phase1-design.
-[ASSUMED] **Local baseline UNKNOWN** (separate clone failed; no segmented local tests). Phase2 not started and requires design approval plus exact-source reproducible baseline. Actual Render state **unverifiable by Codex**.
-[READ_CODE: CI-reported] Current-main test-phase-1 run41290657216 SUCCESS,539 passed and both browser checks. This is not RAN_TEST and does not promote future design to TESTED.
-[READ_CODE] DESIGNED means a reviewable proposal exists, not approved/implemented. No new application implementation or current local application-test evidence.
-| Item | Status | Evidence path / test | Evidence type | Last updated | Limits |
+[READ_CODE] Round2 docs at parentb82089ed61fbf925b6052c09c820a7fec6c21839; application source main79a2d3086c8aea660dc31068e2758db1f7332808. New strategy is DESIGNED only, not implemented/tested.
+[ASSUMED] Local baseline UNKNOWN; historical CI-reported539/browsers is not a current test run. Mayur will supply a clean checkout. No row TESTED or DEPLOYED; actual Render state **unverifiable by Codex**.
+[READ_CODE] Prior implementation observations in audit remain historical; do not certify the revised C0/bracket model from old tests. Current session reread detector/qualifier/scanner/HumanChoicePaperLedger only.
+
+| Item | Status | Evidence path / future test | Evidence type | Updated | Limit |
 |---|---|---|---|---|---|
-| PI-1 | DESIGNED | docs/design/SETUP_AND_UNIVERSE.md | READ_CODE | 2026-11-01 | Proposed; source/session/performance evidence incomplete |
-| PI-2 | DESIGNED | docs/design/SETUP_AND_UNIVERSE.md | READ_CODE | 2026-11-01 | Proposed; source/session/performance evidence incomplete |
-| PI-3 | DESIGNED | docs/design/JOURNAL_ALERTS_RECOVERY.md | READ_CODE | 2026-11-01 | Proposed; source/session/performance evidence incomplete |
-| PI-4 | DESIGNED | docs/design/LIFECYCLE_AND_ATOMICITY.md | READ_CODE | 2026-11-01 | Proposed; source/session/performance evidence incomplete |
-| PI-5 | DESIGNED | docs/design/TIME_AND_EXECUTION.md | READ_CODE | 2026-11-01 | Proposed; source/session/performance evidence incomplete |
-| PI-6 | DESIGNED | docs/design/JOURNAL_ALERTS_RECOVERY.md | READ_CODE | 2026-11-01 | Proposed; source/session/performance evidence incomplete |
-| PI-7 | DESIGNED | docs/design/SETUP_AND_UNIVERSE.md | READ_CODE | 2026-11-01 | Proposed; source/session/performance evidence incomplete |
-| D-001 | DESIGNED | docs/design/LIFECYCLE_AND_ATOMICITY.md; docs/audit/DECISIONS.md | READ_CODE | 2026-11-01 | Mayur-approved intent; engineering details proposed, not implemented/tested |
-| D-002 | DESIGNED | docs/design/LIFECYCLE_AND_ATOMICITY.md; docs/audit/DECISIONS.md | READ_CODE | 2026-11-01 | Mayur-approved intent; engineering details proposed, not implemented/tested |
-| D-003 | DESIGNED | docs/design/LIFECYCLE_AND_ATOMICITY.md; docs/audit/DECISIONS.md | READ_CODE | 2026-11-01 | Mayur-approved intent; engineering details proposed, not implemented/tested |
-| D-004 | DESIGNED | docs/design/TIME_AND_EXECUTION.md; docs/audit/DECISIONS.md | READ_CODE | 2026-11-01 | Mayur-approved intent; engineering details proposed, not implemented/tested |
-| D-005 | DESIGNED | docs/design/TIME_AND_EXECUTION.md; docs/audit/DECISIONS.md | READ_CODE | 2026-11-01 | Mayur-approved intent; engineering details proposed, not implemented/tested |
-| D-006 | DESIGNED | docs/design/TIME_AND_EXECUTION.md; docs/audit/DECISIONS.md | READ_CODE | 2026-11-01 | Mayur-approved intent; engineering details proposed, not implemented/tested |
-| D-007 | DESIGNED | docs/design/TIME_AND_EXECUTION.md; docs/audit/DECISIONS.md | READ_CODE | 2026-11-01 | Mayur-approved intent; engineering details proposed, not implemented/tested |
-| D-008 | DESIGNED | docs/design/SETUP_AND_UNIVERSE.md; docs/audit/DECISIONS.md | READ_CODE | 2026-11-01 | Mayur-approved intent; engineering details proposed, not implemented/tested |
-| D-009 | DESIGNED | docs/design/SETUP_AND_UNIVERSE.md; docs/audit/DECISIONS.md | READ_CODE | 2026-11-01 | Mayur-approved intent; engineering details proposed, not implemented/tested |
-| D-010 | DESIGNED | docs/design/JOURNAL_ALERTS_RECOVERY.md; docs/audit/DECISIONS.md | READ_CODE | 2026-11-01 | Mayur-approved intent; engineering details proposed, not implemented/tested |
-| D-011 | DESIGNED | docs/design/TIME_AND_EXECUTION.md; docs/audit/DECISIONS.md | READ_CODE | 2026-11-01 | Mayur-approved intent; engineering details proposed, not implemented/tested |
-| D-012 | DESIGNED | docs/design/TIME_AND_EXECUTION.md; docs/audit/DECISIONS.md | READ_CODE | 2026-11-01 | Mayur-approved intent; engineering details proposed, not implemented/tested |
-| D-013 | DESIGNED | docs/design/JOURNAL_ALERTS_RECOVERY.md; docs/audit/DECISIONS.md | READ_CODE | 2026-11-01 | Mayur-approved intent; engineering details proposed, not implemented/tested |
-| D-014 | DESIGNED | docs/design/JOURNAL_ALERTS_RECOVERY.md; docs/audit/DECISIONS.md | READ_CODE | 2026-11-01 | Mayur-approved intent; engineering details proposed, not implemented/tested |
-| D-015 | DESIGNED | docs/design/JOURNAL_ALERTS_RECOVERY.md; docs/audit/DECISIONS.md | READ_CODE | 2026-11-01 | Mayur-approved intent; engineering details proposed, not implemented/tested |
-| D-016 | DESIGNED | docs/design/SETUP_AND_UNIVERSE.md; docs/audit/DECISIONS.md | READ_CODE | 2026-11-01 | Mayur-approved intent; engineering details proposed, not implemented/tested |
-| D-017 | DESIGNED | docs/design/LIFECYCLE_AND_ATOMICITY.md; docs/audit/DECISIONS.md | READ_CODE | 2026-11-01 | Mayur-approved intent; engineering details proposed, not implemented/tested |
-| HC-PREVIEW | IMPLEMENTED | src/cloud_app.py::health/status; docs-only diff | READ_CODE | 2026-11-01 | Existing source mode only; not current runtime proof |
-| HC-NO-REAL-ORDERS | IMPLEMENTED | docs-only diff; docs/design/README.md | READ_CODE | 2026-11-01 | No order path touched; no whole-repo absence claim |
-| HC-NO-SECRETS | NOT_STARTED | proposed diff secret-pattern scan in AUDIT_PACKET | RAN_TEST | 2026-11-01 | Diff scan only; whole-repo secret absence unverified |
-| HC-NO-DEPLOY | IMPLEMENTED | docs-only PR diff; no Render operation | READ_CODE | 2026-11-01 | Session scope, no deployment proof |
-| HC-NO-CRON-CHANGE | IMPLEMENTED | docs-only PR diff | READ_CODE | 2026-11-01 | No cron/workflow/config edit |
-| HC-LEGACY-ENTRYPOINTS-UNTOUCHED | IMPLEMENTED | docs/design/BASELINE_AND_REFERENCES.md inventory; docs-only diff | READ_CODE | 2026-11-01 | src/run_daily.py/root render.yaml unchanged |
-| HC-LONG-ONLY | IMPLEMENTED | src/risk_engine.py::size_long; ledger positive BUY guard; existing tests/test_risk_engine.py | READ_CODE | 2026-11-01 | Existing implementation; not locally RAN_TEST |
-| HC-RISK-9800 | IMPLEMENTED | src/risk_engine.py; existing ledger cap; tests/test_forward_paper_ledger.py::test_exact_inclusive_risk_cap_and_separate_no_leverage_gate | READ_CODE | 2026-11-01 | Named test not run locally this session; future cost model proposal |
-| HC-ONE-FILL | IMPLEMENTED | existing ledger used_entry_dates; docs/design/LIFECYCLE_AND_ATOMICITY.md | READ_CODE | 2026-11-01 | Existing application guard; proposed SQL unique event constraint not implemented |
-| HC-NO-LEVERAGE | IMPLEMENTED | src/risk_engine.py; existing ledger cash guard | READ_CODE | 2026-11-01 | Existing implementation; no local test proof |
-| HC-FIVE-ARM | DESIGNED | docs/design/LIFECYCLE_AND_ATOMICITY.md proposed CHECK1..5/unique slots | READ_CODE | 2026-11-01 | Feature NOT IMPLEMENTED; no cap/race test passed |
+| PI-1 | DESIGNED | docs/design/SETUP_AND_UNIVERSE.md#hybrid-universe-and-pool | READ_CODE |2026-11-01|Round2 proposal; no application test|
+| PI-2 | DESIGNED | docs/design/SETUP_AND_UNIVERSE.md#side-by-side-change-map | READ_CODE |2026-11-01|Round2 proposal; no application test|
+| PI-3 | DESIGNED | docs/design/JOURNAL_ALERTS_RECOVERY.md#telegram-alert-contract | READ_CODE |2026-11-01|Round2 proposal; no application test|
+| PI-4 | DESIGNED | docs/design/LIFECYCLE_AND_ATOMICITY.md#selection-contract-and-override-bounds | READ_CODE |2026-11-01|Round2 proposal; no application test|
+| PI-5 | DESIGNED | docs/design/TIME_AND_EXECUTION.md#resting-stop-limit-entry-and-all-or-nothing | READ_CODE |2026-11-01|Round2 proposal; no application test|
+| PI-6 | DESIGNED | docs/design/JOURNAL_ALERTS_RECOVERY.md#round-2-additions-bracket-risk-path-uncertainty-and-stop-failure | READ_CODE |2026-11-01|Round2 proposal; no application test|
+| PI-7 | DESIGNED | docs/design/SETUP_AND_UNIVERSE.md#persistent-manual-catalysts | READ_CODE |2026-11-01|Round2 proposal; no application test|
+| D-001 | DESIGNED | docs/design/LIFECYCLE_AND_ATOMICITY.md; docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved user intent; precise unapproved details labelled|
+| D-002 | DESIGNED | docs/design/LIFECYCLE_AND_ATOMICITY.md; docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved user intent; precise unapproved details labelled|
+| D-003 | DESIGNED | docs/design/LIFECYCLE_AND_ATOMICITY.md; docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved user intent; precise unapproved details labelled|
+| D-004 | DESIGNED | docs/design/TIME_AND_EXECUTION.md; docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved user intent; precise unapproved details labelled|
+| D-005 | DESIGNED | docs/design/SETUP_AND_UNIVERSE.md; docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved user intent; precise unapproved details labelled|
+| D-006 | DESIGNED | docs/design/TIME_AND_EXECUTION.md; docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved user intent; precise unapproved details labelled|
+| D-007 | DESIGNED | docs/design/LIFECYCLE_AND_ATOMICITY.md; docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved user intent; precise unapproved details labelled|
+| D-008 | DESIGNED | docs/design/SETUP_AND_UNIVERSE.md; docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved user intent; precise unapproved details labelled|
+| D-009 | DESIGNED | docs/design/SETUP_AND_UNIVERSE.md; docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved user intent; precise unapproved details labelled|
+| D-010 | DESIGNED | docs/design/JOURNAL_ALERTS_RECOVERY.md; docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved user intent; precise unapproved details labelled|
+| D-011 | DESIGNED | docs/design/TIME_AND_EXECUTION.md; docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved user intent; precise unapproved details labelled|
+| D-012 | DESIGNED | docs/design/TIME_AND_EXECUTION.md; docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved user intent; precise unapproved details labelled|
+| D-013 | DESIGNED | docs/design/JOURNAL_ALERTS_RECOVERY.md; docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved user intent; precise unapproved details labelled|
+| D-014 | DESIGNED | docs/design/JOURNAL_ALERTS_RECOVERY.md; docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved user intent; precise unapproved details labelled|
+| D-015 | DESIGNED | docs/design/JOURNAL_ALERTS_RECOVERY.md; docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved user intent; precise unapproved details labelled|
+| D-016 | DESIGNED | docs/design/SETUP_AND_UNIVERSE.md; docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved user intent; precise unapproved details labelled|
+| D-017 | DESIGNED | docs/design/TIME_AND_EXECUTION.md; docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved user intent; precise unapproved details labelled|
+| D-018 | DESIGNED | docs/design/TIME_AND_EXECUTION.md; docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved user intent; precise unapproved details labelled|
+| D-019 | DESIGNED | docs/design/TIME_AND_EXECUTION.md; docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved user intent; precise unapproved details labelled|
+| D-020 | DESIGNED | docs/design/SETUP_AND_UNIVERSE.md; docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved user intent; precise unapproved details labelled|
+| D-021 | DESIGNED | docs/design/TIME_AND_EXECUTION.md; docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved user intent; precise unapproved details labelled|
+| D-022 | DESIGNED | docs/design/TIME_AND_EXECUTION.md; docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved user intent; precise unapproved details labelled|
+| D-023 | DESIGNED | docs/design/REPLAY_ANALYSIS_AND_TEST_PLAN.md; docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved user intent; precise unapproved details labelled|
+| HC-PREVIEW | IMPLEMENTED | existing source/historical audit; docs-only diff | READ_CODE |2026-11-01|Mode not reverified at runtime|
+| HC-NO-REAL-ORDERS | IMPLEMENTED | docs-only diff; neutral-intent/pre-live design | READ_CODE |2026-11-01|No broker code/endpoint/credential/library added|
+| HC-NO-SECRETS | NOT_STARTED | round2 proposed-doc scan | RAN_TEST |2026-11-01|Diff pattern scan only, not whole repo absence proof|
+| HC-NO-DEPLOY | IMPLEMENTED | docs-only PR; no Render operation | READ_CODE |2026-11-01|Session scope only|
+| HC-NO-CRON-CHANGE | IMPLEMENTED | docs-only PR | READ_CODE |2026-11-01|No config/workflow/cron file changed|
+| HC-LEGACY-UNTOUCHED | IMPLEMENTED | docs-only PR | READ_CODE |2026-11-01|run_daily.py/render.yaml neither edited nor archived|
+| HC-LONG-ONLY | DESIGNED | LIFECYCLE_AND_ATOMICITY neutral BUY/SELL quantities; test_only_long_positive_buy_entry future | READ_CODE |2026-11-01|New model not tested|
+| HC-RISK-9800 | DESIGNED | TIME_AND_EXECUTION L-Q sizing; test_cost_inclusive_limit_to_stop_limit_cap_9800 future | READ_CODE |2026-11-01|Existing L-S tests don't prove new L-Q model|
+| HC-CAPITAL-980000 | DESIGNED | TIME_AND_EXECUTION cash cap; test_capital_980000_no_leverage future | READ_CODE |2026-11-01|Literal fixture planned, not run|
+| HC-ONE-FILL | DESIGNED | journal unique daily-entry index; future PG race | READ_CODE |2026-11-01|Old application guard is not revised DB implementation|
+| HC-NO-LEVERAGE | DESIGNED | TIME_AND_EXECUTION cash+fees; future capital test | READ_CODE |2026-11-01|No local test|
+| HC-FIVE-ARM | DESIGNED | numbered slots1..5; test_five_armed_hard_cap future | READ_CODE |2026-11-01|No cap/race test run|
+| HC-SCAN-WINDOW | DESIGNED | SETUP_AND_UNIVERSE09:15–14:35 and hidden14:30+ | READ_CODE |2026-11-01|Old scanner09:45–11:30 differs|
+| HC-ENTRY-CUTOFF | DESIGNED | TIME_AND_EXECUTION exchange window; test_cutoff_exchange_open_not_receipt future | READ_CODE |2026-11-01|Round1 receipt cutoff superseded|
+| HC-CLOSE-1500 | DESIGNED | bracket cancel-confirm flatten and breach/halts recovery | READ_CODE |2026-11-01|No guaranteed flat if no tradable full exit|
+
+
+[READ_CODE] Approval update2026-11-01: D-024..029 record Mayur's five approved answers. DESIGNED remains the implementation status; approval is not a passing test. Local baseline UNKNOWN; Phase2 not started.
+
+| Item | Status | Evidence | Evidence type | Updated | Limit |
+|---|---|---|---|---|---|
+| D-024 | DESIGNED | docs/design/SETUP_AND_UNIVERSE.md;docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved design choice only;not implemented/tested|
+| D-025 | DESIGNED | docs/design/TIME_AND_EXECUTION.md;docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved design choice only;not implemented/tested|
+| D-026 | DESIGNED | docs/design/TIME_AND_EXECUTION.md;docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved design choice only;not implemented/tested|
+| D-027 | DESIGNED | docs/design/TIME_AND_EXECUTION.md;docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved design choice only;not implemented/tested|
+| D-028 | DESIGNED | docs/design/TIME_AND_EXECUTION.md;docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved design choice only;not implemented/tested|
+| D-029 | DESIGNED | docs/design/TIME_AND_EXECUTION.md;docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved design choice only;not implemented/tested|
+
+
+## Universe/pool clarification —2026-11-01
+
+[READ_CODE] Supplemental evidence for PI-1/PI-2/PI-7 and D-008/D-016/D-020:docs/design/UNIVERSE_AND_POOL_CONTRACT.md sections1–6. Status remains DESIGNED,not TESTED/DEPLOYED. Existing PI/D rows are not promoted by this refinement.
+[READ_CODE] Current config/screening thresholds reread;new pool selector not implemented. Local baseline UNKNOWN;actual Render state unverifiable by Codex.
+| Item | Status | Evidence | Evidence type |Updated|Limit|
+|---|---|---|---|---|---|
+| P-014 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|SUPERSEDED by D030..036;historical design|
+| P-015 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|SUPERSEDED by D030..036;historical design|
+| P-016 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|SUPERSEDED by D030..036;historical design|
+| P-017 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|SUPERSEDED by D030..036;historical design|
+
+
+## Automatic/manual75-slot amendment —2026-11-01
+
+[READ_CODE] D016/D020 revised and D030..036 user-approved;PI1/PI2/PI7 now refer to route-aware contract. All remain DESIGNED,not implemented/tested/deployed. Existing code's common20day/price filters do not implement the manual exception.
+| Item | Status | Evidence | Evidence type |Updated|Limit|
+|---|---|---|---|---|---|
+| D-030 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|Mayur-approved direction;no runtime or application-test proof|
+| D-031 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|Mayur-approved direction;no runtime or application-test proof|
+| D-032 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|Mayur-approved direction;no runtime or application-test proof|
+| D-033 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|Mayur-approved direction;no runtime or application-test proof|
+| D-034 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|Mayur-approved direction;no runtime or application-test proof|
+| D-035 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|Mayur-approved direction;no runtime or application-test proof|
+| D-036 | DESIGNED | docs/design/UNIVERSE_AND_POOL_CONTRACT.md | READ_CODE |2026-11-01|Mayur-approved direction;no runtime or application-test proof|
+| P-018 | DESIGNED | CSV/T-1 schema/timing section3 | READ_CODE |2026-11-01|Proposed calendar interpretation|
+| P-019 | DESIGNED | available-history rank/dedup section4 | READ_CODE |2026-11-01|Exact metric-window/ties proposed|
+| P-020 | DESIGNED | zero/short-history policy section5 | READ_CODE |2026-11-01|IPO indicator and ranking gap unresolved|
+[ASSUMED] Local baseline UNKNOWN;no new source/CI/runtime/market/capacity test. Actual Render state unverifiable by Codex.75-slot capacity is not measured throughput.
+
+
+## IPOalternative —2026-11-01
+
+[READ_CODE] D033reaffirmed,D037/D038approveddirection;exactproposalsP021..023notapproved. LocalbaselineUNKNOWN;no TESTED/DEPLOYEDpromotion.
+|Item|Status|Evidence|Evidence type|Updated|Limit|
+|---|---|---|---|---|---|
+| D-037 | DESIGNED | docs/design/IPO_SHORT_HISTORY_POLICY.md | READ_CODE |2026-11-01|DirectionapprovedonlyforDrows;parametersproposed,noapplicationtest|
+| D-038 | DESIGNED | docs/design/IPO_SHORT_HISTORY_POLICY.md | READ_CODE |2026-11-01|DirectionapprovedonlyforDrows;parametersproposed,noapplicationtest|
+| P-021 | DESIGNED | docs/design/IPO_SHORT_HISTORY_POLICY.md | READ_CODE |2026-11-01|DirectionapprovedonlyforDrows;parametersproposed,noapplicationtest|
+| P-022 | DESIGNED | docs/design/IPO_SHORT_HISTORY_POLICY.md | READ_CODE |2026-11-01|DirectionapprovedonlyforDrows;parametersproposed,noapplicationtest|
+| P-023 | DESIGNED | docs/design/IPO_SHORT_HISTORY_POLICY.md | READ_CODE |2026-11-01|DirectionapprovedonlyforDrows;parametersproposed,noapplicationtest|
+
+
+## IPOpolicy provisionalacceptance —2026-11-01
+
+[READ_CODE] D039..041recorduseracceptance;P021/P022supersededstatusonly.Names/thresholdsnotimplementedbythisrecord.LocalbaselineUNKNOWN,no TESTED/DEPLOYEDpromotion.
+|Item|Status|Evidence|Evidence type|Updated|Limit|
+|---|---|---|---|---|---|
+| D-039 | DESIGNED | docs/design/IPO_SHORT_HISTORY_POLICY.md | READ_CODE |2026-11-01|Acceptedprovisionalpolicy,notimplemented/empiricallyvalidated|
+| D-040 | DESIGNED | docs/design/IPO_SHORT_HISTORY_POLICY.md | READ_CODE |2026-11-01|Acceptedprovisionalpolicy,notimplemented/empiricallyvalidated|
+| D-041 | DESIGNED | docs/design/IPO_SHORT_HISTORY_POLICY.md | READ_CODE |2026-11-01|Acceptedprovisionalpolicy,notimplemented/empiricallyvalidated|
+
+
+## Independent auditor briefing —2026-11-01
+
+[READ_CODE] docs/audit/AUDITOR_BRIEFING.md adds external-auditor context,current PR/CI source snapshots,verbatimfeedback/conflicts anddecisiondelta. All product/decision implementationstatusesunchanged;no TESTED/DEPLOYEDpromotion. LocalbaselineUNKNOWN.
+[READ_CODE: CI-reported] Verifiedinputmain79a2d308... andworking5620916c... bothSUCCESS539legacytests/browserjobs;sourcecodeidentical. Doesnotvalidate newC0/bracket/manual/IPO designs.
+[ASSUMED] Exactauditor-reviewedrevisionNOT RECONSTRUCTABLE;comparisonR1b82089ed... notclaimedreviewed. CurrentRenderstateunverifiablebyCodex;noPhase2.
+
+## Phase1 close-out delta —2026-11-01
+[READ_CODE] Prior rows remain dated history;current specification is docs/design/SPEC_CURRENT.md. No TESTED/DEPLOYED promotion this session;no local application tests run. Actual Render state unverifiable by Codex.
+| Item | Current status | Evidence path / test target | Evidence type | Updated |
+|---|---|---|---|---|
+| [READ_CODE] D-042 upload window | DESIGNED | docs/design/SPEC_CURRENT.md — Universe;future test_manual_upload_window_session_to_calendar_end | READ_CODE |2026-11-01|
+| [READ_CODE] D-043 manual tradability | DESIGNED | docs/design/PARAMETER_REGISTER.md — Tradability sources;future test_manual_minimal_tradability_gate | READ_CODE |2026-11-01|
+| [READ_CODE] D-044 mixed-profile tie | DESIGNED | docs/design/LIFECYCLE_AND_ATOMICITY.md — Close-out;future test_standard_before_ipo_then_csv_priority | READ_CODE |2026-11-01|
+| [READ_CODE] D-045 ARM sizing | DESIGNED | docs/design/TIME_AND_EXECUTION.md — Sizing;future test_arm_time_quantity_and_fee_snapshot | READ_CODE |2026-11-01|
+| [READ_CODE] D-046 live multi-arm deferred | DESIGNED | docs/design/PHASE2_PLAN.md — Deferred live checklist | READ_CODE |2026-11-01|
+| [READ_CODE] D-047 consolidated unchanged constraints | DESIGNED | docs/design/SPEC_CURRENT.md;PHASE2_PLAN.md — Mutation protection | READ_CODE |2026-11-01|
+[READ_CODE] D-003/D-016/D-022/D-031/D-033 current interpretation amended byD-042..045;P005/P013/P020/P023 append-only corrections in DECISIONS.md. Earlier band-only/mixed-tie/trigger-size evidence does not describe current intent.
+[ASSUMED] Local baseline remains UNKNOWN;official fee/tradability sources documented-only until effective-date samples/schema/fee fixtures verified.
