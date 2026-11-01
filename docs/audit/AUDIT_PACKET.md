@@ -1,49 +1,53 @@
-# Audit packet —2026-11-01 / IPO policy provisional acceptance
+# Audit packet — 2026-11-01 / independent auditor briefing
 ## a. Session summary
-[ASSUMED] LocalbaselineUNKNOWN;no applicationtest/replayanalysis/empiricalevidence.
-[READ_CODE] MayuracceptedbothIPOreviewanswersforcurrentpolicy,subjecttolaterrevision.
-[READ_CODE] D039..041approved;IPO_SHORT_HISTORY_V1;implementationstatusDESIGNEDonly.
-[READ_CODE] Parent8f98e0d54026a60e85204d08153b507a5725c093;branch codex/phase1-review-round2;10Markdownfiles.
-[READ_CODE] Phase2NOTSTARTED;noapp/broker/deploy/Render/cronaction.
+[ASSUMED] Bad news: local baseline UNKNOWN; new C0/bracket/IPO strategy not implemented or empirically validated.
+[READ_CODE] Phase 1 only. Added AUDITOR_BRIEFING.md to draft PR19; parent 5620916c13f18414fd8606da8f1a0b3d360aa2fb.
+[READ_CODE] Verified main/input CI, PR stack, targeted source and all existing design/audit records.
+[READ_CODE] Briefing quotes visible feedback, flags policy conflicts and distinguishes proposals from approvals.
+[ASSUMED] Actual Render state and exact prior auditor-reviewed SHA remain unverifiable / NOT RECONSTRUCTABLE.
 
 ## b. Safety invariants
-[READ_CODE] PASSdiffscope:PREVIEW_ONLY/app pathsunchanged;no brokerordercode/client/endpoint/credentials.
-[RAN_TEST] PASStargetedscan:10proposedMarkdownfiles,0credential/private-URLpatterns.
-[ASSUMED] UNVERIFIED:whole-reposecretabsence/actualRenderstate.
-[ASSUMED] UNVERIFIEDbycurrenttests:9800risk,980000cash,long-only,dailyfill,fivearms,limitformula.
-[READ_CODE] PASSscope:protectedlegacyfiles/config/cron/workflow/deployunchanged.
-[ASSUMED] AcceptedIPOprofiledoesnotguaranteeprofit/fills/maxrealizedloss.
+[ASSUMED] UNVERIFIED: new-strategy mutation tests for INR9800, long-only, daily fill, five arms and buffer formula; none run locally.
+[READ_CODE] Legacy named tests/CI evidence and future named tests are separated in briefing section8.
+[READ_CODE] PASS source/diff scope: PREVIEW_ONLY source unchanged; no application, broker/order, deployment, cron or Render changes.
+[RAN_TEST] PASS limited scan of four proposed audit Markdown files: private-key/token/JWT/bearer/credential-assignment/private-URL patterns, zero matches.
+[ASSUMED] Whole-repository secrets absence and runtime PREVIEW_ONLY are not established by this limited scan.
+[READ_CODE] Protected src/run_daily.py and root render.yaml unchanged.
 
 ## c. Traceability delta
-[READ_CODE] D039..041addedapprovedbyMayur;DESIGNEDonly,no TESTED/DEPLOYEDpromotion.
-[READ_CODE] P021/P022supersededbyacceptedpolicy;P023mixed-historytieremainsproposed.
-[READ_CODE] Design/continuityapprovalnoticesupdated;historicalprogressprefixpreserved.
+[READ_CODE] Added briefing evidence note only; no status promoted to TESTED or DEPLOYED; no decision changed.
+[READ_CODE] New briefing separates amended D003/005/006/016, D018..041 and P001..023.
 
-## d. Deviations,risks,assumptions
-[READ_CODE] “Gofor now”interpretedasacceptanceoftwoprecedingIPOquestions,notPhase2/deployauthorization.
-[ASSUMED] Policyversionedandamendable;laterrevisioncannotrewriterecordedoldoutcomes.
-[ASSUMED] RVOL/HTFsubstitutesremainexperimental/empiricallyunvalidateddespiteuseracceptance.
-[ASSUMED] Mixed-historytiebreakandexactcalendarT-1mappingnotseparatelyapproved.
-[ASSUMED] No newdata/source/capacitycheckoroperationalclearance.
+## d. Deviations and risks
+[READ_CODE] Later manual band-only admission conflicts with earlier shared restricted/liquidity filters;75 slots conflicts with initial25–50 policy.
+[ASSUMED] Accepted IPO substitutes remain experimental;75-slot sweep latency unmeasured; mixed-history tie and T-1 calendar meaning unresolved.
+[ASSUMED] Stop-limit failure can exceed9800 and delay15:00 exit; paper DB atomicity is not external broker atomicity.
+[READ_CODE] Historical P005/P013 bundles and stale P020 disclosed rather than silently rewritten.
+[ASSUMED] Missing chat history/prior-reviewed SHA NOT RECONSTRUCTABLE; contextual approvals do not approve every engineering proposal.
 
 ## e. Unverified claims
-[ASSUMED] Cleancheckout/baseline,currentIPOdata,source/sessioncontract,livefeasibility,Telegram/supervisionnotverified.
-[ASSUMED] ActualRenderstateunverifiablebyCodex;75slotcapacityunmeasured.
-[ASSUMED] No newCI/localtestresultsclaimed.
+[ASSUMED] New strategy performance, buffer calibration, live order feasibility, supervision, Telegram latency and clean external checkout not verified.
+[ASSUMED] Briefing commit CI unknown at writing; parent success is not its result.
 
 ## f. Test results
-[ASSUMED] ApplicationtestsNOTRUN;commandnone;counts/skips/durationN/A.
-[RAN_TEST] functions.exec doccheck:10Markdownpaths,41currentDIDs,append-onlylog,packet<=120lines,coveragepreserved.
-[RAN_TEST] Credential/private-URLpatternscan0matches.Notapplicationtests.
+[READ_CODE: CI-reported] main79a2d308: test-phase-1 SUCCESS539passed/3warnings/41.97s; run41290657216; browser job passed.
+[READ_CODE: CI-reported] input5620916c: test-phase-1 SUCCESS539passed/3warnings/36.97s; run41307666713; browser checks passed; conditional live smoke skipped.
+[READ_CODE] CI commands: python -m pytest -q; python scripts/check_cockpit_browser.py; python -m scripts.check_paper_browser.
+[READ_CODE] Historical local pytest timeout180s/two dots/counts UNKNOWN; clone exit1 getaddrinfo thread error; segmented local prerequisites absent.
+[ASSUMED] Current local application tests: none; pass/fail/skip/duration N/A.
+[RAN_TEST] functions.exec document validation:4audit paths,12sections,215briefing lines,8pinned reading URLs,15request rows,14file delta groups,append-only log,packet<=120lines,zero secret-pattern matches.
+[RAN_TEST] Read-only git probe: repo is not a Git repository; no verified clean checkout in workspace.
 
-## g. Remaining open items
-[ASSUMED] 1. ExactcalendarT-1mappingandmixed-historytrade-tiepolicybeforeimplementation.
-[ASSUMED] 2. Cleancheckout/exact-sourcebaselineandseparatePhase2instruction.
-[READ_CODE] IPOranking/allocation/indicatorchoicesarenotreopened;currentpolicyacceptedsubjectrevision.
+## g. Open questions
+[ASSUMED] 1. Mayur: T-1 prior calendar day or exchange session?
+[ASSUMED] 2. Mayur/auditor: approve a comparable mixed-history trigger tie policy or proposed hold?
+[ASSUMED] 3. Auditor: reconcile manual status-filter bypass,75capacity and experimental IPO strategy.
+[ASSUMED] 4. Auditor: review stop-failure/OHLC assumptions and event-time late-receipt reconciliation.
+[ASSUMED] 5. Mayur/auditor: provide clean source baseline and exact prior-reviewed SHA before separately authorized Phase2.
 
-## h. Suggested next step / first auditor paths
-[ASSUMED] RetainacceptedV1policy;addressremainingoperational/designgatesbeforeimplementation.
-[READ_CODE] First5:IPO_SHORT_HISTORY_POLICY.md;UNIVERSE_AND_POOL_CONTRACT.md;../audit/DECISIONS.md;../audit/PROGRESS_LOG.md;../audit/INTENT_TRACEABILITY.md(design-relative).
+## h. Suggested next step and first auditor paths
+[ASSUMED] Review briefing and resolve explicit conflicts; do not start Phase2.
+[READ_CODE] First five: docs/audit/AUDITOR_BRIEFING.md; docs/design/TIME_AND_EXECUTION.md; docs/design/LIFECYCLE_AND_ATOMICITY.md; docs/design/JOURNAL_ALERTS_RECOVERY.md; docs/design/SETUP_AND_UNIVERSE.md.
 
 ## Coverage map — paths relative to docs/design/; coverage means designed, NOT tested
 | Phase1 item | Document and section |
@@ -85,3 +89,5 @@
 
 | [READ_CODE] IPO provisionalpolicy acceptance | IPO_SHORT_HISTORY_POLICY.md approvalnotice;DECISIONS.md D039..041 |
 
+
+| [READ_CODE] Independent auditor update | ../audit/AUDITOR_BRIEFING.md sections1–12 |

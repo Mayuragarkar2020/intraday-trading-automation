@@ -115,3 +115,10 @@
 | D-039 | DESIGNED | docs/design/IPO_SHORT_HISTORY_POLICY.md | READ_CODE |2026-11-01|Acceptedprovisionalpolicy,notimplemented/empiricallyvalidated|
 | D-040 | DESIGNED | docs/design/IPO_SHORT_HISTORY_POLICY.md | READ_CODE |2026-11-01|Acceptedprovisionalpolicy,notimplemented/empiricallyvalidated|
 | D-041 | DESIGNED | docs/design/IPO_SHORT_HISTORY_POLICY.md | READ_CODE |2026-11-01|Acceptedprovisionalpolicy,notimplemented/empiricallyvalidated|
+
+
+## Independent auditor briefing —2026-11-01
+
+[READ_CODE] docs/audit/AUDITOR_BRIEFING.md adds external-auditor context,current PR/CI source snapshots,verbatimfeedback/conflicts anddecisiondelta. All product/decision implementationstatusesunchanged;no TESTED/DEPLOYEDpromotion. LocalbaselineUNKNOWN.
+[READ_CODE: CI-reported] Verifiedinputmain79a2d308... andworking5620916c... bothSUCCESS539legacytests/browserjobs;sourcecodeidentical. Doesnotvalidate newC0/bracket/manual/IPO designs.
+[ASSUMED] Exactauditor-reviewedrevisionNOT RECONSTRUCTABLE;comparisonR1b82089ed... notclaimedreviewed. CurrentRenderstateunverifiablebyCodex;noPhase2.
