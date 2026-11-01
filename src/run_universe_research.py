@@ -12,7 +12,7 @@ from src.universe_scanner import UniverseScanStore,run_universe_scan,warm_univer
 from src.universe_store import UniverseStore
 
 
-def execute_cycle(now,url,token,*,capture_enabled=False):
+def execute_cycle(now,url,token,*,capture_enabled=False,receipts_enabled=False):
     """Existing daily publication, cached full-pool scan, existing RELIANCE capture."""
     universe = UniverseStore(url)
     if now.astimezone(IST).time() < time(9,15):
@@ -24,7 +24,12 @@ def execute_cycle(now,url,token,*,capture_enabled=False):
     if local.time() < time(9,40):
         outcome = warm_universe_references(now,universe,UniverseScanStore(url),token)
     else:
-        outcome = run_universe_scan(now,universe,UniverseScanStore(url),token)
+        receipt_store = None
+        if receipts_enabled:
+            from src.universe_receipts import UniverseReceiptStore
+            receipt_store = UniverseReceiptStore(url)
+        kwargs = {"receipt_store":receipt_store} if receipt_store is not None else {}
+        outcome = run_universe_scan(now,universe,UniverseScanStore(url),token,**kwargs)
     if capture_enabled:
         captured = capture_once(now,universe,ForwardCaptureStore(url),token)
         outcome["forward_capture"] = captured.get("report",{}).get("status",captured["status"])
@@ -46,11 +51,14 @@ def main():
         print(json.dumps({"status":"UNIVERSE_SCAN_STORE_REQUIRED","execution_enabled":False}))
         return 1
     try:
-        result = execute_cycle(now,url,os.getenv("DHAN_ACCESS_TOKEN"),capture_enabled=capture_enabled)
+        result = execute_cycle(now,url,os.getenv("DHAN_ACCESS_TOKEN"),capture_enabled=capture_enabled,
+                               receipts_enabled=os.getenv("UNIVERSE_RECEIPTS_ENABLED")=="true")
         report = result.get("report",{})
         print(json.dumps({"status":result["status"],"mode":report.get("mode"),
             "selected_count":report.get("selected_count"),"summary":report.get("summary"),
             "coverage_complete":report.get("coverage_complete"),"broker_requests":report.get("broker_requests"),
+            "receipt_evidence_enabled":report.get("receipt_evidence_enabled",False),
+            "receipt_summary":report.get("receipt_summary"),
             "forward_capture":result.get("forward_capture"),"execution_enabled":False,"forward_paper_ready":False}))
         return 0
     except Exception as exc:
@@ -60,4 +68,3 @@ def main():
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
