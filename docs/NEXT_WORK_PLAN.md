@@ -1,5 +1,80 @@
 # Next work plan — automatic paper trading
+
+## 1 November 2026 — inactive deadline and persistent manager source
+
+PR #9 now proposes replay v2: force_exit is a completed-closure deadline, default
+15:00 IST, capped at 15:00. Flatten attempts start ten minutes earlier. Partial,
+unfilled or late exits stay visible; late recovery retains the deadline breach.
+Old stored replay runs are immutable; the engine-version change creates new IDs.
+
+An inactive receipt-time simulator connects ranked entry reservations to durable
+fills, initial/cost-breakeven stops, EMA10 exits before 1.5R, partial/rejected exits,
+clock-driven flatten requests and persistent breach state. Its fill model is
+NEXT_TIMELY_CLOSE_AT_RECEIPT, distinct from historical replay next-open fills.
+A signal/order decision cannot use an earlier bar. Gaps cannot generate fills.
+Clock events request/cancel/flag exposure but cannot manufacture closing prices.
+All effects of one bar are journaled atomically; retries/concurrent workers and
+restart audit are tested. Source attestations are caller declarations until a
+trusted adapter verifies them; current research sources MUST remain held.
+
+Local checks: 139 passed, four PostgreSQL-only skipped. Exact-head CI must be
+checked on the current PR head; do not reuse the former 447-test result.
+No runtime/API/cron imports the simulator. No production changes or activation.
+The verified signal adapter, authoritative session/reference contracts and actual
+full-universe operation remain incomplete. Calendar still ends 6 November.
+Next: inspect CI, verify actual 2 November research operation and evidence, bind
+trusted persisted signals/receipts, then obtain approval for a concrete release.
+
 Updated: 31 October 2026. Read PROJECT_HANDOFF.md first.
+
+## Latest decision and resume checkpoint — 15:00 IST closure
+
+Mayur confirmed on 31 October 2026: **all positions must be closed by 15:00 IST
+(Asia/Kolkata)**. This is a completed-closure deadline, not permission to wait
+until 15:00 to start an exit. It supersedes the former 15:15 strategy default
+and the earlier pending exit-time question. Implement prospective exits early
+enough for the chosen execution model; never backdate a fill or report an
+unfilled/partially filled position as closed. Any failure to flatten by the
+deadline must remain visible as outstanding exposure and a deadline breach.
+Exact execution lead time/retry mechanics remain engineering work, not a newly
+agreed trading rule. Existing replay code still uses its old default until a
+reviewed source change; this documentation update does not change runtime.
+
+Continuity summary:
+- Daily liquid NSE universe; exclude 2%/5% bands, hold unknown band/identity
+  data and preserve surveillance exclusions. No daily manual chart checks.
+- Scan completed 5m bars using the existing EMA10/20, VWAP, relative-volume,
+  15m confirmation and range conditions; entry above range high plus buffer,
+  initial stop below range low minus buffer, later eligible breakout required.
+- INR 980,000 capital, maximum INR 9,800 planned risk inclusive of estimated
+  costs, long only, one filled entry/day and no leverage.
+- Working ranking: highest 20-day average traded value among valid breakouts
+  in the same 5m interval; policy remains replaceable for future ranking factors.
+- EMA10-close exits remain active before 1.5R. At 1.5 price R additionally
+  request cost breakeven. No fixed target. All exposure closed by 15:00 IST.
+- PR #11 is deployed at 5b9693c657f1475c1a1fd4a9c3a6a8749621eece on existing
+  web and research cron. Auto-deploy off; no paper/live execution. Actual
+  full-pool market coverage, warm-up and persistence still require observation.
+- PR #9 remains draft/unapproved/undeployed: inactive ledger, receipt-bound
+  signal journal and ranked prospective reservations. Head
+  91bd84736364ea1cc420fd21184b57db2b1033dd passed 447 Python/API/PostgreSQL
+  tests and both browser suites in run 41222564313. Local: 79 passed,
+  3 PostgreSQL-only skipped. Source holds, immutable retries, concurrency,
+  rollback and no-backdated-fill checks passed; actual broker readiness unproven.
+- PR #10 remains optional/deferred/unapproved; do not make it a prerequisite.
+- Next: implement/test the 15:00 closure rule on the inactive paper branch,
+  connect persistent trade management and trusted full-universe signals,
+  then prepare a concrete release for approval. Verify market data/session
+  contracts and actual operation; current research attestations remain false.
+- Next reviewed session: 2 November 2026; reviewed calendar ends 6 November.
+  Extend reviewed coverage before expiry. Do not promise automatic paper trades.
+- Keep source/tests/context in GitHub, use Context Mode for bulk analysis,
+  keep communication simple, and continue until real input/approval is needed.
+  No production deployment, configuration change or paper/live activation is
+  authorized by this context-recording request. No subagents; no credential exposure.
+
+Older dated checkpoints below retain historical evidence. This latest decision
+supersedes their statements that exit timing or the liquidity ranking awaits input.
 
 ## Current deployment checkpoint
 
@@ -8,9 +83,9 @@ PR #11 was approved and deployed to existing web + research cron at revision
 research flag enabled on cron only. Health/auth checks passed. Actual full-pool
 market coverage, warm-up/persistence and a #11 cron invocation remain unobserved.
 Read docs/universe-scanner-activation-2026-10-31.md. No paper or real orders.
-Next strategy input: deterministic choice among simultaneous valid breakouts
-under the one-filled-entry/day rule; highest 20-day average traded value is
-proposed but not yet confirmed. Old pending-approval statements below describe
+Working ranking confirmed: highest 20-day average traded value among valid
+breakouts in the same five-minute interval, replaceable as factors evolve.
+End-of-day policy confirmed: all positions closed by 15:00 IST. Old pending-approval statements below describe
 source checkpoints before this activation.
 
 ## Current work order after Mayur's simplification

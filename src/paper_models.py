@@ -39,5 +39,5 @@ class ReplayRequest(StrictModel):
     participation_pct: Decimal = Field(gt=0, le=10)
     entry_start: str = "09:45"
     entry_end: str = "11:30"
-    force_exit: str = "15:15"
+    force_exit: str = "15:00"  # completed-closure deadline, never a request time
     plans: list[ReplayPlan] = Field(min_length=1, max_length=25)

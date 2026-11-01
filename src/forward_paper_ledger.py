@@ -72,6 +72,12 @@ ENTRY_CONTEXT = {"symbol", "security_id", "selection"}
 
 def transition(previous, command):
     """Pure transition. A failed command cannot mutate the caller's projection."""
+    if command.get("kind") == "SIMULATED_BAR":
+        from src.paper_trade_management import manage_bar
+        return manage_bar(previous, command)
+    if command.get("kind") == "PAPER_CLOCK":
+        from src.paper_trade_management import manage_clock
+        return manage_clock(previous, command)
     kind = command.get("kind")
     base = FIELDS.get(kind,set()) | {"kind","at"}
     if kind not in FIELDS or (set(command) != base and
@@ -272,4 +278,3 @@ class ForwardPaperLedger(ScanStore):
                 raise ValueError("Account reconciliation failed")
         return {"status": "RECONCILED", "event_count": len(events),
                 "state_sha256": hashlib.sha256(encode(state).encode()).hexdigest()}
-
