@@ -39,3 +39,42 @@
 [ASSUMED] Search absence (manual_catalyst returned no hits) is limited negative evidence; missing push/manual-catalyst implementation is not asserted as a whole-repository proof.
 [ASSUMED] Docs-only audit writes are the sole exception to Phase 0 no-changes wording, because the same request mandates them every phase. If that interpretation deviates from intent, preserve this record and correct it by appending a CORRECTION entry.
 [ASSUMED] Next checkpoint is the Phase 0 report. Stop for the user's continuation before writing docs/design/. Phase 2 still requires explicit Phase 1 approval. No questions reopen the decisions already made.
+
+
+## 2026-11-01 — Phase 1 / session 2 / initial full-suite checkpoint (BLOCKED)
+
+[RAN_TEST] BAD NEWS FIRST: the full-suite attempt timed out after 180 seconds with only two progress dots and no pytest summary. Completed pass/fail/skip counts are UNKNOWN, not zero and not passing. The wrapper terminated the subprocess; pytest produced no terminal summary. No second full-suite run was made.
+[RAN_TEST] Exact test command, working directory repo: `python -m pytest -q --basetemp=.test-phase1-baseline-20261101`. Invocation used Python subprocess.run with stdout/stderr combined into phase1-baseline-pytest.log and timeout=180. Wrapper shell command was a PowerShell here-string piped to python. Result: subprocess.TimeoutExpired; pytest exit code unavailable; wrapper exit code 0 reflects reporting only, NOT test success.
+[READ_CODE] The local log contains only `..`; no failing assertion or failing test name can be attributed. The stuck test was not identified. Local run is not proof for main or the PR15 head.
+[RAN_TEST] Git-blob SHA inventory comparison against PR15 commit 9ec22efae49a633c6f8cba09f78ac41b204de739 found a mixed local workspace: source/test mismatches include src/dhan_chart_reconciliation.py, src/forward_research_signal.py, src/paper_entry_selection.py, src/static/cockpit.html, tests/test_forward_paper_ledger.py, tests/test_forward_research_signal.py, tests/test_paper_entry_selection.py, tests/test_run_universe_research.py, tests/test_universe_scan_api.py and tests/test_universe_scanner.py. Other tracked docs/config/workflow paths are missing locally. The comparison accepted raw or CRLF-normalized Git blob hashes. It did not modify application files.
+[ASSUMED] Earlier sessions recorded Windows TestClient hangs; this session has not diagnosed whether the same cause produced this timeout. No such cause is asserted as verified.
+
+### Goal, phase and commit range
+
+[READ_CODE] Goal: begin Phase 1 design-only work, first run and record the full suite, then stop at checkpoints. Phase 0 accepted by Mayur. This session stopped at the initial test checkpoint before design because the run was incomplete and the local baseline was not clean.
+[READ_CODE] Branch codex/phase1-test-checkpoint; parent 2cd3fd0e129d3b686c8211b91d06c201e192b779 from the Phase 0 audit branch (PR16), preserving all earlier audit entries. Commit range 2cd3fd0e129d3b686c8211b91d06c201e192b779..codex/phase1-test-checkpoint; resolve the PR head for the immutable endpoint. No main-branch write or merge.
+[READ_CODE] Read docs/PROJECT_HANDOFF.md, docs/NEXT_WORK_PLAN.md and all four docs/audit files first. Audit files were absent on main and read from codex/phase0-intent-audit. Source claims limited to targeted current-main health/status and ledger-entry guard reads.
+[READ_CODE] Actual Render state: unverifiable by Codex. No Render calls, production deployment, cron change or broker call occurred.
+
+### What was done / files changed
+
+[READ_CODE] Appended this log; updated docs/audit/DECISIONS.md with Mayur's D-001..017; updated docs/audit/INTENT_TRACEABILITY.md; regenerated docs/audit/AUDIT_PACKET.md. Only those four docs changed.
+[READ_CODE] CORRECTION to Phase 0 numbering: Phase 0 assigned fifteen different D IDs before Mayur supplied the current seventeen-ID register. Historical identifiers in DECISIONS.md are explicitly renamed P0-D-001..015; historical decision text/provenance is retained and current D-001..017 comes from Mayur's latest request. This namespace correction is explicit; no Codex proposal was marked approved.
+[ASSUMED] Historical archive proposal is superseded by Mayur's instruction to leave src/run_daily.py and root render.yaml untouched. Both remain untouched. No docs/design files were written.
+[READ_CODE] A metadata manifest was saved as scratch phase1-manifest.json outside repo for the source comparison; a pytest log and basetemp were generated locally. None is part of this docs-only PR.
+
+### Reference inventory / deferred work
+
+[READ_CODE] Local tracked-file literal search found tests/test_fail_closed.py:1 importing src.run_daily. It cannot establish every repository reference because the workspace is incomplete.
+[READ_CODE] GitHub indexed searches for run_daily and render.yaml returned zero items WITH incomplete_results=true. This is NOT evidence of no references.
+[ASSUMED] Complete exact reference inventory and Render dashboard checklist remain deferred. Next inventory must cover root render.yaml, deploy manifests, workflows, README/docs/tests and references to both filename and module form; distinguish current branch from historical audit mentions.
+[ASSUMED: dashboard checklist, not settings proof] Check each relevant Render service's repository/branch/commit, service type, build/start command, cron schedule/timezone, Blueprint association/path, auto-deploy setting and most recent deploy/logs for NOT_READY/exit 2. Read only; do not change settings or disclose secret environment values.
+[READ_CODE] NEXT_WORK_PLAN's PR9 vs handoff's PR14 drift was observed but not corrected at this checkpoint. Actual state remains unverifiable by Codex.
+[ASSUMED] Phase 1 lifecycle, cutoff, stop-limit, exact rule/warm-up spec, pool scaling, journal, alerting/supervision and migration design all deferred until this checkpoint is reviewed. No Phase 2 tests/code written.
+
+### Safety, tests, deviations and next action
+
+[READ_CODE] PREVIEW_ONLY/execution false remain in inspected main src/cloud_app.py::health/status. Ledger source checks positive long entry, daily-used date, risk and unlevered cash; no current completed tests certify those invariants. Five-arm feature remains unimplemented per Phase 0 evidence, not retested here.
+[RAN_TEST] Targeted proposed-doc scan and structure validation: four allowed Markdown paths only; packet under 120 lines; no private-key/token/JWT/bearer/credential-assignment/private-URL pattern matches. This does not certify whole-repository secret absence.
+[ASSUMED] Deviation/uncertainty: full suite attempted on an unverified local snapshot before the inventory comparison completed; it timed out. Do not promote this attempt to a branch baseline or reuse historical CI counts.
+[ASSUMED] Stop per checkpoint instruction; ask whether to prepare an isolated, verified main snapshot and retry the suite before design. The requested one full-suite attempt was used; no automatic retry. Do not alter either protected legacy entrypoint.

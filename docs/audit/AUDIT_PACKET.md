@@ -1,65 +1,63 @@
-# Audit packet — 2026-11-01 / Phase 0
+# Audit packet — 2026-11-01 / Phase 1 test checkpoint
 ## a. Session summary
-[READ_CODE] Baseline: main 79a2d3086c8aea660dc31068e2758db1f7332808; branch codex/phase0-intent-audit.
-[READ_CODE] Read handoff/next plan first; targeted scanner, choice, ledger, replay, UI and tests only.
-[READ_CODE] Major conflicts: one held choice, 11:30 cutoff, gap-chasing replay, same-day publication.
-[READ_CODE] Four audit documents only; no runtime/config edits; stop before Phase 1.
-[ASSUMED] Deployments/market coverage remain unverified this session; historic CI is not current test evidence.
+[RAN_TEST] BLOCKED: full-suite attempt timed out after 180 seconds; no summary or counts.
+[RAN_TEST] Local workspace differs from the PR15 Git manifest; not a clean branch baseline.
+[READ_CODE] Read handoff, next plan and all audit files first; no design files written.
+[READ_CODE] Branch codex/phase1-test-checkpoint; parent 2cd3fd0e129d3b686c8211b91d06c201e192b779; four audit docs only.
+[ASSUMED] Stop at test checkpoint; Phase 1 design and Phase 2 remain unstarted.
 
-## b. Safety invariants check
-[READ_CODE] PASS (source only): PREVIEW_ONLY and execution false in cloud_app.py::health/status.
-[READ_CODE] PASS (diff only): no real-money or broker order path added/touched; only docs/audit/*.
-[RAN_TEST] PASS (targeted scan only): four proposed docs scanned; zero secret/token/private-URL pattern matches.
-[ASSUMED] UNVERIFIED: whole-repository secret absence; no full-repository scan performed.
-[READ_CODE] UNVERIFIED by current tests: INR9,800, long-only, one fill/day guards exist; existing tests were read, not run.
-[READ_CODE] Risk evidence: forward_paper_ledger.py::transition; test_exact_inclusive_risk_cap_and_separate_no_leverage_gate.
-[READ_CODE] Long evidence: positive quantity/stop<limit/BUY; test_invalid_entry_fails_without_creating_account.
-[READ_CODE] Daily evidence: used_entry_dates; test_flat_account_still_remembers_filled_daily_entry.
-[READ_CODE] FAIL (required feature absent in inspected path): five simultaneous arms; paper_choice_current holds one choice.
-[READ_CODE] PASS (session scope): no deployment/cron/Render configuration change or Render tool call.
-[ASSUMED] Actual deployed settings: unverifiable by Codex this session.
+## b. Safety invariants
+[READ_CODE] PASS source-only: PREVIEW_ONLY/execution false in main cloud_app.py::health/status.
+[READ_CODE] PASS diff-only: no real-money or broker order path added/touched.
+[RAN_TEST] PASS limited scan: four proposed docs; zero secret/token/private-URL pattern matches.
+[ASSUMED] UNVERIFIED: whole-repository secret absence.
+[RAN_TEST] UNVERIFIED tests: INR9,800 cap, long-only, one-entry/day; suite did not finish.
+[READ_CODE] Ledger entry guards reread; no completed current named test proves they fail on mutation.
+[ASSUMED] FAIL feature readiness: five-arm cap not implemented per Phase 0 evidence; not retested.
+[READ_CODE] PASS session scope: no deployment/cron/Render change; no Render call.
+[READ_CODE] PASS diff scope: src/run_daily.py and root render.yaml untouched.
+[ASSUMED] Actual deployed Render settings: unverifiable by Codex.
 
 ## c. Traceability delta
-[READ_CODE] Initial register created: PI-1..7, D-001..015 and eight hard-constraint rows.
-[READ_CODE] IMPLEMENTED narrow guards: preview, no-order inspected endpoints, no-deploy session, long/risk/daily/no-leverage; D-015 deadline/breach library.
-[READ_CODE] Other full contracts NOT_STARTED despite partial old behavior; no row marked TESTED or DEPLOYED.
-[ASSUMED] Status is not evidence of actual market readiness.
+[READ_CODE] Current D-001..017 registered from Mayur's latest message.
+[READ_CODE] Historical Phase 0 decision IDs explicitly namespaced P0-D-001..015 with correction notice.
+[READ_CODE] Current decisions NOT_STARTED; no design, TESTED or DEPLOYED promotion.
+[READ_CODE] Added no-cron-change and legacy-entrypoints-untouched session-constraint rows.
+[ASSUMED] Existing implementation observations are carried forward, not newly test-certified.
 
-## d. Deviations and risks
-[READ_CODE] NEXT_WORK_PLAN says web PR9; latest handoff says PR14; actual deployment not rechecked.
-[READ_CODE] Scanner/catalog 09:45–11:30 conflicts with 09:15–14:35; same-day publication conflicts with T-1 operation.
-[READ_CODE] One SELECTED_HELD choice; no override contract or five-arm competition in inspected code.
-[READ_CODE] Replay entry uses max(open, trigger) plus slip; no separate limit; can chase a gap.
-[READ_CODE] Daily-fill guard is application transition under DB lock, not a standalone SQL daily-fill uniqueness constraint.
-[READ_CODE] Cockpit prose says 15:15 flatten; ReplayRequest default is 15:00; do not silently treat prose as behavior.
-[READ_CODE] Generic Dhan chart link only; replay journal inspected lacks MFE/MAE.
-[ASSUMED] Phone push/manual catalyst/complete lifecycle are not verified; targeted absence is not exhaustive proof.
-[ASSUMED] Flat cannot be promised during a halt/circuit/outage; retain unresolved exposure and design recovery.
-[ASSUMED] Required audit writes interpreted as Phase 0 report-only exception; no design/runtime work done.
+## d. Deviations, risks, assumptions, shortcuts
+[RAN_TEST] One suite attempt ran before source-identity comparison completed; mixed snapshot detected.
+[RAN_TEST] Timeout wrapper exit 0 was reporting-only; pytest exit code unavailable. It is not a passing run.
+[READ_CODE] Test log contains only two progress dots; stuck test/cause unknown.
+[ASSUMED] Prior Windows TestClient issue may be relevant; no diagnosis established here.
+[READ_CODE] GitHub reference searches reported incomplete_results=true; zero items is not an exhaustive inventory.
+[READ_CODE] Audit files read from PR16 branch because absent on main.
+[READ_CODE] PR-number drift remains unresolved; no design created before logging test result.
+[ASSUMED] No repeated full-suite attempt without checkpoint review; test attempt limit respected.
 
 ## e. Unverified claims
-[ASSUMED] PR14 web / PR12 cron deployment status is documentary, not independently proven this session.
-[ASSUMED] PR15 metadata says draft/proposed; its controller implementation was not reread this session.
-[ASSUMED] No current test/mutation/concurrency/market-coverage/latency result claimed.
-[ASSUMED: external docs] Dhan: five WebSockets/user, 5,000 instruments/connection, 100/message; Data API 5/s, 100,000/day.
-[ASSUMED] Account quotas, other consumers and practical pool throughput not exercised.
-[ASSUMED] Source timestamp convention remains unresolved across instruments; no verification flags changed.
+[ASSUMED] PR14 web/PR12 cron remains documentary; actual Render state unverifiable by Codex.
+[ASSUMED] No market, latency, Telegram, concurrency or supervision evidence from this session.
+[ASSUMED] Complete entrypoint reference inventory remains incomplete.
+[ASSUMED] Source purity, full-suite success and all Phase 1 architecture remain unverified/unwritten.
+[ASSUMED] No new Dhan quota/throughput claims made; historical documented-only values not exercised.
 
 ## f. Test results
-[ASSUMED: not run] Application-test command: none; pass/fail/skip: not applicable (report-only).
-[RAN_TEST] functions.exec JS validation of auditDocs: four allowed paths; packet <=120 lines; credential/private-URL pattern scan.
-[RAN_TEST] Four documents checked; zero pattern matches; structural assertions passed. Not an application suite.
-[READ_CODE] Existing named tests listed in PROGRESS_LOG; no old CI count reused.
-[READ_CODE] Read failures: two guessed paths returned 404; actual cockpit subsequently read; four audit paths absent at baseline.
+[RAN_TEST] Working directory repo; python -m pytest -q --basetemp=.test-phase1-baseline-20261101
+[RAN_TEST] subprocess.run timeout=180; stdout/stderr combined into phase1-baseline-pytest.log.
+[RAN_TEST] Outcome TIMEOUT; completed pass/fail/skip counts UNKNOWN; no second full run.
+[RAN_TEST] Git-blob manifest comparison: source/test differences and missing tracked files; no app file edited.
+[RAN_TEST] Four-doc structure/credential/private-URL scan: zero pattern matches; packet <=120 lines.
+[ASSUMED] No historical 565-test result reused as current proof.
 
-## g. Open questions
-[ASSUMED] 1. No trading decision needs reopening at Phase 0. Continue to Phase 1 only after this checkpoint report.
-[ASSUMED] 2. Phase 1 must propose cutoff measurement, limit tolerance and fault-recovery mechanics; none approved here.
+## g. Numbered open questions
+[ASSUMED] 1. Retry the suite from an isolated, verified main snapshot before writing design?
+[ASSUMED] 2. No approved trading decision needs reopening; formula/cutoff proposals remain Phase 1 work.
 
-## h. Suggested next step / auditor reading order
-[ASSUMED: proposal] Design only after checkpoint continuation; approve that design before Phase 2 tests/code.
-[READ_CODE] 1. docs/audit/DECISIONS.md
-[READ_CODE] 2. docs/audit/INTENT_TRACEABILITY.md
-[READ_CODE] 3. src/forward_paper_ledger.py
-[READ_CODE] 4. src/paper_engine.py
-[READ_CODE] 5. src/paper_choice.py
+## h. Suggested next step / first auditor paths
+[ASSUMED: proposal] Prepare an isolated verified source snapshot; rerun only after checkpoint continuation.
+[READ_CODE] 1. docs/audit/PROGRESS_LOG.md (latest entry)
+[READ_CODE] 2. docs/audit/DECISIONS.md (namespace correction and current decisions)
+[READ_CODE] 3. docs/audit/INTENT_TRACEABILITY.md
+[READ_CODE] 4. src/forward_paper_ledger.py
+[READ_CODE] 5. src/paper_engine.py
