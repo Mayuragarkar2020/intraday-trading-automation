@@ -1,9 +1,11 @@
-# Intent traceability
+# Intent traceability — Phase 1 test checkpoint
 
-[READ_CODE] Phase 0, baseline main 79a2d3086c8aea660dc31068e2758db1f7332808, 2026-11-01. IMPLEMENTED means the named narrow guard exists, not the complete product or deployment. NOT_STARTED refers to the full requested contract even where partial old behavior exists.
-[ASSUMED] No row is TESTED or DEPLOYED: no application test was run this session; actual Render settings are unverifiable by Codex this session. Historical CI counts are not this session's evidence.
+[RAN_TEST] Full-suite attempt timed out; no completed application-test counts. No row reaches TESTED from this attempt.
+[READ_CODE] Historical evidence is preserved in Phase 0 log/PR16; current decision IDs use Mayur's seventeen-item register, superseding Phase 0 IDs.
+[ASSUMED] No design was written at this checkpoint. Actual Render state: unverifiable by Codex; no DEPLOYED claims.
+[READ_CODE] Existing implementation rows below are carried forward Phase 0 source observations, not new implementation or current test proof. Current session source re-read is limited to cloud_app.py::health/status and forward_paper_ledger.py::transition entry checks.
 
-| Item | Status | Evidence (path + named test where inspected) | Evidence type | Last updated | Gap / scope |
+| Item | Status | Evidence path / named test | Evidence type | Last updated | Scope |
 |---|---|---|---|---|---|
 | PI-1 | NOT_STARTED | src/daily_universe_refresh.py::build_daily_universe; src/universe_scanner.py::run_universe_scan | READ_CODE | 2026-11-01 | Liquidity/band/restriction holds exist; same-day publication conflicts with day-before operational build. |
 | PI-2 | NOT_STARTED | src/universe_scanner.py setup-window guard; src/run_universe_research.py::execute_cycle | READ_CODE | 2026-11-01 | Full eligible snapshot rows scanned; no separate user-selected pool verified; 09:45–11:30 differs from 09:15–14:35. |
@@ -20,18 +22,24 @@
 | HC-RISK-9800 | IMPLEMENTED | src/forward_paper_ledger.py::transition; tests/test_forward_paper_ledger.py::test_exact_inclusive_risk_cap_and_separate_no_leverage_gate (read only) | READ_CODE | 2026-11-01 | Hard ledger cap includes fee_budget. Tests not run this session. |
 | HC-ONE-FILL | IMPLEMENTED | src/forward_paper_ledger.py::transition/apply; tests/test_forward_paper_ledger.py::test_flat_account_still_remembers_filled_daily_entry (read only) | READ_CODE | 2026-11-01 | Per-account daily entry state plus DB advisory serialization; no standalone unique daily-fill constraint; tests not run. |
 | HC-NO-LEVERAGE | IMPLEMENTED | src/forward_paper_ledger.py::transition; tests/test_forward_paper_ledger.py::test_exact_inclusive_risk_cap_and_separate_no_leverage_gate (read only) | READ_CODE | 2026-11-01 | Entry notional plus budget checked against cash; tests not run. |
-| D-001 | NOT_STARTED | src/paper_choice.py; Phase 1 design pending | READ_CODE | 2026-11-01 | Partial older implementation only where noted; full current contract not certified; no tests run. |
-| D-002 | NOT_STARTED | src/paper_choice.py (conflict); Phase 1 pending | READ_CODE | 2026-11-01 | Partial older implementation only where noted; full current contract not certified; no tests run. |
-| D-003 | NOT_STARTED | Phase 1 pending | READ_CODE | 2026-11-01 | Partial older implementation only where noted; full current contract not certified; no tests run. |
-| D-004 | NOT_STARTED | src/forward_paper_ledger.py (partial); Phase 1 pending | READ_CODE | 2026-11-01 | Partial older implementation only where noted; full current contract not certified; no tests run. |
-| D-005 | NOT_STARTED | Phase 1 pending | READ_CODE | 2026-11-01 | Partial older implementation only where noted; full current contract not certified; no tests run. |
-| D-006 | NOT_STARTED | src/paper_choice.py (single-choice restriction only) | READ_CODE | 2026-11-01 | Partial older implementation only where noted; full current contract not certified; no tests run. |
-| D-007 | NOT_STARTED | src/paper_choice.py (advisory sort only); Phase 1 pending | READ_CODE | 2026-11-01 | Partial older implementation only where noted; full current contract not certified; no tests run. |
-| D-008 | NOT_STARTED | src/forward_paper_ledger.py (11:30 conflict) | READ_CODE | 2026-11-01 | Partial older implementation only where noted; full current contract not certified; no tests run. |
-| D-009 | NOT_STARTED | src/universe_scanner.py (11:30 conflict) | READ_CODE | 2026-11-01 | Partial older implementation only where noted; full current contract not certified; no tests run. |
-| D-010 | NOT_STARTED | src/paper_engine.py (conflict); src/forward_paper_ledger.py (limit guard) | READ_CODE | 2026-11-01 | Partial older implementation only where noted; full current contract not certified; no tests run. |
-| D-011 | NOT_STARTED | src/paper_engine.py (conflict); Phase 1 pending | READ_CODE | 2026-11-01 | Partial older implementation only where noted; full current contract not certified; no tests run. |
-| D-012 | NOT_STARTED | src/paper_engine.py (conflict); Phase 1 pending | READ_CODE | 2026-11-01 | Partial older implementation only where noted; full current contract not certified; no tests run. |
-| D-013 | NOT_STARTED | Phase 1 pending | READ_CODE | 2026-11-01 | Partial older implementation only where noted; full current contract not certified; no tests run. |
-| D-014 | NOT_STARTED | Phase 1 pending | READ_CODE | 2026-11-01 | Partial older implementation only where noted; full current contract not certified; no tests run. |
-| D-015 | IMPLEMENTED | src/paper_models.py; src/paper_trade_management.py | READ_CODE | 2026-11-01 | Partial older implementation only where noted; full current contract not certified; no tests run. |
+| HC-NO-CRON-CHANGE | IMPLEMENTED | docs-only checkpoint diff; no Render/config operations | READ_CODE | 2026-11-01 | Session scope only |
+| HC-LEGACY-ENTRYPOINTS-UNTOUCHED | IMPLEMENTED | docs-only checkpoint diff; src/run_daily.py and root render.yaml unchanged | READ_CODE | 2026-11-01 | Complete reference inventory deferred |
+| D-001 | NOT_STARTED | docs/audit/DECISIONS.md current register; docs/design pending | ASSUMED | 2026-11-01 | Approved requirement; neither design nor implementation completed this checkpoint |
+| D-002 | NOT_STARTED | docs/audit/DECISIONS.md current register; docs/design pending | ASSUMED | 2026-11-01 | Approved requirement; neither design nor implementation completed this checkpoint |
+| D-003 | NOT_STARTED | docs/audit/DECISIONS.md current register; docs/design pending | ASSUMED | 2026-11-01 | Approved requirement; neither design nor implementation completed this checkpoint |
+| D-004 | NOT_STARTED | docs/audit/DECISIONS.md current register; docs/design pending | ASSUMED | 2026-11-01 | Approved requirement; neither design nor implementation completed this checkpoint |
+| D-005 | NOT_STARTED | docs/audit/DECISIONS.md current register; docs/design pending | ASSUMED | 2026-11-01 | Approved requirement; neither design nor implementation completed this checkpoint |
+| D-006 | NOT_STARTED | docs/audit/DECISIONS.md current register; docs/design pending | ASSUMED | 2026-11-01 | Approved requirement; neither design nor implementation completed this checkpoint |
+| D-007 | NOT_STARTED | docs/audit/DECISIONS.md current register; docs/design pending | ASSUMED | 2026-11-01 | Approved requirement; neither design nor implementation completed this checkpoint |
+| D-008 | NOT_STARTED | docs/audit/DECISIONS.md current register; docs/design pending | ASSUMED | 2026-11-01 | Approved requirement; neither design nor implementation completed this checkpoint |
+| D-009 | NOT_STARTED | docs/audit/DECISIONS.md current register; docs/design pending | ASSUMED | 2026-11-01 | Approved requirement; neither design nor implementation completed this checkpoint |
+| D-010 | NOT_STARTED | docs/audit/DECISIONS.md current register; docs/design pending | ASSUMED | 2026-11-01 | Approved requirement; neither design nor implementation completed this checkpoint |
+| D-011 | NOT_STARTED | docs/audit/DECISIONS.md current register; docs/design pending | ASSUMED | 2026-11-01 | Approved requirement; neither design nor implementation completed this checkpoint |
+| D-012 | NOT_STARTED | docs/audit/DECISIONS.md current register; docs/design pending | ASSUMED | 2026-11-01 | Approved requirement; neither design nor implementation completed this checkpoint |
+| D-013 | NOT_STARTED | docs/audit/DECISIONS.md current register; docs/design pending | ASSUMED | 2026-11-01 | Approved requirement; neither design nor implementation completed this checkpoint |
+| D-014 | NOT_STARTED | docs/audit/DECISIONS.md current register; docs/design pending | ASSUMED | 2026-11-01 | Approved requirement; neither design nor implementation completed this checkpoint |
+| D-015 | NOT_STARTED | docs/audit/DECISIONS.md current register; docs/design pending | ASSUMED | 2026-11-01 | Approved requirement; neither design nor implementation completed this checkpoint |
+| D-016 | NOT_STARTED | docs/audit/DECISIONS.md current register; docs/design pending | ASSUMED | 2026-11-01 | Approved requirement; neither design nor implementation completed this checkpoint |
+| D-017 | NOT_STARTED | docs/audit/DECISIONS.md current register; docs/design pending | ASSUMED | 2026-11-01 | Approved requirement; neither design nor implementation completed this checkpoint |
+
+[ASSUMED] No hard invariant is certified by a completed current test run. The five-arm cap remains a required future feature, not a passing invariant.
