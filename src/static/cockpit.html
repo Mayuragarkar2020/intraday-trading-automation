@@ -78,9 +78,10 @@ dialog{background:var(--surface);color:var(--text);border:1px solid #41536a;bord
   </section>
   <section class="panel"><h2>Trade management and journal</h2><p id="managedPosition" class="muted">No managed paper position loaded.</p><div class="table-wrap"><table><thead><tr><th>Time</th><th>Side</th><th class="num">Quantity</th><th class="num">Price Rs</th><th class="num">Fee Rs</th></tr></thead><tbody id="managedFills"><tr><td colspan="5">No paper fills yet.</td></tr></tbody></table></div><p id="choiceJournal" class="muted">Your saved decisions will appear here.</p></section>
 
+  <details id="scannerAdvanced" class="panel"><summary>Advanced research and sizing tools</summary>
   <div class="notice">Stored research only. Candle and trading-eligibility checks are incomplete; no result is approved for execution.</div>
   <section class="panel">
-   <div class="panel-head"><div><h2>Stored research scan</h2><p class="muted">Current automated coverage: RELIANCE.</p></div><button id="refresh" type="button" class="button" data-auth disabled>Refresh stored scan</button></div>
+   <div class="panel-head"><div><h2>Stored research scan</h2><p class="muted">Full daily pool; inspect stored research coverage below.</p></div><button id="refresh" type="button" class="button" data-auth disabled>Refresh stored scan</button></div>
    <p id="refreshStatus" class="scan-meta" role="status" aria-live="polite">Unlock the workspace, then load a stored scan.</p>
    <div class="table-wrap"><table><thead><tr><th scope="col">Symbol</th><th scope="col">Research state</th><th scope="col" class="num">Entry level ₹</th><th scope="col" class="num">Initial stop ₹</th><th scope="col">Review</th></tr></thead><tbody id="candidates"><tr><td colspan="5" class="empty-cell"><div class="empty"><strong>No stored scan loaded</strong><p>Load the latest snapshot to inspect its timestamp and research output. Synthetic examples are kept in Diagnostics.</p></div></td></tr></tbody></table></div>
   </section>
@@ -96,6 +97,7 @@ dialog{background:var(--surface);color:var(--text);border:1px solid #41536a;bord
    <p id="message" class="result-message" role="status" aria-live="polite">Enter research levels and estimated costs to calculate an indicative position.</p>
    <div class="metrics"><div class="card"><small>Quantity</small><b id="quantity">—</b></div><div class="card"><small>Planned risk with costs</small><b id="risk">—</b></div><div class="card"><small>Capital deployed</small><b id="exposure">—</b></div><div class="card"><small>1.5R milestone before costs</small><b id="target">—</b></div></div>
   </section>
+ </details>
  </section>
 
  <section id="view-universe" aria-label="Research stock universe" hidden>

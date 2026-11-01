@@ -106,6 +106,7 @@ with sync_playwright() as p:
     page.screenshot(path="ui-review/human-choice-desktop.png",full_page=True)
     page.get_by_role("button",name="Withdraw stock choice",exact=True).click()
     expect(page.locator("#chosenStock")).to_contain_text("No stock selected")
+    page.locator("#scannerAdvanced").evaluate("(el) => el.open = true")
     page.locator("#refresh").click()
     expect(page.locator("#refreshStatus")).to_contain_text("No stored scan")
     page.route("**/api/latest-scan",lambda route:route.fulfill(status=200,json={"status":"AVAILABLE","source":"PERSISTED_UNIVERSE_SCAN","live":False,"execution_enabled":False,"coverage":{"selected":2,"scanned":1,"complete":False},"snapshot":{"candle_close":"2026-11-02T09:45:00+05:30","setups":[{"symbol":"STOCK0","status":"ARMED","reason":"WAIT_FOR_NEXT_CANDLE_BREAKOUT","entry":"101.05","stop":"98.95"},{"symbol":"STOCK1","status":"HOLD","reason":"INVALID_OR_UNAVAILABLE_CANDLE_DATA","entry":None,"stop":None}]}}))
