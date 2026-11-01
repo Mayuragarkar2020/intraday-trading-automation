@@ -1,5 +1,7 @@
 # Phase1 design review — round2 C0 resting bracket
 
+[READ_CODE] Approval update2026-11-01: Mayur answered “all yes” to the five round2 questions. Approved scope: C0 filter scope/prior3 width denominator; max(T-S)/T2.5%; one-tick default T/S buffers; stop-limit rather than plain-limit; proposed override bounds and conservative low<Q stop-no-fill rule with sensitivity. This is design approval of those choices, not implementation/test proof, buffer calibration or Phase2 authorization. Other proposals remain proposed.
+
 [ASSUMED] DESIGN ONLY, not Phase2 or a release. Mayur's strategy definition supersedes the old three-bar-range setup wherever different. Round1 following-close primary fills, receipt-based cutoff and top100 initial pool are SUPERSEDED.
 [READ_CODE] Source main79a2d3086c8aea660dc31068e2758db1f7332808 reread for detector/qualifier/scanner/choice guard. Historical CI evidence remains separate from local UNKNOWN baseline. Actual Render state **unverifiable by Codex**; no deployment/config/cron change.
 [ASSUMED] Single proposed Phase2 application foundation: origin/main containing PR14 HumanChoicePaperLedger; PR13/15 remain open/reference-only. No merge/cherry-pick/closure. Mayur supplies clean checkout; baseline verification and explicit Phase1 approval precede Phase2.
@@ -21,9 +23,9 @@
 
 ## Versioned defaults, not calibrated parameters
 
-[ASSUMED: proposed, awaiting Mayur] C0_V2_FILTERS retains C0 EMA10>EMA20, close>EMA10/EMA20/VWAP, RVOL>=1.2 and completed15m rising-EMA trend; prior3 width<=2.5% with denominator close(-1C). Tick buffers one tick beyond highC0/minLow4. These item7 defaults remain explicitly unapproved.
+[ASSUMED: review defaults; approved scope stated above] C0_V2_FILTERS retains C0 EMA10>EMA20, close>EMA10/EMA20/VWAP, RVOL>=1.2 and completed15m rising-EMA trend; prior3 width<=2.5% with denominator close(-1C). Tick buffers one tick beyond highC0/minLow4. These reviewed item7 defaults are now approved by Mayur; no empirical validation claimed.
 [ASSUMED: placeholder] ENTRY_BUFFER_REVIEW_V2 L=ceil_tick(T+max(0.15%*T,3ticks)); STOP_BUFFER_REVIEW_V2 Q=floor_tick(S*(1-1.0%)). Final values require replay analysis, not approval by repetition. Full q risk uses L-Q+fees; L-S risk reported separately.
-[ASSUMED: proposed, awaiting Mayur] Max distance(T-S)/T<=2.5%; override deltas<=max(0.10%T0,2ticks) while retaining trigger above highC0 and stop below all4 lows. Proposed candle age90s/quote age5s/participation1%/adverse slippage5bps require sensitivity review. No broker-certified charges claimed.
+[ASSUMED: review defaults; approved scope stated above] Max distance(T-S)/T<=2.5%; override deltas<=max(0.10%T0,2ticks) while retaining trigger above highC0 and stop below all4 lows. Proposed candle age90s/quote age5s/participation1%/adverse slippage5bps require sensitivity review. No broker-certified charges claimed.
 [ASSUMED] Hard risk/quantity/arm caps are invariants, not optimization knobs. Unfilled/halted stop can lose more than9800; no max-loss guarantee. Candle path/selection timing uncertainty is journaled, not hidden.
 
 ## Updated flow
@@ -65,11 +67,12 @@ flowchart TD
 ```
 [ASSUMED] No trigger-touch branches remain ARMED until expiry/cutoff/invalidation. Qualified but unselected/cancelled setups retain shadow evidence; no selection means no primary trade.
 
-## Numbered questions — proposed, awaiting Mayur; not blockers to documenting defaults
+## Approved answers and remaining gates
 
-[ASSUMED] 1. Keep the existing filter thresholds applied to C0, with prior3 width using close(-1C) denominator?
-[ASSUMED] 2. Accept a maximum(T-S)/T distance of2.5% pending distance sensitivity analysis?
-[ASSUMED] 3. Confirm one effective tick beyond highC0 and minLow4 as default entry/SL buffers?
-[ASSUMED] 4. Confirm stop-limit entry/protection rather than plain limit? A plain limit could execute without waiting for the breakout; draft defaults remain stop-limit.
-[ASSUMED] 5. Accept proposed override bounds and the pessimistic low<Q stop rule for primary replay, with continuous-touch alternative reported separately?
-[ASSUMED] 6. Final entry/stop-limit buffers remain deferred to evidence; provide the promised clean checkout before implementation baseline/Phase2. No Phase2 or live release is requested here.
+[READ_CODE] All five answers approved by Mayur2026-11-01:
+1. [READ_CODE] C0 EMA/VWAP/RVOL/15m filters and prior3width denominator close(-1C).
+2. [READ_CODE] Maximum(T-S)/T2.5%.
+3. [READ_CODE] One effective tick beyond highC0/minLow4.
+4. [READ_CODE] Stop-limit entry and protective semantics, not plain limit.
+5. [READ_CODE] Bounded overrides and conservative low<Q stop-no-fill primary model, with alternate sensitivity reported.
+[ASSUMED] Entry0.15%/3ticks and stop1.0% remain placeholders pending real-data analysis. Candle-age90s/quote5s/participation/slippage proposals are not approved merely by these five answers. Local baseline UNKNOWN; clean checkout promised. No Phase2 approval or deployment action inferred.

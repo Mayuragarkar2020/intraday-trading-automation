@@ -1,19 +1,21 @@
 # Setup and universe — authoritative C0 strategy, round 2
 
+[READ_CODE] Approval update2026-11-01: Mayur answered “all yes” to the five round2 questions. Approved scope: C0 filter scope/prior3 width denominator; max(T-S)/T2.5%; one-tick default T/S buffers; stop-limit rather than plain-limit; proposed override bounds and conservative low<Q stop-no-fill rule with sensitivity. This is design approval of those choices, not implementation/test proof, buffer calibration or Phase2 authorization. Other proposals remain proposed.
+
 [READ_CODE] As-implemented source below was reread at main79a2d3086c8aea660dc31068e2758db1f7332808. New strategy is Mayur's authoritative definition, NOT implemented by this docs-only revision.
-[ASSUMED] Existing filter defaults, distance and tick defaults marked “proposed, awaiting Mayur” remain proposals under strategy item7, even where other strategy structure is authoritative.
+[READ_CODE] Mayur has now approved the reviewed filter scope,maximum distance and one-tick defaults. This approval updates round2 review status only; no implementation or performance validation is implied.
 
 ## Side-by-side change map
 
 | Topic | As implemented (READ_CODE) | Authoritative target / default (ASSUMED) | Required implementation change |
 |---|---|---|---|
 | Signal | Last3 bars qualify a range; no C0 close breakout comparison | C0.close>highest high of -1C/-2C/-3C, strictly; surface after C0 close | setup_detector.detect_setup:four-bar input, separate prior3 range and C0; equality false |
-| Entry | Prior-range high+fixed0.05 | T0=high(C0)+one effective tick (default proposed, awaiting Mayur) | setup_detector:effective tick input; include C0 ID/high; no fixed buffer |
-| SL | Last3 minimum low-fixed0.05 | S0=min(lowC0,low-1,low-2,low-3)-one effective tick (default proposed, awaiting Mayur) | setup_detector:four-low stop and tick validation |
-| Trend/VWAP | All last3 bars EMA10>EMA20 and close>both/VWAP | Keep thresholds but apply to C0 only (proposed, awaiting Mayur) | qualified_scanner computes C0 indicator snapshot; detector checks C0 only |
-| RVOL | Latest range bar volume/20 matching slots>=1.2 | C0 slot ratio>=1.2 (proposed, awaiting Mayur) | qualified_scanner binds matching slot to C0, not last pre-signal bar |
-| HTF | Latest completed15m EMA10>EMA20, both rising | Same confirmation at C0 close (proposed, awaiting Mayur) | qualified_scanner:no future15m, no stale HTF; attach source IDs |
-| Width | Last3 range width/latest range close<=2.5% | Width of -1C..-3C only<=2.5% (proposed, awaiting Mayur); denominator close(-1C) proposal | detector:exclude C0 from width high/low; document denominator/config |
+| Entry | Prior-range high+fixed0.05 | T0=high(C0)+one effective tick (default review defaults; approved scope stated above) | setup_detector:effective tick input; include C0 ID/high; no fixed buffer |
+| SL | Last3 minimum low-fixed0.05 | S0=min(lowC0,low-1,low-2,low-3)-one effective tick (default review defaults; approved scope stated above) | setup_detector:four-low stop and tick validation |
+| Trend/VWAP | All last3 bars EMA10>EMA20 and close>both/VWAP | Keep thresholds but apply to C0 only (review defaults; approved scope stated above) | qualified_scanner computes C0 indicator snapshot; detector checks C0 only |
+| RVOL | Latest range bar volume/20 matching slots>=1.2 | C0 slot ratio>=1.2 (review defaults; approved scope stated above) | qualified_scanner binds matching slot to C0, not last pre-signal bar |
+| HTF | Latest completed15m EMA10>EMA20, both rising | Same confirmation at C0 close (review defaults; approved scope stated above) | qualified_scanner:no future15m, no stale HTF; attach source IDs |
+| Width | Last3 range width/latest range close<=2.5% | Width of -1C..-3C only<=2.5% (review defaults; approved scope stated above); denominator close(-1C) proposal | detector:exclude C0 from width high/low; document denominator/config |
 | Required bars | >=3 current-session candles | >=4 contiguous current-session bars; prior3 cannot span sessions | qualified_scanner:four inputs, C0 explicit; earliest possible09:35 |
 | Entry interpretation | Detector says ARMED before human choice; confirm_breakout uses later high | Detector says DETECTED/SURFACED; human confirmation creates resting arm; same trigger candle may fill | detector terminology; qualified_scanner result schema; universe_scanner persisted output |
 | Lifetime | No explicit C0+15min contract in detector | Expire15min after C0 close; pre-entry low<=S invalidates | stable C0 expiry/invalidation IDs; no renewal by repeated scan |
@@ -25,9 +27,9 @@
 
 [READ_CODE] EMA uses initial SMA seed, alpha2/(n+1), Decimal recurrence. Universe candidate uses last200 prior5m closes, minimum20; session VWAP=sum(((H+L+C)/3)*V)/sumV from09:20 opening close; positive total volume, ordered contiguous bars.
 [READ_CODE] RVOL baseline uses20 distinct prior sessions, matching HH:MM slot with positive volume each. HTF uses21+completed15m closes, EMA10>EMA20 and both rising vs preceding values; latest15m no future and at most15min old. No rounding changes are implied.
-[ASSUMED: proposed, awaiting Mayur] Apply trend/VWAP/RVOL checks to C0; prior3 define only breakout reference/width. Width=(maxHighPrior3-minLowPrior3)/close(-1C). Retain2.5%, RVOL1.2 and HTF direction until reviewed; these choices are not silently approved by retaining old defaults.
+[ASSUMED: review defaults; approved scope stated above] Apply trend/VWAP/RVOL checks to C0; prior3 define only breakout reference/width. Width=(maxHighPrior3-minLowPrior3)/close(-1C). Retain2.5%, RVOL1.2 and HTF direction until reviewed; these choices were explicitly approved by Mayur's five answers, not by retention of old defaults.
 [ASSUMED] Same-session first four bars: -3 closes09:20,-2 closes09:25,-1 closes09:30,C0 closes09:35. Scanner active09:15 does not mean a valid C0 exists then. Warm EMA/20-slot/HTF beforehand; C0 cannot use unfinished15m bars. Original09:45–11:30 and afternoon windows remain separate cohorts; afternoon strategy efficacy UNVALIDATED.
-[ASSUMED: proposed, awaiting Mayur] Maximum distance(T-S)/T<=2.5% and bounded overrides are in TIME_AND_EXECUTION. This is a guard proposal, not replay-selected optimum.
+[ASSUMED: review defaults; approved scope stated above] Maximum distance(T-S)/T<=2.5% and bounded overrides are in TIME_AND_EXECUTION. This is a guard proposal, not replay-selected optimum.
 [ASSUMED] All old-rule replay/scanner outcomes are NON_EVIDENCE_FOR_C0_V2: missing C0 confirmation, four-bar stop/tick fields and resting bracket semantics. Preserve them unchanged with original rule IDs; do not relabel as new strategy, even if selected stocks overlap.
 
 ## Hybrid universe and pool

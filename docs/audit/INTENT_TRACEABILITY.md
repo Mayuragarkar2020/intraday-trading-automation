@@ -51,3 +51,15 @@
 | HC-SCAN-WINDOW | DESIGNED | SETUP_AND_UNIVERSE09:15–14:35 and hidden14:30+ | READ_CODE |2026-11-01|Old scanner09:45–11:30 differs|
 | HC-ENTRY-CUTOFF | DESIGNED | TIME_AND_EXECUTION exchange window; test_cutoff_exchange_open_not_receipt future | READ_CODE |2026-11-01|Round1 receipt cutoff superseded|
 | HC-CLOSE-1500 | DESIGNED | bracket cancel-confirm flatten and breach/halts recovery | READ_CODE |2026-11-01|No guaranteed flat if no tradable full exit|
+
+
+[READ_CODE] Approval update2026-11-01: D-024..029 record Mayur's five approved answers. DESIGNED remains the implementation status; approval is not a passing test. Local baseline UNKNOWN; Phase2 not started.
+
+| Item | Status | Evidence | Evidence type | Updated | Limit |
+|---|---|---|---|---|---|
+| D-024 | DESIGNED | docs/design/SETUP_AND_UNIVERSE.md;docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved design choice only;not implemented/tested|
+| D-025 | DESIGNED | docs/design/TIME_AND_EXECUTION.md;docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved design choice only;not implemented/tested|
+| D-026 | DESIGNED | docs/design/TIME_AND_EXECUTION.md;docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved design choice only;not implemented/tested|
+| D-027 | DESIGNED | docs/design/TIME_AND_EXECUTION.md;docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved design choice only;not implemented/tested|
+| D-028 | DESIGNED | docs/design/TIME_AND_EXECUTION.md;docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved design choice only;not implemented/tested|
+| D-029 | DESIGNED | docs/design/TIME_AND_EXECUTION.md;docs/audit/DECISIONS.md | READ_CODE |2026-11-01|Approved design choice only;not implemented/tested|

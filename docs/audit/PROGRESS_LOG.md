@@ -141,3 +141,16 @@
 [ASSUMED] Risks/uncertainties: real resting orders normally require quantity before acceptance; paper contingent trigger sizing and atomic multi-stock exclusivity do not establish live feasibility. Mid-bar confirmation/entry-stop order and low<Q path unknown from OHLC; pessimistic primary and sensitivity proposed. Delayed-close only degraded fallback; fallback price must follow known cancellation/exit intent,not a past open.
 [READ_CODE] No application/test/config/workflow/broker/deployment/cron/Render changes;protected run_daily.py/root render.yaml untouched;existing workspace untouched. Phase2 NOT STARTED. All full-strategy trace rows DESIGNED,none TESTED/DEPLOYED. Coverage map includes original Phase1a-r and round2items1-10.
 [ASSUMED] Deferred:empirical analysis/parameter choice,code/migrations/concurrency tests,clean checkout validation,broker-capability/source/live/alert/supervisor verification and all production actions. Stop with README's numbered “proposed, awaiting Mayur” defaults; no design/Phase2/live approval assumed.
+
+
+## 2026-11-01 — session5 / Phase1 round2 five-answer approval record
+
+[READ_CODE] Mayur replied “all yes” to the five immediately preceding round2 questions. Scope recorded: C0 filter/width denominator,maximum entry-stop distance2.5%,one-tick defaults,stop-limit rather than plain-limit,bounded overrides and conservative low<Q protective no-fill model with sensitivity.
+[READ_CODE] Parent60895519b47c0a3878fbdd0d2f32d38fd81654ec;branch codex/phase1-review-round2;range 60895519b47c0a3878fbdd0d2f32d38fd81654ec..codex/phase1-review-round2 (PR19 head immutable endpoint). Read current round2 docs/audit/continuity from branch before update.
+[ASSUMED] Bad news/limits:local baseline UNKNOWN,no clean checkout,no tests/empirical replay/parameter calibration. Approval is not implementation or validation. No Phase2 or production authorization inferred.
+[READ_CODE] D-024..029 added as user-approved;D-005/D-006 current confirmation wording updated with explicit provenance;P-011/P-012 superseded;P-013 approved conservative-stop portion separated from unapproved freshness/capacity details. Historical progress prefix unchanged.
+[READ_CODE] Ten Markdown files changed:docs/design/README.md,TIME_AND_EXECUTION.md,SETUP_AND_UNIVERSE.md,LIFECYCLE_AND_ATOMICITY.md;docs/PROJECT_HANDOFF.md;docs/NEXT_WORK_PLAN.md;docs/audit/DECISIONS.md,INTENT_TRACEABILITY.md,AUDIT_PACKET.md,PROGRESS_LOG.md (bare names use preceding directory).
+[ASSUMED] Application tests:NOT RUN;exact command none;pass/fail/skips/duration N/A. No source/runtime/CI check or historical result reused as a current test.
+[RAN_TEST] Exact document check: functions.exec JavaScript over ayesfiles asserts10 allowed Markdown paths,29current D IDs and approval rows,append-only progress prefix,packet<=120lines and retained28-row coverage. Scanned private-key/GitHub-token/JWT/bearer/credential-assignment/private-URL patterns:0matches. Not application tests.
+[READ_CODE] No application/test/config/workflow/cron/Render/broker change;protected run_daily.py/root render.yaml untouched;no PR merged/closed. Existing workspace untouched;GitHub docs update only.
+[ASSUMED] Deferred:final buffers/replay analysis,clean-checkout baseline,remaining proposals,Phase2 and all live/production work. No approved choice reopened.

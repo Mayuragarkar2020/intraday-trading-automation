@@ -1,60 +1,51 @@
-# Audit packet — 2026-11-01 / Phase1 review round2
+# Audit packet —2026-11-01 / round2 approval record
 ## a. Session summary
-[ASSUMED] BAD NEWS: local baseline UNKNOWN; actual Render state unverifiable by Codex; no application test/market analysis this round.
-[READ_CODE] Seven design docs revised/added for C0 resting bracket; old next-close primary/receipt cutoff/top100 superseded.
-[READ_CODE] Parent b82089ed61fbf925b6052c09c820a7fec6c21839; branch codex/phase1-review-round2; application base main79a2d3086c8aea660dc31068e2758db1f7332808.
-[READ_CODE] D-003/D-005/D-006 explicitly amended; D-018..023 from Mayur; no Codex proposal marked approved.
-[READ_CODE] Phase2 NOT STARTED; no PR closed/merged, no deployment/Render/cron/broker action.
+[ASSUMED] Local baseline UNKNOWN; no application test or replay analysis this session.
+[READ_CODE] Mayur's “all yes” approves five round2 design answers only; recorded as D-024..029.
+[READ_CODE] Current design/decision/continuity documents updated; implementation status still DESIGNED.
+[READ_CODE] Branch codex/phase1-review-round2; parent60895519b47c0a3878fbdd0d2f32d38fd81654ec; docs-only update to PR19.
+[READ_CODE] Phase2 NOT STARTED; no production/Render/cron/broker action.
 
 ## b. Safety invariants
-[READ_CODE] PASS diff-only: PREVIEW_ONLY untouched; no app/broker-order path/client/endpoint/credential added.
-[RAN_TEST] PASS limited scan:13 proposed Markdown files,zero credential/token/private-URL pattern matches.
-[ASSUMED] UNVERIFIED: repository-wide secret absence; runtime PREVIEW_ONLY/Render settings not checked.
-[ASSUMED] UNVERIFIED by current tests: literal9800/L-Q risk,long-only,one daily fill,capital980000/no leverage,five arms,limit formula.
-[READ_CODE] These invariants have named future mutation targets; revised DB constraints/bracket NOT implemented.
-[READ_CODE] PASS scope: no deployment/config/cron/workflow/Render change; run_daily.py/root render.yaml untouched.
-[ASSUMED] Stop failure can exceed9800; no guaranteed maximum realized-loss claim.
+[READ_CODE] PASS diff scope: PREVIEW_ONLY/app paths unchanged; no real-money/broker code,endpoint,credential or client library.
+[RAN_TEST] PASS limited scan:10 proposed Markdown files;zero credential/private-URL pattern matches.
+[ASSUMED] UNVERIFIED: whole-repo secret absence and actual runtime/Render state.
+[ASSUMED] UNVERIFIED by current tests:9800 planned L-Q risk,980000capital,long-only,daily-fill,five-arm,buffer mutation protections.
+[READ_CODE] PASS session scope:no deployment/config/workflow/cron/Render change;legacy entrypoints untouched.
+[ASSUMED] STOP_NOT_FILLED losses may exceed9800; approved planned-risk rule is not a guaranteed loss cap.
 
 ## c. Traceability delta
-[READ_CODE] PI1..7/current D1..23 DESIGNED only; new C0/bracket tests not claimed TESTED.
-[READ_CODE] Added capital/window/entry-cutoff/closure target rows; old implementation evidence not reused as new-model proof.
-[READ_CODE] Superseded proposal bundles P-003/P-004/P-006; new implementation-base/filter/override/stop-model proposals remain proposed.
+[READ_CODE] D-024..029 added as approved by Mayur; DESIGNED only,no TESTED/DEPLOYED promotion.
+[READ_CODE] D-005/D-006 confirmation wording updated;P-011/P-012 superseded.
+[READ_CODE] P-013 stop-model portion approved;freshness/capacity proposals remain proposed.
+[READ_CODE] Pending final buffer calibration/clean checkout/Phase2 are explicitly retained.
 
-## d. Deviations, risks, assumptions, shortcuts
-[ASSUMED] Primary OHLC low<Q pessimistically gives STOP_NOT_FILLED despite a possible earlier valid S fill; sensitivity required.
-[ASSUMED] Confirming mid-bar needs post-confirmation fine data or explicit ambiguity hold; full prior high cannot prove later trigger.
-[ASSUMED] Late receipt can reconcile an eligible resting14:25 window, not create a new postcutoff order.
-[ASSUMED] Paper contingent trigger sizing may not map to a broker resting fixed-quantity order; future live blocker.
-[ASSUMED] Multiple external resting orders can fill before cancellation; paper DB uniqueness is not broker mutual exclusion.
-[ASSUMED] Cancel failure/halts may delay exit beyond15:00; retain critical exposure and breach, never imaginary flat.
-[ASSUMED] C0 filters,2.5%maxdistance,tick defaults,override limits/stop OHLC rule await Mayur; buffer values placeholders.
-[READ_CODE] Clone's recorded getaddrinfo-thread error does not prove root cause; no new diagnosis or retry this round.
+## d. Deviations,risks,assumptions
+[READ_CODE] “All yes” interpreted against the five immediately preceding review questions,not as general implementation/deployment authorization.
+[ASSUMED] No empirical validation arises from design approval.
+[ASSUMED] Live trigger-sizing/resting-quantity and multi-order exclusivity limitations remain unresolved.
+[ASSUMED] Intrabar path/stop failure/fallback risk and15:00 unfilled exposure remain as round2 design.
+[READ_CODE] No prior progress entry rewritten;updated design labels carry explicit approval-scope notice.
 
 ## e. Unverified claims
-[ASSUMED] No fresh CI/local test, historical-data analysis,selected-buffer result,live fill or phone-delivery proof.
-[ASSUMED] Prior main CI539/browsers is historical documentary evidence, not this session RAN_TEST.
-[ASSUMED] Dhan capability/static-IP/product/cutoff/stop fields not checked as current facts; pre-live checklist only.
-[ASSUMED] Intrabar order/path/exact MFE-MAE may be unknown from5m bars; bounds/cohorts recorded.
-[ASSUMED] Clean checkout not yet supplied; afternoon performance and scale-up p95 not measured.
+[ASSUMED] No new source/market/CI/runtime/Telegram/supervisor check performed.
+[ASSUMED] Local clean-checkout baseline and afternoon performance unverified.
+[ASSUMED] Entry0.15%/3ticks and stop1% remain placeholders pending analysis.
+[ASSUMED] Actual Render state unverifiable by Codex.
 
 ## f. Test results
-[ASSUMED] Application tests:NOT RUN (design-only); command none; counts/skips/duration N/A.
-[RAN_TEST] functions.exec doc validator:allowed13 Markdown paths;append-only log;packet<=120lines;coverage28 rows;IDs/proposal status.
-[RAN_TEST] Document arithmetic fixtures verified for three limits and risk quantities/comparison; NOT implementation tests.
-[RAN_TEST] Targeted private-key/GitHub-token/JWT/bearer/credential-assignment/private-URL pattern scan:0matches.
-[READ_CODE] No test code or dependency added; future test names in REPLAY_ANALYSIS_AND_TEST_PLAN.md.
+[ASSUMED] Application tests:NOT RUN;command none;counts/skips/duration N/A.
+[RAN_TEST] functions.exec document validator:10 allowed Markdown paths,append-only log,29current decision IDs,packet<=120lines,coverage retained.
+[RAN_TEST] Credential/private-URL patterns:0matches. Not application invariant tests.
 
-## g. Numbered open questions
-[ASSUMED: proposed, awaiting Mayur] 1. Keep C0 EMA/VWAP/RVOL/15m filters and prior3width denominator close(-1C)?
-[ASSUMED: proposed, awaiting Mayur] 2. Accept max(T-S)/T2.5% pending sensitivity analysis?
-[ASSUMED: proposed, awaiting Mayur] 3. Confirm one-tick T/S defaults?
-[ASSUMED: proposed, awaiting Mayur] 4. Confirm stop-limit rather than plain-limit semantics?
-[ASSUMED: proposed, awaiting Mayur] 5. Accept bounded overrides and conservative low<Q no-fill model with alternate sensitivity?
-[ASSUMED] Buffer calibration/clean checkout remain pending; no Phase2 or deployment requested.
+## g. Remaining open items
+[ASSUMED] 1. Clean checkout and exact-source baseline before any separately authorized Phase2.
+[ASSUMED] 2. Empirical buffer/stop/selection analysis and remaining freshness/liquidity/supervision proposals.
+[READ_CODE] No approved review choice is reopened;no Phase2/deploy approval requested in this record.
 
-## h. Suggested next step / auditor first paths
-[ASSUMED] Audit round2 design,answer default questions,supply clean checkout; Phase2 needs separate approval/baseline.
-[READ_CODE] First5:TIME_AND_EXECUTION.md;LIFECYCLE_AND_ATOMICITY.md;SETUP_AND_UNIVERSE.md;REPLAY_ANALYSIS_AND_TEST_PLAN.md;../audit/DECISIONS.md (design/ paths unless prefixed).
+## h. Suggested next step / first auditor files
+[ASSUMED] Review approved design record;await clean checkout and separate implementation instruction.
+[READ_CODE] First5:docs/audit/DECISIONS.md;docs/design/README.md;docs/design/TIME_AND_EXECUTION.md;docs/audit/PROGRESS_LOG.md;docs/audit/INTENT_TRACEABILITY.md.
 
 ## Coverage map — paths relative to docs/design/; coverage means designed, NOT tested
 | Phase1 item | Document and section |
@@ -87,3 +78,4 @@
 | [READ_CODE] R2-8 Clone/setup | BASELINE_AND_REFERENCES.md — Clone failure explanation and clean checkout handoff |
 | [READ_CODE] R2-9 Mutation/new tests | REPLAY_ANALYSIS_AND_TEST_PLAN.md — Phase2 tests-first protocol |
 | [READ_CODE] R2-10 Audit coverage | ../audit/AUDIT_PACKET.md — this coverage map |
+

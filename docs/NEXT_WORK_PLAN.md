@@ -1,5 +1,7 @@
 # Next work plan — Phase1 round2 review, NOT Phase2
 
+[READ_CODE]2026-11-01 approval update: Mayur answered “all yes” to five round2 questions. D-024..029 approved filter/width scope,maxdistance,tick defaults,stop-limit semantics,override bounds and conservative stop model. Exact buffer calibration,clean checkout baseline and Phase2 authorization remain pending. No application/production change.
+
 [READ_CODE] Source main79a2d3086c8aea660dc31068e2758db1f7332808; docs proposal stacks on round1 PR18. Current strategy/decisions in docs/design/README.md and docs/audit/DECISIONS.md supersede older three-bar/no-C0, next-close/receipt-cutoff defaults.
 [ASSUMED] Actual Render state **unverifiable by Codex**. Historical documentary checkpoint: webPR14 ceaaf577c8e30e4713da19176828b1b43b3a0226; research cronPR12 6d6e8152da96da2c575a59e0b980448b774d059b. No current runtime proof. Prior main CI539/both browsers is historical CI-reported, not this session RAN_TEST.
 [ASSUMED] Local baseline UNKNOWN; Mayur will supply clean checkout. No clone/test retry this round. Review baseline instructions and explicit error uncertainty before Phase2.

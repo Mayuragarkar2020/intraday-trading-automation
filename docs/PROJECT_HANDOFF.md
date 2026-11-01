@@ -1,5 +1,10 @@
 # Intraday Trading Automation — authoritative project handoff
 
+## Round2 five-answer approval —2026-11-01
+
+[READ_CODE] Mayur replied “all yes” to all five review questions. See D-024..029: C0 filters/prior3width denominator,maxdistance2.5%,one-tick defaults,stop-limit rather than plain-limit,override bounds and conservative low<Q stop failure with sensitivity. Design choices approved; implementation remains absent.
+[ASSUMED] Buffer calibration/local baseline remain pending. Phase2 NOT STARTED; no deployment/Render/cron/broker changes authorized. Actual Render state unverifiable by Codex. This update does not turn placeholders into empirically selected parameters.
+
 ## Phase1 review round2 — 1 November 2026
 
 [READ_CODE] Round2 design supersedes round1: authoritative C0.close>prior3high signal, proposed one-tick C0/prior4 prices, resting entry/protective bracket, same-candle fill, cutoff by fill-candle START<14:30 and initial25–50 pool with measured no-trade p95<=60s scale gate. See docs/design/README.md and amended D-005/D-018..023.

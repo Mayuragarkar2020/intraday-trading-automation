@@ -1,5 +1,7 @@
 # Lifecycle and atomicity — round 2 resting paper bracket
 
+[READ_CODE] Approval update2026-11-01: Mayur answered “all yes” to the five round2 questions. Approved scope: C0 filter scope/prior3 width denominator; max(T-S)/T2.5%; one-tick default T/S buffers; stop-limit rather than plain-limit; proposed override bounds and conservative low<Q stop-no-fill rule with sensitivity. This is design approval of those choices, not implementation/test proof, buffer calibration or Phase2 authorization. Other proposals remain proposed.
+
 [ASSUMED] DESIGN ONLY. The logical paper intents below are broker-neutral records, not broker orders, endpoints, credentials or library integrations. No Phase2/migration executed.
 [ASSUMED: Mayur amendment] Confirming persists SELECTED+ARMED. Entry is a resting stop-limit from acceptance, not a new instruction after a trigger candle closes. ARMED->TRIGGERED->ENTERED may occur in the SAME eligible candle; paper evidence commits on its receipt. Required ordering: accepted arm before execution evidence; no retrospective pre-confirmation high.
 
@@ -29,7 +31,7 @@
 
 ## Selection contract and override bounds
 
-[ASSUMED: proposed, awaiting Mayur] Generated T0/S0 one tick beyond C0/prior4 extrema, accepted overrides within max(0.10%*T0,2ticks), still above highC0/below all4 lows, positive exact ticks, (T-S)/T<=2.5%, fresh quote<T, full15min lifetime and available cost-inclusive risk/cash. Store selection reason, original/overridden values and OVERRIDDEN cohort. Full formula in TIME_AND_EXECUTION.
+[ASSUMED: review defaults; approved scope stated above] Generated T0/S0 one tick beyond C0/prior4 extrema, accepted overrides within max(0.10%*T0,2ticks), still above highC0/below all4 lows, positive exact ticks, (T-S)/T<=2.5%, fresh quote<T, full15min lifetime and available cost-inclusive risk/cash. Store selection reason, original/overridden values and OVERRIDDEN cohort. Full formula in TIME_AND_EXECUTION.
 [ASSUMED: proposal] Setup age is C0.close to selection; validation quote max age5s/latest candle90s are proposals. Readiness hold or unknown tick/source rejects, never silently rounds/repairs. Stale selection/expired attempt cannot place/rest an intent.
 [ASSUMED: proposal] Same account+request ID returns original result; changed override conflicts. Active arm is one symbol/setup/attempt; hard total5. After daily entry fill no new arming. Manual re-selection after gap requires still-valid signal, fresh quote<T and before14:30; a terminal attempt never revives itself.
 [ASSUMED: proposal] Alert noise: one setup per C0 fingerprint, per-symbol15min setup-message rate and total5/min digest;30min snooze suppresses setup messages only. Risk/stop-failure/exit/cutoff alerts unsnoozable. Signal refresh never silently moves an existing user's T/S.
