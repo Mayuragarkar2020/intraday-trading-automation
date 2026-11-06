@@ -32,7 +32,9 @@ class PaperBar(BaseModel):
     close: Decimal = Field(gt=0, le=10000000, max_digits=16, decimal_places=6)
     high: Decimal = Field(gt=0, le=10000000, max_digits=16, decimal_places=6)
     low: Decimal = Field(gt=0, le=10000000, max_digits=16, decimal_places=6)
-    ema10: Decimal = Field(gt=0, le=10000000, max_digits=16, decimal_places=6)
+    # Derived EMA uses Decimal arithmetic and need not lie on the price grid.
+    # Preserve its precision so close<EMA decisions do not change by rounding.
+    ema10: Decimal = Field(gt=0, le=10000000, max_digits=40, decimal_places=30)
     volume: int = Field(ge=0, le=1000000000000, strict=True)
     participation_pct: Decimal = Field(gt=0, le=10, max_digits=12, decimal_places=6)
     slippage_bps: Decimal = Field(ge=0, le=100, max_digits=12, decimal_places=6)
