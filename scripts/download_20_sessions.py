@@ -7,6 +7,8 @@ import argparse
 import hashlib
 import json
 import time
+import os
+import tempfile
 import urllib.request
 from datetime import date
 from pathlib import Path
@@ -33,10 +35,22 @@ def download(dates_file, output_dir):
                 data=response.read(12_000_001)
             if len(data)>12_000_000 or len(data)<1000:
                 raise DataQualityError(f"Unexpected source size for {day}")
-            path.write_bytes(data)
+            # Validate a private temporary archive before publishing it to the cache.
+            # This prevents interrupted or malformed downloads from becoming cache hits.
+            fd, temporary = tempfile.mkstemp(prefix=".nse-", suffix=".zip", dir=directory)
+            try:
+                with os.fdopen(fd, "wb") as stream:
+                    stream.write(data)
+                _, manifest = load_bhavcopy(temporary, day)
+                os.replace(temporary, path)
+            finally:
+                if os.path.exists(temporary):
+                    os.unlink(temporary)
             time.sleep(0.4)
-        _,manifest=load_bhavcopy(path,day)
-        manifests.append(manifest)
+        else:
+            # Cached files must pass the same validation as new downloads.
+            _, manifest = load_bhavcopy(path, day)
+        manifests.append({**manifest, "filename": path.name})
     return manifests
 
 def main():
